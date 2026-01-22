@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/Core/">
+    <Project Path="Core/Rathalos.Core.ORM/Rathalos.Core.ORM.csproj" />
+    <Project Path="Core/Rathalos.Core.Protocol/Rathalos.Core.Protocol.csproj" />
+    <Project Path="Core/Rathalos.Core.Utils/Rathalos.Core.Utils.csproj" />
+  </Folder>
+  <Folder Name="/Servers/">
+    <Project Path="Servers/Rathalos.Servers.Base/Rathalos.Servers.Base.csproj" />
+  </Folder>
+  <Project Path="Rathalos.CLI/Rathalos.CLI.csproj" />
+</Solution>
