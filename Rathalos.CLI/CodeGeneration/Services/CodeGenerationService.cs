@@ -43,7 +43,7 @@ namespace Rathalos.CLI.CodeGeneration.Services
             // Generate class files using template
             foreach (var classModel in codeModel.Classes)
             {
-                var classCode = _templateEngine.ProcessClassTemplate(classModel);
+                var classCode = _templateEngine.ProcessClassTemplate(classModel, codeModel);
                 generatedFiles[$"{classModel.Name}.cs"] = classCode;
             }
 

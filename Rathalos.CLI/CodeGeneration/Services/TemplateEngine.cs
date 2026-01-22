@@ -9,13 +9,14 @@ namespace Rathalos.CLI.CodeGeneration.Services
     /// </summary>
     public class TemplateEngine
     {
-        public string ProcessClassTemplate(GeneratedClass classModel)
+        public string ProcessClassTemplate(GeneratedClass classModel, GeneratedCodeModel? codeModel = null)
         {
             try
             {
                 var template = new ClassTemplate()
                 {
                     Model = classModel,
+                    CodeModel = codeModel
                 };
                 return template.TransformText();
             }

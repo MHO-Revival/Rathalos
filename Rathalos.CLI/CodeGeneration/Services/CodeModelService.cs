@@ -109,7 +109,7 @@ namespace Rathalos.CLI.CodeGeneration.Services
                     Name = CleanName(union.Name),
                     Description = union.Description,
                     Namespace = codeModel.TargetNamespace,
-                    UsingStatements = { "System" }
+                    UsingStatements = { "System", "Rathalos.Core.Utils.IO" }
                 };
 
                 // Track which classes should implement this interface

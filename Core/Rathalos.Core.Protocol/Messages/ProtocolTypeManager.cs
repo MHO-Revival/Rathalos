@@ -5,13 +5,13 @@ namespace Rathalos.Core.Protocol.Messages
 {
     public static class ProtocolTypeManager
     {
-        private static Dictionary<Type,Dictionary<ushort, Type>> _typesData = [];
+        private static Dictionary<Type,Dictionary<ushort, Func<object>>> _typesData = [];
 
         public static void Initialize()
         {
             Assembly asm = Assembly.GetAssembly(typeof(Version));
 
-            foreach (Type type in asm.GetTypes())
+            foreach (Type type in asm.GetTypes().Where(x => !x.IsAbstract && !x.IsInterface))
             {
                 FieldInfo field = type.GetField(nameof(TPDUExtAuthInfo.ProtocolId));
 
@@ -30,27 +30,26 @@ namespace Rathalos.Core.Protocol.Messages
                         _typesData.Add(field.FieldType, []);
                     }
 
-                    _typesData[field.FieldType].Add(id, type);
+                    _typesData[field.FieldType].Add(id, funcCtor);
                 }
             }
         }
 
-        public static TOut Get<TData, TOut>(TData value)
-            where TOut : class, new()
-            where TData : struct
+        public static TOut Get<TOut>(object value)
+            where TOut : class
         {
-            if (_typesData.TryGetValue(typeof(TData), out var dict))
+            if (_typesData.TryGetValue(value.GetType(), out var dict))
             {
-                if (dict.TryGetValue(Convert.ToUInt16(value), out var type))
+                if (dict.TryGetValue(Convert.ToUInt16(value), out var ctor))
                 {
-                    return Activator.CreateInstance(type) as TOut;
+                    return ctor() as TOut;
                 }
-                throw new Exception(string.Format("Type id '{0}' not found for '{1}'", value, typeof(TData).Name));
+                throw new Exception(string.Format("Type id '{0}' not found for '{1}'", value, value.GetType().Name));
 
             }
             else
             {
-                throw new Exception(string.Format("Type '{0}' not found", typeof(TData).Name));
+                throw new Exception(string.Format("Type '{0}' not found", value.GetType().Name));
             }
         }
     }

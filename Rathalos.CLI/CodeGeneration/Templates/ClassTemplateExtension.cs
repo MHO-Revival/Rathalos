@@ -11,6 +11,11 @@ namespace Rathalos.CLI.CodeGeneration.Templates
         public GeneratedClass Model { get; set; }
 
         /// <summary>
+        /// The full code model containing all classes, enums, and constants for reference resolution
+        /// </summary>
+        public GeneratedCodeModel? CodeModel { get; set; }
+
+        /// <summary>
         /// Generates property code with XML documentation, attributes, and proper syntax
         /// </summary>
         /// <param name="property">The property to generate code for</param>
@@ -19,7 +24,7 @@ namespace Rathalos.CLI.CodeGeneration.Templates
         {
             var sb = new StringBuilder();
 
-            if(property.IsProtocolId)
+            if (property.IsProtocolId)
             {
                 sb.AppendLine($"\t\tpublic const {property.Type} {property.Name}Const = {property.DefaultValue};");
             }
@@ -48,7 +53,7 @@ namespace Rathalos.CLI.CodeGeneration.Templates
             {
                 // Regular property with getter/setter
                 sb.Append($"\t\tpublic {property.Type}{(property.IsArray ? "[]" : "")} {property.Name} {{ get; set; }}");
-                
+
                 // Handle default value or array initialization
                 if (!string.IsNullOrWhiteSpace(property.DefaultValue))
                 {
@@ -64,7 +69,7 @@ namespace Rathalos.CLI.CodeGeneration.Templates
                 }
             }
 
-            if(Model.Properties.Last() != property)
+            if (Model.Properties.Last() != property)
             {
                 sb.AppendLine();
             }
@@ -112,6 +117,16 @@ namespace Rathalos.CLI.CodeGeneration.Templates
             { "string", "WriteUTF" }
         };
 
+        public string GenerateUsingDirectives()
+        {
+            var sb = new StringBuilder();
+            foreach (var usable in Model.UsingStatements)
+            {
+                sb.AppendLine($"using {usable};");
+            }
+            return sb.ToString();
+        }
+
         /// <summary>
         /// Generates the Serialize method that writes all properties to an IDataWriter
         /// </summary>
@@ -119,7 +134,7 @@ namespace Rathalos.CLI.CodeGeneration.Templates
         public string GenerateSerializeMethod()
         {
             var sb = new StringBuilder();
-            
+
             sb.AppendLine("\t\t/// <summary>");
             sb.AppendLine("\t\t/// Serializes this instance to the specified data writer.");
             sb.AppendLine("\t\t/// </summary>");
@@ -151,7 +166,7 @@ namespace Rathalos.CLI.CodeGeneration.Templates
         public string GenerateDeserializeMethod()
         {
             var sb = new StringBuilder();
-            
+
             sb.AppendLine("\t\t/// <summary>");
             sb.AppendLine("\t\t/// Deserializes this instance from the specified data reader.");
             sb.AppendLine("\t\t/// </summary>");
@@ -193,11 +208,11 @@ namespace Rathalos.CLI.CodeGeneration.Templates
             if (property.IsArray)
             {
                 sb.AppendLine($"\t\t\t// Write array: {property.Name}");
-                
+
                 // Determine array length constraint
                 string lengthVar = $"{property.Name}?.Length ?? 0";
                 string maxLength = GetArrayMaxLength(property);
-                
+
                 if (!string.IsNullOrWhiteSpace(maxLength))
                 {
                     sb.AppendLine($"\t\t\tvar {property.Name}Count = Math.Min({lengthVar}, {maxLength});");
@@ -205,15 +220,16 @@ namespace Rathalos.CLI.CodeGeneration.Templates
                 }
                 else if (!string.IsNullOrWhiteSpace(property.Refer))
                 {
+                    var refer = ResolveRealLength(property.Refer);
                     // Array length is determined by another property (refer attribute)
-                    sb.AppendLine($"\t\t\tvar {property.Name}Count = {lengthVar};");
+                    sb.AppendLine($"\t\t\tvar {property.Name}Count = {refer};");
                     lengthVar = $"{property.Name}Count";
                 }
 
                 // Write array elements
                 sb.AppendLine($"\t\t\tfor (var i = 0; i < {lengthVar}; i++)");
                 sb.AppendLine("\t\t\t{");
-                
+
                 if (IsPrimitiveType(realType))
                 {
                     var writeMethod = GetWriteMethod(realType);
@@ -224,7 +240,7 @@ namespace Rathalos.CLI.CodeGeneration.Templates
                     // Custom type - call its Serialize method
                     sb.AppendLine($"\t\t\t\t{property.Name}[i]?.Serialize(writer);");
                 }
-                
+
                 sb.AppendLine("\t\t\t}");
             }
             else if (IsPrimitiveType(realType))
@@ -266,19 +282,20 @@ namespace Rathalos.CLI.CodeGeneration.Templates
             if (property.IsArray)
             {
                 sb.AppendLine($"\t\t\t// Read array: {property.Name}");
-                
+
                 // Determine array length
                 string lengthExpr;
                 string maxLength = GetArrayMaxLength(property);
-                
+
                 if (!string.IsNullOrWhiteSpace(property.Refer))
                 {
+                    var refer = ResolveRealLength(property.Refer);
                     // Array length is determined by another property (refer attribute)
-                    lengthExpr = property.Refer;
-                    
+                    lengthExpr = refer;
+
                     if (!string.IsNullOrWhiteSpace(maxLength))
                     {
-                        lengthExpr = $"Math.Min((int){property.Refer}, {maxLength})";
+                        lengthExpr = $"Math.Min((int){refer}, {maxLength})";
                     }
                 }
                 else if (!string.IsNullOrWhiteSpace(maxLength))
@@ -294,7 +311,7 @@ namespace Rathalos.CLI.CodeGeneration.Templates
                 sb.AppendLine($"\t\t\t{property.Name} = new {realType}[{lengthExpr}];");
                 sb.AppendLine($"\t\t\tfor (var i = 0; i < {property.Name}.Length; i++)");
                 sb.AppendLine("\t\t\t{");
-                
+
                 if (IsPrimitiveType(realType))
                 {
                     var readMethod = GetReadMethod(realType);
@@ -303,10 +320,9 @@ namespace Rathalos.CLI.CodeGeneration.Templates
                 else
                 {
                     // Custom type - create instance and call its Deserialize method
-                    sb.AppendLine($"\t\t\t\t{property.Name}[i] = new {realType}();");
-                    sb.AppendLine($"\t\t\t\t{property.Name}[i].Deserialize(reader);");
+                    GenerateDeserializeCustomObject(property, 4, sb);
                 }
-                
+
                 sb.AppendLine("\t\t\t}");
             }
             else if (IsPrimitiveType(realType))
@@ -325,27 +341,255 @@ namespace Rathalos.CLI.CodeGeneration.Templates
             else
             {
                 // Custom type - create instance and call its Deserialize method
-                sb.AppendLine($"\t\t\t{property.Name} = new {realType}();");
-                sb.AppendLine($"\t\t\t{property.Name}.Deserialize(reader);");
+                GenerateDeserializeCustomObject(property, 3, sb);
             }
 
             return sb.ToString();
         }
 
+        private void GenerateDeserializeCustomObject(GeneratedProperty property, int tabCount, StringBuilder sb)
+        {
+            tabCount = Math.Max(tabCount, 0);
+            var indent = new string('\t', tabCount);
+            sb.AppendLine($"{indent}{property.Name} = new {property.RealType}();");
+            sb.AppendLine($"{indent}{property.Name}.Deserialize(reader);");
+        }
+
         /// <summary>
-        /// Gets the maximum array length from the ArraySize property
+        /// Gets the maximum array length from the ArraySize property.
+        /// Resolves references to constants (MetaLibConstants.X) and properties in the current class or nested custom types.
         /// </summary>
         private string GetArrayMaxLength(GeneratedProperty property)
         {
             if (string.IsNullOrWhiteSpace(property.ArraySize))
                 return string.Empty;
 
-            // If ArraySize is a number, return it directly
-            if (int.TryParse(property.ArraySize, out _))
-                return property.ArraySize;
+            var arraySize = property.ArraySize;
 
-            // If it's a reference to a constant or macro, return as-is
-            return property.ArraySize;
+            // If ArraySize is a number, return it directly
+            if (int.TryParse(arraySize, out _))
+                return arraySize;
+
+            // Check if it's a reference to a constant (macro)
+            if (CodeModel != null && CodeModel.Constants.ContainsKey(arraySize))
+            {
+                // It's a constant, prefix with MetaLibConstants class
+                return $"MetaLibConstants.{arraySize}";
+            }
+
+            return ResolveRealLength(arraySize);
+        }
+
+        public string ResolveRealLength(string refer)
+        {
+            // Check if it's a property in the current class
+            var currentClassProp = Model.Properties.FirstOrDefault(p => p.Name == refer);
+            if (currentClassProp != null)
+            {
+                // It's a property in the current class, return as-is
+                return refer;
+            }
+
+            // Try to resolve nested property path (e.g., "PropA.PropB.Count")
+            var resolvedPath = ResolveNestedPropertyPath(refer);
+            if (!string.IsNullOrWhiteSpace(resolvedPath))
+            {
+                return resolvedPath;
+            }
+
+            // Fallback: return as-is (might be a constant or property we couldn't resolve)
+            return refer;
+        }
+
+        /// <summary>
+        /// Resolves a nested property path by navigating through custom class properties.
+        /// For example, if ArraySize is "Header.Count", it navigates Header -> Count.
+        /// Also searches through all custom class properties of the Model to find the reference.
+        /// </summary>
+        private string ResolveNestedPropertyPath(string reference)
+        {
+            if (string.IsNullOrWhiteSpace(reference) || CodeModel == null)
+                return reference;
+
+            // Split by dots to check for nested paths
+            var parts = reference.Split('.');
+
+            // Navigate through nested properties starting from Model
+            var resolvedPath = NavigatePropertyPath(parts, Model);
+            if (!string.IsNullOrWhiteSpace(resolvedPath))
+                return resolvedPath;
+
+            // If direct path navigation failed, try searching in all custom class properties
+            // This handles cases where the first part of the path is inside a custom class
+            var searchPath = SearchPropertyPathInCustomClasses(parts);
+            if (!string.IsNullOrWhiteSpace(searchPath))
+                return searchPath;
+
+            // Fallback: return as-is
+            return reference;
+        }
+
+        /// <summary>
+        /// Searches for a property name in all custom class properties of the Model.
+        /// Returns the full path (e.g., "Header.Count") if found.
+        /// </summary>
+        private string? SearchPropertyInCustomClasses(string propertyName)
+        {
+            if (CodeModel == null)
+                return null;
+
+            // Iterate through all properties in the Model
+            foreach (var modelProp in Model.Properties)
+            {
+                // Skip primitive types
+                if (IsPrimitiveType(modelProp.RealType))
+                    continue;
+
+                // Find the class definition for this custom type
+                var customClass = CodeModel.Classes.FirstOrDefault(c => c.Name == modelProp.RealType);
+                if (customClass == null)
+                    continue;
+
+                // Check if the property exists in this custom class
+                var foundProp = customClass.Properties.FirstOrDefault(p => p.Name == propertyName);
+                if (foundProp != null)
+                {
+                    return $"{modelProp.Name}.{propertyName}";
+                }
+
+                // Recursively search in nested custom classes
+                var nestedPath = SearchPropertyInNestedClasses(propertyName, customClass, modelProp.Name, new HashSet<string> { Model.Name, customClass.Name });
+                if (!string.IsNullOrWhiteSpace(nestedPath))
+                    return nestedPath;
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Recursively searches for a property in nested custom classes.
+        /// </summary>
+        private string? SearchPropertyInNestedClasses(string propertyName, GeneratedClass currentClass, string currentPath, HashSet<string> visitedClasses)
+        {
+            if (CodeModel == null)
+                return null;
+
+            foreach (var prop in currentClass.Properties)
+            {
+                // Skip primitive types
+                if (IsPrimitiveType(prop.RealType))
+                    continue;
+
+                // Avoid circular references
+                if (visitedClasses.Contains(prop.RealType))
+                    continue;
+
+                // Find the class definition for this custom type
+                var nestedClass = CodeModel.Classes.FirstOrDefault(c => c.Name == prop.RealType);
+                if (nestedClass == null)
+                    continue;
+
+                var newPath = $"{currentPath}.{prop.Name}";
+                visitedClasses.Add(nestedClass.Name);
+
+                // Check if the property exists in this nested class
+                var foundProp = nestedClass.Properties.FirstOrDefault(p => p.Name == propertyName);
+                if (foundProp != null)
+                {
+                    return $"{newPath}.{propertyName}";
+                }
+
+                // Continue searching deeper
+                var deeperPath = SearchPropertyInNestedClasses(propertyName, nestedClass, newPath, visitedClasses);
+                if (!string.IsNullOrWhiteSpace(deeperPath))
+                    return deeperPath;
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Searches for a property path in all custom class properties of the Model.
+        /// </summary>
+        private string? SearchPropertyPathInCustomClasses(string[] parts)
+        {
+            if (CodeModel == null || parts.Length == 0)
+                return null;
+
+            var firstPart = parts[0];
+
+            // Iterate through all properties in the Model
+            foreach (var modelProp in Model.Properties)
+            {
+                // Skip primitive types
+                if (IsPrimitiveType(modelProp.RealType))
+                    continue;
+
+                // Find the class definition for this custom type
+                var customClass = CodeModel.Classes.FirstOrDefault(c => c.Name == modelProp.RealType);
+                if (customClass == null)
+                    continue;
+
+                // Check if the first part of the path exists in this custom class
+                var foundProp = customClass.Properties.FirstOrDefault(p => p.Name == firstPart);
+                if (foundProp != null)
+                {
+                    // Navigate the rest of the path from here
+                    var remainingPath = NavigatePropertyPath(parts, customClass);
+                    if (!string.IsNullOrWhiteSpace(remainingPath))
+                    {
+                        return $"{modelProp.Name}.{remainingPath}";
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Navigates a property path starting from a given class.
+        /// Returns the validated path or null if navigation fails.
+        /// </summary>
+        private string? NavigatePropertyPath(string[] parts, GeneratedClass startClass)
+        {
+            if (CodeModel == null)
+                return null;
+
+            var pathBuilder = new StringBuilder();
+            GeneratedClass? currentClass = startClass;
+
+            for (int i = 0; i < parts.Length; i++)
+            {
+                var partName = parts[i];
+
+                if (currentClass == null)
+                    return null;
+
+                var prop = currentClass.Properties.FirstOrDefault(p => p.Name == partName);
+                if (prop == null)
+                {
+                    // Property not found in current class
+                    return null;
+                }
+
+                if (pathBuilder.Length > 0)
+                    pathBuilder.Append('.');
+                pathBuilder.Append(partName);
+
+                // If not the last part, navigate to the nested class
+                if (i < parts.Length - 1)
+                {
+                    // Find the class that matches the property type
+                    currentClass = CodeModel.Classes.FirstOrDefault(c => c.Name == prop.RealType);
+                    if (currentClass == null)
+                    {
+                        // Custom class not found, can't navigate further
+                        return null;
+                    }
+                }
+            }
+
+            return pathBuilder.Length > 0 ? pathBuilder.ToString() : null;
         }
 
         /// <summary>
