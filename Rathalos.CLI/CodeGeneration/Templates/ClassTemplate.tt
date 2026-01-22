@@ -20,5 +20,9 @@ namespace <#= Model.Namespace #>
 <# foreach (var property in Model.Properties) { #>
 <#= GeneratePropertyCode(property) #>
 <# } #>
+
+<#= GenerateSerializeMethod() #>
+
+<#= GenerateDeserializeMethod() #>
     }
 }

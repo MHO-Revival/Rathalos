@@ -121,9 +121,5 @@ namespace Rathalos.CLI.CodeGeneration.Models
 
         [XmlAttribute("size")]
         public string Size { get; set; } = string.Empty;
-
-        [XmlAttribute("sizeinfo")]
-        public string SizeInfo { get; set; } = string.Empty;
-
     }
 }

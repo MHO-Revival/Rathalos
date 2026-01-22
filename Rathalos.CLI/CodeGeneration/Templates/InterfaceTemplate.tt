@@ -26,14 +26,7 @@ namespace <#= namespaceName #>
 <# } #>
     public interface <#= interfaceName #>
     {
-<# foreach (var property in properties) { #>
-<# if (!string.IsNullOrWhiteSpace(property.Description)) { #>
-        /// <summary>
-        /// <#= property.Description #>
-        /// </summary>
-<# } #>
-        <#= property.Type #><#= property.IsArray ? "[]" : "" #> <#= property.Name #> { get; set; }
-
-<# } #>
+        void Serialize(IDataWriter writer);
+        void Deserialize(IDataReader reader);
     }
 }

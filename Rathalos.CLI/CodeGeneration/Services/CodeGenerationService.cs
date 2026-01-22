@@ -14,9 +14,10 @@ namespace Rathalos.CLI.CodeGeneration.Services
             _templateEngine = new TemplateEngine();
         }
 
-        public async Task<Dictionary<string, string>> GenerateCodeFilesAsync(GeneratedCodeModel codeModel)
+        public async Task<(Dictionary<string, string>Classes, Dictionary<string, string> Enums)> GenerateCodeFilesAsync(GeneratedCodeModel codeModel)
         {
             var generatedFiles = new Dictionary<string, string>();
+            var generatedEnumFiles = new Dictionary<string, string>();
 
             // Generate constants file using template
             if (codeModel.Constants.Any())
@@ -29,7 +30,7 @@ namespace Rathalos.CLI.CodeGeneration.Services
             foreach (var enumModel in codeModel.Enums)
             {
                 var enumCode = _templateEngine.ProcessEnumTemplate(enumModel);
-                generatedFiles[$"{enumModel.Name}.cs"] = enumCode;
+                generatedEnumFiles[$"{enumModel.Name}.cs"] = enumCode;
             }
 
             // Generate interface files using template
@@ -46,7 +47,7 @@ namespace Rathalos.CLI.CodeGeneration.Services
                 generatedFiles[$"{classModel.Name}.cs"] = classCode;
             }
 
-            return generatedFiles;
+            return (generatedFiles, generatedEnumFiles);
         }
 
         public async Task SaveGeneratedFilesAsync(Dictionary<string, string> generatedFiles, string outputDirectory)

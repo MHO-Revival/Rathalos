@@ -9,13 +9,39 @@ namespace Rathalos.CLI.CodeGeneration.Services
     {
         private readonly Dictionary<string, string> _typeMapping = new()
         {
+            // Signed integer types
             { "tinyint", "sbyte" },
-            { "tinyuint", "byte" },
+            { "int8", "sbyte" },
+            { "smallint", "short" },
             { "short", "short" },
-            { "ushort", "ushort" },
+            { "int16", "short" },
             { "int", "int" },
+            { "int32", "int" },
+            { "bigint", "long" },
+            { "int64", "long" },
+            
+            // Unsigned integer types
+            { "tinyuint", "byte" },
+            { "byte", "byte" },
+            { "uint8", "byte" },
+            { "uchar", "byte" },
+            { "ushort", "ushort" },
+            { "uint16", "ushort" },
             { "uint", "uint" },
-            { "char", "char" }
+            { "uint32", "uint" },
+            { "biguint", "ulong" },
+            { "ulong", "ulong" },
+            { "uint64", "ulong" },
+            { "ulonglong", "ulong" },
+            
+            // Character type
+            { "char", "char" },
+            
+            // Floating point type
+            { "float", "float" },
+            
+            // String type
+            { "string", "string" },
         };
 
         public GeneratedCodeModel ConvertToCodeModel(MetaLib metaLib, string targetNamespace)
@@ -108,7 +134,7 @@ namespace Rathalos.CLI.CodeGeneration.Services
                     Name = CleanName(structDef.Name),
                     Description = structDef.Description,
                     Namespace = codeModel.TargetNamespace,
-                    UsingStatements = { "System", "System.Collections.Generic" },
+                    UsingStatements = { "System", "System.Collections.Generic", "Rathalos.Core.Utils.IO" },
                     IsStruct = false // Generate as classes for better OOP support
                 };
 
@@ -127,23 +153,27 @@ namespace Rathalos.CLI.CodeGeneration.Services
                         if (unionEntry.Type == structDef.Name)
                         {
                             var interfaceName = CleanName(union.Name);
-                            generatedClass.Interfaces.Add(interfaceName);
+                            if (!generatedClass.Interfaces.Contains(interfaceName))
+                                generatedClass.Interfaces.Add(interfaceName);
 
                             // Add ProtocolId const field using the enum value from id attribute
                             if (!string.IsNullOrWhiteSpace(unionEntry.Id))
                             {
-                                // Find the corresponding enum value
-                                var enumName = FindEnumForId(unionEntry.Id, metaLib);
-                                var protocolIdValue = enumName != null ? $"{enumName}.{CleanName(unionEntry.Id)}" : unionEntry.Id;
-
-                                generatedClass.Properties.Insert(0, new GeneratedProperty
+                                if (generatedClass.Properties.All(p => !p.IsProtocolId))
                                 {
-                                    Name = "ProtocolId",
-                                    Type = "ushort",
-                                    Description = "Protocol identifier for this message type",
-                                    DefaultValue = $"(ushort){protocolIdValue}",
-                                    IsProtocolId = true
-                                });
+                                    // Find the corresponding enum value
+                                    var enumName = FindEnumForId(unionEntry.Id, metaLib);
+                                    var protocolIdValue = enumName != null ? $"{enumName}.{CleanName(unionEntry.Id)}" : unionEntry.Id;
+
+                                    generatedClass.Properties.Insert(0, new GeneratedProperty
+                                    {
+                                        Name = "ProtocolId",
+                                        Type = enumName,
+                                        Description = "Protocol identifier for this message type",
+                                        DefaultValue = $"{protocolIdValue}",
+                                        IsProtocolId = true
+                                    });
+                                }
                             }
                         }
                     }
@@ -175,7 +205,9 @@ namespace Rathalos.CLI.CodeGeneration.Services
                 IsArray = IsArrayProperty(entry),
                 Type = GetFinalType(entry, metaLib),
                 RealType = GetRealType(entry, metaLib),
-                ArraySize = entry.Count
+                ArraySize = entry.Count,
+                Select = string.IsNullOrWhiteSpace(entry.Select) ? null : CleanName(entry.Select),
+                Refer = string.IsNullOrWhiteSpace(entry.Refer) ? null : CleanName(entry.Refer)
             };
 
             return property;

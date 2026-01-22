@@ -127,13 +127,14 @@ namespace Rathalos.CLI.Menu.Options
                 var generatedFiles = await _codeGenerationService.GenerateCodeFilesAsync(codeModel);
 
                 Console.WriteLine($"\n{ConsoleDisplayHelper.Icons.Floppy} Saving generated files...");
-                await _codeGenerationService.SaveGeneratedFilesAsync(generatedFiles, outputDir);
+                await _codeGenerationService.SaveGeneratedFilesAsync(generatedFiles.Classes, Path.Combine(outputDir, "Classes"));
+                await _codeGenerationService.SaveGeneratedFilesAsync(generatedFiles.Enums, Path.Combine(outputDir, "Enums"));
 
                 Console.WriteLine($"\n{ConsoleDisplayHelper.Icons.Party} Code generation completed!");
                 Console.WriteLine($"{ConsoleDisplayHelper.Icons.Folder} Output directory: {outputDir}");
-                Console.WriteLine($"{ConsoleDisplayHelper.Icons.Document} Generated {generatedFiles.Count} files:");
+                Console.WriteLine($"{ConsoleDisplayHelper.Icons.Document} Generated {generatedFiles.Classes.Count + generatedFiles.Enums.Count} files:");
 
-                foreach (var fileName in generatedFiles.Keys)
+                foreach (var fileName in generatedFiles.Classes.Keys.Concat(generatedFiles.Enums.Keys))
                 {
                     Console.WriteLine($"   - {fileName}");
                 }

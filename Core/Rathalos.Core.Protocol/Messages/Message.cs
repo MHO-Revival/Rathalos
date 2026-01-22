@@ -6,7 +6,6 @@ namespace Rathalos.Core.Protocol.Messages
     public abstract record Message
     {
         private static uint _seqId;
-
         public virtual bool IsTdpu => false;
         public abstract ushort ProtocolMessageId
         {

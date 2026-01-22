@@ -51,6 +51,14 @@ namespace Rathalos.CLI.CodeGeneration.Models
         public string? ArraySize { get; set; }
         public bool IsProtocolId { get; set; } = false;
         public List<string> Attributes { get; set; } = new List<string>();
+        /// <summary>
+        /// The select attribute from XML that identifies which property determines the type of data to serialize/deserialize
+        /// </summary>
+        public string? Select { get; set; }
+        /// <summary>
+        /// The refer attribute from XML that points to the property containing the array length
+        /// </summary>
+        public string? Refer { get; set; }
     }
 
     public class GeneratedEnumValue

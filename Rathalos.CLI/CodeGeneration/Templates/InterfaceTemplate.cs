@@ -100,62 +100,8 @@ namespace Rathalos.CLI.CodeGeneration.Templates
             
             #line default
             #line hidden
-            this.Write("\n    {\n");
-            
-            #line 1 "C:\krosmoz\Rathalos\Rathalos.CLI\CodeGeneration\Templates\InterfaceTemplate.tt"
- foreach (var property in properties) { 
-            
-            #line default
-            #line hidden
-            this.Write("\n");
-            
-            #line 1 "C:\krosmoz\Rathalos\Rathalos.CLI\CodeGeneration\Templates\InterfaceTemplate.tt"
- if (!string.IsNullOrWhiteSpace(property.Description)) { 
-            
-            #line default
-            #line hidden
-            this.Write("\n        /// <summary>\n        /// ");
-            
-            #line 1 "C:\krosmoz\Rathalos\Rathalos.CLI\CodeGeneration\Templates\InterfaceTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(property.Description));
-            
-            #line default
-            #line hidden
-            this.Write("\n        /// </summary>\n");
-            
-            #line 1 "C:\krosmoz\Rathalos\Rathalos.CLI\CodeGeneration\Templates\InterfaceTemplate.tt"
- } 
-            
-            #line default
-            #line hidden
-            this.Write("\n        ");
-            
-            #line 1 "C:\krosmoz\Rathalos\Rathalos.CLI\CodeGeneration\Templates\InterfaceTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(property.Type));
-            
-            #line default
-            #line hidden
-            
-            #line 1 "C:\krosmoz\Rathalos\Rathalos.CLI\CodeGeneration\Templates\InterfaceTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(property.IsArray ? "[]" : ""));
-            
-            #line default
-            #line hidden
-            this.Write(" ");
-            
-            #line 1 "C:\krosmoz\Rathalos\Rathalos.CLI\CodeGeneration\Templates\InterfaceTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(property.Name));
-            
-            #line default
-            #line hidden
-            this.Write(" { get; set; }\n\n");
-            
-            #line 1 "C:\krosmoz\Rathalos\Rathalos.CLI\CodeGeneration\Templates\InterfaceTemplate.tt"
- } 
-            
-            #line default
-            #line hidden
-            this.Write("\n    }\n}");
+            this.Write("\n    {\n        void Serialize(IDataWriter writer);\n        void Deserialize(IData" +
+                    "Reader reader);\n    }\n}");
             return this.GenerationEnvironment.ToString();
         }
     }
