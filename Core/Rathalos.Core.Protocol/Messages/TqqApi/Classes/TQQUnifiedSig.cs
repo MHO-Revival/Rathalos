@@ -41,7 +41,11 @@ namespace Rathalos.Core.Protocol.Messages
 			writer.WriteUInt(Time);
 			writer.WriteShort(EncryptSignLen);
 			// Write array: EncryptSignData
-			var EncryptSignDataCount = Math.Min(EncryptSignData?.Length ?? 0, MetaLibConstants.TQQ_UNIFIED_MAX_ENCSIGN_LEN);
+			if ((EncryptSignData?.Length ?? 0) > MetaLibConstants.TQQ_UNIFIED_MAX_ENCSIGN_LEN)
+			{
+				throw new InvalidOperationException($"Array length of 'EncryptSignData' exceeds maximum allowed length of MetaLibConstants.TQQ_UNIFIED_MAX_ENCSIGN_LEN.");
+			}
+			var EncryptSignDataCount = Math.Min((long)EncryptSignLen, (long)MetaLibConstants.TQQ_UNIFIED_MAX_ENCSIGN_LEN);
 			for (var i = 0; i < EncryptSignDataCount; i++)
 			{
 				writer.WriteByte(EncryptSignData[i]);

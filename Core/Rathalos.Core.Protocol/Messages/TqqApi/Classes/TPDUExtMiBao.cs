@@ -43,7 +43,11 @@ namespace Rathalos.Core.Protocol.Messages
 		{
 			writer.WriteUShort(Len);
 			// Write array: MiBaoBuffer
-			var MiBaoBufferCount = Math.Min(MiBaoBuffer?.Length ?? 0, MetaLibConstants.TPDU_MAX_MIBAOBUFFER_LEN);
+			if ((MiBaoBuffer?.Length ?? 0) > MetaLibConstants.TPDU_MAX_MIBAOBUFFER_LEN)
+			{
+				throw new InvalidOperationException($"Array length of 'MiBaoBuffer' exceeds maximum allowed length of MetaLibConstants.TPDU_MAX_MIBAOBUFFER_LEN.");
+			}
+			var MiBaoBufferCount = Math.Min((long)Len, (long)MetaLibConstants.TPDU_MAX_MIBAOBUFFER_LEN);
 			for (var i = 0; i < MiBaoBufferCount; i++)
 			{
 				writer.WriteByte(MiBaoBuffer[i]);

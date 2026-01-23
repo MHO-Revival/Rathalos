@@ -43,7 +43,11 @@ namespace Rathalos.Core.Protocol.Messages
 		{
 			writer.WriteByte(Len);
 			// Write array: EncryptSynInfo
-			var EncryptSynInfoCount = Math.Min(EncryptSynInfo?.Length ?? 0, MetaLibConstants.TPDU_MAX_ENCRYPTSYNACK_LEN);
+			if ((EncryptSynInfo?.Length ?? 0) > MetaLibConstants.TPDU_MAX_ENCRYPTSYNACK_LEN)
+			{
+				throw new InvalidOperationException($"Array length of 'EncryptSynInfo' exceeds maximum allowed length of MetaLibConstants.TPDU_MAX_ENCRYPTSYNACK_LEN.");
+			}
+			var EncryptSynInfoCount = Math.Min((long)Len, (long)MetaLibConstants.TPDU_MAX_ENCRYPTSYNACK_LEN);
 			for (var i = 0; i < EncryptSynInfoCount; i++)
 			{
 				writer.WriteByte(EncryptSynInfo[i]);

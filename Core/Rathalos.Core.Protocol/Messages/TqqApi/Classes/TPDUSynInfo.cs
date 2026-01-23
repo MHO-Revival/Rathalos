@@ -29,7 +29,11 @@ namespace Rathalos.Core.Protocol.Messages
 		public void Serialize(IDataWriter writer)
 		{
 			// Write array: Randstr
-			var RandstrCount = Math.Min(Randstr?.Length ?? 0, MetaLibConstants.TQQ_IDENT_LEN);
+			if ((Randstr?.Length ?? 0) > MetaLibConstants.TQQ_IDENT_LEN)
+			{
+				throw new InvalidOperationException($"Array length of 'Randstr' exceeds maximum allowed length of MetaLibConstants.TQQ_IDENT_LEN.");
+			}
+			var RandstrCount = Math.Min((Randstr?.Length ?? 0), MetaLibConstants.TQQ_IDENT_LEN);
 			for (var i = 0; i < RandstrCount; i++)
 			{
 				writer.WriteChar(Randstr[i]);

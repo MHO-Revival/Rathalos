@@ -37,7 +37,11 @@ namespace Rathalos.Core.Protocol.Messages
 			writer.WriteUInt(Uin);
 			writer.WriteInt(Pos);
 			// Write array: Ident
-			var IdentCount = Math.Min(Ident?.Length ?? 0, MetaLibConstants.TQQ_IDENT_LEN);
+			if ((Ident?.Length ?? 0) > MetaLibConstants.TQQ_IDENT_LEN)
+			{
+				throw new InvalidOperationException($"Array length of 'Ident' exceeds maximum allowed length of MetaLibConstants.TQQ_IDENT_LEN.");
+			}
+			var IdentCount = Math.Min((Ident?.Length ?? 0), MetaLibConstants.TQQ_IDENT_LEN);
 			for (var i = 0; i < IdentCount; i++)
 			{
 				writer.WriteChar(Ident[i]);

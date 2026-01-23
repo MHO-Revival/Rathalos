@@ -60,7 +60,11 @@ namespace Rathalos.Core.Protocol.Messages
 			writer.WriteUInt(IP);
 			writer.WriteUShort(Port);
 			// Write array: ExtInfo
-			var ExtInfoCount = Math.Min(ExtInfo?.Length ?? 0, 128);
+			if ((ExtInfo?.Length ?? 0) > 128)
+			{
+				throw new InvalidOperationException($"Array length of 'ExtInfo' exceeds maximum allowed length of 128.");
+			}
+			var ExtInfoCount = Math.Min((ExtInfo?.Length ?? 0), 128);
 			for (var i = 0; i < ExtInfoCount; i++)
 			{
 				writer.WriteChar(ExtInfo[i]);

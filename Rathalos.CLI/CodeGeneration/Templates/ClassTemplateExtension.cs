@@ -207,22 +207,39 @@ namespace Rathalos.CLI.CodeGeneration.Templates
 
             if (property.IsArray)
             {
-                sb.AppendLine($"\t\t\t// Write array: {property.Name}");
-
                 // Determine array length constraint
-                string lengthVar = $"{property.Name}?.Length ?? 0";
+                string lengthVar = $"({property.Name}?.Length ?? 0)";
                 string maxLength = GetArrayMaxLength(property);
-
-                if (!string.IsNullOrWhiteSpace(maxLength))
+                
+                if(!string.IsNullOrWhiteSpace(maxLength))
                 {
-                    sb.AppendLine($"\t\t\tvar {property.Name}Count = Math.Min({lengthVar}, {maxLength});");
-                    lengthVar = $"{property.Name}Count";
+                    sb.AppendLine($"\t\t\tif ({lengthVar} > {maxLength})");
+                    sb.AppendLine("\t\t\t{");
+                    sb.AppendLine($"\t\t\t\tthrow new InvalidOperationException($\"Array length of '{property.Name}' exceeds maximum allowed length of {maxLength}.\");");
+                    sb.AppendLine("\t\t\t}");
                 }
-                else if (!string.IsNullOrWhiteSpace(property.Refer))
+
+                if (!string.IsNullOrWhiteSpace(property.Refer))
                 {
                     var refer = ResolveRealLength(property.Refer);
                     // Array length is determined by another property (refer attribute)
-                    sb.AppendLine($"\t\t\tvar {property.Name}Count = {refer};");
+                    
+                    if (!string.IsNullOrWhiteSpace(maxLength))
+                    {
+                        // Both Refer and ArraySize are set - use Math.Min to cap at max length
+                        sb.AppendLine($"\t\t\tvar {property.Name}Count = Math.Min((long){refer}, (long){maxLength});");
+                    }
+                    else
+                    {
+                        // Only Refer is set - use it directly
+                        sb.AppendLine($"\t\t\tvar {property.Name}Count = (long){refer};");
+                    }
+                    lengthVar = $"{property.Name}Count";
+                }
+                else if (!string.IsNullOrWhiteSpace(maxLength))
+                {
+                    // Only ArraySize is set - cap at max length
+                    sb.AppendLine($"\t\t\tvar {property.Name}Count = Math.Min({lengthVar}, {maxLength});");
                     lengthVar = $"{property.Name}Count";
                 }
 
@@ -320,7 +337,7 @@ namespace Rathalos.CLI.CodeGeneration.Templates
                 else
                 {
                     // Custom type - create instance and call its Deserialize method
-                    GenerateDeserializeCustomObject(property, 4, sb);
+                    GenerateDeserializeCustomObject(property, 4, sb, isArrayElement: true);
                 }
 
                 sb.AppendLine("\t\t\t}");
@@ -341,18 +358,61 @@ namespace Rathalos.CLI.CodeGeneration.Templates
             else
             {
                 // Custom type - create instance and call its Deserialize method
-                GenerateDeserializeCustomObject(property, 3, sb);
+                GenerateDeserializeCustomObject(property, 3, sb, isArrayElement: false);
             }
 
             return sb.ToString();
         }
 
-        private void GenerateDeserializeCustomObject(GeneratedProperty property, int tabCount, StringBuilder sb)
+        private void GenerateDeserializeCustomObject(GeneratedProperty property, int tabCount, StringBuilder sb, bool isArrayElement = false)
         {
             tabCount = Math.Max(tabCount, 0);
             var indent = new string('\t', tabCount);
-            sb.AppendLine($"{indent}{property.Name} = new {property.RealType}();");
-            sb.AppendLine($"{indent}{property.Name}.Deserialize(reader);");
+            
+            // Check if the property's RealType class contains a property with IsProtocolId = true
+            var hasProtocolId = IsInterface(property.RealType);
+            
+            if (hasProtocolId && !string.IsNullOrWhiteSpace(property.Select))
+            {
+                // Use ProtocolTypeManager to get the instance based on the Select property
+                var selectPath = ResolveRealLength(property.Select);
+                if (isArrayElement)
+                {
+                    sb.AppendLine($"{indent}{property.Name}[i] = ProtocolTypeManager.Get<{property.RealType}>({selectPath});");
+                    sb.AppendLine($"{indent}{property.Name}[i].Deserialize(reader);");
+                }
+                else
+                {
+                    sb.AppendLine($"{indent}{property.Name} = ProtocolTypeManager.Get<{property.RealType}>({selectPath});");
+                    sb.AppendLine($"{indent}{property.Name}.Deserialize(reader);");
+                }
+            }
+            else
+            {
+                // Use normal constructor
+                if (isArrayElement)
+                {
+                    sb.AppendLine($"{indent}{property.Name}[i] = new {property.RealType}();");
+                    sb.AppendLine($"{indent}{property.Name}[i].Deserialize(reader);");
+                }
+                else
+                {
+                    sb.AppendLine($"{indent}{property.Name} = new {property.RealType}();");
+                    sb.AppendLine($"{indent}{property.Name}.Deserialize(reader);");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Checks if the specified class is interface then it means that it has been generated from union 
+        /// then it has a ProtocolId property for inhereted classes for that interface
+        /// </summary>
+        private bool IsInterface(string typeName)
+        {
+            if (CodeModel == null)
+                return false;
+
+            return CodeModel.Interfaces.Any(c => c.Name == typeName);
         }
 
         /// <summary>

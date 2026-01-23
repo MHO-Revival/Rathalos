@@ -53,14 +53,22 @@ namespace Rathalos.Core.Protocol.Messages
 			writer.WriteUInt(Uin);
 			writer.WriteByte(SignLen);
 			// Write array: SignData
-			var SignDataCount = Math.Min(SignData?.Length ?? 0, MetaLibConstants.TQQ_MAX_SIGN_LEN);
+			if ((SignData?.Length ?? 0) > MetaLibConstants.TQQ_MAX_SIGN_LEN)
+			{
+				throw new InvalidOperationException($"Array length of 'SignData' exceeds maximum allowed length of MetaLibConstants.TQQ_MAX_SIGN_LEN.");
+			}
+			var SignDataCount = Math.Min((long)SignLen, (long)MetaLibConstants.TQQ_MAX_SIGN_LEN);
 			for (var i = 0; i < SignDataCount; i++)
 			{
 				writer.WriteByte(SignData[i]);
 			}
 			writer.WriteByte(Sign2Len);
 			// Write array: Sign2Data
-			var Sign2DataCount = Math.Min(Sign2Data?.Length ?? 0, MetaLibConstants.TQQ_MAX_SIGN2_LEN);
+			if ((Sign2Data?.Length ?? 0) > MetaLibConstants.TQQ_MAX_SIGN2_LEN)
+			{
+				throw new InvalidOperationException($"Array length of 'Sign2Data' exceeds maximum allowed length of MetaLibConstants.TQQ_MAX_SIGN2_LEN.");
+			}
+			var Sign2DataCount = Math.Min((long)Sign2Len, (long)MetaLibConstants.TQQ_MAX_SIGN2_LEN);
 			for (var i = 0; i < Sign2DataCount; i++)
 			{
 				writer.WriteByte(Sign2Data[i]);

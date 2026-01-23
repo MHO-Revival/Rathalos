@@ -64,7 +64,11 @@ namespace Rathalos.Core.Protocol.Messages
 			writer.WriteInt(OldPos);
 			writer.WriteInt(Len);
 			// Write array: EncryptIdent
-			var EncryptIdentCount = Math.Min(EncryptIdent?.Length ?? 0, MetaLibConstants.TPDU_MAX_ENCRYPTIDENT_LEN);
+			if ((EncryptIdent?.Length ?? 0) > MetaLibConstants.TPDU_MAX_ENCRYPTIDENT_LEN)
+			{
+				throw new InvalidOperationException($"Array length of 'EncryptIdent' exceeds maximum allowed length of MetaLibConstants.TPDU_MAX_ENCRYPTIDENT_LEN.");
+			}
+			var EncryptIdentCount = Math.Min((long)Len, (long)MetaLibConstants.TPDU_MAX_ENCRYPTIDENT_LEN);
 			for (var i = 0; i < EncryptIdentCount; i++)
 			{
 				writer.WriteSByte(EncryptIdent[i]);

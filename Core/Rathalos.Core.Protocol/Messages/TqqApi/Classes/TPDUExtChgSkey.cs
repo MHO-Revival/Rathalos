@@ -50,7 +50,11 @@ namespace Rathalos.Core.Protocol.Messages
 			writer.WriteShort(Type);
 			writer.WriteShort(Len);
 			// Write array: EncryptSkey
-			var EncryptSkeyCount = Math.Min(EncryptSkey?.Length ?? 0, MetaLibConstants.TPDU_MAX_ENCRYPTSKEY_LEN);
+			if ((EncryptSkey?.Length ?? 0) > MetaLibConstants.TPDU_MAX_ENCRYPTSKEY_LEN)
+			{
+				throw new InvalidOperationException($"Array length of 'EncryptSkey' exceeds maximum allowed length of MetaLibConstants.TPDU_MAX_ENCRYPTSKEY_LEN.");
+			}
+			var EncryptSkeyCount = Math.Min((long)Len, (long)MetaLibConstants.TPDU_MAX_ENCRYPTSKEY_LEN);
 			for (var i = 0; i < EncryptSkeyCount; i++)
 			{
 				writer.WriteSByte(EncryptSkey[i]);

@@ -53,19 +53,31 @@ namespace Rathalos.Core.Protocol.Messages
 		public void Serialize(IDataWriter writer)
 		{
 			// Write array: GameKey
-			var GameKeyCount = Math.Min(GameKey?.Length ?? 0, MetaLibConstants.TQQ_KEY_LEN);
+			if ((GameKey?.Length ?? 0) > MetaLibConstants.TQQ_KEY_LEN)
+			{
+				throw new InvalidOperationException($"Array length of 'GameKey' exceeds maximum allowed length of MetaLibConstants.TQQ_KEY_LEN.");
+			}
+			var GameKeyCount = Math.Min((GameKey?.Length ?? 0), MetaLibConstants.TQQ_KEY_LEN);
 			for (var i = 0; i < GameKeyCount; i++)
 			{
 				writer.WriteChar(GameKey[i]);
 			}
 			// Write array: SvcBitmap
-			var SvcBitmapCount = Math.Min(SvcBitmap?.Length ?? 0, MetaLibConstants.TQQ_SVCBITMAP_LEN);
+			if ((SvcBitmap?.Length ?? 0) > MetaLibConstants.TQQ_SVCBITMAP_LEN)
+			{
+				throw new InvalidOperationException($"Array length of 'SvcBitmap' exceeds maximum allowed length of MetaLibConstants.TQQ_SVCBITMAP_LEN.");
+			}
+			var SvcBitmapCount = Math.Min((SvcBitmap?.Length ?? 0), MetaLibConstants.TQQ_SVCBITMAP_LEN);
 			for (var i = 0; i < SvcBitmapCount; i++)
 			{
 				writer.WriteChar(SvcBitmap[i]);
 			}
 			// Write array: SvcBitmapExt
-			var SvcBitmapExtCount = Math.Min(SvcBitmapExt?.Length ?? 0, MetaLibConstants.TQQ_SVCBITMAP_EXT_LEN);
+			if ((SvcBitmapExt?.Length ?? 0) > MetaLibConstants.TQQ_SVCBITMAP_EXT_LEN)
+			{
+				throw new InvalidOperationException($"Array length of 'SvcBitmapExt' exceeds maximum allowed length of MetaLibConstants.TQQ_SVCBITMAP_EXT_LEN.");
+			}
+			var SvcBitmapExtCount = Math.Min((SvcBitmapExt?.Length ?? 0), MetaLibConstants.TQQ_SVCBITMAP_EXT_LEN);
 			for (var i = 0; i < SvcBitmapExtCount; i++)
 			{
 				writer.WriteChar(SvcBitmapExt[i]);

@@ -33,7 +33,7 @@ namespace Rathalos.Core.Protocol.Messages
 		{
 			Head?.Serialize(writer);
 			// Write array: Body
-			var BodyCount = Head.Base.BodyLen;
+			var BodyCount = (long)Head.Base.BodyLen;
 			for (var i = 0; i < BodyCount; i++)
 			{
 				writer.WriteSByte(Body[i]);

@@ -44,7 +44,11 @@ namespace Rathalos.Core.Protocol.Messages
 			writer.WriteUInt(Uin);
 			writer.WriteByte(Len);
 			// Write array: SigInfo
-			var SigInfoCount = Math.Min(SigInfo?.Length ?? 0, MetaLibConstants.TQQ_UNIFIED_MAX_SIGN_LEN);
+			if ((SigInfo?.Length ?? 0) > MetaLibConstants.TQQ_UNIFIED_MAX_SIGN_LEN)
+			{
+				throw new InvalidOperationException($"Array length of 'SigInfo' exceeds maximum allowed length of MetaLibConstants.TQQ_UNIFIED_MAX_SIGN_LEN.");
+			}
+			var SigInfoCount = Math.Min((long)Len, (long)MetaLibConstants.TQQ_UNIFIED_MAX_SIGN_LEN);
 			for (var i = 0; i < SigInfoCount; i++)
 			{
 				writer.WriteByte(SigInfo[i]);

@@ -52,7 +52,7 @@ namespace Rathalos.Core.Protocol.Messages
 			Base = new TPDUBase_Old();
 			Base.Deserialize(reader);
 			// Selected by: Base.Cmd
-			Ext = new TPDUExt();
+			Ext = ProtocolTypeManager.Get<TPDUExt>(Base.Cmd);
 			Ext.Deserialize(reader);
 		}
 

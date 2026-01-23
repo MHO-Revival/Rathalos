@@ -73,21 +73,33 @@ namespace Rathalos.Core.Protocol.Messages
 			writer.WriteInt(AppClientVer);
 			writer.WriteUInt(ClientIP);
 			// Write array: SessionKey
-			var SessionKeyCount = Math.Min(SessionKey?.Length ?? 0, MetaLibConstants.TQQ_KEY_LEN);
+			if ((SessionKey?.Length ?? 0) > MetaLibConstants.TQQ_KEY_LEN)
+			{
+				throw new InvalidOperationException($"Array length of 'SessionKey' exceeds maximum allowed length of MetaLibConstants.TQQ_KEY_LEN.");
+			}
+			var SessionKeyCount = Math.Min((SessionKey?.Length ?? 0), MetaLibConstants.TQQ_KEY_LEN);
 			for (var i = 0; i < SessionKeyCount; i++)
 			{
 				writer.WriteByte(SessionKey[i]);
 			}
 			writer.WriteShort(UnifiedSig2Len);
 			// Write array: UnifiedSig2
-			var UnifiedSig2Count = Math.Min(UnifiedSig2?.Length ?? 0, MetaLibConstants.TQQ_UNIFIED_MAX_ENCSIGN2_LEN);
+			if ((UnifiedSig2?.Length ?? 0) > MetaLibConstants.TQQ_UNIFIED_MAX_ENCSIGN2_LEN)
+			{
+				throw new InvalidOperationException($"Array length of 'UnifiedSig2' exceeds maximum allowed length of MetaLibConstants.TQQ_UNIFIED_MAX_ENCSIGN2_LEN.");
+			}
+			var UnifiedSig2Count = Math.Min((long)UnifiedSig2Len, (long)MetaLibConstants.TQQ_UNIFIED_MAX_ENCSIGN2_LEN);
 			for (var i = 0; i < UnifiedSig2Count; i++)
 			{
 				writer.WriteByte(UnifiedSig2[i]);
 			}
 			writer.WriteShort(CustomInfoLen);
 			// Write array: CustomInfoData
-			var CustomInfoDataCount = Math.Min(CustomInfoData?.Length ?? 0, MetaLibConstants.TQQ_UNIFIED_CUSTOMINFO_LEN);
+			if ((CustomInfoData?.Length ?? 0) > MetaLibConstants.TQQ_UNIFIED_CUSTOMINFO_LEN)
+			{
+				throw new InvalidOperationException($"Array length of 'CustomInfoData' exceeds maximum allowed length of MetaLibConstants.TQQ_UNIFIED_CUSTOMINFO_LEN.");
+			}
+			var CustomInfoDataCount = Math.Min((long)CustomInfoLen, (long)MetaLibConstants.TQQ_UNIFIED_CUSTOMINFO_LEN);
 			for (var i = 0; i < CustomInfoDataCount; i++)
 			{
 				writer.WriteByte(CustomInfoData[i]);
