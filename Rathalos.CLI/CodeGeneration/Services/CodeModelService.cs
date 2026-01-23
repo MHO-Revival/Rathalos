@@ -10,8 +10,8 @@ namespace Rathalos.CLI.CodeGeneration.Services
         private readonly Dictionary<string, string> _typeMapping = new()
         {
             // Signed integer types
-            { "tinyint", "sbyte" },
-            { "int8", "sbyte" },
+            { "tinyint", "byte" },
+            { "int8", "byte" },
             { "smallint", "short" },
             { "short", "short" },
             { "int16", "short" },

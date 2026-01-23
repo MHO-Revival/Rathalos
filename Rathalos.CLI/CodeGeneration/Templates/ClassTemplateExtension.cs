@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 namespace Rathalos.CLI.CodeGeneration.Templates
@@ -14,6 +15,68 @@ namespace Rathalos.CLI.CodeGeneration.Templates
         /// The full code model containing all classes, enums, and constants for reference resolution
         /// </summary>
         public GeneratedCodeModel? CodeModel { get; set; }
+
+        /// <summary>
+        /// Cache of properties that are used as Refer targets by other properties
+        /// </summary>
+        private HashSet<string>? _referTargetProperties;
+
+        /// <summary>
+        /// Gets or builds the set of property names that are used as Refer targets
+        /// </summary>
+        private HashSet<string> GetReferTargetProperties()
+        {
+            if (_referTargetProperties == null)
+            {
+                _referTargetProperties = new HashSet<string>();
+                foreach (var prop in Model.Properties)
+                {
+                    if (!string.IsNullOrWhiteSpace(prop.Refer))
+                    {
+                        // The Refer might be a simple name or a path like "Header.Count"
+                        // For now, we only exclude direct properties (first part of path)
+                        var referName = prop.Refer.Split('.')[0];
+                        _referTargetProperties.Add(referName);
+                    }
+                }
+            }
+            return _referTargetProperties;
+        }
+
+        /// <summary>
+        /// Checks if a property is used as a Refer target by another property
+        /// </summary>
+        private bool IsReferTarget(GeneratedProperty property)
+        {
+            return GetReferTargetProperties().Contains(property.Name);
+        }
+
+        /// <summary>
+        /// Gets the array property that uses a given property as its Refer
+        /// </summary>
+        private GeneratedProperty? GetArrayPropertyForRefer(string referPropertyName)
+        {
+            return Model.Properties.FirstOrDefault(p =>
+                !string.IsNullOrWhiteSpace(p.Refer) &&
+                p.Refer.Split('.')[0] == referPropertyName);
+        }
+
+        public string GenerateProperties()
+        {
+            StringBuilder builder = new StringBuilder();
+            foreach(var prop in Model.Properties)
+            {
+                // Skip properties that are used as Refer targets - they will be local variables in Serialize/Deserialize
+                if (IsReferTarget(prop))
+                {
+                    continue;
+                }
+
+                builder.Append(GeneratePropertyCode(prop));
+            }
+
+            return builder.ToString();
+        }
 
         /// <summary>
         /// Generates property code with XML documentation, attributes, and proper syntax
@@ -199,6 +262,29 @@ namespace Rathalos.CLI.CodeGeneration.Templates
             var sb = new StringBuilder();
             var realType = property.RealType;
 
+            // Check if this property is a Refer target - if so, write it as a local variable with the array's length
+            if (IsReferTarget(property))
+            {
+                var arrayProp = GetArrayPropertyForRefer(property.Name);
+                if (arrayProp != null)
+                {
+                    string maxLength = GetArrayMaxLength(arrayProp);
+
+                    var writeMethod = GetWriteMethod(realType);
+                    sb.AppendLine($"\t\t\t// Write length for array: {arrayProp.Name}");
+                    sb.AppendLine($"\t\t\tvar {property.Name} = ({realType})({arrayProp.Name}?.Length ?? 0);");
+
+                    sb.AppendLine($"\t\t\tif ({property.Name} > {maxLength})");
+                    sb.AppendLine("\t\t\t{");
+                    sb.AppendLine($"\t\t\t\tthrow new InvalidOperationException($\"Array length of '{arrayProp.Name}' exceeds maximum allowed length of {{{maxLength}}} but was {{{property.Name}}}.\");");
+                    sb.AppendLine("\t\t\t}");
+                    sb.AppendLine();
+
+                    sb.AppendLine($"\t\t\twriter.{writeMethod}({property.Name});");
+                    return sb.ToString();
+                }
+            }
+
             // Add comment if select attribute is present
             if (!string.IsNullOrWhiteSpace(property.Select))
             {
@@ -210,37 +296,25 @@ namespace Rathalos.CLI.CodeGeneration.Templates
                 // Determine array length constraint
                 string lengthVar = $"({property.Name}?.Length ?? 0)";
                 string maxLength = GetArrayMaxLength(property);
-                
-                if(!string.IsNullOrWhiteSpace(maxLength))
-                {
-                    sb.AppendLine($"\t\t\tif ({lengthVar} > {maxLength})");
-                    sb.AppendLine("\t\t\t{");
-                    sb.AppendLine($"\t\t\t\tthrow new InvalidOperationException($\"Array length of '{property.Name}' exceeds maximum allowed length of {maxLength}.\");");
-                    sb.AppendLine("\t\t\t}");
-                }
 
                 if (!string.IsNullOrWhiteSpace(property.Refer))
                 {
+                    // The Refer property was already written as a local variable above, use it for iteration
                     var refer = ResolveRealLength(property.Refer);
-                    // Array length is determined by another property (refer attribute)
-                    
-                    if (!string.IsNullOrWhiteSpace(maxLength))
-                    {
-                        // Both Refer and ArraySize are set - use Math.Min to cap at max length
-                        sb.AppendLine($"\t\t\tvar {property.Name}Count = Math.Min((long){refer}, (long){maxLength});");
-                    }
-                    else
-                    {
-                        // Only Refer is set - use it directly
-                        sb.AppendLine($"\t\t\tvar {property.Name}Count = (long){refer};");
-                    }
-                    lengthVar = $"{property.Name}Count";
+                    lengthVar = refer;
                 }
                 else if (!string.IsNullOrWhiteSpace(maxLength))
                 {
                     // Only ArraySize is set - cap at max length
                     sb.AppendLine($"\t\t\tvar {property.Name}Count = Math.Min({lengthVar}, {maxLength});");
-                    lengthVar = $"{property.Name}Count";
+
+                    sb.AppendLine($"\t\t\tif ({property.Name}Count != {maxLength})");
+                    sb.AppendLine("\t\t\t{");
+                    sb.AppendLine($"\t\t\t\tthrow new InvalidOperationException($\"Array length of '{property.Name}' should be of length of {{{maxLength}}} but was {{{property.Name}Count}}.\");");
+                    sb.AppendLine("\t\t\t}");
+                    sb.AppendLine();
+
+                    lengthVar = $"{maxLength}";
                 }
 
                 // Write array elements
@@ -290,6 +364,19 @@ namespace Rathalos.CLI.CodeGeneration.Templates
             var sb = new StringBuilder();
             var realType = property.RealType;
 
+            // Check if this property is a Refer target - if so, read it as a local variable
+            if (IsReferTarget(property))
+            {
+                var arrayProp = GetArrayPropertyForRefer(property.Name);
+                if (arrayProp != null)
+                {
+                    var readMethod = GetReadMethod(realType);
+                    sb.AppendLine($"\t\t\t// Read length for array: {arrayProp.Name}");
+                    sb.AppendLine($"\t\t\tvar {property.Name} = reader.{readMethod}();");
+                    return sb.ToString();
+                }
+            }
+
             // Add comment if select attribute is present
             if (!string.IsNullOrWhiteSpace(property.Select))
             {
@@ -306,8 +393,8 @@ namespace Rathalos.CLI.CodeGeneration.Templates
 
                 if (!string.IsNullOrWhiteSpace(property.Refer))
                 {
+                    // The Refer property was already read as a local variable above, use it for array length
                     var refer = ResolveRealLength(property.Refer);
-                    // Array length is determined by another property (refer attribute)
                     lengthExpr = refer;
 
                     if (!string.IsNullOrWhiteSpace(maxLength))
@@ -368,10 +455,10 @@ namespace Rathalos.CLI.CodeGeneration.Templates
         {
             tabCount = Math.Max(tabCount, 0);
             var indent = new string('\t', tabCount);
-            
+
             // Check if the property's RealType class contains a property with IsProtocolId = true
             var hasProtocolId = IsInterface(property.RealType);
-            
+
             if (hasProtocolId && !string.IsNullOrWhiteSpace(property.Select))
             {
                 // Use ProtocolTypeManager to get the instance based on the Select property
