@@ -222,7 +222,7 @@
 	<struct name="TPDUBase_Old" version="10" desc="Base packet header before version 14">
 		<entry name="Magic" type="tinyuint" desc="Magic number"/>
 		<entry name="Version" type="tinyuint" desc="Protocol version, refer to TPDU_VERSION"/>
-		<entry name="Cmd" type="tinyuint" desc="Packet type"/>
+		<entry name="Cmd" type="tinyuint" desc="Packet type" bindmacrosgroup="TPDU_CMD"/>
 		<entry name="HeadLen" type="tinyuint" desc="Header length"/>
 		<entry name="EncHeadLen" type="tinyuint" version="11" desc="Valid for upstream packets, header additional info length, encrypted with body"/>
 		<entry name="BodyLen" type="int" desc="Body length"/>
@@ -231,7 +231,7 @@
 	<struct name="TPDUBase" version="10" desc="Base packet header information">
 		<entry name="Magic" type="tinyuint" desc="Magic number"/>
 		<entry name="Version" type="tinyuint" desc="Protocol version, refer to TPDU_VERSION"/>
-		<entry name="Cmd" type="tinyuint" desc="Packet type"/>
+		<entry name="Cmd" type="tinyuint" desc="Packet type" bindmacrosgroup="TPDU_CMD"/>
 		<entry name="EncHeadLen" type="tinyuint" version="11" desc="Valid for upstream packets, header additional info length, encrypted with body"/>
 		<entry name="HeadLen" type="int" desc="Header length"/>
 		<entry name="BodyLen" type="int" desc="Body length"/>

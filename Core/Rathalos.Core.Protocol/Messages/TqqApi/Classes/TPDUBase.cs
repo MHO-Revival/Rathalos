@@ -23,7 +23,7 @@ namespace Rathalos.Core.Protocol.Messages
 		/// <summary>
 		/// Packet type
 		/// </summary>
-		public byte Cmd { get; set; }
+		public TPDU_CMD Cmd { get; set; }
 		/// <summary>
 		/// Valid for upstream packets, header additional info length, encrypted with body (version:11)
 		/// </summary>
@@ -45,7 +45,7 @@ namespace Rathalos.Core.Protocol.Messages
 		{
 			writer.WriteByte(Magic);
 			writer.WriteByte(Version);
-			writer.WriteByte(Cmd);
+			writer.WriteByte((byte)Cmd);
 			writer.WriteByte(EncHeadLen);
 			writer.WriteInt(HeadLen);
 			writer.WriteInt(BodyLen);
@@ -59,7 +59,7 @@ namespace Rathalos.Core.Protocol.Messages
 		{
 			Magic = reader.ReadByte();
 			Version = reader.ReadByte();
-			Cmd = reader.ReadByte();
+			Cmd = (TPDU_CMD)reader.ReadByte();
 			EncHeadLen = reader.ReadByte();
 			HeadLen = reader.ReadInt();
 			BodyLen = reader.ReadInt();

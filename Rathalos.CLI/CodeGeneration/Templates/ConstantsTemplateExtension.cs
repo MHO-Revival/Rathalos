@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Rathalos.CLI.CodeGeneration.Templates
+﻿namespace Rathalos.CLI.CodeGeneration.Templates
 {
     public partial class ConstantsTemplate
     {

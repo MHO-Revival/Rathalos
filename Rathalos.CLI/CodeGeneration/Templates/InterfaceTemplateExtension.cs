@@ -1,6 +1,4 @@
 ﻿using Rathalos.CLI.CodeGeneration.Models;
-using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace Rathalos.CLI.CodeGeneration.Templates
