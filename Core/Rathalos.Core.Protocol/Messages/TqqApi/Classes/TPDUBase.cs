@@ -8,32 +8,32 @@ using Rathalos.Core.Utils.IO;
 namespace Rathalos.Core.Protocol.Messages
 {
     /// <summary>
-    /// 基础包头信息
+    /// Base packet header information
     /// </summary>
     public class TPDUBase
     {
 		/// <summary>
-		/// 魔数
+		/// Magic number
 		/// </summary>
 		public byte Magic { get; set; }
 		/// <summary>
-		/// 协议版本,参考TPDU_VERSION
+		/// Protocol version, refer to TPDU_VERSION
 		/// </summary>
 		public byte Version { get; set; }
 		/// <summary>
-		/// 包类型
+		/// Packet type
 		/// </summary>
 		public byte Cmd { get; set; }
 		/// <summary>
-		/// 上行包有效,包头附加信息长度,与body一起加密 (version:11)
+		/// Valid for upstream packets, header additional info length, encrypted with body (version:11)
 		/// </summary>
 		public byte EncHeadLen { get; set; }
 		/// <summary>
-		/// 包头长度
+		/// Header length
 		/// </summary>
 		public int HeadLen { get; set; }
 		/// <summary>
-		/// 包体长度
+		/// Body length
 		/// </summary>
 		public int BodyLen { get; set; }
 

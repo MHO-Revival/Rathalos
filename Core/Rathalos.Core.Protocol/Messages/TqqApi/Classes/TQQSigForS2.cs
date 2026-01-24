@@ -8,7 +8,7 @@ using Rathalos.Core.Utils.IO;
 namespace Rathalos.Core.Protocol.Messages
 {
     /// <summary>
-    /// 0x82签名第二段,一般不用
+    /// 0x82 signature second segment, generally not used
     /// </summary>
     public class TQQSigForS2
     {

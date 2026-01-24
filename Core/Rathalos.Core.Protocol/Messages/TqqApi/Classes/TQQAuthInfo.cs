@@ -8,7 +8,7 @@ using Rathalos.Core.Utils.IO;
 namespace Rathalos.Core.Protocol.Messages
 {
     /// <summary>
-    /// 0X82签名协议
+    /// 0x82 signature protocol
     /// </summary>
     public class TQQAuthInfo : TPDUExtAuthData
     {
@@ -20,7 +20,7 @@ namespace Rathalos.Core.Protocol.Messages
 		public uint Uin { get; set; }
 		public byte[] SignData { get; set; } = Array.Empty<byte>();
 		/// <summary>
-		/// 一般不用
+		/// Generally not used
 		/// </summary>
 		public byte[] Sign2Data { get; set; } = Array.Empty<byte>();
 

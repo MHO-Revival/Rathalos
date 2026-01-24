@@ -16,7 +16,7 @@ namespace Rathalos.Core.Protocol.Messages
 		TCONN_SEC_QQ = 2,
 		TCONN_SEC_AES = 3,
 		/// <summary>
-		/// 与TCONN_SEC_AES算法不同的是修改了数据填充算法
+		/// Different from TCONN_SEC_AES, uses modified data padding algorithm
 		/// </summary>
 		TCONN_SEC_AES2 = 4
     }

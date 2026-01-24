@@ -8,7 +8,7 @@ using Rathalos.Core.Utils.IO;
 namespace Rathalos.Core.Protocol.Messages
 {
     /// <summary>
-    /// 连接握手信息
+    /// Connection handshake information
     /// </summary>
     public class TPDUSynInfo
     {

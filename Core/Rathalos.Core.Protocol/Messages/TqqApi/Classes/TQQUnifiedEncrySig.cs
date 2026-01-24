@@ -8,7 +8,7 @@ using Rathalos.Core.Utils.IO;
 namespace Rathalos.Core.Protocol.Messages
 {
     /// <summary>
-    /// 0xDE签名协议加密部分
+    /// 0xDE signature protocol encrypted portion
     /// </summary>
     public class TQQUnifiedEncrySig
     {

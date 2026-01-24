@@ -112,8 +112,6 @@ namespace Rathalos.CLI.Menu.Options
                     outputDir = Environment.CurrentDirectory;
                 }
 
-                outputDir = Path.Combine(outputDir, "Generated");
-
                 Console.WriteLine($"\n{ConsoleDisplayHelper.Icons.Cycle} Converting to code model...");
                 var codeModel = _codeModelService.ConvertToCodeModel(metaLib, targetNamespace);
 

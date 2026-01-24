@@ -8,16 +8,16 @@ using Rathalos.Core.Utils.IO;
 namespace Rathalos.Core.Protocol.Messages
 {
     /// <summary>
-    /// 连接建立包
+    /// Connection established packet
     /// </summary>
     public class TPDUIdentInfo
     {
 		/// <summary>
-		/// 连接索引和验证字符串可以保存为以后的重连
+		/// Connection index and verification string can be saved for reconnection
 		/// </summary>
 		public int Pos { get; set; }
 		/// <summary>
-		/// 连接验证字符串
+		/// Connection verification string
 		/// </summary>
 		public char[] Ident { get; set; } = Array.Empty<char>();
 

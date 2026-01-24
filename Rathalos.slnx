@@ -4,6 +4,10 @@
     <Project Path="Core/Rathalos.Core.Protocol/Rathalos.Core.Protocol.csproj" />
     <Project Path="Core/Rathalos.Core.Utils/Rathalos.Core.Utils.csproj" />
   </Folder>
+  <Folder Name="/items/">
+    <File Path="crygame_csproto.xml" />
+    <File Path="protocalhandler_tqqapi.xml" />
+  </Folder>
   <Folder Name="/Servers/">
     <Project Path="Servers/Rathalos.Servers.Base/Rathalos.Servers.Base.csproj" />
   </Folder>

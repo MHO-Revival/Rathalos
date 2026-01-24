@@ -8,7 +8,7 @@ using Rathalos.Core.Utils.IO;
 namespace Rathalos.Core.Protocol.Messages
 {
     /// <summary>
-    /// 0XDE签名协议
+    /// 0xDE signature protocol
     /// </summary>
     public class TQQUnifiedAuthInfo : TPDUExtAuthData
     {

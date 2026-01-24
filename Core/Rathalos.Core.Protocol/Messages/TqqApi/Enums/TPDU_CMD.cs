@@ -12,63 +12,63 @@ namespace Rathalos.Core.Protocol.Messages
     public enum TPDU_CMD
     {
 		/// <summary>
-		/// 通信包
+		/// Communication packet
 		/// </summary>
 		TPDU_CMD_NONE = 0,
 		/// <summary>
-		/// 交换密钥(下行)
+		/// Key exchange (downstream)
 		/// </summary>
 		TPDU_CMD_CHGSKEY = 1,
 		/// <summary>
-		/// 排队信息(下行)
+		/// Queue information (downstream)
 		/// </summary>
 		TPDU_CMD_QUEINFO = 2,
 		/// <summary>
-		/// 签名请求信息(上行)
+		/// Signature request (upstream)
 		/// </summary>
 		TPDU_CMD_AUTH = 3,
 		/// <summary>
-		/// 连接建立(下行)
+		/// Connection established (downstream)
 		/// </summary>
 		TPDU_CMD_IDENT = 4,
 		/// <summary>
-		/// 未加密通信包(下行)
+		/// Unencrypted communication packet (downstream)
 		/// </summary>
 		TPDU_CMD_PLAIN = 5,
 		/// <summary>
-		/// 重连请求信息(上行)
+		/// Reconnection request (upstream)
 		/// </summary>
 		TPDU_CMD_RELAY = 6,
 		/// <summary>
-		/// 服务器断开连接下发错误码
+		/// Server disconnect with error code
 		/// </summary>
 		TPDU_CMD_STOP = 7,
 		/// <summary>
-		/// 连接握手信息(下行)
+		/// Connection handshake (downstream)
 		/// </summary>
 		TPDU_CMD_SYN = 8,
 		/// <summary>
-		/// 三次握手请求(上行)
+		/// Three-way handshake request (upstream)
 		/// </summary>
 		TPDU_CMD_SYNACK = 9,
 		/// <summary>
-		/// 查询密保返回结果(下行)
+		/// Security question query response (downstream)
 		/// </summary>
 		TPDU_CMD_MBA_QUERYRSP = 10,
 		/// <summary>
-		/// 验证密保请求(上行)
+		/// Security question verification request (upstream)
 		/// </summary>
 		TPDU_CMD_MBA_VERIFYREQ = 11,
 		/// <summary>
-		/// 下发密保问题检验结果(下行)
+		/// Security question verification result (downstream)
 		/// </summary>
 		TPDU_CMD_MBA_VERIFYRSP = 12,
 		/// <summary>
-		/// 客户端关闭连接通知消息(上行)
+		/// Client close connection notification (upstream)
 		/// </summary>
 		TPDU_CMD_CLOSE = 13,
 		/// <summary>
-		/// TGC发送的客户端真实地址消息(上行)
+		/// Client real address message from TGC (upstream)
 		/// </summary>
 		TPDU_CMD_CLIENT_ADDR = 210
     }

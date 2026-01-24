@@ -8,7 +8,7 @@ using Rathalos.Core.Utils.IO;
 namespace Rathalos.Core.Protocol.Messages
 {
     /// <summary>
-    /// 保留,暂未用
+    /// Reserved, not currently used
     /// </summary>
     public class TPDUExtStop : TPDUExt
     {

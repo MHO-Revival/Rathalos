@@ -8,7 +8,7 @@ using Rathalos.Core.Utils.IO;
 namespace Rathalos.Core.Protocol.Messages
 {
     /// <summary>
-    /// 附加头部信息,不要定义字符串或者网络序和本地序不等的数据类型
+    /// Additional header info, do not define strings or data types where network order differs from local order
     /// </summary>
     public class TPDUEncHead
     {

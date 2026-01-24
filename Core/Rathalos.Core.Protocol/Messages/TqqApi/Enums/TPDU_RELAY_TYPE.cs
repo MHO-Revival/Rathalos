@@ -10,21 +10,21 @@ namespace Rathalos.Core.Protocol.Messages
 {
 
     /// <summary>
-    /// 重连类型
+    /// Reconnection type
     /// </summary>
 
     public enum TPDU_RELAY_TYPE
     {
 		/// <summary>
-		/// 跨服跳转
+		/// Cross-server jump
 		/// </summary>
 		TPDU_JUMP_SERVER_RELAY = 1,
 		/// <summary>
-		/// 断线重连
+		/// Network disconnect reconnection
 		/// </summary>
 		TPDU_NETWORK_FAILURE_RELAY = 2,
 		/// <summary>
-		/// 保留值
+		/// Reserved value
 		/// </summary>
 		TPDU_CLIENT_CRASH_RELAY = 3
     }

@@ -8,7 +8,7 @@ using Rathalos.Core.Utils.IO;
 namespace Rathalos.Core.Protocol.Messages
 {
     /// <summary>
-    /// 交换密钥
+    /// Key exchange
     /// </summary>
     public class TPDUExtChgSkey : TPDUExt
     {
@@ -18,7 +18,7 @@ namespace Rathalos.Core.Protocol.Messages
 		/// </summary>
 		public ushort ProtocolId => (ushort)ProtocolIdConst;
 		/// <summary>
-		/// 默认填零
+		/// Default fill zero
 		/// </summary>
 		public short Type { get; set; }
 		public byte[] EncryptSkey { get; set; } = Array.Empty<byte>();

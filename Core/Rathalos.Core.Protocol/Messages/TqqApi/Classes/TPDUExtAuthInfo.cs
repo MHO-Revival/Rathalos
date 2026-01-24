@@ -8,7 +8,7 @@ using Rathalos.Core.Utils.IO;
 namespace Rathalos.Core.Protocol.Messages
 {
     /// <summary>
-    /// 签名请求包
+    /// Signature request packet
     /// </summary>
     public class TPDUExtAuthInfo : TPDUExt
     {
@@ -18,19 +18,19 @@ namespace Rathalos.Core.Protocol.Messages
 		/// </summary>
 		public ushort ProtocolId => (ushort)ProtocolIdConst;
 		/// <summary>
-		/// 通信加解密类型 (version:11)
+		/// Communication encryption type (version:11)
 		/// </summary>
 		public TCONN_SEC_ENC EncMethod { get; set; }
 		/// <summary>
-		/// 游戏ID  (version:12)
+		/// Game ID (version:12)
 		/// </summary>
 		public int ServiceID { get; set; } = 0;
 		/// <summary>
-		/// 签名类型
+		/// Signature type
 		/// </summary>
 		public TCONN_SEC_AUTH AuthType { get; set; }
 		/// <summary>
-		/// 签名数据
+		/// Signature data
 		/// </summary>
 		public TPDUExtAuthData AuthData { get; set; }
 

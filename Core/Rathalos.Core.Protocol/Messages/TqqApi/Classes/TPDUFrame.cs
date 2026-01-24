@@ -8,7 +8,7 @@ using Rathalos.Core.Utils.IO;
 namespace Rathalos.Core.Protocol.Messages
 {
     /// <summary>
-    /// CS通信包= 明文:包头(基础信息+扩展信息)+密文:包体(附加头部信息+应用包
+    /// CS communication packet = Plaintext: Header (base info + extension info) + Ciphertext: Body (additional header info + application packet)
     /// </summary>
     public class TPDUFrame
     {

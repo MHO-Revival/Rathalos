@@ -13,7 +13,7 @@ namespace Rathalos.Core.Protocol.Messages
 {
 
     /// <summary>
-    /// 包头扩展信息
+    /// Packet header extension information
     /// </summary>
 
     public interface TPDUExt

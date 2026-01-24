@@ -10,57 +10,57 @@ namespace Rathalos.Core.Protocol.Messages
 {
 
     /// <summary>
-    /// tconnd内部逻辑断开连接下发的错误码
+    /// Error codes for tconnd internal logic disconnection
     /// </summary>
 
     public enum TPDU_STOP_REASON
     {
 		/// <summary>
-		/// success
+		/// Success
 		/// </summary>
 		TPDU_REASON_NONE = 0,
 		/// <summary>
-		/// 连接空闲关闭
+		/// Connection idle timeout close
 		/// </summary>
 		TPDU_REASON_IDLE_CLOSE = 1,
 		/// <summary>
-		/// 请求包长度异常关闭
+		/// Invalid request packet length
 		/// </summary>
 		TPDU_REASON_BAD_PKGLEN = 4,
 		/// <summary>
-		/// 客户端发送速度超过限制
+		/// Client send rate exceeded limit
 		/// </summary>
 		TPDU_REASON_EXCEED_LIMIT = 5,
 		/// <summary>
-		/// 逻辑服务器主动下发关闭
+		/// Logic server initiated close
 		/// </summary>
 		TPDU_REASON_SELF_CLOSE = 7,
 		/// <summary>
-		/// 客户端连接签名验证失败
+		/// Client connection signature verification failed
 		/// </summary>
 		TPDU_REASON_AUTH_FAIL = 8,
 		/// <summary>
-		/// 客户端三次握手验证失败
+		/// Client three-way handshake verification failed
 		/// </summary>
 		TPDU_REASON_REASON_SYNACK_FAIL = 9,
 		/// <summary>
-		/// 上行包序列号非法
+		/// Invalid upstream packet sequence number
 		/// </summary>
 		TPDU_REASON_SEQUENCE_INVALID = 11,
 		/// <summary>
-		/// 客户端重连失败
+		/// Client reconnection failed
 		/// </summary>
 		TPDU_REASON_RELAY_FAIL = 14,
 		/// <summary>
-		/// 密保处理失败
+		/// Security question processing failed
 		/// </summary>
 		TPDU_REASON_MBA_FAIL = 15,
 		/// <summary>
-		/// 密保返回应答超时
+		/// Security question response timeout
 		/// </summary>
 		TPDU_REASON_MBA_TIMEOUT = 16,
 		/// <summary>
-		/// 连接已达到服务器允许上限
+		/// Connection limit reached
 		/// </summary>
 		TPDU_REASON_REACH_LIMIT = 100
     }

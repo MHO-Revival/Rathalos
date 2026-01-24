@@ -8,7 +8,7 @@ using Rathalos.Core.Utils.IO;
 namespace Rathalos.Core.Protocol.Messages
 {
     /// <summary>
-    /// 排队信息
+    /// Queue information
     /// </summary>
     public class TPDUExtQueInfo : TPDUExt
     {
@@ -18,15 +18,15 @@ namespace Rathalos.Core.Protocol.Messages
 		/// </summary>
 		public ushort ProtocolId => (ushort)ProtocolIdConst;
 		/// <summary>
-		/// 在队列中位置
+		/// Position in queue
 		/// </summary>
 		public int Pos { get; set; }
 		/// <summary>
-		/// 队列的长度
+		/// Queue length
 		/// </summary>
 		public int Max { get; set; }
 		/// <summary>
-		/// 预计排队等待时间,单位秒 (version:13)
+		/// Estimated queue wait time in seconds (version:13)
 		/// </summary>
 		public int WaitTime { get; set; }
 

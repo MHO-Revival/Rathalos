@@ -13,7 +13,7 @@ namespace Rathalos.Core.Protocol.Messages
 {
 
     /// <summary>
-    /// 签名数据
+    /// Signature data
     /// </summary>
 
     public interface TPDUExtAuthData

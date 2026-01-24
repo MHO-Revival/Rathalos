@@ -8,16 +8,16 @@ using Rathalos.Core.Utils.IO;
 namespace Rathalos.Core.Protocol.Messages
 {
     /// <summary>
-    /// 包头
+    /// Packet header
     /// </summary>
     public class TPDUHead
     {
 		/// <summary>
-		/// 基础信息
+		/// Base information
 		/// </summary>
 		public TPDUBase Base { get; set; }
 		/// <summary>
-		/// 扩展信息
+		/// Extension information
 		/// </summary>
 		public TPDUExt Ext { get; set; }
 

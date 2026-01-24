@@ -8,7 +8,7 @@ using Rathalos.Core.Utils.IO;
 namespace Rathalos.Core.Protocol.Messages
 {
     /// <summary>
-    /// 重连验证字段
+    /// Reconnection verification field
     /// </summary>
     public class TQQUserIdent
     {

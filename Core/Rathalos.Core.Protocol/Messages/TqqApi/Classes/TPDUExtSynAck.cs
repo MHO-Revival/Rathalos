@@ -8,7 +8,7 @@ using Rathalos.Core.Utils.IO;
 namespace Rathalos.Core.Protocol.Messages
 {
     /// <summary>
-    /// 三次握手请求信息
+    /// Three-way handshake request information
     /// </summary>
     public class TPDUExtSynAck : TPDUExt
     {

@@ -8,7 +8,7 @@ using Rathalos.Core.Utils.IO;
 namespace Rathalos.Core.Protocol.Messages
 {
     /// <summary>
-    /// 客户端真实地址信息
+    /// Client real address information
     /// </summary>
     public class TPDUExtClientAddr : TPDUExt
     {
@@ -18,19 +18,19 @@ namespace Rathalos.Core.Protocol.Messages
 		/// </summary>
 		public ushort ProtocolId => (ushort)ProtocolIdConst;
 		/// <summary>
-		/// Uin
+		/// User ID
 		/// </summary>
 		public uint Uin { get; set; }
 		/// <summary>
-		/// IP地址
+		/// IP address
 		/// </summary>
 		public uint IP { get; set; }
 		/// <summary>
-		/// 端口
+		/// Port
 		/// </summary>
 		public ushort Port { get; set; }
 		/// <summary>
-		/// 附加信息
+		/// Additional information
 		/// </summary>
 		public char[] ExtInfo { get; set; } = Array.Empty<char>();
 

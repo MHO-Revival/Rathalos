@@ -8,7 +8,7 @@ using Rathalos.Core.Utils.IO;
 namespace Rathalos.Core.Protocol.Messages
 {
     /// <summary>
-    /// 0x82签名第一段
+    /// 0x82 signature first segment
     /// </summary>
     public class TQQGameSig
     {
@@ -20,7 +20,7 @@ namespace Rathalos.Core.Protocol.Messages
 		public uint Time { get; set; }
 		public uint UinFlag { get; set; }
 		/// <summary>
-		/// 客户端IP (version:12)
+		/// Client IP address (version:12)
 		/// </summary>
 		public uint ClientIP { get; set; }
 

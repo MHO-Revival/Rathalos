@@ -8,7 +8,7 @@ using Rathalos.Core.Utils.IO;
 namespace Rathalos.Core.Protocol.Messages
 {
     /// <summary>
-    /// 密保相关透传buffer,密文
+    /// Security question passthrough buffer, ciphertext
     /// </summary>
     public class TPDUExtMiBao : TPDUExt
     {

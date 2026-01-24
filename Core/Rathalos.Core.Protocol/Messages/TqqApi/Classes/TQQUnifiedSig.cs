@@ -8,7 +8,7 @@ using Rathalos.Core.Utils.IO;
 namespace Rathalos.Core.Protocol.Messages
 {
     /// <summary>
-    /// 0XDE签名协议格式
+    /// 0xDE signature protocol format
     /// </summary>
     public class TQQUnifiedSig
     {

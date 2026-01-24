@@ -8,7 +8,7 @@ using Rathalos.Core.Utils.IO;
 namespace Rathalos.Core.Protocol.Messages
 {
     /// <summary>
-    /// 重连请求包
+    /// Reconnection request packet
     /// </summary>
     public class TPDUExtRelay : TPDUExt
     {
@@ -18,15 +18,15 @@ namespace Rathalos.Core.Protocol.Messages
 		/// </summary>
 		public ushort ProtocolId => (ushort)ProtocolIdConst;
 		/// <summary>
-		/// 通信加解密类型 (version:11)
+		/// Communication encryption type (version:11)
 		/// </summary>
 		public TCONN_SEC_ENC EncMethod { get; set; }
 		/// <summary>
-		/// 重连类型
+		/// Reconnection type
 		/// </summary>
 		public TPDU_RELAY_TYPE RelayType { get; set; }
 		/// <summary>
-		/// 占位连接索引
+		/// Placeholder connection index
 		/// </summary>
 		public int OldPos { get; set; }
 		public byte[] EncryptIdent { get; set; } = Array.Empty<byte>();
