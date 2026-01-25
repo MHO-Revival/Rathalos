@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using Rathalos.Core.Utils.IO;
 
-namespace Rathalos.Core.Protocol.Messages
+namespace Rathalos.Core.Protocol.Messages.Tqqapi
 {
     /// <summary>
     /// 0xDE signature protocol encrypted portion
@@ -38,21 +38,20 @@ namespace Rathalos.Core.Protocol.Messages
 			writer.WriteInt(AppID);
 			writer.WriteInt(AppClientVer);
 			writer.WriteUInt(ClientIP);
-			var SessionKeyCount = Math.Min((SessionKey?.Length ?? 0), MetaLibConstants.TQQ_KEY_LEN);
-			if (SessionKeyCount != MetaLibConstants.TQQ_KEY_LEN)
+			if ((SessionKey?.Length ?? 0) != TqqapiConstants.TQQ_KEY_LEN)
 			{
-				throw new InvalidOperationException($"Array length of 'SessionKey' should be of length of {MetaLibConstants.TQQ_KEY_LEN} but was {SessionKeyCount}.");
+				throw new InvalidOperationException($"Array length of 'SessionKey' should be of length of {TqqapiConstants.TQQ_KEY_LEN} but was {(SessionKey?.Length ?? 0)}.");
 			}
 
-			for (var i = 0; i < MetaLibConstants.TQQ_KEY_LEN; i++)
+			for (var i = 0; i < TqqapiConstants.TQQ_KEY_LEN; i++)
 			{
 				writer.WriteByte(SessionKey[i]);
 			}
 			// Write length for array: UnifiedSig2
 			var UnifiedSig2Len = (short)(UnifiedSig2?.Length ?? 0);
-			if (UnifiedSig2Len > MetaLibConstants.TQQ_UNIFIED_MAX_ENCSIGN2_LEN)
+			if (UnifiedSig2Len > TqqapiConstants.TQQ_UNIFIED_MAX_ENCSIGN2_LEN)
 			{
-				throw new InvalidOperationException($"Array length of 'UnifiedSig2' exceeds maximum allowed length of {MetaLibConstants.TQQ_UNIFIED_MAX_ENCSIGN2_LEN} but was {UnifiedSig2Len}.");
+				throw new InvalidOperationException($"Array length of 'UnifiedSig2' exceeds maximum allowed length of {TqqapiConstants.TQQ_UNIFIED_MAX_ENCSIGN2_LEN} but was {UnifiedSig2Len}.");
 			}
 
 			writer.WriteShort(UnifiedSig2Len);
@@ -62,9 +61,9 @@ namespace Rathalos.Core.Protocol.Messages
 			}
 			// Write length for array: CustomInfoData
 			var CustomInfoLen = (short)(CustomInfoData?.Length ?? 0);
-			if (CustomInfoLen > MetaLibConstants.TQQ_UNIFIED_CUSTOMINFO_LEN)
+			if (CustomInfoLen > TqqapiConstants.TQQ_UNIFIED_CUSTOMINFO_LEN)
 			{
-				throw new InvalidOperationException($"Array length of 'CustomInfoData' exceeds maximum allowed length of {MetaLibConstants.TQQ_UNIFIED_CUSTOMINFO_LEN} but was {CustomInfoLen}.");
+				throw new InvalidOperationException($"Array length of 'CustomInfoData' exceeds maximum allowed length of {TqqapiConstants.TQQ_UNIFIED_CUSTOMINFO_LEN} but was {CustomInfoLen}.");
 			}
 
 			writer.WriteShort(CustomInfoLen);
@@ -89,7 +88,7 @@ namespace Rathalos.Core.Protocol.Messages
 			AppClientVer = reader.ReadInt();
 			ClientIP = reader.ReadUInt();
 			// Read array: SessionKey
-			SessionKey = new byte[MetaLibConstants.TQQ_KEY_LEN];
+			SessionKey = new byte[TqqapiConstants.TQQ_KEY_LEN];
 			for (var i = 0; i < SessionKey.Length; i++)
 			{
 				SessionKey[i] = reader.ReadByte();
@@ -97,7 +96,7 @@ namespace Rathalos.Core.Protocol.Messages
 			// Read length for array: UnifiedSig2
 			var UnifiedSig2Len = reader.ReadShort();
 			// Read array: UnifiedSig2
-			UnifiedSig2 = new byte[Math.Min((int)UnifiedSig2Len, MetaLibConstants.TQQ_UNIFIED_MAX_ENCSIGN2_LEN)];
+			UnifiedSig2 = new byte[Math.Min((int)UnifiedSig2Len, TqqapiConstants.TQQ_UNIFIED_MAX_ENCSIGN2_LEN)];
 			for (var i = 0; i < UnifiedSig2.Length; i++)
 			{
 				UnifiedSig2[i] = reader.ReadByte();
@@ -105,7 +104,7 @@ namespace Rathalos.Core.Protocol.Messages
 			// Read length for array: CustomInfoData
 			var CustomInfoLen = reader.ReadShort();
 			// Read array: CustomInfoData
-			CustomInfoData = new byte[Math.Min((int)CustomInfoLen, MetaLibConstants.TQQ_UNIFIED_CUSTOMINFO_LEN)];
+			CustomInfoData = new byte[Math.Min((int)CustomInfoLen, TqqapiConstants.TQQ_UNIFIED_CUSTOMINFO_LEN)];
 			for (var i = 0; i < CustomInfoData.Length; i++)
 			{
 				CustomInfoData[i] = reader.ReadByte();

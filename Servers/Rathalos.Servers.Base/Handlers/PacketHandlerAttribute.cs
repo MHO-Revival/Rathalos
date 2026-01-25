@@ -10,9 +10,9 @@ namespace Rathalos.Servers.Base.Handlers
 	}
 	[AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
 	public sealed class PacketHandlerAttribute<TMessage> : PacketHandlerAttribute
-		where TMessage : Message
+		where TMessage : class, new()
 	{
-		public override ushort ProtocolMessageId => Convert.ToUInt16(typeof(TMessage).GetField(nameof(Message.ProtocolMessageId))?.GetValue(null), CultureInfo.InvariantCulture);
+		public override ushort ProtocolMessageId => Convert.ToUInt16(typeof(TMessage).GetField(nameof(PacketHandlerAttribute.ProtocolMessageId))?.GetValue(null), CultureInfo.InvariantCulture);
 		public override Type MessageType => typeof(TMessage);
 	}
 }

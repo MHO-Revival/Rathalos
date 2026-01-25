@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using Rathalos.Core.Utils.IO;
 
-namespace Rathalos.Core.Protocol.Messages
+namespace Rathalos.Core.Protocol.Messages.Tqqapi
 {
     /// <summary>
     /// Key exchange
@@ -32,9 +32,9 @@ namespace Rathalos.Core.Protocol.Messages
 			writer.WriteShort(Type);
 			// Write length for array: EncryptSkey
 			var Len = (short)(EncryptSkey?.Length ?? 0);
-			if (Len > MetaLibConstants.TPDU_MAX_ENCRYPTSKEY_LEN)
+			if (Len > TqqapiConstants.TPDU_MAX_ENCRYPTSKEY_LEN)
 			{
-				throw new InvalidOperationException($"Array length of 'EncryptSkey' exceeds maximum allowed length of {MetaLibConstants.TPDU_MAX_ENCRYPTSKEY_LEN} but was {Len}.");
+				throw new InvalidOperationException($"Array length of 'EncryptSkey' exceeds maximum allowed length of {TqqapiConstants.TPDU_MAX_ENCRYPTSKEY_LEN} but was {Len}.");
 			}
 
 			writer.WriteShort(Len);
@@ -54,7 +54,7 @@ namespace Rathalos.Core.Protocol.Messages
 			// Read length for array: EncryptSkey
 			var Len = reader.ReadShort();
 			// Read array: EncryptSkey
-			EncryptSkey = new byte[Math.Min((int)Len, MetaLibConstants.TPDU_MAX_ENCRYPTSKEY_LEN)];
+			EncryptSkey = new byte[Math.Min((int)Len, TqqapiConstants.TPDU_MAX_ENCRYPTSKEY_LEN)];
 			for (var i = 0; i < EncryptSkey.Length; i++)
 			{
 				EncryptSkey[i] = reader.ReadByte();

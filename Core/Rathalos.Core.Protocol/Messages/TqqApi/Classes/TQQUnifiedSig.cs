@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using Rathalos.Core.Utils.IO;
 
-namespace Rathalos.Core.Protocol.Messages
+namespace Rathalos.Core.Protocol.Messages.Tqqapi
 {
     /// <summary>
     /// 0xDE signature protocol format
@@ -26,9 +26,9 @@ namespace Rathalos.Core.Protocol.Messages
 			writer.WriteUInt(Time);
 			// Write length for array: EncryptSignData
 			var EncryptSignLen = (short)(EncryptSignData?.Length ?? 0);
-			if (EncryptSignLen > MetaLibConstants.TQQ_UNIFIED_MAX_ENCSIGN_LEN)
+			if (EncryptSignLen > TqqapiConstants.TQQ_UNIFIED_MAX_ENCSIGN_LEN)
 			{
-				throw new InvalidOperationException($"Array length of 'EncryptSignData' exceeds maximum allowed length of {MetaLibConstants.TQQ_UNIFIED_MAX_ENCSIGN_LEN} but was {EncryptSignLen}.");
+				throw new InvalidOperationException($"Array length of 'EncryptSignData' exceeds maximum allowed length of {TqqapiConstants.TQQ_UNIFIED_MAX_ENCSIGN_LEN} but was {EncryptSignLen}.");
 			}
 
 			writer.WriteShort(EncryptSignLen);
@@ -49,7 +49,7 @@ namespace Rathalos.Core.Protocol.Messages
 			// Read length for array: EncryptSignData
 			var EncryptSignLen = reader.ReadShort();
 			// Read array: EncryptSignData
-			EncryptSignData = new byte[Math.Min((int)EncryptSignLen, MetaLibConstants.TQQ_UNIFIED_MAX_ENCSIGN_LEN)];
+			EncryptSignData = new byte[Math.Min((int)EncryptSignLen, TqqapiConstants.TQQ_UNIFIED_MAX_ENCSIGN_LEN)];
 			for (var i = 0; i < EncryptSignData.Length; i++)
 			{
 				EncryptSignData[i] = reader.ReadByte();

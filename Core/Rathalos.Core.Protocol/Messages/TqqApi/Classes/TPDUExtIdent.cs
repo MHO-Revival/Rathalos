@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using Rathalos.Core.Utils.IO;
 
-namespace Rathalos.Core.Protocol.Messages
+namespace Rathalos.Core.Protocol.Messages.Tqqapi
 {
     public class TPDUExtIdent : TPDUExt
     {
@@ -24,9 +24,9 @@ namespace Rathalos.Core.Protocol.Messages
 		{
 			// Write length for array: EncryptIdent
 			var Len = (int)(EncryptIdent?.Length ?? 0);
-			if (Len > MetaLibConstants.TPDU_MAX_ENCRYPTIDENT_LEN)
+			if (Len > TqqapiConstants.TPDU_MAX_ENCRYPTIDENT_LEN)
 			{
-				throw new InvalidOperationException($"Array length of 'EncryptIdent' exceeds maximum allowed length of {MetaLibConstants.TPDU_MAX_ENCRYPTIDENT_LEN} but was {Len}.");
+				throw new InvalidOperationException($"Array length of 'EncryptIdent' exceeds maximum allowed length of {TqqapiConstants.TPDU_MAX_ENCRYPTIDENT_LEN} but was {Len}.");
 			}
 
 			writer.WriteInt(Len);
@@ -45,7 +45,7 @@ namespace Rathalos.Core.Protocol.Messages
 			// Read length for array: EncryptIdent
 			var Len = reader.ReadInt();
 			// Read array: EncryptIdent
-			EncryptIdent = new byte[Math.Min((int)Len, MetaLibConstants.TPDU_MAX_ENCRYPTIDENT_LEN)];
+			EncryptIdent = new byte[Math.Min((int)Len, TqqapiConstants.TPDU_MAX_ENCRYPTIDENT_LEN)];
 			for (var i = 0; i < EncryptIdent.Length; i++)
 			{
 				EncryptIdent[i] = reader.ReadByte();

@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using Rathalos.Core.Utils.IO;
 
-namespace Rathalos.Core.Protocol.Messages
+namespace Rathalos.Core.Protocol.Messages.Tqqapi
 {
     /// <summary>
     /// Client real address information
@@ -43,10 +43,9 @@ namespace Rathalos.Core.Protocol.Messages
 			writer.WriteUInt(Uin);
 			writer.WriteUInt(IP);
 			writer.WriteUShort(Port);
-			var ExtInfoCount = Math.Min((ExtInfo?.Length ?? 0), 128);
-			if (ExtInfoCount != 128)
+			if ((ExtInfo?.Length ?? 0) != 128)
 			{
-				throw new InvalidOperationException($"Array length of 'ExtInfo' should be of length of {128} but was {ExtInfoCount}.");
+				throw new InvalidOperationException($"Array length of 'ExtInfo' should be of length of {128} but was {(ExtInfo?.Length ?? 0)}.");
 			}
 
 			for (var i = 0; i < 128; i++)

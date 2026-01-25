@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using Rathalos.Core.Utils.IO;
 
-namespace Rathalos.Core.Protocol.Messages
+namespace Rathalos.Core.Protocol.Messages.Tqqapi
 {
     /// <summary>
     /// 0xDE signature protocol
@@ -29,9 +29,9 @@ namespace Rathalos.Core.Protocol.Messages
 			writer.WriteUInt(Uin);
 			// Write length for array: SigInfo
 			var Len = (byte)(SigInfo?.Length ?? 0);
-			if (Len > MetaLibConstants.TQQ_UNIFIED_MAX_SIGN_LEN)
+			if (Len > TqqapiConstants.TQQ_UNIFIED_MAX_SIGN_LEN)
 			{
-				throw new InvalidOperationException($"Array length of 'SigInfo' exceeds maximum allowed length of {MetaLibConstants.TQQ_UNIFIED_MAX_SIGN_LEN} but was {Len}.");
+				throw new InvalidOperationException($"Array length of 'SigInfo' exceeds maximum allowed length of {TqqapiConstants.TQQ_UNIFIED_MAX_SIGN_LEN} but was {Len}.");
 			}
 
 			writer.WriteByte(Len);
@@ -51,7 +51,7 @@ namespace Rathalos.Core.Protocol.Messages
 			// Read length for array: SigInfo
 			var Len = reader.ReadByte();
 			// Read array: SigInfo
-			SigInfo = new byte[Math.Min((int)Len, MetaLibConstants.TQQ_UNIFIED_MAX_SIGN_LEN)];
+			SigInfo = new byte[Math.Min((int)Len, TqqapiConstants.TQQ_UNIFIED_MAX_SIGN_LEN)];
 			for (var i = 0; i < SigInfo.Length; i++)
 			{
 				SigInfo[i] = reader.ReadByte();

@@ -483,9 +483,9 @@
 		<macro name="CS_CMD_GROUP_ACTIONPOINT" value="18" desc="Action points" />
 		<macro name="CS_CMD_GROUP_INTERACT" value="19" desc="Player interaction" />
 		<macro name="CS_CMD_GROUP_PLAYER_EXT" value="20" desc="Player extension" />
-		<macro name="CS_CMD_GROUD_AUCTION" value="21" desc="Auction house" />
+		<macro name="CS_CMD_GROUP_AUCTION" value="21" desc="Auction house" />
 		<macro name="CS_CMD_GROUP_FRIEND" value="22" desc="Friend" />
-		<macro name="CS_CMD_GROUD_PET" value="23" desc="Pet related" />
+		<macro name="CS_CMD_GROUP_PET" value="23" desc="Pet related" />
 		<macro name="CS_CMD_GROUP_MSGBOX" value="25" desc="Message confirmation box, 0x18 used by someone but not declared here" />
 		<macro name="CS_CMD_GROUP_HUNTER_STAR" value="26" desc="Hunter star level" />
 		<macro name="CS_CMD_GROUP_MAIL" value="27" desc="Mail" />
@@ -513,10 +513,10 @@
 		<macro name="CS_CMD_GROUP_SCULPTURE" value="65" desc="Starlight avenue" />
 		<macro name="CS_CMD_GROUP_HUBSPEREWARD_LEVEL" value="66" desc="Special reward level" />
 		<macro name="CS_CMD_GROUP_RAPIDHUNT" value="67" desc="Rapid hunt" />
-		<macro name="CS_CMD_GROUD_EXCHANGE" value="68" desc="Currency market" />
-		<macro name="CS_CMD_GROUD_VIP" value="69" desc="VIP" />
-		<macro name="CS_CMD_GROUD_SPECTATE" value="70" desc="Spectate" />
-		<macro name="CS_CMD_LEVEL_STAT" value="71" desc="Level statistics" />
+		<macro name="CS_CMD_GROUP_EXCHANGE" value="68" desc="Currency market" />
+		<macro name="CS_CMD_GROUP_VIP" value="69" desc="VIP" />
+		<macro name="CS_CMD_GROUP_SPECTATE" value="70" desc="Spectate" />
+		<macro name="CS_CMD_GROUP_LEVEL_STAT" value="71" desc="Level statistics" />
 		<macro name="CS_CMD_GROUP_SACTIVITY" value="72" desc="Script activity" />
 		<macro name="CS_CMD_GROUP_WEAPON" value="73" desc="Weapon" />
 		<macro name="CS_CMD_GROUP_EQUIPEFFECT" value="80" desc="Equipment effect" />
@@ -527,19 +527,19 @@
 		<macro name="CS_CMD_GROUP_SPEAK" value="85" desc="Quick speak" />
 		<macro name="CS_CMD_GROUP_STARSTONE" value="86" desc="Star stone" />
 		<macro name="CS_CMD_GROUP_BATTLE_RULES" value="87" desc="Instance related" />
-		<macro name="CS_CMD_GROUD_WORLD_PAY" value="88" desc="Pay to WORLD" />
-		<macro name="CS_CMD_GROUD_BATTLE_RESULT" value="89" desc="Stage settlement related" />
-		<macro name="CS_CMD_GROUD_SUITSKILL" value="96" desc="Stage settlement related" />
-		<macro name="CS_CMD_GROUD_ASTROLABE" value="97" desc="Astrolabe related" />
-		<macro name="CS_CMD_GROUD_SOULSTONE" value="98" desc="Soul stone related" />
-		<macro name="CS_CMD_GROUD_ANNIVERSARY" value="99" desc="Anniversary event related" />
-		<macro name="CS_CMD_GROUD_LEGENDPEARL" value="100" desc="Legendary skill jewel related" />
-		<macro name="CS_CMD_GROUD_STORAGEBOX" value="101" desc="Storage box related" />
-		<macro name="CS_CMD_GROUD_GUIDEBOOK" value="102" desc="Hunting guidebook" />
-		<macro name="CS_CMD_GROUD_DEMONTRIAL" value="103" desc="Demon trial" />
-		<macro name="CS_CMD_GROUD_SECRETE_INSTITUTION" value="104" desc="Deprecated" />
-		<macro name="CS_CMD_GROUD_SECRET_RESEARCH_LAB" value="105" desc="Secret research lab" />
-		<macro name="CS_CMD_GROUD_PHY_CARD" value="106" desc="Physical card" />
+		<macro name="CS_CMD_GROUP_WORLD_PAY" value="88" desc="Pay to WORLD" />
+		<macro name="CS_CMD_GROUP_BATTLE_RESULT" value="89" desc="Stage settlement related" />
+		<macro name="CS_CMD_GROUP_SUITSKILL" value="96" desc="Stage settlement related" />
+		<macro name="CS_CMD_GROUP_ASTROLABE" value="97" desc="Astrolabe related" />
+		<macro name="CS_CMD_GROUP_SOULSTONE" value="98" desc="Soul stone related" />
+		<macro name="CS_CMD_GROUP_ANNIVERSARY" value="99" desc="Anniversary event related" />
+		<macro name="CS_CMD_GROUP_LEGENDPEARL" value="100" desc="Legendary skill jewel related" />
+		<macro name="CS_CMD_GROUP_STORAGEBOX" value="101" desc="Storage box related" />
+		<macro name="CS_CMD_GROUP_GUIDEBOOK" value="102" desc="Hunting guidebook" />
+		<macro name="CS_CMD_GROUP_DEMONTRIAL" value="103" desc="Demon trial" />
+		<macro name="CS_CMD_GROUP_SECRETE_INSTITUTION" value="104" desc="Deprecated" />
+		<macro name="CS_CMD_GROUP_SECRET_RESEARCH_LAB" value="105" desc="Secret research lab" />
+		<macro name="CS_CMD_GROUP_PHY_CARD" value="106" desc="Physical card" />
 		<macro name="CS_CMD_GROUP_MAX_COUNT" value="107" desc="Message segment max value" />
 	</macrosgroup>
 	<macrosgroup name="CS_BBVALUE_TYPE" desc="Message segment">

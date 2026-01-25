@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using Rathalos.Core.Utils.IO;
 
-namespace Rathalos.Core.Protocol.Messages
+namespace Rathalos.Core.Protocol.Messages.Tqqapi
 {
     /// <summary>
     /// Reconnection verification field
@@ -24,13 +24,12 @@ namespace Rathalos.Core.Protocol.Messages
 		{
 			writer.WriteUInt(Uin);
 			writer.WriteInt(Pos);
-			var IdentCount = Math.Min((Ident?.Length ?? 0), MetaLibConstants.TQQ_IDENT_LEN);
-			if (IdentCount != MetaLibConstants.TQQ_IDENT_LEN)
+			if ((Ident?.Length ?? 0) != TqqapiConstants.TQQ_IDENT_LEN)
 			{
-				throw new InvalidOperationException($"Array length of 'Ident' should be of length of {MetaLibConstants.TQQ_IDENT_LEN} but was {IdentCount}.");
+				throw new InvalidOperationException($"Array length of 'Ident' should be of length of {TqqapiConstants.TQQ_IDENT_LEN} but was {(Ident?.Length ?? 0)}.");
 			}
 
-			for (var i = 0; i < MetaLibConstants.TQQ_IDENT_LEN; i++)
+			for (var i = 0; i < TqqapiConstants.TQQ_IDENT_LEN; i++)
 			{
 				writer.WriteChar(Ident[i]);
 			}
@@ -45,7 +44,7 @@ namespace Rathalos.Core.Protocol.Messages
 			Uin = reader.ReadUInt();
 			Pos = reader.ReadInt();
 			// Read array: Ident
-			Ident = new char[MetaLibConstants.TQQ_IDENT_LEN];
+			Ident = new char[TqqapiConstants.TQQ_IDENT_LEN];
 			for (var i = 0; i < Ident.Length; i++)
 			{
 				Ident[i] = reader.ReadChar();

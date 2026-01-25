@@ -1,0 +1,11 @@
+{
+    "profiles": {
+        "Rathalos.CLI.Admin": {
+            "commandName": "Project",
+            "runAsAdministrator": true,
+            "environmentVariables": {
+                "DOTNET_ENVIRONMENT": "Development"
+            }
+        }
+    }
+}   

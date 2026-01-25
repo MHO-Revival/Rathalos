@@ -2,7 +2,7 @@
 // This file was generated from XML metalib definition
 // Do not modify this file manually as it will be overwritten
 
-namespace Rathalos.Core.Protocol.Messages
+namespace Rathalos.Core.Protocol.Messages.Tqqapi
 {
 
     public enum TCONN_SEC_ENC

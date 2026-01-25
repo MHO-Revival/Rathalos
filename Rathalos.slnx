@@ -11,5 +11,8 @@
   <Folder Name="/Servers/">
     <Project Path="Servers/Rathalos.Servers.Base/Rathalos.Servers.Base.csproj" />
   </Folder>
-  <Project Path="Rathalos.CLI/Rathalos.CLI.csproj" />
+  <Folder Name="/Tools/">
+    <Project Path="Tools/Rathalos.CLI/Rathalos.CLI.csproj" />
+    <Project Path="Tools/Rathalos.Hook/Rathalos.Hook.csproj" Id="a83e3766-8317-4702-a98b-df5c7b2e665c" />
+  </Folder>
 </Solution>

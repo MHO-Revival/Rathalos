@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using Rathalos.Core.Utils.IO;
 
-namespace Rathalos.Core.Protocol.Messages
+namespace Rathalos.Core.Protocol.Messages.Tqqapi
 {
     /// <summary>
     /// 0x82 signature first segment
@@ -30,33 +30,30 @@ namespace Rathalos.Core.Protocol.Messages
 		/// <param name="writer">The data writer to serialize to.</param>
 		public void Serialize(IDataWriter writer)
 		{
-			var GameKeyCount = Math.Min((GameKey?.Length ?? 0), MetaLibConstants.TQQ_KEY_LEN);
-			if (GameKeyCount != MetaLibConstants.TQQ_KEY_LEN)
+			if ((GameKey?.Length ?? 0) != TqqapiConstants.TQQ_KEY_LEN)
 			{
-				throw new InvalidOperationException($"Array length of 'GameKey' should be of length of {MetaLibConstants.TQQ_KEY_LEN} but was {GameKeyCount}.");
+				throw new InvalidOperationException($"Array length of 'GameKey' should be of length of {TqqapiConstants.TQQ_KEY_LEN} but was {(GameKey?.Length ?? 0)}.");
 			}
 
-			for (var i = 0; i < MetaLibConstants.TQQ_KEY_LEN; i++)
+			for (var i = 0; i < TqqapiConstants.TQQ_KEY_LEN; i++)
 			{
 				writer.WriteChar(GameKey[i]);
 			}
-			var SvcBitmapCount = Math.Min((SvcBitmap?.Length ?? 0), MetaLibConstants.TQQ_SVCBITMAP_LEN);
-			if (SvcBitmapCount != MetaLibConstants.TQQ_SVCBITMAP_LEN)
+			if ((SvcBitmap?.Length ?? 0) != TqqapiConstants.TQQ_SVCBITMAP_LEN)
 			{
-				throw new InvalidOperationException($"Array length of 'SvcBitmap' should be of length of {MetaLibConstants.TQQ_SVCBITMAP_LEN} but was {SvcBitmapCount}.");
+				throw new InvalidOperationException($"Array length of 'SvcBitmap' should be of length of {TqqapiConstants.TQQ_SVCBITMAP_LEN} but was {(SvcBitmap?.Length ?? 0)}.");
 			}
 
-			for (var i = 0; i < MetaLibConstants.TQQ_SVCBITMAP_LEN; i++)
+			for (var i = 0; i < TqqapiConstants.TQQ_SVCBITMAP_LEN; i++)
 			{
 				writer.WriteChar(SvcBitmap[i]);
 			}
-			var SvcBitmapExtCount = Math.Min((SvcBitmapExt?.Length ?? 0), MetaLibConstants.TQQ_SVCBITMAP_EXT_LEN);
-			if (SvcBitmapExtCount != MetaLibConstants.TQQ_SVCBITMAP_EXT_LEN)
+			if ((SvcBitmapExt?.Length ?? 0) != TqqapiConstants.TQQ_SVCBITMAP_EXT_LEN)
 			{
-				throw new InvalidOperationException($"Array length of 'SvcBitmapExt' should be of length of {MetaLibConstants.TQQ_SVCBITMAP_EXT_LEN} but was {SvcBitmapExtCount}.");
+				throw new InvalidOperationException($"Array length of 'SvcBitmapExt' should be of length of {TqqapiConstants.TQQ_SVCBITMAP_EXT_LEN} but was {(SvcBitmapExt?.Length ?? 0)}.");
 			}
 
-			for (var i = 0; i < MetaLibConstants.TQQ_SVCBITMAP_EXT_LEN; i++)
+			for (var i = 0; i < TqqapiConstants.TQQ_SVCBITMAP_EXT_LEN; i++)
 			{
 				writer.WriteChar(SvcBitmapExt[i]);
 			}
@@ -74,19 +71,19 @@ namespace Rathalos.Core.Protocol.Messages
 		public void Deserialize(IDataReader reader)
 		{
 			// Read array: GameKey
-			GameKey = new char[MetaLibConstants.TQQ_KEY_LEN];
+			GameKey = new char[TqqapiConstants.TQQ_KEY_LEN];
 			for (var i = 0; i < GameKey.Length; i++)
 			{
 				GameKey[i] = reader.ReadChar();
 			}
 			// Read array: SvcBitmap
-			SvcBitmap = new char[MetaLibConstants.TQQ_SVCBITMAP_LEN];
+			SvcBitmap = new char[TqqapiConstants.TQQ_SVCBITMAP_LEN];
 			for (var i = 0; i < SvcBitmap.Length; i++)
 			{
 				SvcBitmap[i] = reader.ReadChar();
 			}
 			// Read array: SvcBitmapExt
-			SvcBitmapExt = new char[MetaLibConstants.TQQ_SVCBITMAP_EXT_LEN];
+			SvcBitmapExt = new char[TqqapiConstants.TQQ_SVCBITMAP_EXT_LEN];
 			for (var i = 0; i < SvcBitmapExt.Length; i++)
 			{
 				SvcBitmapExt[i] = reader.ReadChar();

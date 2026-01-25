@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using Rathalos.Core.Utils.IO;
 
-namespace Rathalos.Core.Protocol.Messages
+namespace Rathalos.Core.Protocol.Messages.Tqqapi
 {
     /// <summary>
     /// Connection handshake information
@@ -20,13 +20,12 @@ namespace Rathalos.Core.Protocol.Messages
 		/// <param name="writer">The data writer to serialize to.</param>
 		public void Serialize(IDataWriter writer)
 		{
-			var RandstrCount = Math.Min((Randstr?.Length ?? 0), MetaLibConstants.TQQ_IDENT_LEN);
-			if (RandstrCount != MetaLibConstants.TQQ_IDENT_LEN)
+			if ((Randstr?.Length ?? 0) != TqqapiConstants.TQQ_IDENT_LEN)
 			{
-				throw new InvalidOperationException($"Array length of 'Randstr' should be of length of {MetaLibConstants.TQQ_IDENT_LEN} but was {RandstrCount}.");
+				throw new InvalidOperationException($"Array length of 'Randstr' should be of length of {TqqapiConstants.TQQ_IDENT_LEN} but was {(Randstr?.Length ?? 0)}.");
 			}
 
-			for (var i = 0; i < MetaLibConstants.TQQ_IDENT_LEN; i++)
+			for (var i = 0; i < TqqapiConstants.TQQ_IDENT_LEN; i++)
 			{
 				writer.WriteChar(Randstr[i]);
 			}
@@ -39,7 +38,7 @@ namespace Rathalos.Core.Protocol.Messages
 		public void Deserialize(IDataReader reader)
 		{
 			// Read array: Randstr
-			Randstr = new char[MetaLibConstants.TQQ_IDENT_LEN];
+			Randstr = new char[TqqapiConstants.TQQ_IDENT_LEN];
 			for (var i = 0; i < Randstr.Length; i++)
 			{
 				Randstr[i] = reader.ReadChar();

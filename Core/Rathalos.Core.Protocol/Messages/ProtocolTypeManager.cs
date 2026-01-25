@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using Rathalos.Core.Protocol.Messages.Tqqapi;
+using System.Linq.Expressions;
 using System.Reflection;
 
 namespace Rathalos.Core.Protocol.Messages
