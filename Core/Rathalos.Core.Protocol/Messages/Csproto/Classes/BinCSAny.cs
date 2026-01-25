@@ -12,6 +12,11 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
     /// </summary>
     public class BinCSAny : CSAny
     {
+		public const CS_ANY_TYPE ProtocolIdConst = CS_ANY_TYPE.CS_ANY_BIN;
+		/// <summary>
+		/// Protocol identifier for this message type
+		/// </summary>
+		public int ProtocolId => (int)ProtocolIdConst;
 		/// <summary>
 		/// Bin
 		/// </summary>

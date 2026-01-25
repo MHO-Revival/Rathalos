@@ -8,7 +8,7 @@ using Rathalos.Core.Utils.IO;
 namespace Rathalos.Core.Protocol.Messages.Csproto
 {
 
-    public interface CSPkgBody
+    public interface CSPkgBody : IDataProtocol
     {
         void Serialize(IDataWriter writer);
         void Deserialize(IDataReader reader);

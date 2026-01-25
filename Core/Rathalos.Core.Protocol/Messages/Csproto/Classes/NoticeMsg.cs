@@ -12,7 +12,7 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
     /// System notice content
     /// </summary>
 
-    public interface NoticeMsg
+    public interface NoticeMsg : IDataProtocol
     {
         void Serialize(IDataWriter writer);
         void Deserialize(IDataReader reader);

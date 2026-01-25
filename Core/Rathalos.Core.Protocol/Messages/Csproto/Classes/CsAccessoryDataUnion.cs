@@ -8,7 +8,7 @@ using Rathalos.Core.Utils.IO;
 namespace Rathalos.Core.Protocol.Messages.Csproto
 {
 
-    public interface CsAccessoryDataUnion
+    public interface CsAccessoryDataUnion : IDataProtocol
     {
         void Serialize(IDataWriter writer);
         void Deserialize(IDataReader reader);

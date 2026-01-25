@@ -14,7 +14,7 @@ namespace Rathalos.Core.Protocol.Messages
 
             foreach (Type type in asm.GetTypes().Where(x => !x.IsAbstract && !x.IsInterface))
             {
-                FieldInfo field = type.GetField(nameof(TPDUExtAuthInfo.ProtocolId));
+                FieldInfo field = type.GetField(nameof(TPDUExtAuthInfo.ProtocolIdConst));
 
                 if (field != null && field.FieldType == typeof(short))
                 {
@@ -45,13 +45,9 @@ namespace Rathalos.Core.Protocol.Messages
                 {
                     return ctor() as TOut;
                 }
-                throw new Exception(string.Format("Type id '{0}' not found for '{1}'", value, value.GetType().Name));
+            }
 
-            }
-            else
-            {
-                throw new Exception(string.Format("Type '{0}' not found", value.GetType().Name));
-            }
+            return null;
         }
     }
 }

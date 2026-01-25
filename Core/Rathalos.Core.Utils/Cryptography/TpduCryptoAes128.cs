@@ -7,7 +7,7 @@ using System.Security.Cryptography;
 
 namespace Rathalos.Core.Utils.Cryptography;
 
-public class TdpuCryptoAes128 : TdpuCrypto
+public class TpduCryptoAes128 : TpduCrypto
 {
     public static byte[] Key = new byte[16]
     {
@@ -25,15 +25,15 @@ public class TdpuCryptoAes128 : TdpuCrypto
     private byte[] _key;
     private byte[] _iv;
 
-    public TdpuCryptoAes128() : this(Key)
+    public TpduCryptoAes128() : this(Key)
     {
     }
 
-    public TdpuCryptoAes128(byte[] key) : this(key, IV)
+    public TpduCryptoAes128(byte[] key) : this(key, IV)
     {
     }
 
-    public TdpuCryptoAes128(byte[] key, byte[] iv)
+    public TpduCryptoAes128(byte[] key, byte[] iv)
     {
         _key = key;
         _iv = iv;
@@ -44,9 +44,9 @@ public class TdpuCryptoAes128 : TdpuCrypto
 
     public override ConnectionSecureEncodingType EncodingType => ConnectionSecureEncodingType.TCONN_SEC_AES;
 
-    public override TdpuCrypto GetSafeInstance()
+    public override TpduCrypto GetSafeInstance()
     {
-        return new TdpuCryptoAes128(_key, _iv);
+        return new TpduCryptoAes128(_key, _iv);
     }
 
     public override byte[] Encrypt(byte[] plain)

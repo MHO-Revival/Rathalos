@@ -16,7 +16,7 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		/// <summary>
 		/// Protocol identifier for this message type
 		/// </summary>
-		public ushort ProtocolId => (ushort)ProtocolIdConst;
+		public int ProtocolId => (int)ProtocolIdConst;
 		public CSSPVPGang[] Gang { get; set; } = Array.Empty<CSSPVPGang>();
 		public int CountDown { get; set; }
 		public int Stage { get; set; }

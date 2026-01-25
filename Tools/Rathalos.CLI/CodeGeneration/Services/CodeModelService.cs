@@ -119,7 +119,7 @@ namespace Rathalos.CLI.CodeGeneration.Services
             foreach (var structDef in metaLib.Structs)
             {
                 var interfaces = metaLib.Unions
-                    .SelectMany(x => x.Entries.Select(y => (Entry:y, Union:x)))
+                    .SelectMany(x => x.Entries.Select(y => (Entry: y, Union: x)))
                     .Where(x => x.Entry.Type == structDef.Name)
                     .Distinct();
 
@@ -133,29 +133,40 @@ namespace Rathalos.CLI.CodeGeneration.Services
                         generatedClass.Interfaces.Add(interfaceName);
 
                         // Add ProtocolId const field using the enum value from id attribute
-                        if (!string.IsNullOrWhiteSpace(@interface.Entry.Id))
-                        {
-                            if (generatedClass.Properties.All(p => !p.IsProtocolId))
-                            {
-                                // Find the corresponding enum value
-                                var enumName = FindEnumForId(@interface.Entry.Id, metaLib);
-                                var protocolIdValue = enumName != null ? $"{enumName}.{CleanName(@interface.Entry.Id)}" : @interface.Entry.Id;
 
-                                generatedClass.Properties.Insert(0, new GeneratedProperty
-                                {
-                                    Name = "ProtocolId",
-                                    Type = enumName,
-                                    Description = "Protocol identifier for this message type",
-                                    DefaultValue = $"{protocolIdValue}",
-                                    IsProtocolId = true
-                                });
+                        if (generatedClass.Properties.All(p => !p.IsProtocolId))
+                        {
+                            // Find the corresponding enum value
+                            var enumName = FindEnumForId(@interface.Union, @interface.Entry.Id, metaLib);
+
+                            string? protocolIdValue;
+                            if (enumName != null && !string.IsNullOrWhiteSpace(@interface.Entry.Id))
+                            {
+                                protocolIdValue = $"{enumName}.{CleanName(@interface.Entry.Id)}";
                             }
+                            else if (enumName != null)
+                            {
+                                protocolIdValue = $"({enumName})(-1)";
+                            }
+                            else
+                            {
+                                protocolIdValue = @interface.Entry.Id;
+                            }
+
+                            generatedClass.Properties.Insert(0, new GeneratedProperty
+                            {
+                                Name = "ProtocolId",
+                                Type = enumName,
+                                Description = "Protocol identifier for this message type",
+                                DefaultValue = $"{protocolIdValue}",
+                                IsProtocolId = true
+                            });
                         }
 
                         codeModel.Classes.Add(generatedClass);
                     }
 
-                    if(interfaces.Count() > 1 && metaLib.Structs.SelectMany(x => x.Entries).Any(x => x.Type == structDef.Name))
+                    if (interfaces.Count() > 1 && metaLib.Structs.SelectMany(x => x.Entries).Any(x => x.Type == structDef.Name))
                     {
                         // Also generate a base class without interface suffix
                         var baseClass = CreateClassModel(metaLib, codeModel, structDef);
@@ -174,7 +185,7 @@ namespace Rathalos.CLI.CodeGeneration.Services
                     .Where(x => metaLib.Structs.All(y => y.Name != x.Entry.Type))
                     .Distinct();
 
-            foreach(var entry in notMappedUnionEntries)
+            foreach (var entry in notMappedUnionEntries)
             {
                 var generatedClass = new GeneratedClass
                 {
@@ -189,6 +200,35 @@ namespace Rathalos.CLI.CodeGeneration.Services
                 property.Name = "Value";
 
                 generatedClass.Properties.Add(property);
+
+                if (generatedClass.Properties.All(p => !p.IsProtocolId))
+                {
+                    // Find the corresponding enum value
+                    var enumName = FindEnumForId(entry.Union, entry.Entry.Id, metaLib);
+
+                    string? protocolIdValue;
+                    if (enumName != null && !string.IsNullOrWhiteSpace(entry.Entry.Id))
+                    {
+                        protocolIdValue = $"{enumName}.{CleanName(entry.Entry.Id)}";
+                    }
+                    else if(enumName != null)
+                    {
+                        protocolIdValue = $"({enumName})(-1)";
+                    }
+                    else
+                    {
+                        protocolIdValue = entry.Entry.Id;
+                    }
+
+                    generatedClass.Properties.Insert(0, new GeneratedProperty
+                    {
+                        Name = "ProtocolId",
+                        Type = enumName,
+                        Description = "Protocol identifier for this message type",
+                        DefaultValue = $"{protocolIdValue}",
+                        IsProtocolId = true
+                    });
+                }
 
                 codeModel.Classes.Add(generatedClass);
             }
@@ -212,7 +252,7 @@ namespace Rathalos.CLI.CodeGeneration.Services
                 {
                     generatedClass.Name = CleanName(@interface?.Union.Name!) + CleanName(@interface?.Entry.Name!);
                 }
-                else if(hasMultipleInterfaces)
+                else if (hasMultipleInterfaces)
                 {
                     generatedClass.Name += CleanName(@interface?.Union.Name!);
                 }
@@ -232,8 +272,8 @@ namespace Rathalos.CLI.CodeGeneration.Services
             return generatedClass;
         }
 
-     
-        private string? FindEnumForId(string idValue, MetaLib metaLib)
+
+        private string? FindEnumForId(Union union, string idValue, MetaLib metaLib)
         {
             foreach (var macroGroup in metaLib.MacrosGroups)
             {
@@ -242,7 +282,23 @@ namespace Rathalos.CLI.CodeGeneration.Services
                     return CleanName(macroGroup.Name);
                 }
             }
-            return null;
+
+            string? macrogroupNameFound = null;
+            foreach(var entry in union.Entries)
+            {
+                foreach (var macroGroup in metaLib.MacrosGroups)
+                {
+                    if (macroGroup.Macros.Any(m => m.Name == entry.Id))
+                    {
+                        macrogroupNameFound = CleanName(macroGroup.Name);
+                        break;
+                    }
+                }
+                if (macrogroupNameFound is not null)
+                    break;
+            }
+
+            return macrogroupNameFound;
         }
 
         private GeneratedProperty ConvertEntryToProperty(Entry entry, MetaLib metaLib)
@@ -261,7 +317,7 @@ namespace Rathalos.CLI.CodeGeneration.Services
                 Refer = string.IsNullOrWhiteSpace(entry.Refer) ? null : CleanName(entry.Refer)
             };
 
-            if(entry.Name.ToLowerInvariant() == "bool")
+            if (entry.Name.ToLowerInvariant() == "bool")
             {
                 property.Type = "bool";
             }

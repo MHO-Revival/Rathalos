@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
-using Rathalos.Core.Protocol.Messages;
+using Rathalos.Core.Protocol;
 using Rathalos.Core.Utils.Extensions;
 using Rathalos.Servers.Base.Core.Network;
 using Rathalos.Servers.Base.Services;
@@ -9,11 +9,11 @@ namespace Rathalos.Servers.Base.Handlers
 {
 	public abstract class BasePacketHandler<TClient, TMessage, TAttribute, THandler> : WarmupService<THandler>
 		where TClient : BaseClient
-		where TMessage : Message
+		where TMessage : IDataProtocol
 		where TAttribute : Attribute, IPacketHandlerAttribute
 		where THandler : BasePacketHandler<TClient, TMessage, TAttribute, THandler>
 	{
-		private readonly Dictionary<ushort, (Type Type, Func<object, TClient, TMessage, Task> Lambda)> _handlers = new();
+		private readonly Dictionary<int, (Type Type, Func<object, TClient, TMessage, Task> Lambda)> _handlers = new();
 		private readonly IServiceProvider _provider;
 		private readonly Assembly _assembly;
 		private readonly ILogger _logger;
@@ -43,7 +43,7 @@ namespace Rathalos.Servers.Base.Handlers
 		{
 			try
 			{
-				if (!_handlers.TryGetValue(message.ProtocolMessageId, out var handler))
+				if (!_handlers.TryGetValue(message.ProtocolId, out var handler))
 				{
 					_logger.LogWarning($"Received a message not handled : {message.GetType().Name}");
 					return;

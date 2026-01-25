@@ -12,6 +12,11 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
     /// </summary>
     public class FloatCSTokenSyncVar : CSTokenSyncVar
     {
+		public const CS_TOKEN_SYNC_TYPE ProtocolIdConst = CS_TOKEN_SYNC_TYPE.CS_TOKEN_SYNC_FLOAT;
+		/// <summary>
+		/// Protocol identifier for this message type
+		/// </summary>
+		public int ProtocolId => (int)ProtocolIdConst;
 		/// <summary>
 		/// Single precision float
 		/// </summary>

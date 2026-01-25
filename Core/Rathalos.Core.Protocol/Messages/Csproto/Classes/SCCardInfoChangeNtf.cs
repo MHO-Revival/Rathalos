@@ -16,7 +16,7 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		/// <summary>
 		/// Protocol identifier for this message type
 		/// </summary>
-		public ushort ProtocolId => (ushort)ProtocolIdConst;
+		public int ProtocolId => (int)ProtocolIdConst;
 		/// <summary>
 		/// Physical card info 2 bits unused 10 bits monster index 4 bits card type 16 bits card count
 		/// </summary>

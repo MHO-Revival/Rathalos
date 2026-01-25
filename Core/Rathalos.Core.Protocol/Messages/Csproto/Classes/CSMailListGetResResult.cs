@@ -8,7 +8,7 @@ using Rathalos.Core.Utils.IO;
 namespace Rathalos.Core.Protocol.Messages.Csproto
 {
 
-    public interface CSMailListGetResResult
+    public interface CSMailListGetResResult : IDataProtocol
     {
         void Serialize(IDataWriter writer);
         void Deserialize(IDataReader reader);

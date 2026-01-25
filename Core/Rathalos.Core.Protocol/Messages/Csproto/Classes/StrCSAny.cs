@@ -12,6 +12,11 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
     /// </summary>
     public class StrCSAny : CSAny
     {
+		public const CS_ANY_TYPE ProtocolIdConst = CS_ANY_TYPE.CS_ANY_STR;
+		/// <summary>
+		/// Protocol identifier for this message type
+		/// </summary>
+		public int ProtocolId => (int)ProtocolIdConst;
 		/// <summary>
 		/// String
 		/// </summary>

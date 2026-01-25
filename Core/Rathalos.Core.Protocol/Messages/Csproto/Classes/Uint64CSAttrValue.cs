@@ -12,6 +12,11 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
     /// </summary>
     public class Uint64CSAttrValue : CSAttrValue
     {
+		public const CS_PROP_SYNC_TYPE ProtocolIdConst = CS_PROP_SYNC_TYPE.CS_PROP_SYNC_UINT64;
+		/// <summary>
+		/// Protocol identifier for this message type
+		/// </summary>
+		public int ProtocolId => (int)ProtocolIdConst;
 		/// <summary>
 		/// uint64
 		/// </summary>

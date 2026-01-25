@@ -16,7 +16,7 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		/// <summary>
 		/// Protocol identifier for this message type
 		/// </summary>
-		public ushort ProtocolId => (ushort)ProtocolIdConst;
+		public int ProtocolId => (int)ProtocolIdConst;
 		public uint[] SignUp64IDs { get; set; } = Array.Empty<uint>();
 		public uint[] SignUp32IDs { get; set; } = Array.Empty<uint>();
 		public uint[] SignUp16IDs { get; set; } = Array.Empty<uint>();

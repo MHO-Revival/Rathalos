@@ -8,7 +8,7 @@ using Rathalos.Core.Utils.IO;
 namespace Rathalos.Core.Protocol.Messages.Csproto
 {
 
-    public interface CSSkillResultData
+    public interface CSSkillResultData : IDataProtocol
     {
         void Serialize(IDataWriter writer);
         void Deserialize(IDataReader reader);

@@ -154,7 +154,7 @@ namespace Rathalos.CLI.CodeGeneration.Templates
             if (property.IsProtocolId)
             {
                 // Protocol ID properties get a const and a property that returns the const
-                sb.Append($"\t\tpublic ushort {property.Name} => (ushort){property.Name}Const;");
+                sb.Append($"\t\tpublic int {property.Name} => (int){property.Name}Const;");
             }
             else
             {

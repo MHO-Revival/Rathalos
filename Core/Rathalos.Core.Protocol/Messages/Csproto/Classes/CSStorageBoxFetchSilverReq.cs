@@ -16,7 +16,7 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		/// <summary>
 		/// Protocol identifier for this message type
 		/// </summary>
-		public ushort ProtocolId => (ushort)ProtocolIdConst;
+		public int ProtocolId => (int)ProtocolIdConst;
 		/// <summary>
 		/// Is paid withdraw, free 0, paid 1
 		/// </summary>

@@ -16,7 +16,7 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		/// <summary>
 		/// Protocol identifier for this message type
 		/// </summary>
-		public ushort ProtocolId => (ushort)ProtocolIdConst;
+		public int ProtocolId => (int)ProtocolIdConst;
 		/// <summary>
 		/// Leave method, 0: exit game, 1: return to town instance entry point 2: return to town main city
 		/// </summary>

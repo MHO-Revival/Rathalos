@@ -22,6 +22,7 @@
     <Project Path="Servers/Rathalos.Servers.Base/Rathalos.Servers.Base.csproj">
       <Platform Solution="*|x86" Project="x86" />
     </Project>
+    <Project Path="Servers/Rathalos.Servers.Game/Rathalos.Servers.World.csproj" Id="cc881a26-e914-4fc2-88e0-e59d9e9a1be0" />
   </Folder>
   <Folder Name="/Tools/">
     <Project Path="Tools/Rathalos.CLI/Rathalos.CLI.csproj">

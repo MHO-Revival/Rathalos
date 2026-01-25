@@ -12,6 +12,11 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
     /// </summary>
     public class NoneCSRulesInfo : CSRulesInfo
     {
+		public const CS_BATTLE_RULES_TYPE ProtocolIdConst = CS_BATTLE_RULES_TYPE.BATTLE_RULES_DEFAULT_INFO;
+		/// <summary>
+		/// Protocol identifier for this message type
+		/// </summary>
+		public int ProtocolId => (int)ProtocolIdConst;
 		/// <summary>
 		/// default
 		/// </summary>

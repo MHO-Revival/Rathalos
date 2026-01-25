@@ -12,7 +12,7 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
     /// Player extension result data
     /// </summary>
 
-    public interface CSPlayerExtResultData
+    public interface CSPlayerExtResultData : IDataProtocol
     {
         void Serialize(IDataWriter writer);
         void Deserialize(IDataReader reader);

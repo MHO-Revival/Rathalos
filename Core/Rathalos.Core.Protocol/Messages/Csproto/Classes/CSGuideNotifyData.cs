@@ -12,7 +12,7 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
     /// Newbie guide notification data
     /// </summary>
 
-    public interface CSGuideNotifyData
+    public interface CSGuideNotifyData : IDataProtocol
     {
         void Serialize(IDataWriter writer);
         void Deserialize(IDataReader reader);

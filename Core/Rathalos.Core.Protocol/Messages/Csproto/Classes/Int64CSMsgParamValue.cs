@@ -12,6 +12,11 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
     /// </summary>
     public class Int64CSMsgParamValue : CSMsgParamValue
     {
+		public const CS_MSG_PARAM_VALUE ProtocolIdConst = CS_MSG_PARAM_VALUE.CS_MSG_PARAM_VALUE_INT64;
+		/// <summary>
+		/// Protocol identifier for this message type
+		/// </summary>
+		public int ProtocolId => (int)ProtocolIdConst;
 		/// <summary>
 		/// Integer 64
 		/// </summary>

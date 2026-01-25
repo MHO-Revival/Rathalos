@@ -9,14 +9,14 @@ using System.Security.Cryptography;
 
 namespace Rathalos.Core.Utils.Cryptography;
 
-public abstract class TdpuCrypto
+public abstract class TpduCrypto
 {
     protected static readonly Logger Logger = LogManager.GetCurrentClassLogger();
     public abstract ConnectionSecureEncodingType EncodingType { get; }
 
     private const int Tsf4gPaddingLen = 6;
 
-    public abstract TdpuCrypto GetSafeInstance();
+    public abstract TpduCrypto GetSafeInstance();
     public abstract byte[] Encrypt(byte[] plain);
     public abstract byte[] Decrypt(byte[] cipher);
 

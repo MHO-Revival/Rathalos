@@ -16,7 +16,7 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		/// <summary>
 		/// Protocol identifier for this message type
 		/// </summary>
-		public ushort ProtocolId => (ushort)ProtocolIdConst;
+		public int ProtocolId => (int)ProtocolIdConst;
 		/// <summary>
 		/// 1 means changed from non-0 to 0, 2 means adding EXP when REMAIN is 0 but ineffective
 		/// </summary>

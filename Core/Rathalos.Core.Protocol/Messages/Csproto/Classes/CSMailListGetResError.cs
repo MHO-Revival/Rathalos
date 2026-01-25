@@ -9,6 +9,11 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 {
     public class CSMailListGetResError : CSMailListGetResResult
     {
+		public const CSMailErrorCodes ProtocolIdConst = (CSMailErrorCodes)(-1);
+		/// <summary>
+		/// Protocol identifier for this message type
+		/// </summary>
+		public int ProtocolId => (int)ProtocolIdConst;
 		/// <summary>
 		/// Error description
 		/// </summary>

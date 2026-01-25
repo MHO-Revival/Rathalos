@@ -2,7 +2,7 @@
 {
 	public interface IPacketHandlerAttribute
 	{
-		public abstract ushort ProtocolMessageId { get; }
+		public abstract int ProtocolMessageId { get; }
 		public abstract Type MessageType { get; }
 
 	}

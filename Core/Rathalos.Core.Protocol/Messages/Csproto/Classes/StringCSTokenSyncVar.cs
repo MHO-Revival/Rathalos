@@ -12,6 +12,11 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
     /// </summary>
     public class StringCSTokenSyncVar : CSTokenSyncVar
     {
+		public const CS_TOKEN_SYNC_TYPE ProtocolIdConst = CS_TOKEN_SYNC_TYPE.CS_TOKEN_SYNC_STRING;
+		/// <summary>
+		/// Protocol identifier for this message type
+		/// </summary>
+		public int ProtocolId => (int)ProtocolIdConst;
 		/// <summary>
 		/// String
 		/// </summary>

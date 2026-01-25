@@ -12,7 +12,7 @@ namespace Rathalos.Core.Protocol.Messages.Tqqapi
     /// Packet header extension information
     /// </summary>
 
-    public interface TPDUExt
+    public interface TPDUExt : IDataProtocol
     {
         void Serialize(IDataWriter writer);
         void Deserialize(IDataReader reader);

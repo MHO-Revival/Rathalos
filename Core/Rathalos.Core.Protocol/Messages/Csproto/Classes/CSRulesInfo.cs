@@ -12,7 +12,7 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
     /// Instance data
     /// </summary>
 
-    public interface CSRulesInfo
+    public interface CSRulesInfo : IDataProtocol
     {
         void Serialize(IDataWriter writer);
         void Deserialize(IDataReader reader);

@@ -12,6 +12,11 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
     /// </summary>
     public class SContentNoticeMsg : NoticeMsg
     {
+		public const CS_NOTICE_TYPE ProtocolIdConst = CS_NOTICE_TYPE.CS_IDIP_NOTICE;
+		/// <summary>
+		/// Protocol identifier for this message type
+		/// </summary>
+		public int ProtocolId => (int)ProtocolIdConst;
 		/// <summary>
 		/// IDIP push notice
 		/// </summary>

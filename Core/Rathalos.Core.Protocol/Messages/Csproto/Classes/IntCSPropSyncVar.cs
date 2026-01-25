@@ -12,6 +12,11 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
     /// </summary>
     public class IntCSPropSyncVar : CSPropSyncVar
     {
+		public const CS_PROP_SYNC_TYPE ProtocolIdConst = CS_PROP_SYNC_TYPE.CS_PROP_SYNC_INT;
+		/// <summary>
+		/// Protocol identifier for this message type
+		/// </summary>
+		public int ProtocolId => (int)ProtocolIdConst;
 		/// <summary>
 		/// Signed integer
 		/// </summary>

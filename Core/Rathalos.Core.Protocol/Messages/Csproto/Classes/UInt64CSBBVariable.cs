@@ -12,6 +12,11 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
     /// </summary>
     public class UInt64CSBBVariable : CSBBVariable
     {
+		public const CS_BBVALUE_TYPE ProtocolIdConst = CS_BBVALUE_TYPE.CS_BBVALUE_TYPE_UINT64;
+		/// <summary>
+		/// Protocol identifier for this message type
+		/// </summary>
+		public int ProtocolId => (int)ProtocolIdConst;
 		/// <summary>
 		/// Unsigned 64-bit integer
 		/// </summary>

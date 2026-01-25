@@ -13,7 +13,7 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		/// <summary>
 		/// Protocol identifier for this message type
 		/// </summary>
-		public ushort ProtocolId => (ushort)ProtocolIdConst;
+		public int ProtocolId => (int)ProtocolIdConst;
 		/// <summary>
 		/// 0:player mail;1:system mail 2:gift box;3:request box; 0xff:all types
 		/// </summary>

@@ -16,7 +16,7 @@ namespace Rathalos.Core.Protocol.Messages.Tqqapi
 		/// <summary>
 		/// Protocol identifier for this message type
 		/// </summary>
-		public ushort ProtocolId => (ushort)ProtocolIdConst;
+		public int ProtocolId => (int)ProtocolIdConst;
 		public uint Uin { get; set; }
 		public byte[] SigInfo { get; set; } = Array.Empty<byte>();
 

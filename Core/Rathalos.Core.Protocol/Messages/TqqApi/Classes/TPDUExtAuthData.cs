@@ -12,7 +12,7 @@ namespace Rathalos.Core.Protocol.Messages.Tqqapi
     /// Signature data
     /// </summary>
 
-    public interface TPDUExtAuthData
+    public interface TPDUExtAuthData : IDataProtocol
     {
         void Serialize(IDataWriter writer);
         void Deserialize(IDataReader reader);

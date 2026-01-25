@@ -13,7 +13,7 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		/// <summary>
 		/// Protocol identifier for this message type
 		/// </summary>
-		public ushort ProtocolId => (ushort)ProtocolIdConst;
+		public int ProtocolId => (int)ProtocolIdConst;
 		public uint TeamID { get; set; }
 		public uint SrcRoleID { get; set; }
 		public TeamMemberInfo Member { get; set; }

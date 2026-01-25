@@ -20,7 +20,7 @@ namespace Rathalos.Servers.Base.Core.Extensions
 	{
         private static bool _mongoConfigured;
 
-        public static IServiceCollection AddDofusServices(this IServiceCollection services, Assembly asm)
+        public static IServiceCollection AddMhoServices(this IServiceCollection services, Assembly asm)
 		{
 			var types = asm.GetTypes()
 							.Where(_ => _.HasInterface<IMessageHandler>() && !_.IsAbstract);
