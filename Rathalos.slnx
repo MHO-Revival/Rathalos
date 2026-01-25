@@ -1,18 +1,31 @@
 <Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x86" />
+  </Configurations>
   <Folder Name="/Core/">
-    <Project Path="Core/Rathalos.Core.ORM/Rathalos.Core.ORM.csproj" />
-    <Project Path="Core/Rathalos.Core.Protocol/Rathalos.Core.Protocol.csproj" />
-    <Project Path="Core/Rathalos.Core.Utils/Rathalos.Core.Utils.csproj" />
+    <Project Path="Core/Rathalos.Core.ORM/Rathalos.Core.ORM.csproj">
+      <Platform Solution="*|x86" Project="x86" />
+    </Project>
+    <Project Path="Core/Rathalos.Core.Protocol/Rathalos.Core.Protocol.csproj">
+      <Platform Solution="*|x86" Project="x86" />
+    </Project>
+    <Project Path="Core/Rathalos.Core.Utils/Rathalos.Core.Utils.csproj">
+      <Platform Solution="*|x86" Project="x86" />
+    </Project>
   </Folder>
   <Folder Name="/items/">
     <File Path="crygame_csproto.xml" />
     <File Path="protocalhandler_tqqapi.xml" />
   </Folder>
   <Folder Name="/Servers/">
-    <Project Path="Servers/Rathalos.Servers.Base/Rathalos.Servers.Base.csproj" />
+    <Project Path="Servers/Rathalos.Servers.Base/Rathalos.Servers.Base.csproj">
+      <Platform Solution="*|x86" Project="x86" />
+    </Project>
   </Folder>
   <Folder Name="/Tools/">
-    <Project Path="Tools/Rathalos.CLI/Rathalos.CLI.csproj" />
-    <Project Path="Tools/Rathalos.Hook/Rathalos.Hook.csproj" Id="a83e3766-8317-4702-a98b-df5c7b2e665c" />
+    <Project Path="Tools/Rathalos.CLI/Rathalos.CLI.csproj">
+      <Platform Solution="*|x86" Project="x86" />
+    </Project>
   </Folder>
 </Solution>

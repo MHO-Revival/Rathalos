@@ -1,5 +1,7 @@
 using Rathalos.CLI.Launcher;
 using Rathalos.CLI.Utils;
+using System.Runtime.InteropServices;
+using System.Text;
 
 namespace Rathalos.CLI.Menu.Options
 {
@@ -47,8 +49,6 @@ namespace Rathalos.CLI.Menu.Options
             var subMenuOptions = new List<IMenuOption>
             {
                 new LaunchWithInjectionSubOption(this),
-                new LaunchWithoutInjectionSubOption(this),
-                new LaunchCustomSubOption(this),
                 new ViewUsageSubOption(),
                 new ReturnToMainMenuLauncherSubOption()
             };
@@ -75,7 +75,7 @@ namespace Rathalos.CLI.Menu.Options
             string defaultDllPath = MhoProcessLauncher.GetDefaultDllPath();
             Console.Write($"Enter DLL path [{defaultDllPath}]: ");
             string? dllPath = Console.ReadLine()?.Trim();
-            
+
             if (string.IsNullOrEmpty(dllPath))
             {
                 dllPath = defaultDllPath;
@@ -89,7 +89,7 @@ namespace Rathalos.CLI.Menu.Options
 
             Console.WriteLine();
             Console.WriteLine($"{ConsoleDisplayHelper.Icons.Cycle} Creating suspended process...");
-            
+
             var result = _launcher.CreateSuspendedProcess(config);
             if (!result.Success)
             {
@@ -119,153 +119,12 @@ namespace Rathalos.CLI.Menu.Options
             Console.WriteLine($"{ConsoleDisplayHelper.Icons.Party} MHO Client launched successfully!");
         }
 
-        /// <summary>
-        /// Launch without injection (normal process)
-        /// </summary>
-        internal async Task LaunchWithoutInjectionAsync()
-        {
-            Console.WriteLine($"\n{ConsoleDisplayHelper.Icons.Rocket} Launch without DLL Injection");
-            Console.WriteLine(new string('-', 40));
-
-            var config = await GetLaunchConfigurationAsync();
-            if (config == null) return;
-
-            Console.WriteLine();
-            Console.WriteLine($"{ConsoleDisplayHelper.Icons.Cycle} Creating process...");
-            
-            var result = _launcher.CreateNormalProcess(config);
-            if (!result.Success)
-            {
-                Console.WriteLine($"{ConsoleDisplayHelper.Icons.Error} {result.ErrorMessage}");
-                return;
-            }
-
-            _launcher.CleanupHandles(result);
-            Console.WriteLine($"{ConsoleDisplayHelper.Icons.Party} MHO Client launched successfully! (PID: {result.ProcessId})");
-        }
-
-        /// <summary>
-        /// Launch with custom arguments (prompts for all parameters)
-        /// </summary>
-        internal async Task LaunchCustomAsync()
-        {
-            Console.WriteLine($"\n{ConsoleDisplayHelper.Icons.Gear} Custom Launch");
-            Console.WriteLine(new string('-', 40));
-
-            // Get directory
-            Console.Write("Enter MHO directory (e.g., D:\\games\\Monster Hunter Online\\Bin\\Client\\Bin32\\): ");
-            string? mhoDir = Console.ReadLine()?.Trim();
-            
-            if (string.IsNullOrEmpty(mhoDir))
-            {
-                Console.WriteLine($"{ConsoleDisplayHelper.Icons.Error} Directory is required");
-                return;
-            }
-
-            // Ensure directory ends with separator
-            if (!mhoDir.EndsWith(Path.DirectorySeparatorChar) && !mhoDir.EndsWith(Path.AltDirectorySeparatorChar))
-            {
-                mhoDir += Path.DirectorySeparatorChar;
-            }
-
-            // Get executable
-            Console.Write("Enter executable name [MHOClient.exe]: ");
-            string? mhoExe = Console.ReadLine()?.Trim();
-            if (string.IsNullOrEmpty(mhoExe))
-            {
-                mhoExe = "MHOClient.exe";
-            }
-
-            // Get arguments
-            string defaultArgs = "-q 123456789 -src=tgp -game_id 45 -area 1 -zone_id 17306122 -nosplash";
-            Console.Write($"Enter arguments [{defaultArgs}]: ");
-            string? args = Console.ReadLine()?.Trim();
-            if (string.IsNullOrEmpty(args))
-            {
-                args = defaultArgs;
-            }
-
-            // Get working directory
-            Console.Write($"Enter working directory [{mhoDir}]: ");
-            string? workDir = Console.ReadLine()?.Trim();
-            if (string.IsNullOrEmpty(workDir))
-            {
-                workDir = mhoDir;
-            }
-
-            // Ask about injection
-            Console.Write("Inject DLL? (y/N): ");
-            string? injectChoice = Console.ReadLine()?.Trim().ToLowerInvariant();
-            bool injectDll = injectChoice == "y" || injectChoice == "yes";
-
-            string? dllPath = null;
-            if (injectDll)
-            {
-                string defaultDllPath = MhoProcessLauncher.GetDefaultDllPath();
-                Console.Write($"Enter DLL path [{defaultDllPath}]: ");
-                dllPath = Console.ReadLine()?.Trim();
-                if (string.IsNullOrEmpty(dllPath))
-                {
-                    dllPath = defaultDllPath;
-                }
-            }
-
-            var config = new MhoProcessLauncher.LaunchConfiguration
-            {
-                MhoDirectory = mhoDir,
-                MhoExecutable = mhoExe,
-                Arguments = args,
-                WorkingDirectory = workDir,
-                InjectDll = injectDll,
-                DllPath = dllPath
-            };
-
-            Console.WriteLine();
-            Console.WriteLine($"{ConsoleDisplayHelper.Icons.Cycle} Creating process...");
-
-            if (injectDll)
-            {
-                var result = _launcher.CreateSuspendedProcess(config);
-                if (!result.Success)
-                {
-                    Console.WriteLine($"{ConsoleDisplayHelper.Icons.Error} {result.ErrorMessage}");
-                    return;
-                }
-
-                Console.WriteLine($"{ConsoleDisplayHelper.Icons.CheckMark} Process created (PID: {result.ProcessId})");
-                
-                if (!string.IsNullOrEmpty(dllPath) && File.Exists(dllPath))
-                {
-                    Console.WriteLine($"{ConsoleDisplayHelper.Icons.Cycle} Injecting DLL...");
-                    _launcher.InjectDllAndResume(result, dllPath);
-                }
-
-                Console.WriteLine("Press Enter to resume MHOClient.exe...");
-                Console.ReadLine();
-
-                _launcher.ResumeProcess(result);
-                _launcher.CleanupHandles(result);
-            }
-            else
-            {
-                var result = _launcher.CreateNormalProcess(config);
-                if (!result.Success)
-                {
-                    Console.WriteLine($"{ConsoleDisplayHelper.Icons.Error} {result.ErrorMessage}");
-                    return;
-                }
-                _launcher.CleanupHandles(result);
-            }
-
-            Console.WriteLine($"{ConsoleDisplayHelper.Icons.Party} MHO Client launched successfully!");
-        }
-
         private async Task<MhoProcessLauncher.LaunchConfiguration?> GetLaunchConfigurationAsync()
         {
             // Get MHO directory
             Console.Write("Enter MHO directory (e.g., D:\\games\\Monster Hunter Online\\Bin\\Client\\Bin32\\): ");
             string? mhoDir = Console.ReadLine()?.Trim();
-            
+
             if (string.IsNullOrEmpty(mhoDir))
             {
                 Console.WriteLine($"{ConsoleDisplayHelper.Icons.Error} Directory is required");
@@ -295,7 +154,7 @@ namespace Rathalos.CLI.Menu.Options
             string defaultArgs = "-q 123456789 -src=tgp -game_id 45 -area 1 -zone_id 17306122 -nosplash";
             Console.Write($"Enter arguments [{defaultArgs}]: ");
             string? args = Console.ReadLine()?.Trim();
-            
+
             if (string.IsNullOrEmpty(args))
             {
                 args = defaultArgs;
@@ -330,63 +189,11 @@ namespace Rathalos.CLI.Menu.Options
         public async Task<bool> ExecuteAsync()
         {
             await _parent.LaunchWithInjectionAsync();
-            
+
             Console.WriteLine();
             Console.WriteLine("Press any key to return to the launcher menu...");
             Console.ReadKey(true);
-            
-            return true; // Continue sub-menu
-        }
-    }
 
-    /// <summary>
-    /// Sub-menu option for launching without DLL injection
-    /// </summary>
-    internal class LaunchWithoutInjectionSubOption : IMenuOption
-    {
-        private readonly MhoLauncherOption _parent;
-
-        public LaunchWithoutInjectionSubOption(MhoLauncherOption parent)
-        {
-            _parent = parent;
-        }
-
-        public string DisplayName => $"{ConsoleDisplayHelper.Icons.Cycle} Launch without DLL injection";
-
-        public async Task<bool> ExecuteAsync()
-        {
-            await _parent.LaunchWithoutInjectionAsync();
-            
-            Console.WriteLine();
-            Console.WriteLine("Press any key to return to the launcher menu...");
-            Console.ReadKey(true);
-            
-            return true; // Continue sub-menu
-        }
-    }
-
-    /// <summary>
-    /// Sub-menu option for custom launch with all parameters
-    /// </summary>
-    internal class LaunchCustomSubOption : IMenuOption
-    {
-        private readonly MhoLauncherOption _parent;
-
-        public LaunchCustomSubOption(MhoLauncherOption parent)
-        {
-            _parent = parent;
-        }
-
-        public string DisplayName => $"{ConsoleDisplayHelper.Icons.Gear} Custom launch (specify all parameters)";
-
-        public async Task<bool> ExecuteAsync()
-        {
-            await _parent.LaunchCustomAsync();
-            
-            Console.WriteLine();
-            Console.WriteLine("Press any key to return to the launcher menu...");
-            Console.ReadKey(true);
-            
             return true; // Continue sub-menu
         }
     }
@@ -437,7 +244,7 @@ namespace Rathalos.CLI.Menu.Options
             Console.WriteLine();
             Console.WriteLine("Press any key to return to the launcher menu...");
             Console.ReadKey(true);
-            
+
             return true; // Continue sub-menu
         }
     }

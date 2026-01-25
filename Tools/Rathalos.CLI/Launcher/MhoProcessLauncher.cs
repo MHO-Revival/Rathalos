@@ -11,61 +11,16 @@ namespace Rathalos.CLI.Launcher
     /// </summary>
     public class MhoProcessLauncher
     {
-        #region Win32 Constants
-        private const uint CREATE_SUSPENDED = 0x00000004;
-        private const uint CREATE_UNICODE_ENVIRONMENT = 0x00000400;
-        private const uint CREATE_NEW_PROCESS_GROUP = 0x00000200;
-        private const uint DETACHED_PROCESS = 0x00000008;
-        private const int STARTF_USESHOWWINDOW = 0x00000001;
-        private const int SW_NORMAL = 1;
-        private const uint MEM_COMMIT = 0x1000;
-        private const uint MEM_RESERVE = 0x2000;
-        private const uint PAGE_EXECUTE_READWRITE = 0x40;
-        
         // Error codes
         private const int ERROR_ELEVATION_REQUIRED = 740;
         private const int ERROR_ACCESS_DENIED = 5;
-        #endregion
-
-        #region Win32 Structures
-        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
-        private struct STARTUPINFO
-        {
-            public int cb;
-            public string lpReserved;
-            public string lpDesktop;
-            public string lpTitle;
-            public int dwX;
-            public int dwY;
-            public int dwXSize;
-            public int dwYSize;
-            public int dwXCountChars;
-            public int dwYCountChars;
-            public int dwFillAttribute;
-            public int dwFlags;
-            public short wShowWindow;
-            public short cbReserved2;
-            public IntPtr lpReserved2;
-            public IntPtr hStdInput;
-            public IntPtr hStdOutput;
-            public IntPtr hStdError;
-        }
-
-        [StructLayout(LayoutKind.Sequential)]
-        private struct PROCESS_INFORMATION
-        {
-            public IntPtr hProcess;
-            public IntPtr hThread;
-            public int dwProcessId;
-            public int dwThreadId;
-        }
-        #endregion
-
-        #region Win32 Imports
+        // =============================================================
+        // 1. Native WinAPI Imports
+        // =============================================================
         [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
-        private static extern bool CreateProcessW(
-            string? lpApplicationName,
-            StringBuilder lpCommandLine,
+        static extern bool CreateProcess(
+            string lpApplicationName,
+            string lpCommandLine,
             IntPtr lpProcessAttributes,
             IntPtr lpThreadAttributes,
             bool bInheritHandles,
@@ -76,46 +31,72 @@ namespace Rathalos.CLI.Launcher
             out PROCESS_INFORMATION lpProcessInformation);
 
         [DllImport("kernel32.dll", SetLastError = true)]
-        private static extern IntPtr VirtualAllocEx(
-            IntPtr hProcess,
-            IntPtr lpAddress,
-            uint dwSize,
-            uint flAllocationType,
-            uint flProtect);
+        static extern IntPtr VirtualAllocEx(IntPtr hProcess, IntPtr lpAddress, uint dwSize, uint flAllocationType, uint flProtect);
 
         [DllImport("kernel32.dll", SetLastError = true)]
-        private static extern bool WriteProcessMemory(
-            IntPtr hProcess,
-            IntPtr lpBaseAddress,
-            byte[] lpBuffer,
-            uint nSize,
-            out IntPtr lpNumberOfBytesWritten);
-
-        [DllImport("kernel32.dll", CharSet = CharSet.Ansi, SetLastError = true)]
-        private static extern IntPtr GetProcAddress(IntPtr hModule, string procName);
-
-        [DllImport("kernel32.dll", CharSet = CharSet.Ansi, SetLastError = true)]
-        private static extern IntPtr GetModuleHandleA(string lpModuleName);
+        static extern bool WriteProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, byte[] lpBuffer, uint nSize, out int lpNumberOfBytesWritten);
 
         [DllImport("kernel32.dll", SetLastError = true)]
-        private static extern IntPtr CreateRemoteThread(
-            IntPtr hProcess,
-            IntPtr lpThreadAttributes,
-            uint dwStackSize,
-            IntPtr lpStartAddress,
-            IntPtr lpParameter,
-            uint dwCreationFlags,
-            out IntPtr lpThreadId);
+        static extern IntPtr CreateRemoteThread(IntPtr hProcess, IntPtr lpThreadAttributes, uint dwStackSize, IntPtr lpStartAddress, IntPtr lpParameter, uint dwCreationFlags, IntPtr lpThreadId);
+
+        [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Ansi)]
+        static extern IntPtr GetProcAddress(IntPtr hModule, string lpProcName);
+
+        [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        static extern IntPtr GetModuleHandle(string lpModuleName);
 
         [DllImport("kernel32.dll", SetLastError = true)]
-        private static extern uint ResumeThread(IntPtr hThread);
+        static extern uint ResumeThread(IntPtr hThread);
 
         [DllImport("kernel32.dll", SetLastError = true)]
-        private static extern bool CloseHandle(IntPtr hObject);
+        static extern bool CloseHandle(IntPtr hObject);
 
-        [DllImport("kernel32.dll", SetLastError = true)]
-        private static extern uint WaitForSingleObject(IntPtr hHandle, uint dwMilliseconds);
-        #endregion
+        // Constants
+        const uint CREATE_SUSPENDED = 0x00000004;
+        const uint CREATE_UNICODE_ENVIRONMENT = 0x00000400;
+        const uint CREATE_NEW_PROCESS_GROUP = 0x00000200;
+        const uint DETACHED_PROCESS = 0x00000008;
+        const uint MEM_COMMIT = 0x00001000;
+        const uint MEM_RESERVE = 0x00002000;
+        const uint PAGE_EXECUTE_READWRITE = 0x40;
+
+        // Structs
+        [StructLayout(LayoutKind.Sequential)]
+        struct STARTUPINFO
+        {
+            public uint cb;
+            public string lpReserved;
+            public string lpDesktop;
+            public string lpTitle;
+            public uint dwX;
+            public uint dwY;
+            public uint dwXSize;
+            public uint dwYSize;
+            public uint dwXCountChars;
+            public uint dwYCountChars;
+            public uint dwFillAttribute;
+            public uint dwFlags;
+            public short wShowWindow;
+            public short cbReserved2;
+            public IntPtr lpReserved2;
+            public IntPtr hStdInput;
+            public IntPtr hStdOutput;
+            public IntPtr hStdError;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        struct PROCESS_INFORMATION
+        {
+            public IntPtr hProcess;
+            public IntPtr hThread;
+            public uint dwProcessId;
+            public uint dwThreadId;
+        }
+
+        // =============================================================
+        // 2. Helper Functions
+        // =============================================================
+
 
         /// <summary>
         /// Result of a process launch operation
@@ -123,7 +104,7 @@ namespace Rathalos.CLI.Launcher
         public class LaunchResult
         {
             public bool Success { get; set; }
-            public int ProcessId { get; set; }
+            public uint ProcessId { get; set; }
             public IntPtr ProcessHandle { get; set; }
             public IntPtr ThreadHandle { get; set; }
             public string? ErrorMessage { get; set; }
@@ -151,30 +132,42 @@ namespace Rathalos.CLI.Launcher
 
             try
             {
-                var startupInfo = new STARTUPINFO
-                {
-                    cb = Marshal.SizeOf<STARTUPINFO>(),
-                    lpTitle = "IIPSMsgWnd",
-                    wShowWindow = SW_NORMAL,
-                    dwFlags = STARTF_USESHOWWINDOW
-                };
+                STARTUPINFO si = new STARTUPINFO();
+                si.cb = (uint)Marshal.SizeOf(si);
+                si.lpTitle = "IIPSMsgWnd";
+                si.wShowWindow = 1; // SW_NORMAL
+                si.dwFlags = 1;     // STARTF_USESHOWWINDOW
 
-                var commandLine = new StringBuilder($"{config.MhoDirectory}{config.MhoExecutable} {config.Arguments}");
-                var workDir = string.IsNullOrEmpty(config.WorkingDirectory) ? config.MhoDirectory : config.WorkingDirectory;
+                PROCESS_INFORMATION pi;
 
-                Console.WriteLine($"Creating process: \"{config.MhoDirectory}{config.MhoExecutable} {config.Arguments}\"");
+                string cmdLine = $"\"{Path.Combine(config.MhoDirectory, config.MhoExecutable)}\" {config.Arguments}";
+                Console.WriteLine($"Creating process: {cmdLine}");
 
-                bool success = CreateProcessW(
+                // Flags: Suspended | Unicode | New Group | Detached
+                uint flags = CREATE_SUSPENDED | CREATE_UNICODE_ENVIRONMENT | CREATE_NEW_PROCESS_GROUP | DETACHED_PROCESS;
+
+                bool success = CreateProcess(
                     null,
-                    commandLine,
+                    cmdLine,
                     IntPtr.Zero,
                     IntPtr.Zero,
                     false,
-                    CREATE_SUSPENDED | CREATE_UNICODE_ENVIRONMENT | CREATE_NEW_PROCESS_GROUP | DETACHED_PROCESS,
+                    flags,
                     IntPtr.Zero,
-                    workDir,
-                    ref startupInfo,
-                    out PROCESS_INFORMATION processInfo);
+                    config.WorkingDirectory,
+                    ref si,
+                    out pi
+                );
+
+                if (!success)
+                {
+                    int err = Marshal.GetLastWin32Error();
+                    Console.WriteLine($"CreateProcess failed ({err})");
+                    return new () { ProcessHandle = IntPtr.Zero };
+                }
+
+                Console.WriteLine($"Created Process Success (PID: {pi.dwProcessId})");
+               
 
                 if (!success)
                 {
@@ -184,65 +177,9 @@ namespace Rathalos.CLI.Launcher
                 }
 
                 result.Success = true;
-                result.ProcessId = processInfo.dwProcessId;
-                result.ProcessHandle = processInfo.hProcess;
-                result.ThreadHandle = processInfo.hThread;
-
-                Console.WriteLine($"Created Process Successfully (PID: {result.ProcessId})");
-                return result;
-            }
-            catch (Exception ex)
-            {
-                result.ErrorMessage = $"Exception during process creation: {ex.Message}";
-                return result;
-            }
-        }
-
-        /// <summary>
-        /// Creates an MHO process normally (not suspended)
-        /// </summary>
-        public LaunchResult CreateNormalProcess(LaunchConfiguration config)
-        {
-            var result = new LaunchResult();
-
-            try
-            {
-                var startupInfo = new STARTUPINFO
-                {
-                    cb = Marshal.SizeOf<STARTUPINFO>(),
-                    lpTitle = "IIPSMsgWnd",
-                    wShowWindow = SW_NORMAL,
-                    dwFlags = STARTF_USESHOWWINDOW
-                };
-
-                var commandLine = new StringBuilder($"{config.MhoDirectory}{config.MhoExecutable} {config.Arguments}");
-                var workDir = string.IsNullOrEmpty(config.WorkingDirectory) ? config.MhoDirectory : config.WorkingDirectory;
-
-                Console.WriteLine($"Creating process: \"{config.MhoDirectory}{config.MhoExecutable} {config.Arguments}\"");
-
-                bool success = CreateProcessW(
-                    null,
-                    commandLine,
-                    IntPtr.Zero,
-                    IntPtr.Zero,
-                    false,
-                    CREATE_UNICODE_ENVIRONMENT,
-                    IntPtr.Zero,
-                    workDir,
-                    ref startupInfo,
-                    out PROCESS_INFORMATION processInfo);
-
-                if (!success)
-                {
-                    int error = Marshal.GetLastWin32Error();
-                    result.ErrorMessage = GetErrorMessage(error);
-                    return result;
-                }
-
-                result.Success = true;
-                result.ProcessId = processInfo.dwProcessId;
-                result.ProcessHandle = processInfo.hProcess;
-                result.ThreadHandle = processInfo.hThread;
+                result.ProcessId = pi.dwProcessId;
+                result.ProcessHandle = pi.hProcess;
+                result.ThreadHandle = pi.hThread;
 
                 Console.WriteLine($"Created Process Successfully (PID: {result.ProcessId})");
                 return result;
@@ -257,9 +194,9 @@ namespace Rathalos.CLI.Launcher
         /// <summary>
         /// Injects a DLL into a suspended process and resumes it
         /// </summary>
-        public bool InjectDllAndResume(LaunchResult processInfo, string dllPath)
+        public bool InjectDllAndResume(LaunchResult pi, string dllPath)
         {
-            if (!processInfo.Success || processInfo.ProcessHandle == IntPtr.Zero)
+            if (!pi.Success || pi.ProcessHandle == IntPtr.Zero)
             {
                 Console.WriteLine("Invalid process handle for injection");
                 return false;
@@ -267,72 +204,56 @@ namespace Rathalos.CLI.Launcher
 
             try
             {
-                // Convert DLL path to Unicode bytes
-                byte[] dllPathBytes = Encoding.Unicode.GetBytes(dllPath + "\0");
-                uint dllPathSize = (uint)dllPathBytes.Length;
+                if (pi.ProcessHandle == IntPtr.Zero) return false;
 
-                // Allocate memory in the target process for the DLL path
-                IntPtr remoteMemory = VirtualAllocEx(
-                    processInfo.ProcessHandle,
-                    IntPtr.Zero,
-                    dllPathSize,
-                    MEM_COMMIT | MEM_RESERVE,
-                    PAGE_EXECUTE_READWRITE);
+                string dllName = "mho_launcher_lib.dll"; // Name of your C# DLL or Native DLL
+                                                         // Note: If using the C# DLL we made previously, ensure it's compiled as x86/x64 correctly.
 
-                if (remoteMemory == IntPtr.Zero)
+                if (!File.Exists(dllPath))
                 {
-                    int error = Marshal.GetLastWin32Error();
-                    Console.WriteLine($"VirtualAllocEx failed with error code {error}");
+                    Console.Error.WriteLine($"Error: DLL not found at {dllPath}");
                     return false;
                 }
 
-                // Write the DLL path into the allocated memory
-                bool writeSuccess = WriteProcessMemory(
-                    processInfo.ProcessHandle,
-                    remoteMemory,
-                    dllPathBytes,
-                    dllPathSize,
-                    out _);
+                // 1. Allocate Memory
+                // Need space for the string (path) + null terminator. Unicode = 2 bytes per char.
+                uint size = (uint)((dllPath.Length + 1) * 2);
+                IntPtr allocMem = VirtualAllocEx(pi.ProcessHandle, IntPtr.Zero, size, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE);
 
-                if (!writeSuccess)
+                if (allocMem == IntPtr.Zero)
                 {
-                    int error = Marshal.GetLastWin32Error();
-                    Console.WriteLine($"WriteProcessMemory failed with error code {error}");
+                    Console.Error.WriteLine("VirtualAllocEx failed.");
                     return false;
                 }
 
-                // Get the address of LoadLibraryW from kernel32.dll
-                IntPtr kernel32Handle = GetModuleHandleA("Kernel32");
-                IntPtr loadLibraryAddr = GetProcAddress(kernel32Handle, "LoadLibraryW");
+                // 2. Write DLL Path to Memory
+                byte[] bytes = Encoding.Unicode.GetBytes(dllPath);
+                WriteProcessMemory(pi.ProcessHandle, allocMem, bytes, (uint)bytes.Length, out _);
+
+                // 3. Get LoadLibraryW Address
+                IntPtr kernel32 = GetModuleHandle("kernel32.dll");
+                IntPtr loadLibraryAddr = GetProcAddress(kernel32, "LoadLibraryW");
 
                 if (loadLibraryAddr == IntPtr.Zero)
                 {
-                    Console.WriteLine("Failed to get LoadLibraryW address");
+                    Console.Error.WriteLine("Failed to find LoadLibraryW.");
                     return false;
                 }
 
-                // Create a remote thread that calls LoadLibraryW with the DLL path
-                IntPtr remoteThread = CreateRemoteThread(
-                    processInfo.ProcessHandle,
-                    IntPtr.Zero,
-                    0,
-                    loadLibraryAddr,
-                    remoteMemory,
-                    0,
-                    out _);
+                // 4. Create Remote Thread
+                IntPtr remoteThread = CreateRemoteThread(pi.ProcessHandle, IntPtr.Zero, 0, loadLibraryAddr, allocMem, 0, IntPtr.Zero);
 
                 if (remoteThread == IntPtr.Zero)
                 {
-                    int error = Marshal.GetLastWin32Error();
-                    Console.WriteLine($"CreateRemoteThread failed with error code {error}");
-                    return false;
+                    Console.Error.WriteLine("CreateRemoteThread failed.");
                 }
-
-                Console.WriteLine($"DLL injection initiated for: {dllPath}");
-
-                // Wait for the injection thread to complete (optional, with timeout)
-                WaitForSingleObject(remoteThread, 5000);
-                CloseHandle(remoteThread);
+                else
+                {
+                    Console.WriteLine("Injection thread created successfully.");
+                    // Optional: Wait for thread to finish (WaitForSingleObject) to ensure DLL is loaded before resuming
+                    // WaitForSingleObject(remoteThread, 5000); 
+                    CloseHandle(remoteThread);
+                }
 
                 return true;
             }
@@ -399,7 +320,8 @@ namespace Rathalos.CLI.Launcher
         /// </summary>
         public static string GetDefaultDllPath()
         {
-            return Path.Combine(GetExecutableDirectory(), "Rathalos.Hook.dll");
+            return Path.Combine(GetExecutableDirectory(), "libs", "mho_launcher_lib.dll");
+            //return Path.Combine(GetExecutableDirectory(), "Rathalos.Hook.dll");
         }
 
         /// <summary>

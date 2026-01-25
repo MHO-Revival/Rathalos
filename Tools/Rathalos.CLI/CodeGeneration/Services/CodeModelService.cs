@@ -154,6 +154,13 @@ namespace Rathalos.CLI.CodeGeneration.Services
 
                         codeModel.Classes.Add(generatedClass);
                     }
+
+                    if(interfaces.Count() > 1 && metaLib.Structs.SelectMany(x => x.Entries).Any(x => x.Type == structDef.Name))
+                    {
+                        // Also generate a base class without interface suffix
+                        var baseClass = CreateClassModel(metaLib, codeModel, structDef);
+                        codeModel.Classes.Add(baseClass);
+                    }
                 }
                 else
                 {

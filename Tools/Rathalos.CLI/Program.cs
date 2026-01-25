@@ -20,6 +20,7 @@ namespace Rathalos.CLI
                 {
                     new XmlCodeGeneratorOption(),
                     new MhoLauncherOption(),
+                    new HostsFileOption(),
                     new ExitOption()
                 };
 
