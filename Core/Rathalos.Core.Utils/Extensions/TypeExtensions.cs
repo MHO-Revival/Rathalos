@@ -92,7 +92,7 @@ namespace Rathalos.Core.Utils.Extensions
 				if (delegateParameter == methodParameter)
 					continue;
 
-				if (!methodParameter.IsSubclassOf(delegateParameter) && methodParameter.IsAssignableTo(delegateParameter))
+				if (!methodParameter.IsAssignableTo(delegateParameter))
 					throw new InvalidCastException($"Cannot cast {delegateParameter.Name} to {methodParameter.Name}.");
 
 				generator.Emit(

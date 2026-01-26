@@ -1,5 +1,6 @@
 using Rathalos.CLI.Launcher;
 using Rathalos.CLI.Utils;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -12,7 +13,7 @@ namespace Rathalos.CLI.Menu.Options
     public class MhoLauncherOption : IMenuOption
     {
         public string DisplayName => $"{ConsoleDisplayHelper.Icons.Rocket} MHO Client Launcher";
-
+        public static TenProxyTclsSharedMemory TenProxyTclsSharedMemory;
         private readonly MhoProcessLauncher _launcher;
 
         public MhoLauncherOption()
@@ -90,34 +91,49 @@ namespace Rathalos.CLI.Menu.Options
             Console.WriteLine();
             Console.WriteLine($"{ConsoleDisplayHelper.Icons.Cycle} Creating suspended process...");
 
-            var result = _launcher.CreateSuspendedProcess(config);
-            if (!result.Success)
-            {
-                Console.WriteLine($"{ConsoleDisplayHelper.Icons.Error} {result.ErrorMessage}");
-                return;
-            }
+            //var result = _launcher.CreateMhoProcessOrg(config);
+            //if (!result.Success)
+            //{
+            //    Console.WriteLine($"{ConsoleDisplayHelper.Icons.Error} {result.ErrorMessage}");
+            //    return;
+            //}
 
-            Console.WriteLine($"{ConsoleDisplayHelper.Icons.CheckMark} Process created (PID: {result.ProcessId})");
+            var proc = Process.Start(new ProcessStartInfo
+            {
+                Arguments = config.Arguments,
+                FileName = Path.Combine(config.MhoDirectory, config.MhoExecutable),
+                WorkingDirectory = config.WorkingDirectory
+            });
+
+            Console.WriteLine($"{ConsoleDisplayHelper.Icons.CheckMark} Process created (PID: {proc.Id})");
             Console.WriteLine($"{ConsoleDisplayHelper.Icons.Cycle} Injecting DLL...");
 
-            bool injected = _launcher.InjectDllAndResume(result, dllPath);
-            if (!injected)
-            {
-                Console.WriteLine($"{ConsoleDisplayHelper.Icons.Error} DLL injection failed");
-                _launcher.CleanupHandles(result);
-                return;
-            }
+            //bool injected = _launcher.InjectDllAndResume(result, dllPath);
+            //if (!injected)
+            //{
+            //    Console.WriteLine($"{ConsoleDisplayHelper.Icons.Error} DLL injection failed");
+            //    _launcher.CleanupHandles(result);
+            //    return;
+            //}
+            if (TenProxyTclsSharedMemory is not null)
+                TenProxyTclsSharedMemory.Dispose();
+
+            TenProxyTclsSharedMemory = new TenProxyTclsSharedMemory();
+            TenProxyTclsSharedMemory.Map((uint)proc.Id);
+
 
             Console.WriteLine($"{ConsoleDisplayHelper.Icons.CheckMark} DLL injected successfully");
             Console.WriteLine();
             Console.WriteLine("Press Enter to resume MHOClient.exe...");
             Console.ReadLine();
 
-            _launcher.ResumeProcess(result);
-            _launcher.CleanupHandles(result);
+            //_launcher.ResumeProcess(result);
+            //_launcher.CleanupHandles(result);
 
             Console.WriteLine($"{ConsoleDisplayHelper.Icons.Party} MHO Client launched successfully!");
         }
+
+
 
         private async Task<MhoProcessLauncher.LaunchConfiguration?> GetLaunchConfigurationAsync()
         {

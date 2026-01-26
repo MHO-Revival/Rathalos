@@ -516,27 +516,27 @@ void run_protocal_handler() {
     org_protocalhandler_log = (fn_protocalhandler_log) (protocal_handler_addr + 0x1703);
     org_protocalhandler_format_log = (fn_protocalhandler_log_format) (protocal_handler_addr + 0x1A96);
 
-    org_perform_tpdu_decryption = (fn_perform_tpdu_decryption) (protocal_handler_addr + 0x73DC0);
-    org_perform_tpdu_encryption = (fn_perform_tpdu_encryption) (protocal_handler_addr + 0x73bb0);
-    org_aes_key_expansion = (fn_aes_key_expansion) (protocal_handler_addr + 0x888E0);
+    // org_perform_tpdu_decryption = (fn_perform_tpdu_decryption) (protocal_handler_addr + 0x73DC0);
+    // org_perform_tpdu_encryption = (fn_perform_tpdu_encryption) (protocal_handler_addr + 0x73bb0);
+    // org_aes_key_expansion = (fn_aes_key_expansion) (protocal_handler_addr + 0x888E0);
 
-    hook_call(protocal_handler_addr, 0x36002, &perform_tpdu_decryption);
-    hook_call(protocal_handler_addr, 0x360FE, &perform_tpdu_decryption);
-    hook_call(protocal_handler_addr, 0x74AD3, &perform_tpdu_decryption);
-    hook_call(protocal_handler_addr, 0x74F7F, &perform_tpdu_decryption);
-    hook_call(protocal_handler_addr, 0x75336, &perform_tpdu_decryption);
-    hook_call(protocal_handler_addr, 0x75508, &perform_tpdu_decryption);
-    hook_call(protocal_handler_addr, 0x75651, &perform_tpdu_decryption);
+    // hook_call(protocal_handler_addr, 0x36002, &perform_tpdu_decryption);
+    // hook_call(protocal_handler_addr, 0x360FE, &perform_tpdu_decryption);
+    // hook_call(protocal_handler_addr, 0x74AD3, &perform_tpdu_decryption);
+    // hook_call(protocal_handler_addr, 0x74F7F, &perform_tpdu_decryption);
+    // hook_call(protocal_handler_addr, 0x75336, &perform_tpdu_decryption);
+    // hook_call(protocal_handler_addr, 0x75508, &perform_tpdu_decryption);
+    // hook_call(protocal_handler_addr, 0x75651, &perform_tpdu_decryption);
 
-    hook_call(protocal_handler_addr, 0x36FAB, &perform_tpdu_encryption);
-    hook_call(protocal_handler_addr, 0x742A2, &perform_tpdu_encryption);
-    hook_call(protocal_handler_addr, 0x74661, &perform_tpdu_encryption);
-    hook_call(protocal_handler_addr, 0x75B70, &perform_tpdu_encryption);
-    hook_call(protocal_handler_addr, 0x76069, &perform_tpdu_encryption);
+    // hook_call(protocal_handler_addr, 0x36FAB, &perform_tpdu_encryption);
+    // hook_call(protocal_handler_addr, 0x742A2, &perform_tpdu_encryption);
+    // hook_call(protocal_handler_addr, 0x74661, &perform_tpdu_encryption);
+    // hook_call(protocal_handler_addr, 0x75B70, &perform_tpdu_encryption);
+    // hook_call(protocal_handler_addr, 0x76069, &perform_tpdu_encryption);
 
-    hook_call(protocal_handler_addr, 0x88CB0, &aes_key_expansion);
-    hook_call(protocal_handler_addr, 0x8B1E1, &aes_key_expansion);
-    hook_call(protocal_handler_addr, 0x8B50B, &aes_key_expansion);
+    // hook_call(protocal_handler_addr, 0x88CB0, &aes_key_expansion);
+    // hook_call(protocal_handler_addr, 0x8B1E1, &aes_key_expansion);
+    // hook_call(protocal_handler_addr, 0x8B50B, &aes_key_expansion);
 
     hook_call(protocal_handler_addr, 0x39171, &protocalhandler_log);
     hook_call(protocal_handler_addr, 0x39141, &protocalhandler_log);
@@ -617,8 +617,8 @@ void run() {
     new std::thread(run_events);
     log("run\n");
 
-    TenProxyTclsSharedMeMemory *tptsmm = new TenProxyTclsSharedMeMemory();
-    tptsmm->map(0);
+    // TenProxyTclsSharedMeMemory *tptsmm = new TenProxyTclsSharedMeMemory();
+    // tptsmm->map(0);
 
 
     std::wstring exe_name_w = get_exe_name();

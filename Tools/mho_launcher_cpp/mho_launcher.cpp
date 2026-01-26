@@ -181,7 +181,7 @@ int main(int argc, char *argv[]) {
     //    work_dir = L"C:\\Users\\nxspirit\\dev\\MHO\\TencentGame\\Monster Hunter Online\\";
     //}
 
-    if (false) {
+    if (true) {
         // this is to lunch any .exe without any injection or mods and make the memory map available
         PROCESS_INFORMATION pi = CreateMhoProcessOrg(mho_dir, mho_exe, mho_arg, work_dir);
         TenProxyTclsSharedMeMemory *tptsmm = new TenProxyTclsSharedMeMemory();

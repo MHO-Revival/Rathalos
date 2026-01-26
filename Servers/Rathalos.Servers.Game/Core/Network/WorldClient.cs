@@ -2,6 +2,8 @@
 using Rathalos.Core.Protocol.Messages.Csproto;
 using Rathalos.Core.Protocol.Messages.Tqqapi;
 using Rathalos.Servers.Base.Core.Network;
+using Rathalos.Servers.World.Handlers;
+using Rathalos.Servers.World.Handlers.Game;
 using System.Net.Sockets;
 
 namespace Rathalos.Servers.World.Core.Network
@@ -12,14 +14,14 @@ namespace Rathalos.Servers.World.Core.Network
         {
         }
 
-        protected override Task OnMessageReceived(TPDUExt message)
+        protected override async Task OnMessageReceived(TPDUExt message)
         {
-            return Task.CompletedTask;
+            await TqqapiPacketHandler.Instance.HandleMessage(this, message);
         }
 
-        protected override Task OnMessageReceived(CSPkgBody message)
+        protected override async Task OnMessageReceived(CSPkgBody message)
         {
-            return Task.CompletedTask;
+            await GamePacketHandler.Instance.HandleMessage(this, message);
         }
     }
 }

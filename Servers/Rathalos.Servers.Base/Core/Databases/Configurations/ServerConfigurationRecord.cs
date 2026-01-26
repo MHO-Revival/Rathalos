@@ -1,11 +1,11 @@
 ﻿using Rathalos.Core.ORM;
-using Rathalos.Core.ORM.Attributes;
 using Rathalos.Core.Utils.I18N;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Rathalos.Servers.Base.Core.Databases.Configurations
 {
-    [CollectionName("informations")]
-	public class ServerConfigurationRecord : BaseRecord
+    [Table("informations")]
+	public record ServerConfigurationRecord : BaseRecord
 	{
         public string Name { get; set; }
 		public byte CharactersSlots { get; set; }

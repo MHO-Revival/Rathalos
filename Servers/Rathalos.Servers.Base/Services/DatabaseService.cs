@@ -8,20 +8,13 @@ namespace Rathalos.Servers.Base.Services
 	public class DatabaseService : WarmupService<DatabaseService>
 	{
 		protected readonly ORMDatabase database;
-		private readonly ORMConfiguration configuration;
 
-		public DatabaseService(IOptions<ORMConfiguration> serverConfiguration)
+		public DatabaseService(ORMDatabase database)
 		{
-			this.database = new ORMDatabase();
-			this.configuration = serverConfiguration.Value;
+			this.database = database;
 		}
 
 		public ORMDatabase ORM => database;
-
-		public override void Initialize()
-		{
-			database.Initialize(configuration);
-		}
 
 		public int Count<T>(Expression<Func<T, bool>> expression) where T : BaseRecord
 		{
@@ -43,12 +36,12 @@ namespace Rathalos.Servers.Base.Services
 			return database.Fetch(expression, offset, limit);
         }
 
-        public IEnumerable<T> FetchAll<T>()
+        public IEnumerable<T> FetchAll<T>() where T : BaseRecord
 		{
 			return database.FetchAll<T>();
 		}
 
-        public IQueryable<T> Query<T>(Expression<Func<T, bool>> expression)
+        public IQueryable<T> Query<T>(Expression<Func<T, bool>> expression) where T : BaseRecord
         {
             return database.Query(expression);
         }

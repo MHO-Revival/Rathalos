@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Rathalos.Servers.Base.Core.Network;
 
 namespace Rathalos.Servers.Base
 {
@@ -27,7 +28,7 @@ namespace Rathalos.Servers.Base
 			if (!File.Exists(_configPath))
 			{
 				File.WriteAllText(_configPath, JsonSerializer.Serialize(new { Server = new TConfiguration() }, new JsonSerializerOptions
-				{
+                {
 					WriteIndented = true,
 					Converters = { new JsonStringEnumConverter() }
 				}));
@@ -45,6 +46,9 @@ namespace Rathalos.Servers.Base
 					.BindConfiguration("Server:Database");
 		}
 
-		protected virtual void ConfigureConfiguration(TConfiguration configuration) { }
+		protected virtual void ConfigureConfiguration(TConfiguration configuration) 
+		{
+			
+        }
 	}
 }

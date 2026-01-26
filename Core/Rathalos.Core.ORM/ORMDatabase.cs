@@ -1,95 +1,86 @@
-﻿using Rathalos.Core.ORM.Attributes;
+using Microsoft.EntityFrameworkCore;
 using Rathalos.Core.ORM.Config;
 using Rathalos.Core.ORM.Interfaces;
-using Rathalos.Core.Utils.Extensions;
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization;
-using MongoDB.Driver;
-using Org.BouncyCastle.Asn1.X509.Qualified;
-using System.Collections;
 using System.Collections.Concurrent;
-using System.Data;
 using System.Linq.Expressions;
-using System.Reflection;
 
 namespace Rathalos.Core.ORM
 {
-    public sealed class ORMDatabase
+    public sealed class ORMDatabase : DbContext
     {
-        private readonly ConcurrentDictionary<string, long> _typeLastIndex = new ConcurrentDictionary<string, long>();
-        private IMongoDatabase _database;
+        private readonly ConcurrentDictionary<string, bool> _ensuredTables = new();
+        private static readonly HashSet<Type> _registeredTypes = new();
+        private static bool _initialized;
 
-        public ORMDatabase()
+        public ORMDatabase(DbContextOptions<ORMDatabase> options) : base(options)
         {
+            // Ensure the database exists
+            Database.EnsureCreated();
         }
 
-        public IMongoDatabase MongoDatabase => _database;
-
-        public void Initialize(ORMConfiguration configuration)
+        public void RegisterEntityType<T>() where T : BaseRecord
         {
-            _database = new MongoClient(configuration.GetConnectionString()).GetDatabase(configuration.DbName);
+            var type = typeof(T);
+            if (!_registeredTypes.Contains(type))
+            {
+                _registeredTypes.Add(type);
+            }
         }
 
         public void GetTransaction(Action action)
         {
-            using (var session = _database.Client.StartSession())
+            using var transaction = Database.BeginTransaction();
+            try
             {
-                session.StartTransaction();
-                try
-                {
-                    action();
-                    session.CommitTransaction();
-                }
-                catch
-                {
-                    session.AbortTransaction();
-                    throw;
-                }
+                action();
+                transaction.Commit();
+            }
+            catch
+            {
+                transaction.Rollback();
+                throw;
             }
         }
 
         public int Count<T>(Expression<Func<T, bool>> expression) where T : BaseRecord
         {
-            return GetCollection<T>().AsQueryable().Count(expression);
+            return Set<T>().Count(expression);
         }
 
         public T FirstOrDefault<T>(Expression<Func<T, bool>> expression = null) where T : BaseRecord
         {
-            var collection = GetCollection<T>().AsQueryable();
+            var dbSet = Set<T>();
             if (expression == null)
-                return collection.FirstOrDefault();
+                return dbSet.FirstOrDefault();
 
-            return collection.FirstOrDefault(expression);
+            return dbSet.FirstOrDefault(expression);
         }
 
         public IEnumerable<T> Fetch<T>(Expression<Func<T, bool>> expression) where T : BaseRecord
         {
-            return GetCollection<T>().AsQueryable().Where(expression);
+            return Set<T>().Where(expression).ToList();
         }
 
         public IEnumerable<T> Fetch<T>(Expression<Func<T, bool>> expression, int skip, int take) where T : BaseRecord
         {
-            return GetCollection<T>().AsQueryable().Where(expression).Skip(skip).Take(take);
+            return Set<T>().Where(expression).Skip(skip).Take(take).ToList();
         }
 
-        public IEnumerable<T> FetchAll<T>()
+        public IEnumerable<T> FetchAll<T>() where T : BaseRecord
         {
-            return GetCollection<T>().AsQueryable();
+            return Set<T>().ToList();
         }
 
-
-        public IQueryable<T> Query<T>(Expression<Func<T, bool>> expression)
+        public IQueryable<T> Query<T>(Expression<Func<T, bool>> expression) where T : BaseRecord
         {
-            return GetCollection<T>().AsQueryable().Where(expression);
+            return Set<T>().Where(expression);
         }
 
         public ICollection<object> FetchAll(Type type)
         {
-            return GetCollection(type)
-                    .AsQueryable()
-                    .ToArray()
-                    .Select(_ => BsonSerializer.Deserialize(_, type))
-                    .ToArray();
+            var method = typeof(DbContext).GetMethod(nameof(Set), Type.EmptyTypes)!.MakeGenericMethod(type);
+            var dbSet = method.Invoke(this, null) as IQueryable<object>;
+            return dbSet?.ToList() ?? new List<object>();
         }
 
         public bool Save<T>(T poco) where T : BaseRecord
@@ -117,76 +108,61 @@ namespace Rathalos.Core.ORM
 
         public T Insert<T>(T poco) where T : BaseRecord
         {
-            var collection = GetCollection<T>();
             UpdatePoco(poco);
 
-            if (poco is ISaveInterceptor saveIntercepter)
-                saveIntercepter.BeforeSave(true);
+            if (poco is ISaveInterceptor saveInterceptor)
+                saveInterceptor.BeforeSave(true);
 
-            collection.InsertOne(poco);
+            Set<T>().Add(poco);
+            SaveChanges();
 
             return poco;
-
         }
 
         public void InsertMany<T>(IEnumerable<T> pocos) where T : BaseRecord
         {
-            if (pocos.Count() <= 0)
+            if (!pocos.Any())
                 return;
 
-            var collection = GetCollection<T>();
-
-            Parallel.ForEach(pocos, poco =>
+            foreach (var poco in pocos)
             {
                 UpdatePoco(poco);
-                if (poco is ISaveInterceptor saveIntercepter)
-                    saveIntercepter.BeforeSave(true);
-            });
+                if (poco is ISaveInterceptor saveInterceptor)
+                    saveInterceptor.BeforeSave(true);
+            }
 
-            collection.InsertMany(pocos);
+            Set<T>().AddRange(pocos);
+            SaveChanges();
         }
 
         public bool Update<T>(T poco) where T : BaseRecord
         {
-            var collection = GetCollection<T>();
             UpdatePoco(poco);
 
-            if (poco is ISaveInterceptor saveIntercepter)
-                saveIntercepter.BeforeSave(false);
+            if (poco is ISaveInterceptor saveInterceptor)
+                saveInterceptor.BeforeSave(false);
 
-            FilterDefinitionBuilder<T> eqfilter = Builders<T>.Filter;
-            FilterDefinition<T> eqFilterDefinition = eqfilter.Eq(x => x.Id, poco.Id);
+            var entry = Entry(poco);
+            if (entry.State == EntityState.Detached)
+            {
+                Set<T>().Attach(poco);
+                entry.State = EntityState.Modified;
+            }
 
-            var result = collection.ReplaceOne(eqFilterDefinition, poco);
-            return result.ModifiedCount > 0;
-        }
-
-        public bool Update(Type type, object poco, Expression<Func<BsonDocument, bool>> expression)
-        {
-            var collection = GetCollection(type);
-
-            if (poco is ISaveInterceptor saveIntercepter)
-                saveIntercepter.BeforeSave(false);
-
-            var result = collection.ReplaceOne(expression, BsonDocument.Create(poco));
-            return result.ModifiedCount > 0;
+            return SaveChanges() > 0;
         }
 
         public bool Delete<T>(T poco) where T : BaseRecord
         {
-            var collection = GetCollection<T>();
-
-            var result = collection.DeleteOne(_ => _.Id == poco.Id);
-            return result.DeletedCount > 0;
-
+            Set<T>().Remove(poco);
+            return SaveChanges() > 0;
         }
 
         public bool Delete<T>(Expression<Func<T, bool>> expression) where T : BaseRecord
         {
-            var collection = GetCollection<T>();
-
-            var result = collection.DeleteMany(expression);
-            return result.DeletedCount > 0;
+            var entities = Set<T>().Where(expression).ToList();
+            Set<T>().RemoveRange(entities);
+            return SaveChanges() > 0;
         }
 
         public void EmptyCollection<T>() where T : BaseRecord
@@ -196,92 +172,20 @@ namespace Rathalos.Core.ORM
 
         public void EmptyCollection(Type type)
         {
-            var collection = GetCollection(type);
-            collection.DeleteMany(_ => true);
+            var method = typeof(DbContext).GetMethod(nameof(Set), Type.EmptyTypes)!.MakeGenericMethod(type);
+            var dbSet = method.Invoke(this, null);
+
+            var removeRangeMethod = dbSet!.GetType().GetMethod("RemoveRange", [typeof(IEnumerable<>).MakeGenericType(type)]);
+            var toListMethod = typeof(Enumerable).GetMethod("ToList")!.MakeGenericMethod(type);
+            var entities = toListMethod.Invoke(null, [dbSet]);
+
+            removeRangeMethod?.Invoke(dbSet, [entities]);
+            SaveChanges();
         }
 
         private void UpdatePoco<T>(T poco) where T : BaseRecord
         {
-            if (poco.Id == 0)
-                poco.Id = ++_typeLastIndex[poco.GetType().Name];
-
-            poco.LastTimeModified = DateTime.Now;
+            poco.LastTimeModified = DateTime.UtcNow;
         }
-
-        private bool IsCollectionExists(string name)
-        {
-            var filter = new BsonDocument("name", BsonValue.Create(name));
-            //filter by collection name
-            var collections = _database.ListCollectionNames(new ListCollectionNamesOptions { Filter = filter });
-            //check for existence
-            return collections.Any();
-        }
-
-        private IMongoCollection<T> GetCollection<T>()
-        {
-            Type type = typeof(T);
-            if (!type.HasCustomAttribute<CollectionNameAttribute>())
-                throw new Exception("This class record doesn't have CollectionNameAttribute as attribute, you can't use it to retrieve collection !");
-
-            var attribute = type.GetCustomAttribute<CollectionNameAttribute>();
-
-            if (!_typeLastIndex.ContainsKey(type.Name))
-            {
-                var collection = _database.GetCollection<BsonDocument>(attribute.Name).AsQueryable();
-                long lastId = 0;
-                if (collection.Any())
-                    lastId = collection.Max(x => (long)x["_id"]);
-
-                _typeLastIndex.TryAdd(type.Name, lastId);
-            }
-
-
-            GenerateCollection(type);
-
-            return _database.GetCollection<T>(attribute.Name);
-        }
-
-        private IMongoCollection<BsonDocument> GetCollection(Type type)
-        {
-            if (!type.HasCustomAttribute<CollectionNameAttribute>())
-                throw new Exception("This class record doesn't have CollectionNameAttribute as attribute, you can't use it to retrieve collection !");
-
-            var attribute = type.GetCustomAttribute<CollectionNameAttribute>();
-
-            if (!_typeLastIndex.ContainsKey(type.Name))
-            {
-                var collection = _database.GetCollection<BsonDocument>(attribute.Name).AsQueryable();
-                long lastId = 0;
-                try { lastId = collection.Max(x => (long)x["_id"]); } catch { }
-                _typeLastIndex.TryAdd(type.Name, lastId);
-            }
-
-
-            GenerateCollection(type);
-
-            return _database.GetCollection<BsonDocument>(attribute.Name);
-        }
-
-
-        private void GenerateCollection(Type type)
-        {
-            if (type.HasCustomAttribute<CollectionNameAttribute>())
-            {
-                var collectionName = type.GetCustomAttribute<CollectionNameAttribute>()!.Name;
-                if (!IsCollectionExists(collectionName))
-                {
-                    _database.CreateCollection(collectionName);
-
-                    var propsIndexes = type.GetProperties().Where(_ => _.GetCustomAttribute<IndexAttribute>() is not null || _.GetCustomAttribute<PrimaryKeyAttribute>() is not null);
-                    foreach (var index in propsIndexes)
-                    {
-                        var collection = _database.GetCollection<BsonDocument>(collectionName);
-                        var indexKeysDefine = Builders<BsonDocument>.IndexKeys.Ascending(indexKey => indexKey[index.Name]);
-                        collection.Indexes.CreateOne(new CreateIndexModel<BsonDocument>(indexKeysDefine, new CreateIndexOptions { Unique = index.GetCustomAttribute<PrimaryKeyAttribute>() is not null }));
-                    }
-                }
-            }
-        }
-
     }
 }

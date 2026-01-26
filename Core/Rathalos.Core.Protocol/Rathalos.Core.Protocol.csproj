@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
     <Version>1.0.1</Version>
@@ -8,7 +8,6 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NLog" Version="5.5.0" />
-    <PackageReference Include="SwfLib" Version="1.0.5" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Rathalos.Core.Utils\Rathalos.Core.Utils.csproj" />

@@ -5,14 +5,18 @@
   </Configurations>
   <Folder Name="/Core/">
     <Project Path="Core/Rathalos.Core.ORM/Rathalos.Core.ORM.csproj">
-      <Platform Solution="*|x86" Project="x86" />
+      <Platform Solution="Debug|x86" Project="x86" />
     </Project>
     <Project Path="Core/Rathalos.Core.Protocol/Rathalos.Core.Protocol.csproj">
-      <Platform Solution="*|x86" Project="x86" />
+      <Platform Solution="Debug|x86" Project="x86" />
     </Project>
     <Project Path="Core/Rathalos.Core.Utils/Rathalos.Core.Utils.csproj">
-      <Platform Solution="*|x86" Project="x86" />
+      <Platform Solution="Debug|x86" Project="x86" />
     </Project>
+  </Folder>
+  <Folder Name="/GUI/">
+    <Project Path="GUI/Rathalos.ConsoleUI.World/Rathalos.ConsoleUI.World.csproj" Id="84988592-3a98-4030-bc7e-e3d6976016ae" />
+    <Project Path="GUI/Rathalos.Distributed/Rathalos.Distributed.csproj" Id="c922570c-b801-4838-8408-f1e2aae8368e" />
   </Folder>
   <Folder Name="/items/">
     <File Path="crygame_csproto.xml" />
@@ -20,7 +24,7 @@
   </Folder>
   <Folder Name="/Servers/">
     <Project Path="Servers/Rathalos.Servers.Base/Rathalos.Servers.Base.csproj">
-      <Platform Solution="*|x86" Project="x86" />
+      <Platform Solution="Debug|x86" Project="x86" />
     </Project>
     <Project Path="Servers/Rathalos.Servers.Game/Rathalos.Servers.World.csproj" Id="cc881a26-e914-4fc2-88e0-e59d9e9a1be0" />
   </Folder>

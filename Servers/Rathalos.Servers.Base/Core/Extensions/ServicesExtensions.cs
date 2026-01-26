@@ -1,14 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization;
-using MongoDB.Bson.Serialization.Conventions;
-using MongoDB.Bson.Serialization.Options;
-using MongoDB.Bson.Serialization.Serializers;
 using Rathalos.Core.ORM;
 using Rathalos.Core.Utils.Extensions;
-using Rathalos.Servers.Base.Core.Databases.Conventions;
-using Rathalos.Servers.Base.Core.Databases.Serializers;
 using Rathalos.Servers.Base.Handlers;
 using Rathalos.Servers.Base.Services;
 using System.Reflection;
@@ -18,8 +11,6 @@ namespace Rathalos.Servers.Base.Core.Extensions
 {
 	public static class ServicesExtensions
 	{
-        private static bool _mongoConfigured;
-
         public static IServiceCollection AddMhoServices(this IServiceCollection services, Assembly asm)
 		{
 			var types = asm.GetTypes()
@@ -38,7 +29,6 @@ namespace Rathalos.Servers.Base.Core.Extensions
 			GCSettings.LatencyMode = GCSettings.IsServerGC ? GCLatencyMode.Batch : GCLatencyMode.Interactive;
 
 			ConfigureWarmupServices(services, asm);
-			ConfigureDatabase();
 
 			return services
 				.AddSingleton<ORMDatabase>();
@@ -66,50 +56,6 @@ namespace Rathalos.Servers.Base.Core.Extensions
 					return ActivatorUtilities.CreateInstance(provider, type, inst);
 				});
 			}
-		}
-
-		private static void ConfigureDatabase()
-		{
-			if (_mongoConfigured)
-				return;
-			_mongoConfigured = true;
-
-            BsonSerializer.RegisterSerializer(
-				new DoubleSerializer(BsonType.Double,
-				new RepresentationConverter(
-					true, // allow overflow, return decimal.MinValue or decimal.MaxValue instead
-					true //allow truncation
-				))
-			);
-			ConventionRegistry.Register(nameof(IgnoreFieldsConvention), IgnoreFieldsConvention.Pack, t => true);
-			ConventionRegistry.Register(nameof(EnumStringConvention), EnumStringConvention.Pack, t => true);
-			ConventionRegistry.Register(nameof(IgnoreExtraElementsConvention), new ConventionPack { new IgnoreExtraElementsConvention(true) }, t => true);
-
-			var enumAsStringSerializationProvider = new EnumAsStringSerializationProvider();
-			BsonSerializer.RegisterSerializationProvider(enumAsStringSerializationProvider);
-			BsonSerializer.RegisterSerializer(new DateTimeSerializer(DateTimeKind.Unspecified, BsonType.DateTime));
-
-			//var dataTypes = typeof(AnimFunData).Assembly.GetTypes().Where(_ => !_.ContainsGenericParameters && (_.IsValueType || _.IsClass));
-			//foreach (var type in dataTypes)
-			//{
-			//	if(type.IsAssignableTo(typeof(IDataObject)))
-			//	{
-			//		var mapping = new BsonClassMap(type);
-			//		mapping.AutoMap();
-			//		if(mapping.IdMemberMap is not null)
-			//		{
-			//			mapping.UnmapMember(type.GetProperty("Id"));
-			//			var memberMap = mapping.MapMember(type.GetProperty("Id"));
-			//		}
-
-			//		BsonClassMap.IsClassMapRegistered(type);
-			//		BsonClassMap.RegisterClassMap(mapping);
-			//	}
-			//	else 
-			//	{
-			//		BsonClassMap.LookupClassMap(type);
-			//	}
-			//}
 		}
 
 		public static IEnumerable<ISaveService> WarmUp(this IServiceProvider provider, params Assembly[] additionalAssemblies)

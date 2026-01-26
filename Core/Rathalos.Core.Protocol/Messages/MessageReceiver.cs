@@ -9,7 +9,8 @@ namespace Rathalos.Core.Protocol.Messages
 {
 	public static class MessageReceiver
     {
-		private static bool _initialized = false;
+        private static readonly Dictionary<int, (Type Type, Func<object> Constructor)> _messagesDefinitions = new Dictionary<int, (Type Type, Func<object> Constructor)>();
+        private static bool _initialized = false;
 
 		/// <summary>
 		///   Initializes this instance.
@@ -46,7 +47,7 @@ namespace Rathalos.Core.Protocol.Messages
 					else
 						throw new Exception(
 							string.Format("'{0}' id is already in the list !",
-											type));
+											id));
 				}
 			}
 		}

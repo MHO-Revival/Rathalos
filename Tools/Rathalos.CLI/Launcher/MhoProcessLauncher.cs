@@ -2,6 +2,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Security.Principal;
 using System.Text;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Rathalos.CLI.Launcher
 {
@@ -121,6 +122,87 @@ namespace Rathalos.CLI.Launcher
             public string WorkingDirectory { get; set; } = string.Empty;
             public bool InjectDll { get; set; } = false;
             public string? DllPath { get; set; }
+        }
+
+
+        private const uint STARTF_USESHOWWINDOW = 0x00000001;
+        private const ushort SW_NORMAL = 1;
+
+        // =============================================================
+        // 2. Native Imports
+        // =============================================================
+        [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
+        private static extern bool CreateProcessW(
+            string lpApplicationName,
+            string lpCommandLine,
+            IntPtr lpProcessAttributes,
+            IntPtr lpThreadAttributes,
+            bool bInheritHandles,
+            uint dwCreationFlags,
+            IntPtr lpEnvironment,
+            string lpCurrentDirectory,
+            ref STARTUPINFO lpStartupInfo,
+            out PROCESS_INFORMATION lpProcessInformation
+        );
+
+        [DllImport("kernel32.dll")]
+        private static extern uint GetLastError();
+
+        // =============================================================
+        // 3. The Function Translation
+        // =============================================================
+        public LaunchResult CreateMhoProcessOrg(LaunchConfiguration config)
+        {
+            var result = new LaunchResult();
+
+            // 1. Prepare Startup Info
+            STARTUPINFO si = new STARTUPINFO();
+            si.cb = (uint)Marshal.SizeOf(si);
+
+            // This is important: The C++ code explicitly sets the console/window title
+            si.lpTitle = "IIPSMsgWnd";
+            si.wShowWindow = (short)SW_NORMAL;
+            si.dwFlags = STARTF_USESHOWWINDOW;
+
+            PROCESS_INFORMATION pi = new PROCESS_INFORMATION();
+
+            // 2. Build Command Line
+            // C++: mho_dir + mho_exe + L" " + mho_arg;
+            // We replicate that string concatenation logic exactly.
+            string cmdStr = $"\"{Path.Combine(config.MhoDirectory, config.MhoExecutable)}\" {config.Arguments}";
+
+            Console.WriteLine($"Creating process: {cmdStr}");
+
+            // 3. Call CreateProcess
+            bool ret = CreateProcessW(
+                null,               // lpApplicationName (NULL in C++ code)
+                cmdStr,             // lpCommandLine
+                IntPtr.Zero,        // lpProcessAttributes
+                IntPtr.Zero,        // lpThreadAttributes
+                false,              // bInheritHandles
+                CREATE_UNICODE_ENVIRONMENT, // dwCreationFlags
+                IntPtr.Zero,        // lpEnvironment
+                config.WorkingDirectory,            // lpCurrentDirectory
+                ref si,
+                out pi
+            );
+
+            if (!ret)
+            {
+                uint err = GetLastError();
+                Console.WriteLine($"CreateProcess failed ({err})");
+                // Return empty struct (equivalent to C++ returning the memset 0 struct)
+                result.ErrorMessage = GetErrorMessage((int)err);
+                return result;
+            }
+
+            result.Success = true;
+            result.ProcessId = pi.dwProcessId;
+            result.ProcessHandle = pi.hProcess;
+            result.ThreadHandle = pi.hThread;
+
+            Console.WriteLine($"Created Process Success ({pi.dwProcessId})");
+            return result;
         }
 
         /// <summary>

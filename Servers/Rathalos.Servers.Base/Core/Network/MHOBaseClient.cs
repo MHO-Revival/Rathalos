@@ -33,14 +33,17 @@ namespace Rathalos.Servers.Base.Core.Network
 
                     await OnMessageReceived(ext);
                 }
-                var data = reader.ReadBytes(rawMessage.BodyLength);
-                var decryptedBody = new TpduCryptoAes128(Key).Decrypt(data);
-                var csPacket = new CSPkg();
-                csPacket.Deserialize(new BigEndianReader([.. decryptedBody.Skip(rawMessage.EncryptedHeaderLen)]));
-                _logger.LogInformation("{ReceivePacket} ({MHOBaseClient}) [Game] {Name}",
-                     ConsoleFormat.ReceivePacket, this, ext.GetType().Name);
+                if (rawMessage.BodyLength > 0)
+                {
+                    var data = reader.ReadBytes(rawMessage.BodyLength);
+                    var decryptedBody = new TpduCryptoAes128(Key).Decrypt(data);
+                    var csPacket = new CSPkg();
+                    csPacket.Deserialize(new BigEndianReader([.. decryptedBody.Skip(rawMessage.EncryptedHeaderLen)]));
+                    _logger.LogInformation("{ReceivePacket} ({MHOBaseClient}) [Game] {Name}",
+                         ConsoleFormat.ReceivePacket, this, ext.GetType().Name);
 
-                await OnMessageReceived(csPacket.Body);
+                    await OnMessageReceived(csPacket.Body);
+                }
             }
 
         }
