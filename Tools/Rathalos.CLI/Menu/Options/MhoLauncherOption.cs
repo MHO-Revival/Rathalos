@@ -91,21 +91,15 @@ namespace Rathalos.CLI.Menu.Options
             Console.WriteLine();
             Console.WriteLine($"{ConsoleDisplayHelper.Icons.Cycle} Creating suspended process...");
 
-            //var result = _launcher.CreateMhoProcessOrg(config);
-            //if (!result.Success)
-            //{
-            //    Console.WriteLine($"{ConsoleDisplayHelper.Icons.Error} {result.ErrorMessage}");
-            //    return;
-            //}
-
-            var proc = Process.Start(new ProcessStartInfo
+            var result = _launcher.CreateSuspendedProcess(config);
+            if (!result.Success)
             {
-                Arguments = config.Arguments,
-                FileName = Path.Combine(config.MhoDirectory, config.MhoExecutable),
-                WorkingDirectory = config.WorkingDirectory
-            });
+                Console.WriteLine($"{ConsoleDisplayHelper.Icons.Error} {result.ErrorMessage}");
+                return;
+            }
 
-            Console.WriteLine($"{ConsoleDisplayHelper.Icons.CheckMark} Process created (PID: {proc.Id})");
+
+            Console.WriteLine($"{ConsoleDisplayHelper.Icons.CheckMark} Process created (PID: {result.ProcessId})");
             Console.WriteLine($"{ConsoleDisplayHelper.Icons.Cycle} Injecting DLL...");
 
             //bool injected = _launcher.InjectDllAndResume(result, dllPath);
@@ -119,16 +113,16 @@ namespace Rathalos.CLI.Menu.Options
                 TenProxyTclsSharedMemory.Dispose();
 
             TenProxyTclsSharedMemory = new TenProxyTclsSharedMemory();
-            TenProxyTclsSharedMemory.Map((uint)proc.Id);
+            TenProxyTclsSharedMemory.Map((uint)result.ProcessId);
 
 
             Console.WriteLine($"{ConsoleDisplayHelper.Icons.CheckMark} DLL injected successfully");
             Console.WriteLine();
             Console.WriteLine("Press Enter to resume MHOClient.exe...");
-            Console.ReadLine();
+            //Console.ReadLine();
 
-            //_launcher.ResumeProcess(result);
-            //_launcher.CleanupHandles(result);
+            _launcher.ResumeProcess(result);
+            _launcher.CleanupHandles(result);
 
             Console.WriteLine($"{ConsoleDisplayHelper.Icons.Party} MHO Client launched successfully!");
         }

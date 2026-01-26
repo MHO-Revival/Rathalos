@@ -148,62 +148,9 @@ namespace Rathalos.CLI.Launcher
         [DllImport("kernel32.dll")]
         private static extern uint GetLastError();
 
-        // =============================================================
-        // 3. The Function Translation
-        // =============================================================
-        public LaunchResult CreateMhoProcessOrg(LaunchConfiguration config)
-        {
-            var result = new LaunchResult();
-
-            // 1. Prepare Startup Info
-            STARTUPINFO si = new STARTUPINFO();
-            si.cb = (uint)Marshal.SizeOf(si);
-
-            // This is important: The C++ code explicitly sets the console/window title
-            si.lpTitle = "IIPSMsgWnd";
-            si.wShowWindow = (short)SW_NORMAL;
-            si.dwFlags = STARTF_USESHOWWINDOW;
-
-            PROCESS_INFORMATION pi = new PROCESS_INFORMATION();
-
-            // 2. Build Command Line
-            // C++: mho_dir + mho_exe + L" " + mho_arg;
-            // We replicate that string concatenation logic exactly.
-            string cmdStr = $"\"{Path.Combine(config.MhoDirectory, config.MhoExecutable)}\" {config.Arguments}";
-
-            Console.WriteLine($"Creating process: {cmdStr}");
-
-            // 3. Call CreateProcess
-            bool ret = CreateProcessW(
-                null,               // lpApplicationName (NULL in C++ code)
-                cmdStr,             // lpCommandLine
-                IntPtr.Zero,        // lpProcessAttributes
-                IntPtr.Zero,        // lpThreadAttributes
-                false,              // bInheritHandles
-                CREATE_UNICODE_ENVIRONMENT, // dwCreationFlags
-                IntPtr.Zero,        // lpEnvironment
-                config.WorkingDirectory,            // lpCurrentDirectory
-                ref si,
-                out pi
-            );
-
-            if (!ret)
-            {
-                uint err = GetLastError();
-                Console.WriteLine($"CreateProcess failed ({err})");
-                // Return empty struct (equivalent to C++ returning the memset 0 struct)
-                result.ErrorMessage = GetErrorMessage((int)err);
-                return result;
-            }
-
-            result.Success = true;
-            result.ProcessId = pi.dwProcessId;
-            result.ProcessHandle = pi.hProcess;
-            result.ThreadHandle = pi.hThread;
-
-            Console.WriteLine($"Created Process Success ({pi.dwProcessId})");
-            return result;
-        }
+        // --- P/Invoke Definitions ---
+        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
+        private static extern bool SetWindowText(IntPtr hWnd, string lpString);
 
         /// <summary>
         /// Creates an MHO process in suspended state for injection
@@ -262,6 +209,7 @@ namespace Rathalos.CLI.Launcher
                 result.ProcessId = pi.dwProcessId;
                 result.ProcessHandle = pi.hProcess;
                 result.ThreadHandle = pi.hThread;
+
 
                 Console.WriteLine($"Created Process Successfully (PID: {result.ProcessId})");
                 return result;
@@ -364,6 +312,47 @@ namespace Rathalos.CLI.Launcher
                 Console.WriteLine($"ResumeThread failed with error code {error}");
                 return false;
             }
+
+            // 2. Start a background task to wait for the window (don't freeze the UI)
+            Task.Run(() =>
+            {
+                try
+                {
+                    // We need the Process object to find the Window Handle (HWND) from the PID
+                    Process game = Process.GetProcessById((int)processInfo.ProcessId);
+
+                    // Wait for the game to actually create a window (e.g. wait up to 15 seconds)
+                    // WaitForInputIdle waits until the app finishes its initial loop
+                    game.WaitForInputIdle(10000);
+
+                    int attempts = 0;
+                    while (attempts < 50) // Try for ~10 seconds (50 * 200ms)
+                    {
+                        game.Refresh(); // Important: Update the MainWindowHandle property
+
+                        // Check if we have a valid Window Handle (not 0)
+                        if (game.MainWindowHandle != IntPtr.Zero)
+                        {
+                            // 3. We found the window! Now we rename it using the HWND
+                            bool renamed = SetWindowText(game.MainWindowHandle, "MHO Game Client");
+
+                            if (renamed)
+                            {
+                                Console.WriteLine($"[Success] Window renamed to: \"MHO Game Client\"");
+                                return; // Done
+                            }
+                        }
+
+                        Thread.Sleep(1000); // Wait 200ms before checking again
+                        attempts++;
+                    }
+                    Console.WriteLine("[Warning] Timed out waiting for game window.");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"[Error] Rename failed: {ex.Message}");
+                }
+            });
 
             Console.WriteLine("Process resumed successfully");
             return true;
