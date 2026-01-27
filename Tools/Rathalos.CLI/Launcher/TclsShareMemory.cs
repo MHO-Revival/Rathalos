@@ -10,11 +10,13 @@ namespace Rathalos.CLI.Launcher
         public string Name { get; set; }
         public string Ip { get; set; }
         public int Port { get; set; } = 8142;
-        public uint ZoneId { get; set; } = 0x2B0A;
-        public string StartupArgs { get; set; } = "-s:3";
+        public uint Unk0 { get; set; } = 0x2B0A;
+        public string Unk3 { get; set; } = "-s:3";
         // Each server can have its own Auth Type (usually 5)
-        public uint AuthType { get; set; } = 5;
-        public ushort UnkLast { get; set; } = 0;
+        public uint Unk5 { get; set; } = 5;
+        public ushort Unk4 { get; set; } = 0;
+        public uint Unk1 { get; internal set; }
+        public uint Unk2 { get; internal set; }
     }
 
     public unsafe class TenProxyTclsSharedMemory : IDisposable
@@ -27,7 +29,7 @@ namespace Rathalos.CLI.Launcher
         public uint Uin { get; set; } = 1235;
         public string ClientExePath { get; set; } = "";
         public string WindowTitle { get; set; } = "MHO Game Client";
-        public string InstallDir { get; set; } = "dir_root;双线三区;283缘聚仙侠;";
+        public string Unk2 { get; set; } = "dir_root;双线三区;283缘聚仙侠;";
         public string Password { get; set; } = "";
 
         public byte[] AesKey { get; set; }
@@ -36,7 +38,8 @@ namespace Rathalos.CLI.Launcher
 
         // --- Server Management ---
         public List<GameServerInfo> ServerList { get; set; }
-        public int SelectedServerId { get; set; }
+        public int Unk1 { get; set; }
+        public int Unk3 { get; set; }
 
         private byte[] _reservedVar25 = new byte[16];
         private byte[] _reservedVar60 = new byte[16];
@@ -47,29 +50,25 @@ namespace Rathalos.CLI.Launcher
             LoginSignature = new byte[96]; //is mandatory can't be empty it's for the siginfo in TqqUnifiedAuthInfo
             JumpSignature = []; // dunno what is this ??? whats its utility ??? base+6727
 
-            // It takes in account only the first one even if you put multiple
+            // It takes in account only the first one even if you put multiple so idk why having multiple entries
             ServerList = new List<GameServerInfo>
             {
-                new GameServerInfo { Id=1, Name="双线一区", Ip="127.0.0.1", Port=8144, ZoneId=0x2B0A, StartupArgs="-s:1", AuthType = 0, UnkLast = 0 },
-                new GameServerInfo { Id=2, Name="双线一区", Ip="127.0.0.1", Port=8142, ZoneId=0x2B0A, StartupArgs="-s:1", AuthType = 1, UnkLast = 0 },
-                new GameServerInfo { Id=3, Name="双线一区", Ip="127.0.0.1", Port=8143, ZoneId=0x2B0A, StartupArgs="-s:1", AuthType = 5, UnkLast = 1 },
+                new GameServerInfo { Id=1, Name="SRV1", Ip="127.0.0.1", Port=8144, Unk0=4, Unk3="-s:7", Unk5 = 10, Unk4 = 13 },
+                new GameServerInfo { Id=2, Name="SRV2", Ip="127.0.0.1", Port=8142, Unk0=5, Unk3="-s:8", Unk5 = 11, Unk4 = 14 },
+                new GameServerInfo { Id=3, Name="SRV3", Ip="127.0.0.1", Port=8143, Unk0=6, Unk3="-s:9", Unk5 = 12, Unk4 = 15 },
             };
 
-            SelectedServerId = 3;
+            Unk1 = 3;
         }
 
         public byte[] Serialize()
         {
             if (ServerList == null || ServerList.Count == 0) throw new Exception("ServerList empty");
 
-            // 1. Calculate Selected Index (1-based) for var_18
-            int selectedIndex = ServerList.FindIndex(s => s.Id == SelectedServerId) + 1;
-            if (selectedIndex == 0) selectedIndex = 1; // Fallback
-
             // 2. Build Server List String (var_33)
             StringBuilder sbVar33 = new StringBuilder();
             foreach (var s in ServerList) sbVar33.Append($"{s.Id}:{s.Name};");
-            string var33Val = sbVar33.ToString();
+            string connectionString = sbVar33.ToString();
 
             using (AgBuffer buf = new AgBuffer())
             {
@@ -94,14 +93,14 @@ namespace Rathalos.CLI.Launcher
                 int var26Offset = buf.Position; buf.WriteU32(0x1); buf.WriteU8(0);
                 int var27Offset = buf.Position; buf.WriteU32((uint)JumpSignature.Length); buf.WriteData(JumpSignature);
 
-                int var32Offset = buf.Position; buf.WriteU32(0x4); buf.WriteU32((uint)SelectedServerId);
-                int var33Offset = buf.Position; string val33 = var33Val + "\0"; buf.WriteU32((uint)(val33.Length * 2)); buf.WriteWString(val33);
+                int var32Offset = buf.Position; buf.WriteU32(0x4); buf.WriteU32((uint)Unk1);
+                int var33Offset = buf.Position; string val33 = connectionString + "\0"; buf.WriteU32((uint)(val33.Length * 2)); buf.WriteWString(val33);
 
                 // [UPDATED] var_17 (Count) and var_18 (Selected Index)
                 int var17Offset = buf.Position; buf.WriteU32(0x4); buf.WriteU32((uint)ServerList.Count);
-                int var18Offset = buf.Position; buf.WriteU32(0x4); buf.WriteU32((uint)selectedIndex);
+                int var18Offset = buf.Position; buf.WriteU32(0x4); buf.WriteU32((uint)Unk3);
 
-                int var19Offset = buf.Position; string val19 = InstallDir + "\0"; buf.WriteU32((uint)(val19.Length * 2)); buf.WriteWString(val19);
+                int var19Offset = buf.Position; string val19 = Unk2 + "\0"; buf.WriteU32((uint)(val19.Length * 2)); buf.WriteWString(val19);
 
                 int var36Offset = buf.Position; buf.WriteU32(0x4); buf.WriteU32(0x1);
                 int var37Offset = buf.Position; buf.WriteU32(0x4); buf.WriteU32(0x0);
@@ -131,10 +130,10 @@ namespace Rathalos.CLI.Launcher
                     buf.WriteU32((uint)(val.Length * 2)); buf.WriteWString(val);
                 }
 
-                // 3. Zone ID (Array of Integers)
+                // 3. Zone ID maybe ? (Array of Integers)
                 int var20v4Offset = buf.Position;
                 buf.WriteU32((uint)(ServerList.Count * 4)); // Total Length of array block
-                foreach (var s in ServerList) buf.WriteU32(s.ZoneId);
+                foreach (var s in ServerList) buf.WriteU32(s.Unk0);
 
                 // 4. Server Name (Array of Strings)
                 int var20v5Offset = buf.Position;
@@ -144,20 +143,20 @@ namespace Rathalos.CLI.Launcher
                     buf.WriteU32((uint)(val.Length * 2)); buf.WriteWString(val);
                 }
 
-                // 5. Server UIN (Array of Integers)
+                // 5. Server UIN maybe ? (Array of Integers)
                 int var20v6Offset = buf.Position;
                 buf.WriteU32((uint)(ServerList.Count * 4));
-                foreach (var s in ServerList) buf.WriteU32(Uin); // Use same UIN for all
+                foreach (var s in ServerList) buf.WriteU32(s.Unk1); // Use same UIN for all
 
-                // 6. UIN Backup (Array of Integers)
+                // 6. UIN Backup maybe ? (Array of Integers)
                 int var20v7Offset = buf.Position;
                 buf.WriteU32((uint)(ServerList.Count * 4));
-                foreach (var s in ServerList) buf.WriteU32(Uin);
+                foreach (var s in ServerList) buf.WriteU32(s.Unk2);
 
-                // 7. Auth Type (Array of Integers)
+                // 7. Auth Type maybe ? (Array of Integers)
                 int var20v8Offset = buf.Position;
                 buf.WriteU32((uint)(ServerList.Count * 4));
-                foreach (var s in ServerList) buf.WriteU32(s.AuthType);
+                foreach (var s in ServerList) buf.WriteU32(s.Unk5);
 
                 // 8. Startup Args (Array of ANSI Strings)
                 int var20v9Offset = buf.Position;
@@ -165,14 +164,14 @@ namespace Rathalos.CLI.Launcher
                 {
                     // String arrays (esp ANSI) often need exact length logic. 
                     // TCLS strings are typically: [Len u32][Data...]
-                    buf.WriteU32((uint)(Encoding.UTF8.GetByteCount(s.StartupArgs) + 1));
-                    buf.WriteString(s.StartupArgs);
+                    buf.WriteU32((uint)(Encoding.UTF8.GetByteCount(s.Unk3) + 1));
+                    buf.WriteString(s.Unk3);
                 }
 
                 // 9. Unknown Short (Array) - Writes 0x0000 for each server
                 int var20v10Offset = buf.Position;
                 buf.WriteU32((uint)(ServerList.Count * 2));
-                foreach (var s in ServerList) buf.WriteU16(s.UnkLast);
+                foreach (var s in ServerList) buf.WriteU16(s.Unk4);
 
                 // End var_20
 
