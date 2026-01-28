@@ -17,7 +17,7 @@ namespace Rathalos.Core.Protocol.Messages.Tqqapi
 		/// Protocol identifier for this message type
 		/// </summary>
 		public int ProtocolId => (int)ProtocolIdConst;
-		public int StopReason { get; set; }
+		public TPDU_STOP_REASON StopReason { get; set; }
 
 		/// <summary>
 		/// Serializes this instance to the specified data writer.
@@ -25,7 +25,7 @@ namespace Rathalos.Core.Protocol.Messages.Tqqapi
 		/// <param name="writer">The data writer to serialize to.</param>
 		public void Serialize(IDataWriter writer)
 		{
-			writer.WriteInt(StopReason);
+			writer.WriteInt((int)StopReason);
 		}
 
 		/// <summary>
@@ -34,7 +34,7 @@ namespace Rathalos.Core.Protocol.Messages.Tqqapi
 		/// <param name="reader">The data reader to deserialize from.</param>
 		public void Deserialize(IDataReader reader)
 		{
-			StopReason = reader.ReadInt();
+			StopReason = (TPDU_STOP_REASON)reader.ReadInt();
 		}
 
     }

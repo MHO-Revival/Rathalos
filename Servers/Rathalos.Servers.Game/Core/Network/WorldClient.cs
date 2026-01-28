@@ -1,7 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
 using Rathalos.Core.Protocol.Messages.Csproto;
 using Rathalos.Core.Protocol.Messages.Tqqapi;
+using Rathalos.Core.Utils.Cryptography;
 using Rathalos.Servers.Base.Core.Network;
+using Rathalos.Servers.World.Core.Databases;
 using Rathalos.Servers.World.Handlers;
 using Rathalos.Servers.World.Handlers.Game;
 using System.Net.Sockets;
@@ -12,7 +14,11 @@ namespace Rathalos.Servers.World.Core.Network
     {
         public WorldClient(Socket socket, ILogger logger) : base(socket, logger)
         {
+            _crypto = new TpduCryptoAes128();
         }
+
+        public AccountRecord Account { get; internal set; }
+        public Guid SyncGuid { get; internal set; }
 
         protected override async Task OnMessageReceived(TPDUExt message)
         {

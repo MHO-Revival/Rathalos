@@ -18,7 +18,7 @@ namespace Rathalos.Servers.World
             builder.Logging.ClearProviders()
                 .AddCustomFormatter();
 
-            builder.AddNpgsqlDbContext<ORMDatabase>("rathalos-world");
+            builder.AddNpgsqlDbContext<RathalosDbContext>("rathalos-world");
 
             var startup = new WorldStartup(builder.Configuration);
             startup.ConfigureServices(builder.Services);

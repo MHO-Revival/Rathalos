@@ -6,13 +6,12 @@ using System.Linq.Expressions;
 
 namespace Rathalos.Core.ORM
 {
-    public sealed class ORMDatabase : DbContext
+    public sealed class RathalosDbContext : DbContext
     {
         private readonly ConcurrentDictionary<string, bool> _ensuredTables = new();
         private static readonly HashSet<Type> _registeredTypes = new();
-        private static bool _initialized;
 
-        public ORMDatabase(DbContextOptions<ORMDatabase> options) : base(options)
+        public RathalosDbContext(DbContextOptions<RathalosDbContext> options) : base(options)
         {
             // Ensure the database exists
             Database.EnsureCreated();
@@ -42,35 +41,6 @@ namespace Rathalos.Core.ORM
             }
         }
 
-        public int Count<T>(Expression<Func<T, bool>> expression) where T : BaseRecord
-        {
-            return Set<T>().Count(expression);
-        }
-
-        public T FirstOrDefault<T>(Expression<Func<T, bool>> expression = null) where T : BaseRecord
-        {
-            var dbSet = Set<T>();
-            if (expression == null)
-                return dbSet.FirstOrDefault();
-
-            return dbSet.FirstOrDefault(expression);
-        }
-
-        public IEnumerable<T> Fetch<T>(Expression<Func<T, bool>> expression) where T : BaseRecord
-        {
-            return Set<T>().Where(expression).ToList();
-        }
-
-        public IEnumerable<T> Fetch<T>(Expression<Func<T, bool>> expression, int skip, int take) where T : BaseRecord
-        {
-            return Set<T>().Where(expression).Skip(skip).Take(take).ToList();
-        }
-
-        public IEnumerable<T> FetchAll<T>() where T : BaseRecord
-        {
-            return Set<T>().ToList();
-        }
-
         public IQueryable<T> Query<T>(Expression<Func<T, bool>> expression) where T : BaseRecord
         {
             return Set<T>().Where(expression);
@@ -81,29 +51,6 @@ namespace Rathalos.Core.ORM
             var method = typeof(DbContext).GetMethod(nameof(Set), Type.EmptyTypes)!.MakeGenericMethod(type);
             var dbSet = method.Invoke(this, null) as IQueryable<object>;
             return dbSet?.ToList() ?? new List<object>();
-        }
-
-        public bool Save<T>(T poco) where T : BaseRecord
-        {
-            if (FirstOrDefault<T>(_ => _.Id == poco.Id) == null)
-                Insert(poco);
-            else
-                Update(poco);
-
-            return true;
-        }
-
-        public bool SaveMany<T>(IEnumerable<T> pocos) where T : BaseRecord
-        {
-            foreach (var poco in pocos)
-            {
-                if (FirstOrDefault<T>(_ => _.Id == poco.Id) == null)
-                    Insert(poco);
-                else
-                    Update(poco);
-            }
-
-            return true;
         }
 
         public T Insert<T>(T poco) where T : BaseRecord
@@ -151,6 +98,30 @@ namespace Rathalos.Core.ORM
 
             return SaveChanges() > 0;
         }
+
+        public bool UpdateMany<T>(IEnumerable<T> pocos) where T : BaseRecord
+        {
+            if (!pocos.Any())
+                return false;
+
+            foreach (var poco in pocos)
+            {
+                UpdatePoco(poco);
+                if (poco is ISaveInterceptor saveInterceptor)
+                    saveInterceptor.BeforeSave(true);
+
+                var entry = Entry(poco);
+                if (entry.State == EntityState.Detached)
+                {
+                    Set<T>().Attach(poco);
+                    entry.State = EntityState.Modified;
+                }
+            }
+
+
+            return SaveChanges() > 0;
+        }
+
 
         public bool Delete<T>(T poco) where T : BaseRecord
         {

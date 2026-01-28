@@ -56,7 +56,7 @@ public abstract class TpduCrypto
 
     protected byte[] Tsf4gUnPad(byte[] payload)
     {
-        // todo sanity check block size
+        // todo sanity check of block size
         // todo sanity check tsf4g string exists
 
         byte padding = payload[^1];

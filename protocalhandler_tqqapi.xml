@@ -175,7 +175,7 @@
 	</struct>
 
 	<struct name="TPDUExtStop" version="10" desc="Reserved, not currently used">
-		<entry name="StopReason" type="int"/>
+		<entry name="StopReason" type="int" bindmacrosgroup="TPDU_STOP_REASON"/>
 	</struct>
 
 	<struct name="TPDUSynInfo" version="10" desc="Connection handshake information">

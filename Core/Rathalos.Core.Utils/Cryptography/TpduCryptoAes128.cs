@@ -42,6 +42,16 @@ public class TpduCryptoAes128 : TpduCrypto
         _aes.Padding = PaddingMode.None;
     }
 
+    public void SetKey(byte[] key)
+    {
+        if (key == null)
+            throw new ArgumentNullException(nameof(key));
+        if (key.Length != 16)
+            throw new ArgumentException("Key length must be 16 bytes for AES-128.", nameof(key));
+
+        _key = key;
+    }
+
     public override ConnectionSecureEncodingType EncodingType => ConnectionSecureEncodingType.TCONN_SEC_AES;
 
     public override TpduCrypto GetSafeInstance()

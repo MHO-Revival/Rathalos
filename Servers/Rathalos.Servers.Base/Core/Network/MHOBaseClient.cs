@@ -12,7 +12,6 @@ namespace Rathalos.Servers.Base.Core.Network
 {
     public abstract class MHOBaseClient : BaseClient
     {
-        public byte[] Key { get; set; } = null;
         protected MHOBaseClient(Socket socket, ILogger logger) : base(socket, logger)
         {
         }
@@ -36,7 +35,7 @@ namespace Rathalos.Servers.Base.Core.Network
                 if (rawMessage.BodyLength > 0)
                 {
                     var data = reader.ReadBytes(rawMessage.BodyLength);
-                    var decryptedBody = new TpduCryptoAes128(Key).Decrypt(data);
+                    var decryptedBody = _crypto.Decrypt(data);
                     var csPacket = new CSPkg();
                     csPacket.Deserialize(new BigEndianReader([.. decryptedBody.Skip(rawMessage.EncryptedHeaderLen)]));
                     _logger.LogInformation("{ReceivePacket} ({MHOBaseClient}) [Game] {Name}",

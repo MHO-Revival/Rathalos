@@ -1,4 +1,6 @@
 ﻿using Rathalos.Core.Protocol.Messages;
+using Rathalos.Core.Protocol.Messages.Csproto;
+using Rathalos.Core.Protocol.Messages.Tqqapi;
 
 namespace Rathalos.Servers.Base.Core.Network
 {
@@ -10,6 +12,7 @@ namespace Rathalos.Servers.Base.Core.Network
 
 	public interface INetworkClient
 	{
-		void Send(Message message);
-	}
+        void Send(TPDUExt message);
+        void Send(CSPkgBody message);
+    }
 }

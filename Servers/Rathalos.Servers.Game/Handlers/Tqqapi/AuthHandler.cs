@@ -1,48 +1,74 @@
-﻿using Rathalos.Core.Protocol.Messages.Tqqapi;
+﻿using Microsoft.EntityFrameworkCore;
+using Rathalos.Core.ORM;
+using Rathalos.Core.Protocol.Messages.Tqqapi;
 using Rathalos.Servers.Base.Handlers;
 using Rathalos.Servers.Base.Services;
+using Rathalos.Servers.World.Core.Databases;
 using Rathalos.Servers.World.Core.Network;
 
 namespace Rathalos.Servers.World.Handlers.Tqqapi
 {
     public sealed class AuthHandler : IMessageHandler
     {
-        [TqqapiPacketHandler<TPDUExtAuthInfo>]
-        public Task HandleAuthentication(WorldClient client, TPDUExtAuthInfo message)
+        private readonly RathalosDbContext _database;
+
+        public AuthHandler(RathalosDbContext database)
         {
-            string? passwordHash = null;
-            if (message.AuthData is TQQUnifiedAuthInfo unifiedAuth)
+            _database = database;
+        }
+
+        [TqqapiPacketHandler<TPDUExtAuthInfo>]
+        public async Task HandleAuthentication(WorldClient client, TPDUExtAuthInfo message)
+        {
+            (uint uin, string passHash) = message.AuthData switch
             {
-                passwordHash = BitConverter.ToString(unifiedAuth.SigInfo.ToArray());
-            }
-            else if (message.AuthData is TPDUExtAuthDataAuthQQV1 qqv1)
+                TQQUnifiedAuthInfo ua => (ua.Uin, BitConverter.ToString([.. ua.SigInfo])),
+                TPDUExtAuthDataAuthQQV1 v1 => (v1.Uin, BitConverter.ToString([.. v1.SignData])),
+                TPDUExtAuthDataAuthQQV2 v2 => (v2.Uin, BitConverter.ToString([.. v2.SignData])),
+                _ => throw new NotImplementedException($"Unsupported {message.AuthData.GetType().Name} as AuthData type"),
+            };
+
+            var account = await _database.Query<AccountRecord>(x => x.Id == uin && x.PasswordHash == passHash).FirstOrDefaultAsync();
+
+            if (account == null)
             {
-                LoggingService.Instance.LogError($"TqqAuthInfo not supported");
-                // TODO send error rsp
-                return Task.CompletedTask;
-            }
-            else if(message.AuthData is TPDUExtAuthDataAuthQQV2 guest)
-            {
-                LoggingService.Instance.LogError($"Guest AuthData not supported");
-                // TODO send error rsp
-                return Task.CompletedTask;
-            }
-            else
-            {
-                LoggingService.Instance.LogError($"Requested AuthData not supported");
-                // TODO send error rsp
-                return Task.CompletedTask;
+                LoggingService.Instance.LogError($"Authentication failed for UIN {uin}");
+
+                client.Send(new TPDUExtStop
+                {
+                    StopReason = TPDU_STOP_REASON.TPDU_REASON_AUTH_FAIL
+                });
+                return;
             }
 
-            //client.Account = new Core.Accounts.WorldAccount()
-            //{
-            //    Uin = message.AuthData is TQQUnifiedAuthInfo ua ? ua.Uin :
-            //          message.AuthData is TPDUExtAuthDataAuthQQV1 v1 ? v1.Uin :
-            //          message.AuthData is TPDUExtAuthDataAuthQQV2 v2 ? v2.Uin : 0,
-            //    PasswordHash = passwordHash,
-            //};
+            client.Account = account;
+            LoggingService.Instance.LogInformation($"Authentication successful for UIN {uin}");
+            client.SyncGuid = Guid.NewGuid();
+            client.Send(new TPDUExtSyn
+            {
+                EncryptSynInfo = client.Crypto.Encrypt(client.SyncGuid.ToByteArray())
+            });
+        }
 
-            return Task.CompletedTask;
+        [TqqapiPacketHandler<TPDUExtSynAck>]
+        public async Task HandleSyncAck(WorldClient client, TPDUExtSynAck message)
+        {
+            // At this point, authentication is complete
+            LoggingService.Instance.LogInformation($"Client UIN {client.Account?.Id} synchronized successfully.");
+            // Proceed with post-authentication logic, e.g., sending character list
+            if(message.EncryptSynInfo == null || !message.EncryptSynInfo.SequenceEqual(client.SyncGuid.ToByteArray()))
+            {
+                LoggingService.Instance.LogError($"Synchronization failed for UIN {client.Account?.Id}: Sync GUID mismatch.");
+                client.Send(new TPDUExtStop
+                {
+                    StopReason = TPDU_STOP_REASON.TPDU_REASON_REASON_SYNACK_FAIL
+                });
+                return;
+            }
+
+
+
+            await Task.CompletedTask;
         }
     }
 }

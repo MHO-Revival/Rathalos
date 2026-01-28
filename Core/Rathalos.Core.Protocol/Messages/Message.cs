@@ -12,23 +12,27 @@ namespace Rathalos.Core.Protocol.Messages
         private TPDUFrame _frame = new();
         private TPDUExt _headerExtension;
         private CSPkgBody _csPacketBody;
-        private readonly byte[] _key;
+        private TpduCrypto _crypto;
 
         public Message() { }
 
-        public Message(TPDUExt headExtension, CSPkgBody csPacket, byte[] key)
+        public Message(TPDUExt headExtension, CSPkgBody csPacket)
         {
             _headerExtension = headExtension;
             _csPacketBody = csPacket;
-            _key = key;
         }
 
-        public Message(TPDUExt headExtension, byte[] key) : this(headExtension, null, key)
+        public Message(TPDUExt headExtension) : this(headExtension, null)
         {
         }
 
-        public Message(CSPkgBody csPacket, byte[] key) : this(null, csPacket, key)
+        public Message(CSPkgBody csPacket) : this(null, csPacket)
         {
+        }
+
+        public void SetEncryptionMethod(TpduCrypto crypto)
+        {
+            _crypto = crypto;
         }
 
         public void Unpack(IDataReader reader)
@@ -56,7 +60,7 @@ namespace Rathalos.Core.Protocol.Messages
                 };
                 var bodyWriter = new BigEndianWriter();
                 packet.Serialize(bodyWriter);
-                var bodyBytes = new TpduCryptoAes128(_key).Encrypt(bodyWriter.Data);
+                var bodyBytes = _crypto.Encrypt(bodyWriter.Data);
                 _frame.Body = bodyBytes;
             }
             else

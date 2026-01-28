@@ -1,4 +1,6 @@
 ﻿using Rathalos.Core.Protocol.Messages;
+using Rathalos.Core.Protocol.Messages.Csproto;
+using Rathalos.Core.Protocol.Messages.Tqqapi;
 using Rathalos.Core.Utils.Collections;
 using Rathalos.Servers.Base.Core.Network;
 
@@ -29,7 +31,15 @@ namespace Rathalos.Servers.Base.Services
 			}
 		}
 
-		public void Send(Message message)
+		public void Send(TPDUExt message)
+		{
+			foreach (var client in _clients)
+			{
+				client.Send(message);
+			}
+		}
+
+		public void Send(CSPkgBody message)
 		{
 			foreach (var client in _clients)
 			{

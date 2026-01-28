@@ -1,7 +1,5 @@
-﻿using Rathalos.Core.Protocol;
-using Rathalos.Core.Protocol.Messages.Tqqapi;
+﻿using Rathalos.Core.Protocol.Messages.Tqqapi;
 using Rathalos.Servers.Base.Handlers;
-using Rathalos.Servers.World.Handlers.Game;
 using System.Globalization;
 
 namespace Rathalos.Servers.World.Handlers.Tqqapi

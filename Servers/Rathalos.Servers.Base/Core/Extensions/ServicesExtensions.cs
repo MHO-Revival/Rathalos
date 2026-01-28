@@ -31,7 +31,7 @@ namespace Rathalos.Servers.Base.Core.Extensions
 			ConfigureWarmupServices(services, asm);
 
 			return services
-				.AddSingleton<ORMDatabase>();
+				.AddSingleton<RathalosDbContext>();
 		}
 
 		private static void ConfigureWarmupServices(IServiceCollection services, Assembly asm)
