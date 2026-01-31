@@ -20,9 +20,9 @@ namespace Rathalos.Servers.World.Core.Network
         public AccountRecord Account { get; internal set; }
         public Guid SyncGuid { get; internal set; }
 
-        protected override async Task OnMessageReceived(TPDUExt message)
+        protected override async Task OnMessageReceived(TPDUExt message, byte[] body)
         {
-            await TqqapiPacketHandler.Instance.HandleMessage(this, message);
+            await TqqapiPacketHandler.Instance.HandleMessage(this, message, body);
         }
 
         protected override async Task OnMessageReceived(CSPkgBody message)

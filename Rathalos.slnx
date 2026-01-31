@@ -4,6 +4,7 @@
     <Platform Name="x86" />
   </Configurations>
   <Folder Name="/Core/">
+    <Project Path="Core/Rathalos.Core.Migrations/Rathalos.Core.Migrations.csproj" />
     <Project Path="Core/Rathalos.Core.ORM/Rathalos.Core.ORM.csproj">
       <Platform Solution="Debug|x86" Project="x86" />
     </Project>

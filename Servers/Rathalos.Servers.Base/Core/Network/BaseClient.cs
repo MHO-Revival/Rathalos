@@ -79,7 +79,7 @@ namespace Rathalos.Servers.Base.Core.Network
             {
                 if (!_tokenSource.IsCancellationRequested && !_isDisconnected)
                 {
-                    _logger.LogError(ex, "Error in receive loop for client {Client}", this);
+                    _logger.LogError("Error in receive loop for client {Client}: {Error}", this, ex);
                     await Disconnect();
                 }
             }
@@ -138,7 +138,8 @@ namespace Rathalos.Servers.Base.Core.Network
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error in message processing for client {Client}", this);
+                _logger.LogError(ex, "Disconnect due to an error in message processing for client {Client} : {Error}", this, ex);
+                await this.Disconnect();
             }
         }
 

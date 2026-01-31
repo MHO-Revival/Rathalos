@@ -1,20 +1,25 @@
 using Microsoft.EntityFrameworkCore;
-using Rathalos.Core.ORM.Config;
+using Rathalos.Core.ORM.Extensions;
 using Rathalos.Core.ORM.Interfaces;
-using System.Collections.Concurrent;
 using System.Linq.Expressions;
 
 namespace Rathalos.Core.ORM
 {
     public sealed class RathalosDbContext : DbContext
     {
-        private readonly ConcurrentDictionary<string, bool> _ensuredTables = new();
         private static readonly HashSet<Type> _registeredTypes = new();
+        private readonly Action<ModelBuilder> _configure;
 
         public RathalosDbContext(DbContextOptions<RathalosDbContext> options) : base(options)
         {
-            // Ensure the database exists
-            Database.EnsureCreated();
+            var ext = options.GetExtension<DatabaseConfigurationExtension>();
+            _configure = ext.ConfigureBuilder;
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            _configure?.Invoke(modelBuilder);
+            base.OnModelCreating(modelBuilder);
         }
 
         public void RegisterEntityType<T>() where T : BaseRecord
@@ -41,16 +46,18 @@ namespace Rathalos.Core.ORM
             }
         }
 
-        public IQueryable<T> Query<T>(Expression<Func<T, bool>> expression) where T : BaseRecord
+        public IQueryable<T> Query<T>(Expression<Func<T, bool>> expression, bool isTracking = true) where T : BaseRecord
         {
-            return Set<T>().Where(expression);
+            return isTracking 
+                ? Set<T>().Where(expression) 
+                : Set<T>().AsNoTracking().Where(expression);
         }
 
-        public ICollection<object> FetchAll(Type type)
+        public IQueryable<T> QueryAll<T>(bool isTracking) where T : BaseRecord
         {
-            var method = typeof(DbContext).GetMethod(nameof(Set), Type.EmptyTypes)!.MakeGenericMethod(type);
-            var dbSet = method.Invoke(this, null) as IQueryable<object>;
-            return dbSet?.ToList() ?? new List<object>();
+            return isTracking 
+                ? Set<T>().AsQueryable()
+                : Set<T>().AsNoTracking().AsQueryable();
         }
 
         public T Insert<T>(T poco) where T : BaseRecord

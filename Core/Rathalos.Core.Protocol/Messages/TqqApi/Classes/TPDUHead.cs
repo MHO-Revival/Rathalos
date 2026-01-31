@@ -42,7 +42,7 @@ namespace Rathalos.Core.Protocol.Messages.Tqqapi
 			Base.Deserialize(reader);
 			// Selected by: Base.Cmd
 			Ext = ProtocolTypeManager.Get<TPDUExt>(Base.Cmd);
-			Ext.Deserialize(reader);
+			Ext?.Deserialize(reader);
 		}
 
     }

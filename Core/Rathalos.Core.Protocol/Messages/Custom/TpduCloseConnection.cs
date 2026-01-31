@@ -1,9 +1,7 @@
-﻿using Rathalos.Core.Utils.IO;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Rathalos.Core.Protocol.Messages.Tqqapi;
+using Rathalos.Core.Utils.IO;
 
-namespace Rathalos.Core.Protocol.Messages.Tqqapi.Custom
+namespace Rathalos.Core.Protocol.Messages.Custom
 {
     public class TpduCloseConnection : TPDUExt
     {

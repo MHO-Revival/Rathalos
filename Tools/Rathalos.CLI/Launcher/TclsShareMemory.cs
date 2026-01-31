@@ -12,7 +12,6 @@ namespace Rathalos.CLI.Launcher
         public int Port { get; set; } = 8142;
         public uint Unk0 { get; set; } = 0x2B0A;
         public string Unk3 { get; set; } = "-s:3";
-        // Each server can have its own Auth Type (usually 5)
         public uint Unk5 { get; set; } = 5;
         public ushort Unk4 { get; set; } = 0;
         public uint Unk1 { get; internal set; }
@@ -46,15 +45,16 @@ namespace Rathalos.CLI.Launcher
 
         public TenProxyTclsSharedMemory()
         {
+            Uin = 1;
             AesKey = Enumerable.Repeat((byte)0x01, 16).ToArray();
-            LoginSignature = new byte[96]; //is mandatory can't be empty it's for the siginfo in TqqUnifiedAuthInfo
-            JumpSignature = []; // dunno what is this ??? whats its utility ??? base+6727
+            LoginSignature = Encoding.UTF8.GetBytes("9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08"); //is mandatory can't be empty it's for the siginfo in TqqUnifiedAuthInfo
+            JumpSignature = []; // dunno what is this ??? whats its utility ??? tenproxy.dll base+6727
 
             // It takes in account only the first one even if you put multiple so idk why having multiple entries
             ServerList = new List<GameServerInfo>
             {
-                new GameServerInfo { Id=1, Name="SRV1", Ip="127.0.0.1", Port=8144, Unk0=4, Unk3="-s:7", Unk5 = 10, Unk4 = 13 },
-                new GameServerInfo { Id=2, Name="SRV2", Ip="127.0.0.1", Port=8142, Unk0=5, Unk3="-s:8", Unk5 = 11, Unk4 = 14 },
+                new GameServerInfo { Id=1, Name="SRV1", Ip="127.0.0.1", Port=8142, Unk0=4, Unk3="-s:7", Unk5 = 10, Unk4 = 13 },
+                new GameServerInfo { Id=2, Name="SRV2", Ip="127.0.0.1", Port=8144, Unk0=5, Unk3="-s:8", Unk5 = 11, Unk4 = 14 },
                 new GameServerInfo { Id=3, Name="SRV3", Ip="127.0.0.1", Port=8143, Unk0=6, Unk3="-s:9", Unk5 = 12, Unk4 = 15 },
             };
 

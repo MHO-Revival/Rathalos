@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Rathalos.Core.Protocol;
 using Rathalos.Core.Utils.Extensions;
 using Rathalos.Servers.Base.Core.Network;
@@ -18,11 +19,11 @@ namespace Rathalos.Servers.Base.Handlers
 		private readonly Assembly _assembly;
 		private readonly ILogger _logger;
 
-		public BasePacketHandler(IServiceProvider provider, Assembly assembly, LoggingService loggingService)
+		public BasePacketHandler(IServiceProvider provider, Assembly assembly, ILogger<THandler> logger)
 		{
 			_provider = provider;
 			_assembly = assembly;
-			_logger = loggingService.CreateLogger<THandler>();
+			_logger = logger;
 		}
 
 		public override void Initialize()
@@ -39,7 +40,7 @@ namespace Rathalos.Servers.Base.Handlers
 			}
 		}
 
-		public virtual async Task HandleMessage(TClient client, TMessage message)
+		public async Task HandleMessage(TClient client, TMessage message)
 		{
 			try
 			{
@@ -49,13 +50,15 @@ namespace Rathalos.Servers.Base.Handlers
 					return;
 				}
 
-				var handlerService =
-					_provider?.GetService(handler.Type) ?? null;
+				using (var scope = _provider.CreateScope())
+				{
+					var handlerService = scope.ServiceProvider.GetService(handler.Type) ?? null;
 
-				if (handlerService == null)
-					return;
+					if (handlerService == null)
+						return;
 
-				await handler.Lambda(handlerService, client, message);
+					await handler.Lambda(handlerService, client, message);
+				}
 			}
 			catch (Exception ex)
 			{

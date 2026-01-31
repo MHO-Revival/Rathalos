@@ -210,7 +210,6 @@ namespace Rathalos.CLI.Launcher
                 result.ProcessHandle = pi.hProcess;
                 result.ThreadHandle = pi.hThread;
 
-
                 Console.WriteLine($"Created Process Successfully (PID: {result.ProcessId})");
                 return result;
             }

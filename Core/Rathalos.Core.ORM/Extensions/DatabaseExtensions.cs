@@ -1,4 +1,6 @@
-﻿using System.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using System.Data;
 
 namespace Rathalos.Core.ORM.Extensions
 {
@@ -101,5 +103,13 @@ namespace Rathalos.Core.ORM.Extensions
 
 			return result;
 		}
-	}
+
+        public static DbContextOptionsBuilder UseRathalosConfiguration(this DbContextOptionsBuilder optionsBuilder, Action<ModelBuilder> configureBuilder)
+        {
+            DatabaseConfigurationExtension extension = optionsBuilder.Options.FindExtension<DatabaseConfigurationExtension>()
+                            ?? new DatabaseConfigurationExtension(configureBuilder);
+            ((IDbContextOptionsBuilderInfrastructure)optionsBuilder).AddOrUpdateExtension(extension);
+            return optionsBuilder;
+        }
+    }
 }

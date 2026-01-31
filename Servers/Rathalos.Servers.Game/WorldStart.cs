@@ -1,4 +1,6 @@
-﻿using Rathalos.Core.ORM;
+﻿using Microsoft.EntityFrameworkCore;
+using Rathalos.Core.ORM;
+using Rathalos.Core.ORM.Extensions;
 using Rathalos.Servers.Base.Core.Extensions;
 using Rathalos.Servers.World.Core.Extensions;
 using Rathalos.Servers.World.Core.Network;
@@ -18,10 +20,15 @@ namespace Rathalos.Servers.World
             builder.Logging.ClearProviders()
                 .AddCustomFormatter();
 
-            builder.AddNpgsqlDbContext<RathalosDbContext>("rathalos-world");
-
             var startup = new WorldStartup(builder.Configuration);
             startup.ConfigureServices(builder.Services);
+
+
+            builder.AddNpgsqlDbContext<RathalosDbContext>("rathalos-world", null, ob =>
+            {
+                ob.UseRathalosConfiguration(startup.ConfigureDatabase);
+            });
+
 
             //builder.WebHost.UseUrls($"http://+:{builder.Configuration["Server:WebApiPort"]}");
 

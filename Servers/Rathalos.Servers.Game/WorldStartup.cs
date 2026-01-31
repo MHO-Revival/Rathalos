@@ -1,10 +1,9 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OpenApi;
+﻿using Microsoft.EntityFrameworkCore;
 using Rathalos.Core.Protocol.Messages;
 using Rathalos.Servers.Base;
 using Rathalos.Servers.Base.Core.Extensions;
 using Rathalos.Servers.World.Core.Configurations;
+using Rathalos.Servers.World.Core.Databases;
 using Rathalos.Servers.World.Core.Extensions;
 using Rathalos.Servers.World.Core.Network;
 using Scalar.AspNetCore;
@@ -95,6 +94,21 @@ namespace Rathalos.Servers.World
         protected override void ConfigureConfiguration(WorldServerConfiguration configuration)
         {
             WorldServer.Configuration = configuration;
+        }
+
+        public override void ConfigureDatabase(ModelBuilder builder)
+        {
+            ConfigureDatabaseEntities(builder);
+            base.ConfigureDatabase(builder);
+        }
+
+        /// <summary>
+        /// Configures all database entities for the World server.
+        /// This method is also used by the migrations project.
+        /// </summary>
+        public static void ConfigureDatabaseEntities(ModelBuilder builder)
+        {
+            builder.Entity<AccountRecord>();
         }
     }
 }

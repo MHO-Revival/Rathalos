@@ -33,7 +33,7 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 			Head.Deserialize(reader);
 			// Selected by: Head.CmdID
 			Body = ProtocolTypeManager.Get<CSPkgBody>(Head.CmdID);
-			Body.Deserialize(reader);
+			Body?.Deserialize(reader);
 		}
 
     }

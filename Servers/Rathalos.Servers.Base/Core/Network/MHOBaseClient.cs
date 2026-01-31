@@ -1,12 +1,10 @@
-﻿using Rathalos.Core.Protocol.Messages;
+﻿using Microsoft.Extensions.Logging;
+using Rathalos.Core.Protocol.Messages;
+using Rathalos.Core.Protocol.Messages.Csproto;
+using Rathalos.Core.Protocol.Messages.Tqqapi;
 using Rathalos.Core.Utils.Consoles;
 using Rathalos.Core.Utils.IO;
-using Microsoft.Extensions.Logging;
 using System.Net.Sockets;
-using Rathalos.Core.Protocol;
-using Rathalos.Core.Protocol.Messages.Tqqapi;
-using Rathalos.Core.Protocol.Messages.Csproto;
-using Rathalos.Core.Utils.Cryptography;
 
 namespace Rathalos.Servers.Base.Core.Network
 {
@@ -21,27 +19,34 @@ namespace Rathalos.Servers.Base.Core.Network
             var rawMessage = new RawMessage();
             while (rawMessage.Parse(reader) && !_tokenSource.IsCancellationRequested)
             {
-                var headExtensionReader = new BigEndianReader(reader.ReadBytes(rawMessage.HeaderExtensionLength));
-                TPDUExt ext = ProtocolTypeManager.Get<TPDUExt>(rawMessage.Id);
-                if (ext is not null)
+                if (rawMessage.Frame.Head.Ext is not null)
                 {
-                    ext?.Deserialize(headExtensionReader);
-
                     _logger.LogInformation("{ReceivePacket} ({MHOBaseClient}) [TPDU] {Name}",
-                        ConsoleFormat.ReceivePacket, this, ext.GetType().Name);
+                        ConsoleFormat.ReceivePacket, this, rawMessage.Frame.Head.Ext.GetType().Name);
 
-                    await OnMessageReceived(ext);
+                    await OnMessageReceived(rawMessage.Frame.Head.Ext);
                 }
-                if (rawMessage.BodyLength > 0)
+                if (rawMessage.Frame.Body.Length > 0)
                 {
-                    var data = reader.ReadBytes(rawMessage.BodyLength);
+                    var data = rawMessage.Frame.Body.ToArray();
                     var decryptedBody = _crypto.Decrypt(data);
-                    var csPacket = new CSPkg();
-                    csPacket.Deserialize(new BigEndianReader([.. decryptedBody.Skip(rawMessage.EncryptedHeaderLen)]));
-                    _logger.LogInformation("{ReceivePacket} ({MHOBaseClient}) [Game] {Name}",
-                         ConsoleFormat.ReceivePacket, this, ext.GetType().Name);
+                    var decryptedReader = new BigEndianReader(decryptedBody);
 
-                    await OnMessageReceived(csPacket.Body);
+                    if (rawMessage.Frame.Head.Base.EncHeadLen > 0)
+                    {
+                        var encHead = new TPDUEncHead();
+                        encHead.Deserialize(decryptedReader);
+                    }
+
+                    var csPacket = new CSPkg();
+                    csPacket.Deserialize(decryptedReader);
+                    if (csPacket.Body is not null)
+                    {
+                        _logger.LogInformation("{ReceivePacket} ({MHOBaseClient}) [Game] {Name}",
+                             ConsoleFormat.ReceivePacket, this, csPacket.Body.GetType().Name);
+
+                        await OnMessageReceived(csPacket.Body);
+                    }
                 }
             }
 

@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Rathalos.Servers.Base.Core.Network;
+using Microsoft.EntityFrameworkCore;
 
 namespace Rathalos.Servers.Base
 {
@@ -45,6 +46,9 @@ namespace Rathalos.Servers.Base
 			services.AddOptions<ORMConfiguration>()
 					.BindConfiguration("Server:Database");
 		}
+
+		public virtual void ConfigureDatabase(ModelBuilder builder)
+		{ }
 
 		protected virtual void ConfigureConfiguration(TConfiguration configuration) 
 		{
