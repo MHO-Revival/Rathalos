@@ -6,7 +6,7 @@ namespace Rathalos.Servers.World.Core.Network
 {
     public sealed class WorldServer : BaseServer<WorldClient, WorldServerConfiguration>
     {
-        public WorldServer(ILogger<WorldServerConfiguration> logger) : base(logger)
+        public WorldServer(ILogger<WorldClient> logger) : base(logger)
         {
         }
 

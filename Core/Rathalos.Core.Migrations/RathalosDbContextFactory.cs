@@ -3,12 +3,19 @@ using Microsoft.EntityFrameworkCore.Design;
 using Rathalos.Core.ORM;
 using Rathalos.Core.ORM.Extensions;
 using Rathalos.Servers.World;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Rathalos.Core.Migrations;
 
 /// <summary>
 /// Design-time factory for creating <see cref="RathalosDbContext"/> instances.
 /// Used by EF Core tools for migrations.
+/// 
+/// # Add a new migration
+/// dotnet ef migrations add MigrationName --startup-project Core\Rathalos.Core.Migrations
+/// # Apply migrations to database
+/// dotnet ef database --startup-project Core\Rathalos.Core.Migrations
+/// 
 /// </summary>
 public class RathalosDbContextFactory : IDesignTimeDbContextFactory<RathalosDbContext>
 {
@@ -16,7 +23,7 @@ public class RathalosDbContextFactory : IDesignTimeDbContextFactory<RathalosDbCo
     {
         var connectionString = args.Length > 0
             ? args[0]
-            : "Host=localhost;Database=rathalos;Username=postgres;Password=postgres";
+            : "Host=localhost;Database=rathalos-world;Username=postgres;Password=mxRUYSSc745J{vUbU6e}}C";
 
         var optionsBuilder = new DbContextOptionsBuilder<RathalosDbContext>();
         optionsBuilder.UseNpgsql(connectionString, npgsqlOptions =>
@@ -24,7 +31,7 @@ public class RathalosDbContextFactory : IDesignTimeDbContextFactory<RathalosDbCo
             npgsqlOptions.MigrationsAssembly(typeof(RathalosDbContextFactory).Assembly.FullName);
         });
 
-        optionsBuilder.Options.WithExtension(new DatabaseConfigurationExtension(WorldStartup.ConfigureDatabaseEntities));
+        optionsBuilder.UseRathalosConfiguration(WorldStartup.ConfigureDatabaseEntities);
 
         return new RathalosDbContext(optionsBuilder.Options);
     }

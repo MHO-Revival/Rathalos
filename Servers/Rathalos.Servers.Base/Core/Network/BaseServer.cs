@@ -21,7 +21,7 @@ namespace Rathalos.Servers.Base.Core.Network
 		protected DateTime _timeToShutdown;
 		protected static readonly NetworkService<TClient> _clients = new NetworkService<TClient>();
 
-		public BaseServer(ILogger<TConfiguration> logger)
+		public BaseServer(ILogger<TClient> logger)
 		{
 			_logger = logger;
 			_taskPool = new TaskPool("Server TaskPool");

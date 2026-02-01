@@ -1,4 +1,5 @@
 ﻿using Rathalos.Core.Protocol.Messages.Csproto;
+using Rathalos.Core.Protocol.Messages.Custom;
 using Rathalos.Core.Protocol.Messages.Tqqapi;
 using Rathalos.Core.Utils.Cryptography;
 using Rathalos.Core.Utils.IO;
@@ -26,7 +27,7 @@ namespace Rathalos.Core.Protocol.Messages
         {
         }
 
-        public Message(CSPkgBody csPacket) : this(null, csPacket)
+        public Message(CSPkgBody csPacket) : this(new TpduNone(), csPacket)
         {
         }
 
@@ -77,7 +78,7 @@ namespace Rathalos.Core.Protocol.Messages
                 {
                     Cmd = (TPDU_CMD)_headerExtension.ProtocolId,
                     HeadLen = headerExtensionWriter.Data.Length + RawMessage.TPDU_HEADER_LENGTH,
-                    BodyLen = packetBodyWriter.Data.Length,
+                    BodyLen = _frame.Body.Length,
                     EncHeadLen = 0,
                     Magic = TqqapiConstants.TPDU_MAGIC,
                     Version = TqqapiConstants.TPDU_VERSION,

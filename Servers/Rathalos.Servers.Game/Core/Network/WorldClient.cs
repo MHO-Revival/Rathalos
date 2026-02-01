@@ -2,6 +2,7 @@
 using Rathalos.Core.Protocol.Messages.Csproto;
 using Rathalos.Core.Protocol.Messages.Tqqapi;
 using Rathalos.Core.Utils.Cryptography;
+using Rathalos.Core.Utils.IO;
 using Rathalos.Servers.Base.Core.Network;
 using Rathalos.Servers.World.Core.Databases;
 using Rathalos.Servers.World.Handlers;
@@ -20,14 +21,9 @@ namespace Rathalos.Servers.World.Core.Network
         public AccountRecord Account { get; internal set; }
         public Guid SyncGuid { get; internal set; }
 
-        protected override async Task OnMessageReceived(TPDUExt message, byte[] body)
+        protected override async Task OnMessageReceived(TPDUExt message, BigEndianReader bodyReader)
         {
-            await TqqapiPacketHandler.Instance.HandleMessage(this, message, body);
-        }
-
-        protected override async Task OnMessageReceived(CSPkgBody message)
-        {
-            await GamePacketHandler.Instance.HandleMessage(this, message);
+            await TqqapiPacketHandler.Instance.HandleMessage(this, message, bodyReader);
         }
     }
 }

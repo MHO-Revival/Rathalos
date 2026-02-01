@@ -236,38 +236,64 @@ void __cdecl register_handler(
 }
 
 void __cdecl call_handler(
-        void *call_fn,
-        HandlerCallbackDefintion *handler_definition,
-        uint32_t packet_id,
-        uint8_t *packet_data
+    void* this_ptr,   // <--- NEW: We will capture the object pointer
+    void* call_fn,
+    HandlerCallbackDefintion* handler_definition,
+    uint32_t packet_id,
+    uint8_t* packet_data
 ) {
-    CsCmd cmd;
-    bool found = false;
+    // 1. Existing Logging Logic (Keep this)
+    CsCmd* found_cmd = nullptr;
+
+    // 1. Find the command in your array
     for (int i = 0; i < CMDS_SIZE; i++) {
         if (CMDS[i].id == packet_id) {
-            found = true;
-            cmd = CMDS[i];
+            found_cmd = &CMDS[i]; // Get a pointer to the struct
             break;
         }
     }
 
-    if (found) {
-        log("call_handler: CMD:%u %s handler_fn:%p, unk:%u, call_fn:%p\n",
+    if (found_cmd) {
+        log("call_handler: CMD:%u %s handler_fn:%p, unk:%u, call_fn:%p, this_ptr:%p\n",
             packet_id,
-            cmd.name.c_str(),
+            found_cmd->name.c_str(),
             handler_definition->handler_callback_function_ptr,
             handler_definition->unknown_field,
-            call_fn
+            call_fn,
+            this_ptr
         );
+
+        // 2. AUTOMATIC REVEAL LOGIC
+        // If an offset is configured > 0, we try to read the hidden function.
+        if (found_cmd->offset_for_wrapper_func > 0 && this_ptr != nullptr) {
+            
+            // We cast to uint8_t* to do byte-level arithmetic
+            uint8_t* base_addr = (uint8_t*)this_ptr;
+            
+            // Add the offset (e.g., +8 bytes)
+            uint32_t* hidden_ptr_location = (uint32_t*)(base_addr + found_cmd->offset_for_wrapper_func);
+
+            // Safety check: Is this memory readable?
+            if (!IsBadReadPtr(hidden_ptr_location, 4)) {
+                uint32_t real_handler = *hidden_ptr_location;
+                
+                log("****************************************************************\n");
+                log(">>> [Packet %u REVEAL] Hidden Handler: 0x%08X (Offset: %d) <<<\n", 
+                    packet_id, real_handler, found_cmd->offset_for_wrapper_func);
+                log("****************************************************************\n");
+            }
+        }
+
     } else {
-        log("call_handler: !!! NOT FOUND !!!  CMD:%u %s handler_fn:%p, unk:%u, call_fn:%p\n",
+        log("call_handler: !!! NOT FOUND !!!  CMD:%u handler_fn:%p, unk:%u, call_fn:%p\n",
             packet_id,
-            cmd.name.c_str(),
             handler_definition->handler_callback_function_ptr,
             handler_definition->unknown_field,
             call_fn
         );
     }
+
+    
 }
 
 void __cdecl log_handle_logic_or_game_event_notification(
@@ -401,16 +427,32 @@ void asm_call_handler() {
     _asm
     {
         pushad
-        push dword ptr ss:[ebp+0xC]
-        push esi
-        push dword ptr ss:[ebp+0x8]
-        mov eax, dword ptr ds:[ecx]
-        push dword ptr ds:[eax]
+
+        // --- Original Pushes (Keep these) ---
+        push dword ptr ss : [ebp + 0xC]  // Arg: packet_data
+        push esi                     // Arg: packet_id? (or handler_definition)
+        push dword ptr ss : [ebp + 0x8]  // Arg: handler_definition?
+
+        // --- Get call_fn ---
+        mov eax, dword ptr ds : [ecx]  // Read vtable/function pointer from object
+        push dword ptr ds : [eax]      // Arg: call_fn
+
+        // --- NEW: Push ECX (The 'this' pointer) ---
+        push ecx                     // Arg: this_ptr
+
+        // --- Call C++ Function ---
         call call_handler
-        add esp, 0x10
+
+        // --- Cleanup Stack ---
+        // Originally you added 0x10 (4 args * 4 bytes).
+        // Now we have 5 args, so we add 0x14 (20 bytes).
+        add esp, 0x14
+
         popad
-        push dword ptr ss:[ebp+0xC]
-        mov eax, dword ptr ds:[ecx]
+
+        // --- Return to Original Logic ---
+        push dword ptr ss : [ebp + 0xC]
+        mov eax, dword ptr ds : [ecx]
         jmp call_handler_ret_jmp
     }
 }

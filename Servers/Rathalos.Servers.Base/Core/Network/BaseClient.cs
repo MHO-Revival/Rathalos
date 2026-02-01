@@ -144,10 +144,16 @@ namespace Rathalos.Servers.Base.Core.Network
         }
 
         public void Send(TPDUExt headerExtension)
-            => Send(new Message(headerExtension));
-        
+        {
+            Send(new Message(headerExtension));
+            _logger.LogInformation("{SendPacket} [TPDU] ({Client}) {PacketType}", ConsoleFormat.SendPacket, this, headerExtension.GetType().Name);
+        }
+
         public void Send(CSPkgBody body)
-            => Send(new Message(body));
+        {
+            Send(new Message(body));
+            _logger.LogInformation("{SendPacket} [GAME] ({Client}) {PacketType}", ConsoleFormat.SendPacket, this, body.GetType().Name);
+        }
 
         private void Send(Message message)
         {
@@ -157,7 +163,6 @@ namespace Rathalos.Servers.Base.Core.Network
                 BigEndianWriter writer = new();
                 message.Pack(writer);
 
-                _logger.LogInformation($"{ConsoleFormat.SendPacket} ({this}) {message.GetType().Name}");
 
                 _ = SendAsync(writer.Data);
             }

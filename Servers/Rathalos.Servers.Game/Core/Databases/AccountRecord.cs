@@ -12,5 +12,6 @@ namespace Rathalos.Servers.World.Core.Databases
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime? LastLogin { get; set; }
         public DateTime? IsBannedUntil { get; set; }
+        public char[]? SynIdent { get; set; }
     }
 }

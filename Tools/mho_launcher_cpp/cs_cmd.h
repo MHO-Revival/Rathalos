@@ -8,6 +8,7 @@ struct CsCmd {
     std::string name;
     uint32_t id;
     std::string desc;
+    int offset_for_wrapper_func = 0; // Default is 0 (No wrapper)
 };
 
 const int CMDS_SIZE = 1380;
@@ -31,9 +32,9 @@ static CsCmd CMDS[CMDS_SIZE] = {
         {"CS_CMD_RESELECT_ROLE_REQ",                             17,    "小退请求"},
         {"CS_CMD_RESELECT_ROLE_RSP",                             18,    "小退响应"},
         {"CS_CMD_TOWN_SESSION_START",                            19,    "TownSession建立,TDR链接暂停"},
-        {"CS_CMD_MULTI_ISP_SEQUENCE_NTF",                        20,    "s--->c,双线机房运营商顺序通知"},
+        {"CS_CMD_MULTI_ISP_SEQUENCE_NTF",                        20,    "s--->c,双线机房运营商顺序通知", 8},
         {"CS_CMD_CHECK_VERSION_REQ",                             21,    "检查版本文件请求"},
-        {"CS_CMD_CHECK_VERSION_RSP",                             22,    "检查版本文件响应"},
+        {"CS_CMD_CHECK_VERSION_RSP",                             22,    "检查版本文件响应", 8},
         {"CS_CMD_CLOSE_CONNECTION_REQ",                          23,    "逻辑关闭战场副本连接请求"},
         {"CS_CMD_CLOSE_CONNECTION_RSP",                          24,    "逻辑关闭战场副本连接确认响应"},
         {"CS_CMD_MAIN_INSTANCE_OPT_SYN_REQ",                     25,    "用户副本主界面UI同步请求"},
@@ -126,7 +127,7 @@ static CsCmd CMDS[CMDS_SIZE] = {
         {"CS_CMD_ITEM_LIST_REQ",                                 142,   "物品列表请求"},
         {"CS_CMD_ITEM_LIST_RSP",                                 143,   "物品列表响应"},
         {"CS_CMD_FILE_CHECK",                                    160,   "客户端请求文件校验"},
-        {"SC_CMD_FILE_CHECK_RLT",                                161,   "客户端文件校验结果"},
+        {"SC_CMD_FILE_CHECK_RLT",                                161,   "客户端文件校验结果", 8},
         {"C2S_CMD_LOCALBAT_OP_REQ",                              162,   "客户端本地副本请求"},
         {"S2C_CMD_LOCALBAT_OP_RSP",                              163,   "客户端本地副本响应"},
         {"CS_CMD_REPORT_REQ",                                    164,   "客户端举报请求"},

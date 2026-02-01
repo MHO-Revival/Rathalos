@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Rathalos.Core.ORM;
+using Rathalos.Core.Protocol.Messages.Custom;
 using Rathalos.Core.Protocol.Messages.Tqqapi;
+using Rathalos.Core.Utils.Extensions;
 using Rathalos.Core.Utils.IO;
 using Rathalos.Servers.Base.Handlers;
-using Rathalos.Servers.Base.Services;
 using Rathalos.Servers.World.Core.Databases;
 using Rathalos.Servers.World.Core.Network;
 using System.Text;
@@ -22,14 +23,14 @@ namespace Rathalos.Servers.World.Handlers.Tqqapi.Handlers
         }
 
         [TqqapiPacketHandler<TPDUExtAuthInfo>]
-        public async Task HandleAuthentication(WorldClient client, TPDUExtAuthInfo message, byte[] body)
+        public async Task HandleAuthentication(WorldClient client, TqqMessage<TPDUExtAuthInfo, TpduNone> message)
         {
-            (uint uin, string passHash) = message.AuthData switch
+            (uint uin, string passHash) = message.Extension.AuthData switch
             {
                 TQQUnifiedAuthInfo ua => (ua.Uin, Encoding.UTF8.GetString([.. ua.SigInfo])),
                 TPDUExtAuthDataAuthQQV1 v1 => (v1.Uin, Encoding.UTF8.GetString([.. v1.SignData])),
                 TPDUExtAuthDataAuthQQV2 v2 => (v2.Uin, Encoding.UTF8.GetString([.. v2.SignData])),
-                _ => throw new NotImplementedException($"Unsupported {message.AuthData.GetType().Name} as AuthData type"),
+                _ => throw new NotImplementedException($"Unsupported {message.Extension.AuthData.GetType().Name} as AuthData type"),
             };
 
             var account = await _database.Query<AccountRecord>(x => x.Id == uin && x.PasswordHash == passHash.Replace("\0", "")).FirstOrDefaultAsync();
@@ -55,12 +56,12 @@ namespace Rathalos.Servers.World.Handlers.Tqqapi.Handlers
         }
 
         [TqqapiPacketHandler<TPDUExtSynAck>]
-        public async Task HandleSyncAck(WorldClient client, TPDUExtSynAck message, byte[] body)
+        public async Task HandleSyncAck(WorldClient client, TqqMessage<TPDUExtSynAck, TpduNone> message)
         {
             _logger.LogInformation("Client UIN {uin} synchronized successfully.", client.Account!.Id);
-            if (message.EncryptSynInfo == null)
+            if (message.Extension.EncryptSynInfo == null)
             {
-                var synInfo = client.Crypto.Decrypt(message.EncryptSynInfo);
+                var synInfo = client.Crypto.Decrypt(message.Extension.EncryptSynInfo);
                 if (synInfo.SequenceEqual(client.SyncGuid.ToByteArray()))
                 {
                     _logger.LogError("Synchronization failed for UIN {uin}: Sync GUID mismatch.", client.Account.Id);
@@ -72,12 +73,14 @@ namespace Rathalos.Servers.World.Handlers.Tqqapi.Handlers
                 }
             }
 
+            client.Account.SynIdent = [.. Random.Shared.RandomString(16)];
+
             var identWriter = new BigEndianWriter();
             TQQUserIdent ident = new TQQUserIdent
             {
                 Pos = 0,
                 Uin = (uint)client.Account.Id,
-                Ident = [.. client.Account.PasswordHash.Take(TqqapiConstants.TQQ_IDENT_LEN)],
+                Ident = client.Account.SynIdent,
             };
             ident.Serialize(identWriter);
 

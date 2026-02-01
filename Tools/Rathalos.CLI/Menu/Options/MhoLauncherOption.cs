@@ -102,13 +102,13 @@ namespace Rathalos.CLI.Menu.Options
             Console.WriteLine($"{ConsoleDisplayHelper.Icons.CheckMark} Process created (PID: {result.ProcessId})");
             Console.WriteLine($"{ConsoleDisplayHelper.Icons.Cycle} Injecting DLL...");
 
-            //bool injected = _launcher.InjectDllAndResume(result, dllPath);
-            //if (!injected)
-            //{
-            //    Console.WriteLine($"{ConsoleDisplayHelper.Icons.Error} DLL injection failed");
-            //    _launcher.CleanupHandles(result);
-            //    return;
-            //}
+            bool injected = _launcher.InjectDllAndResume(result, dllPath);
+            if (!injected)
+            {
+                Console.WriteLine($"{ConsoleDisplayHelper.Icons.Error} DLL injection failed");
+                _launcher.CleanupHandles(result);
+                return;
+            }
             if (TenProxyTclsSharedMemory is not null)
                 TenProxyTclsSharedMemory.Dispose();
 
@@ -132,13 +132,13 @@ namespace Rathalos.CLI.Menu.Options
         private async Task<MhoProcessLauncher.LaunchConfiguration?> GetLaunchConfigurationAsync()
         {
             // Get MHO directory
-            Console.Write("Enter MHO directory (e.g., D:\\games\\Monster Hunter Online\\Bin\\Client\\Bin32\\): ");
+            string defaultDir = Directory.GetCurrentDirectory();
+            Console.Write($"Enter MHO directory [default: {defaultDir}]: ");
             string? mhoDir = Console.ReadLine()?.Trim();
 
             if (string.IsNullOrEmpty(mhoDir))
             {
-                Console.WriteLine($"{ConsoleDisplayHelper.Icons.Error} Directory is required");
-                return null;
+                mhoDir = defaultDir;
             }
 
             if (!Directory.Exists(mhoDir))

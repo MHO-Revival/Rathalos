@@ -7,13 +7,13 @@ namespace Rathalos.Servers.World.Handlers.Tqqapi.Handlers
     public sealed class ConnectionHandler : IMessageHandler
     {
         [TqqapiPacketHandler<TpduCloseConnection>]
-        public async Task HandleConnectionEstablished(WorldClient client, TpduCloseConnection message, byte[] body)
+        public async Task HandleConnectionEstablished(WorldClient client, TqqMessage<TpduCloseConnection, TpduNone> message)
         {
             await client.Disconnect();
         }
 
         [TqqapiPacketHandler<TPDUExtRelay>]
-        public async Task HandleRelayMessage(WorldClient client, TPDUExtRelay message, byte[] body)
+        public async Task HandleRelayMessage(WorldClient client, TqqMessage<TPDUExtRelay,TpduNone> message)
         {
             // TODO: Implement reconnection logic here
             

@@ -48,16 +48,14 @@ namespace Rathalos.Servers.Base.Core.Extensions
 				_ => ConsoleAttributes.Cyan,
 			};
 
+			var logCategoryName = logEntry.Category.Split(".").LastOrDefault();
 			string logName = new ConsoleFormat(GetShortNameLogLevel(logEntry.LogLevel), ConsoleAttributes.Bold, ConsoleAttributes.Underline, color);
+			string category = new ConsoleFormat(logCategoryName, ConsoleAttributes.White);
 
-			string category = logEntry.Category switch
-			{
-				"AuthServer" => new ConsoleFormat(logEntry.Category, ConsoleAttributes.LightCyan),
-				"WorldServer" => new ConsoleFormat(logEntry.Category, ConsoleAttributes.LightCyan),
-				"IPCServer" => new ConsoleFormat(logEntry.Category, ConsoleAttributes.LightYellow),
-				"IPC Sender" => new ConsoleFormat(logEntry.Category, ConsoleAttributes.LightYellow),
-				_ => new ConsoleFormat(logEntry.Category, ConsoleAttributes.White),
-			};
+            if (logCategoryName.EndsWith("Handler"))
+                category = new ConsoleFormat(logCategoryName, ConsoleAttributes.LightYellow);
+			else if (logCategoryName.EndsWith("Client") || logCategoryName.EndsWith("Server"))
+				category = new ConsoleFormat(logCategoryName, ConsoleAttributes.LightCyan);
 
 			textWriter.WriteLine($"{logName}: ({category}) => {message}");
 		}
