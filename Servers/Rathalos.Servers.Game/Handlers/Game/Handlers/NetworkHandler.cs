@@ -1,4 +1,4 @@
-﻿using Rathalos.Core.Protocol.Messages.Csproto;
+using Rathalos.Core.Protocol.Messages.Csproto;
 using Rathalos.Servers.Base.Handlers;
 using Rathalos.Servers.World.Core.Network;
 
@@ -12,7 +12,6 @@ namespace Rathalos.Servers.World.Handlers.Game.Handlers
             // Handle multi-network IP info here
             // This is maybe for switching servers or optimizing network routes with a tpdu server as front door.
             Console.WriteLine($"Received MultiNet IP Info from Client {client.SyncGuid}: {message.SelectIP}, Domain: {message.DomainName}");
-            Thread.Sleep(5000);
             client.Send(new CSMultiIspSequenceNtf
             {
                 Sequence = 1
@@ -34,6 +33,7 @@ namespace Rathalos.Servers.World.Handlers.Game.Handlers
                 Feature = message.Feature,
                 ErrNo = 0, // Indicate success
             });
+
             return Task.CompletedTask;
         }
 
@@ -45,11 +45,6 @@ namespace Rathalos.Servers.World.Handlers.Game.Handlers
             client.Send(new S2CFileCheckRsp
             {
                 Code = 0,
-            });
-            Thread.Sleep(1000);
-            client.Send(new CSMultiIspSequenceNtf
-            {
-                Sequence = 1
             });
             return Task.CompletedTask;
         }

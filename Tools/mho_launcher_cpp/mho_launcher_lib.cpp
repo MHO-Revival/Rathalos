@@ -276,11 +276,7 @@ void __cdecl call_handler(
             // Safety check: Is this memory readable?
             if (!IsBadReadPtr(hidden_ptr_location, 4)) {
                 uint32_t real_handler = *hidden_ptr_location;
-                
-                log("****************************************************************\n");
-                log(">>> [Packet %u REVEAL] Hidden Handler: 0x%08X (Offset: %d) <<<\n", 
-                    packet_id, real_handler, found_cmd->offset_for_wrapper_func);
-                log("****************************************************************\n");
+                log(">>> [Packet %u REVEAL] Hidden Handler: 0x%08X (Offset: %d) <<<\n", packet_id, real_handler, found_cmd->offset_for_wrapper_func);
             }
         }
 
