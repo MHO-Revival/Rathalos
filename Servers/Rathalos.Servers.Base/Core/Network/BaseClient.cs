@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Rathalos.Core.Protocol.Messages;
 using Rathalos.Core.Protocol.Messages.Csproto;
+using Rathalos.Core.Protocol.Messages.Custom.Tqqapi.Classes;
 using Rathalos.Core.Protocol.Messages.Tqqapi;
 using Rathalos.Core.Utils.Consoles;
 using Rathalos.Core.Utils.Cryptography;
@@ -187,6 +188,8 @@ namespace Rathalos.Servers.Base.Core.Network
 
         public async Task Disconnect()
         {
+            Send(new TpduCloseConnection());
+
             // Prevent multiple simultaneous disconnect operations
             lock (_disconnectLock)
             {
@@ -197,6 +200,7 @@ namespace Rathalos.Servers.Base.Core.Network
 
             try
             {
+
                 _logger.LogDebug("Starting disconnect process for client {Client}", this);
 
                 // Notify about disconnection before cleanup
@@ -293,6 +297,7 @@ namespace Rathalos.Servers.Base.Core.Network
         {
             try
             {
+                Send(new TpduCloseConnection());
                 _tokenSource.Cancel();
                 _buffer?.CompleteWriter();
 

@@ -1,6 +1,6 @@
 ﻿using Org.BouncyCastle.Bcpg;
 using Rathalos.Core.Protocol.Messages.Csproto;
-using Rathalos.Core.Protocol.Messages.Custom;
+using Rathalos.Core.Protocol.Messages.Custom.Tqqapi.Classes;
 using Rathalos.Core.Protocol.Messages.Tqqapi;
 using Rathalos.Core.Utils.Consoles;
 using Rathalos.Servers.Base.Handlers;

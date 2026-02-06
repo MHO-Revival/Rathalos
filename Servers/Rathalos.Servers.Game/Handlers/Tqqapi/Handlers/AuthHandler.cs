@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Rathalos.Core.ORM;
-using Rathalos.Core.Protocol.Messages.Custom;
+using Rathalos.Core.Protocol.Messages.Custom.Tqqapi.Classes;
 using Rathalos.Core.Protocol.Messages.Tqqapi;
 using Rathalos.Core.Utils.Extensions;
 using Rathalos.Core.Utils.IO;

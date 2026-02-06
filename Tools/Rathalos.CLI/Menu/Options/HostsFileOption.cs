@@ -25,6 +25,7 @@ namespace Rathalos.CLI.Menu.Options
 
         public async Task<bool> ExecuteAsync()
         {
+            Console.Clear();
             Console.WriteLine($"{ConsoleDisplayHelper.Icons.Gear} Configure Hosts File");
             Console.WriteLine("Add required host entries for MHO to redirect traffic to localhost");
             Console.WriteLine(new string('=', 70));

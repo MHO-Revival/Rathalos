@@ -235,6 +235,79 @@ void __cdecl register_handler(
     }
 }
 
+
+// ---------------------------------------------------------
+// DEEP SCANNER: FIND THE REAL MANAGER
+// ---------------------------------------------------------
+// The object at 0x4 is a dud. We need to find the real one.
+// We scan the Main Object (v2) for other valid pointers.
+
+int __fastcall Hooked_Packet20(void* this_ptr, void* edx, void* packet_data) {
+
+    log("\n>>> [DEEP SCAN] Packet 20 Received. Searching for Real Manager... <<<\n");
+
+    if (!this_ptr || IsBadReadPtr(this_ptr, 8)) return 0;
+
+    // v2 = Main Object
+    void* v2 = (void*)((uint32_t)this_ptr + 8);
+    log("   [INFO] Main Object (v2): %p\n", v2);
+
+    // Scan the first 20 pointers (0x0 to 0x50)
+    for (int i = 0; i < 20; i++) {
+        int offset = i * 4;
+        void* ptrCandidate = *(void**)((uint32_t)v2 + offset);
+
+        // 1. Must be a valid pointer
+        if (ptrCandidate && !IsBadReadPtr(ptrCandidate, 4)) {
+
+            // 2. Must point to a VTable (First 4 bytes must be a pointer to code)
+            uint32_t* vtable = *(uint32_t**)ptrCandidate;
+
+            if (vtable && !IsBadReadPtr(vtable, 8)) {
+
+                // 3. Check if Index 1 (FireEvent?) contains valid code
+                void* fnIndex1 = (void*)vtable[1];
+
+                if (fnIndex1 && !IsBadCodePtr((FARPROC)fnIndex1)) {
+                    log("   [FOUND] Offset 0x%X -> Obj: %p | VTable[1]: %p", offset, ptrCandidate, fnIndex1);
+
+                    // Highlight the known ones so we can ignore them
+                    if (offset == 0x0) log(" (Likely NetworkMgr)\n");
+                    else if (offset == 0x4) log(" (The ZOMBIE Manager)\n");
+                    else log(" <--- POSSIBLE REAL MANAGER! ***\n");
+                }
+            }
+        }
+    }
+
+    log(">>> [DEEP SCAN] Complete. <<<\n");
+    return 0;
+}
+
+
+void InstallPacket20Hook(DWORD crygame_addr) {
+    // Target Address: 0x112A3140
+    // Offset: 0x12A3140
+    uint8_t* target = (uint8_t*)(crygame_addr + 0x12A3140);
+
+    // Safety check
+    if (IsBadReadPtr(target, 5)) return;
+
+    // Relative Jump Calculation: Target - Source - 5
+    // JMP <Hooked_Packet20>
+    DWORD relative_offset = (DWORD)Hooked_Packet20 - (DWORD)target - 5;
+
+    DWORD old;
+    VirtualProtect(target, 5, PAGE_EXECUTE_READWRITE, &old);
+
+    target[0] = 0xE9; // JMP opcode
+    *(DWORD*)(target + 1) = relative_offset; // Address
+
+    VirtualProtect(target, 5, old, &old);
+
+    log(">>> [SYSTEM] Packet 20 Hook installed at %p -> redirects to %p <<<\n", target, Hooked_Packet20);
+}
+
 void __cdecl call_handler(
     void* this_ptr,   // <--- NEW: We will capture the object pointer
     void* call_fn,
@@ -250,8 +323,8 @@ void __cdecl call_handler(
         if (CMDS[i].id == packet_id) {
             found_cmd = &CMDS[i]; // Get a pointer to the struct
             break;
+            }
         }
-    }
 
     if (found_cmd) {
         log("call_handler: CMD:%u %s handler_fn:%p, unk:%u, call_fn:%p, this_ptr:%p\n",
@@ -266,10 +339,10 @@ void __cdecl call_handler(
         // 2. AUTOMATIC REVEAL LOGIC
         // If an offset is configured > 0, we try to read the hidden function.
         if (found_cmd->offset_for_wrapper_func > 0 && this_ptr != nullptr) {
-            
+
             // We cast to uint8_t* to do byte-level arithmetic
             uint8_t* base_addr = (uint8_t*)this_ptr;
-            
+
             // Add the offset (e.g., +8 bytes)
             uint32_t* hidden_ptr_location = (uint32_t*)(base_addr + found_cmd->offset_for_wrapper_func);
 
@@ -288,7 +361,6 @@ void __cdecl call_handler(
             call_fn
         );
     }
-
     
 }
 
@@ -491,7 +563,7 @@ void run_crygame() {
     }
     crygame_addr = (DWORD) crygame_handle;
     log("got crygame_handle: %p \n", crygame_handle);
-
+    InstallPacket20Hook(crygame_addr);
     // assign original function calls
     org_fn_crygame_13EC290 = (fn_crygame_13EC290) (crygame_addr + 0x13F3640);
 

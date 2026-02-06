@@ -19,6 +19,7 @@ namespace Rathalos.CLI
                 var menuOptions = new List<IMenuOption>
                 {
                     new XmlCodeGeneratorOption(),
+                    new IfsToolsOption(),
                     new MhoLauncherOption(),
                     new HostsFileOption(),
                     new ExitOption()

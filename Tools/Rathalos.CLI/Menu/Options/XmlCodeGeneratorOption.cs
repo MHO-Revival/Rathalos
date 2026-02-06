@@ -46,8 +46,10 @@ namespace Rathalos.CLI.Menu.Options
 
         internal async Task GenerateFromXmlFileAsync()
         {
-            Console.WriteLine($"\n{ConsoleDisplayHelper.Icons.File} Generate from XML File");
-            Console.WriteLine(new string('-', 40));
+            Console.Clear();
+            Console.WriteLine($"{ConsoleDisplayHelper.Icons.File} Generate from XML File");
+            Console.WriteLine(new string('=', 50));
+            Console.WriteLine();
 
             Console.Write("Enter XML file path: ");
             var xmlFilePath = Console.ReadLine()?.Trim();
@@ -317,6 +319,7 @@ namespace Rathalos.CLI.Menu.Options
 
         public async Task<bool> ExecuteAsync()
         {
+            Console.Clear();
             _parent.DisplaySampleXmlFormat();
             
             Console.WriteLine();

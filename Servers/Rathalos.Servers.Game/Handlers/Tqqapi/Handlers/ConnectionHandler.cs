@@ -1,7 +1,7 @@
 ﻿using Rathalos.Servers.Base.Handlers;
 using Rathalos.Servers.World.Core.Network;
 using Rathalos.Core.Protocol.Messages.Tqqapi;
-using Rathalos.Core.Protocol.Messages.Custom;
+using Rathalos.Core.Protocol.Messages.Custom.Tqqapi.Classes;
 namespace Rathalos.Servers.World.Handlers.Tqqapi.Handlers
 {
     public sealed class ConnectionHandler : IMessageHandler

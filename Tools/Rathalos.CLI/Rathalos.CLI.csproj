@@ -15,6 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\Rathalos.Core.Protocol\Rathalos.Core.Protocol.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="CodeGeneration\Templates\ClassTemplate.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>ClassTemplate.cs</LastGenOutput>

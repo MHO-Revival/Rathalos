@@ -11,7 +11,4 @@
   <ItemGroup>
     <ProjectReference Include="..\Rathalos.Core.Utils\Rathalos.Core.Utils.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Enums\" />
-  </ItemGroup>
 </Project>

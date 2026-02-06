@@ -1,11 +1,11 @@
 ﻿using Rathalos.Core.Protocol.Messages.Tqqapi;
 using Rathalos.Core.Utils.IO;
 
-namespace Rathalos.Core.Protocol.Messages.Custom
+namespace Rathalos.Core.Protocol.Messages.Custom.Tqqapi.Classes
 {
-    public sealed class TpduNone : TPDUExt
+    public class TpduCloseConnection : TPDUExt
     {
-        public const TPDU_CMD ProtocolIdConst = TPDU_CMD.TPDU_CMD_NONE;
+        public const TPDU_CMD ProtocolIdConst = TPDU_CMD.TPDU_CMD_CLOSE;
         public int ProtocolId => (int)ProtocolIdConst;
 
         public void Deserialize(IDataReader reader)

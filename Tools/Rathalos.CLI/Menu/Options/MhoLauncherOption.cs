@@ -23,6 +23,7 @@ namespace Rathalos.CLI.Menu.Options
 
         public async Task<bool> ExecuteAsync()
         {
+            Console.Clear();
             Console.WriteLine($"{ConsoleDisplayHelper.Icons.Rocket} MHO Client Launcher");
             Console.WriteLine("Launch Monster Hunter Online client with optional DLL injection");
             Console.WriteLine(new string('=', 70));

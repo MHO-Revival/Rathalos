@@ -11,7 +11,11 @@ namespace Rathalos.CLI.Menu.Options
 
         public async Task<bool> ExecuteAsync()
         {
-            Console.WriteLine("Are you sure you want to exit? (y/N): ");
+            Console.Clear();
+            Console.WriteLine($"{ConsoleDisplayHelper.Icons.Back} Exit Application");
+            Console.WriteLine(new string('=', 50));
+            Console.WriteLine();
+            Console.Write("Are you sure you want to exit? (y/N): ");
             var response = Console.ReadLine()?.Trim().ToLowerInvariant();
             
             if (response == "y" || response == "yes")
