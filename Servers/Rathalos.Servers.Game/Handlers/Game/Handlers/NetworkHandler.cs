@@ -160,17 +160,6 @@ namespace Rathalos.Servers.World.Handlers.Game.Handlers
             {
                 LineID = 1
             });
-
-            client.Send(new CSPkgBodyListRoleRsp
-            {
-                BanTime = 0,
-                ErrNo = 0,
-                LastLoinRoleIndex = 0,
-                RoleList = new CSRoleList
-                {
-                    Role = []
-                }
-            });
         }
 
     }

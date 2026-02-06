@@ -18,21 +18,22 @@ namespace Rathalos.Servers.World.Handlers.Game.Handlers
         public async Task HandleCharacterListRequest(WorldClient client, CSListRoleReq message)
         {
             _logger.LogInformation($"Received character list request from account {client.Account.Id}.");
-            //client.Send(new CSPkgBodyListRoleRsp
-            //{
-            //    BanTime = 0,
-            //    ErrNo = 0,
-            //    LastLoinRoleIndex = 0,
-            //    RoleList = new CSRoleList()
-            //    {
-            //        Role = [
-            //            new CSRoleBaseInfo
-            //            {
-            //                Equip
-            //            }
-            //        ]
-            //    }
-            //});
+            SendCharacterListResponse(client);
+        }
+
+        public static void SendCharacterListResponse(WorldClient client)
+        {
+            var response = new CSPkgBodyListRoleRsp
+            {
+                BanTime = 0,
+                ErrNo = 0,
+                LastLoinRoleIndex = 0,
+                RoleList = new CSRoleList
+                {
+                    Role = []
+                }
+            };
+            client.Send(response);
         }
     }
 }

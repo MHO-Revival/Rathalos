@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Xml.Linq;
+using Rathalos.Core.Protocol.Tools;
 
 namespace Rathalos.CLI.IIPS;
 
@@ -36,45 +38,222 @@ public class IfsExtractor : IDisposable
         Console.WriteLine($"[+] Opening Archive: {archiveName}");
 
         IntPtr hArchive = Call_OpenArchive(archiveName);
-        if (hArchive == IntPtr.Zero) return;
-
-        if (Call_OpenFile(hArchive, "(listfile)", out IntPtr hListFile))
+        if (hArchive == IntPtr.Zero)
         {
-            byte[] buffer = new byte[1024 * 1024 * 64];
-            uint readLen = Call_ReadFile(hListFile, buffer);
-            Call_CloseFile(hListFile);
+            Console.WriteLine("[!] Failed to open archive.");
+            return;
+        }
 
-            string listData = Encoding.ASCII.GetString(buffer, 0, (int)readLen);
-            string[] files = listData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
-
-            if (!Directory.Exists(targetDir)) Directory.CreateDirectory(targetDir);
-
-            for (int i = 0; i < files.Length; i++)
+        try
+        {
+            if (Call_OpenFile(hArchive, "(listfile)", out IntPtr hListFile))
             {
-                string cleanFile = files[i].TrimEnd('\0');
-                if (string.IsNullOrEmpty(cleanFile) || cleanFile.Contains("\\.")) continue;
+                byte[] buffer = new byte[1024 * 1024 * 64];
+                uint readLen = Call_ReadFile(hListFile, buffer);
+                Call_CloseFile(hListFile);
 
-                // Trigger the progress update
-                onProgress?.Invoke(i + 1, files.Length, cleanFile);
+                string listData = Encoding.ASCII.GetString(buffer, 0, (int)readLen);
+                string[] files = listData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
 
-                ExtractFile(hArchive, cleanFile, targetDir, buffer);
+                if (!Directory.Exists(targetDir)) Directory.CreateDirectory(targetDir);
+
+                // Build a set of directories to skip (entries that are prefixes of other entries)
+                var normalizedPaths = files
+                    .Select(f => f.TrimEnd('\0').Replace('/', '\\').TrimEnd('\\'))
+                    .Where(f => !string.IsNullOrWhiteSpace(f) && !f.Contains("\\."))
+                    .ToList();
+
+                var directories = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                foreach (var path in normalizedPaths)
+                {
+                    var prefix = path + "\\";
+                    if (normalizedPaths.Any(p => p.StartsWith(prefix, StringComparison.OrdinalIgnoreCase)))
+                    {
+                        directories.Add(path);
+                    }
+                }
+
+                // Filter to only actual files (not directory entries)
+                var actualFiles = normalizedPaths.Where(f => !directories.Contains(f)).ToList();
+
+                for (int i = 0; i < actualFiles.Count; i++)
+                {
+                    string cleanFile = actualFiles[i];
+
+                    // Trigger the progress update
+                    onProgress?.Invoke(i + 1, actualFiles.Count, cleanFile);
+
+                    try
+                    {
+                        ExtractFile(hArchive, cleanFile, targetDir, buffer);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"[!] Error extracting {cleanFile}: {ex.Message}");
+                    }
+                }
             }
+            else
+            {
+                Console.WriteLine("[!] Failed to open listfile.");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"[!] Fatal error during extraction: {ex.Message}");
         }
     }
 
     private void ExtractFile(IntPtr hArchive, string fileName, string targetDir, byte[] buffer)
     {
-        if (Call_OpenFile(hArchive, fileName, out IntPtr hFile))
+        if (!Call_OpenFile(hArchive, fileName, out IntPtr hFile))
+        {
+            Console.WriteLine($"[!] Could not open file: {fileName}");
+            return;
+        }
+
+        try
         {
             uint size = Call_ReadFile(hFile, buffer);
             Call_CloseFile(hFile);
 
+            if (size == 0)
+            {
+                Console.WriteLine($"[!] Empty file or read error: {fileName}");
+                return;
+            }
+
+            byte[] fileContent = buffer[..(int)size];
             string outPath = Path.Combine(targetDir, fileName);
             string dir = Path.GetDirectoryName(outPath);
             if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
 
-            File.WriteAllBytes(outPath, buffer[..(int)size]);
-            Console.WriteLine($"[-] Extracted: {fileName} ({size} bytes)");
+            // Try to decrypt and determine the real file type
+            var (processedContent, newExtension) = ProcessFileContent(fileName, fileContent);
+
+            // Update the output path with the new extension if needed
+            if (!string.IsNullOrEmpty(newExtension))
+            {
+                string currentExtension = Path.GetExtension(outPath);
+                if (!currentExtension.Equals(newExtension, StringComparison.OrdinalIgnoreCase))
+                {
+                    outPath = Path.ChangeExtension(outPath, newExtension);
+                }
+            }
+
+            File.WriteAllBytes(outPath, processedContent);
+            Console.WriteLine($"[-] Extracted: {fileName} -> {Path.GetFileName(outPath)} ({processedContent.Length} bytes)");
+        }
+        catch (Exception ex)
+        {
+            // Ensure file is closed even on error
+            try { Call_CloseFile(hFile); } catch { }
+            throw new Exception($"Failed to read/process file: {ex.Message}", ex);
+        }
+    }
+
+    /// <summary>
+    /// Processes file content, decrypting if necessary and determining the correct extension
+    /// </summary>
+    private (byte[] content, string? newExtension) ProcessFileContent(string fileName, byte[] rawContent)
+    {
+        string extension = Path.GetExtension(fileName).ToLowerInvariant();
+
+        try
+        {
+            // Handle .dat files
+            if (extension == ".dat")
+            {
+                return ProcessDatFile(rawContent);
+            }
+
+            // Handle .xml files (might be encrypted CryXml)
+            if (extension == ".xml")
+            {
+                return ProcessXmlFile(rawContent);
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"[!] Warning: Could not process {fileName}: {ex.Message}. Saving raw content.");
+        }
+
+        // Return original content for other file types
+        return (rawContent, null);
+    }
+
+    /// <summary>
+    /// Processes a .dat file, decrypts it and determines the correct extension
+    /// </summary>
+    private (byte[] content, string? newExtension) ProcessDatFile(byte[] rawContent)
+    {
+        // Decrypt the DAT file
+        var datReader = DatReader.Create(rawContent);
+        string decryptedContent = datReader.Content;
+        byte[] contentBytes = Encoding.UTF8.GetBytes(decryptedContent);
+
+        // Determine the correct extension based on content
+        string trimmedContent = decryptedContent.TrimStart();
+
+        if (trimmedContent.StartsWith("#TSV", StringComparison.OrdinalIgnoreCase))
+        {
+            return (contentBytes, ".tsv");
+        }
+
+        // Try to parse as XML
+        if (TryParseAsXml(trimmedContent))
+        {
+            return (contentBytes, ".xml");
+        }
+
+        if (trimmedContent.StartsWith("{") || trimmedContent.StartsWith("["))
+        {
+            // Likely JSON
+            return (contentBytes, ".json");
+        }
+
+        // Keep as .dat but with decrypted content
+        return (contentBytes, ".dat");
+    }
+
+    /// <summary>
+    /// Processes an .xml file, decrypts if it's CryXml format
+    /// </summary>
+    private (byte[] content, string? newExtension) ProcessXmlFile(byte[] rawContent)
+    {
+        // Check if this is an encrypted CryXml file
+        if (rawContent.Length >= 4 && BitConverter.ToUInt32(rawContent, 0) == CryXmlReader.Magic)
+        {
+            // Encrypted CryXml format - decrypt it
+            var cryXmlReader = CryXmlReader.Create(rawContent);
+            byte[] decryptedContent = Encoding.UTF8.GetBytes(cryXmlReader.Content);
+            return (decryptedContent, ".xml");
+        }
+
+        // Plain XML file, return as-is
+        return (rawContent, null);
+    }
+
+    /// <summary>
+    /// Attempts to parse content as XML using XDocument
+    /// </summary>
+    private bool TryParseAsXml(string content)
+    {
+        if (string.IsNullOrWhiteSpace(content))
+            return false;
+
+        // Quick check: XML should start with < (after trimming)
+        if (!content.TrimStart().StartsWith("<"))
+            return false;
+
+        try
+        {
+            XDocument.Parse(content);
+            return true;
+        }
+        catch
+        {
+            return false;
         }
     }
 

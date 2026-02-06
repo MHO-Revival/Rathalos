@@ -1,7 +1,6 @@
 ﻿using Rathalos.Core.Utils.Cryptography;
 using Rathalos.Core.Utils.IO;
 using System.Text;
-using System.Xml.Linq;
 
 namespace Rathalos.Core.Protocol.Tools
 {
@@ -61,7 +60,7 @@ namespace Rathalos.Core.Protocol.Tools
                 // C++ uses strncmp(header, "CryXmlB", 7)
                 if (signature != "CryXmlB")
                 {
-                    Console.Error.WriteLine($"Invalid header");
+                    Content = Encoding.UTF8.GetString(decryptedContent);
                     return;
                 }
 
@@ -113,27 +112,34 @@ namespace Rathalos.Core.Protocol.Tools
                 // Note: The C++ code reads the Child Table but doesn't actually use it 
                 // for the logic (it relies on ParentId). We skip reading it to save resources.
 
-                // 4. Construct XML Document
-                XDocument doc = new XDocument();
-                XElement[] xmlNodes = new XElement[nodeTableCount];
+                // 4. Construct XML Document using string builder to preserve original names
+                var xmlBuilder = new StringBuilder();
+                var nodeContents = new string[nodeTableCount];
+                var nodeBuilders = new StringBuilder[nodeTableCount];
 
-                // The C++ logic iterates attributes sequentially using a global index, 
-                // ignoring the `FirstAttrIdx` in the node struct.
+                // Initialize builders for each node
+                for (int i = 0; i < nodeTableCount; i++)
+                {
+                    nodeBuilders[i] = new StringBuilder();
+                }
+
+                // The C++ logic iterates attributes sequentially using a global index
                 int globalAttrIndex = 0;
 
                 // Base offset for string lookups (data table)
                 int stringBaseOffset = dataTableOffset;
 
-                // Pass 1: Create all Elements and set their attributes/text
+                // Pass 1: Build opening tags with attributes and collect text content
                 for (int i = 0; i < nodeTableCount; i++)
                 {
                     CryXmlNode node = nodes[i];
+                    var sb = nodeBuilders[i];
 
-                    // Read Tag Name
+                    // Read Tag Name (preserve original, just escape XML special chars in values)
                     string tagName = ReadStringAt(decryptedContent, stringBaseOffset + node.NameOffset);
-                    if (string.IsNullOrEmpty(tagName)) tagName = "Unknown"; // Safety fallback
+                    if (string.IsNullOrEmpty(tagName)) tagName = "Unknown";
 
-                    XElement elem = new XElement(tagName);
+                    sb.Append('<').Append(tagName);
 
                     // Process Attributes
                     for (int j = 0; j < node.AttributeCount; j++)
@@ -144,40 +150,79 @@ namespace Rathalos.Core.Protocol.Tools
                             string attrName = ReadStringAt(decryptedContent, stringBaseOffset + attrRef.NameOffset);
                             string attrValue = ReadStringAt(decryptedContent, stringBaseOffset + attrRef.ValueOffset);
 
-                            elem.SetAttributeValue(attrName, attrValue);
+                            if (!string.IsNullOrEmpty(attrName))
+                            {
+                                sb.Append(' ').Append(attrName).Append("=\"").Append(EscapeXmlValue(attrValue)).Append('"');
+                            }
                             globalAttrIndex++;
                         }
                     }
 
-                    // Process Text Content
-                    // Check if content offset points to a valid string
-                    string content = ReadStringAt(decryptedContent, stringBaseOffset + node.ContentOffset);
-                    if (!string.IsNullOrEmpty(content))
-                    {
-                        elem.Value = content;
-                    }
+                    sb.Append('>');
 
-                    xmlNodes[i] = elem;
+                    // Store text content
+                    string textContent = ReadStringAt(decryptedContent, stringBaseOffset + node.ContentOffset);
+                    nodeContents[i] = textContent;
                 }
 
-                // Pass 2: Reconstruct Hierarchy (Parent-Child linking)
+                // Pass 2: Build complete XML with hierarchy
+                // We need to process nodes in order, adding children between open and close tags
+                var processedChildren = new List<int>[nodeTableCount];
                 for (int i = 0; i < nodeTableCount; i++)
                 {
-                    CryXmlNode node = nodes[i];
-                    if (node.ParentId == -1)
+                    processedChildren[i] = new List<int>();
+                }
+
+                // Group children by parent
+                for (int i = 0; i < nodeTableCount; i++)
+                {
+                    int parentId = nodes[i].ParentId;
+                    if (parentId >= 0 && parentId < nodeTableCount)
                     {
-                        // Root node(s)
-                        doc.Add(xmlNodes[i]);
+                        processedChildren[parentId].Add(i);
                     }
-                    else if (node.ParentId >= 0 && node.ParentId < nodeTableCount)
+                }
+
+                // Recursive function to build node XML
+                string BuildNodeXml(int nodeIndex)
+                {
+                    var node = nodes[nodeIndex];
+                    string tagName = ReadStringAt(decryptedContent, stringBaseOffset + node.NameOffset);
+                    if (string.IsNullOrEmpty(tagName)) tagName = "Unknown";
+
+                    var result = new StringBuilder();
+                    result.Append(nodeBuilders[nodeIndex]);
+
+                    // Add text content if present and no children
+                    var children = processedChildren[nodeIndex];
+                    if (!string.IsNullOrEmpty(nodeContents[nodeIndex]))
                     {
-                        // Attach to parent
-                        xmlNodes[node.ParentId].Add(xmlNodes[i]);
+                        result.Append(EscapeXmlValue(nodeContents[nodeIndex]));
+                    }
+
+                    // Add children
+                    foreach (int childIndex in children)
+                    {
+                        result.Append(BuildNodeXml(childIndex));
+                    }
+
+                    // Close tag
+                    result.Append("</").Append(tagName).Append('>');
+
+                    return result.ToString();
+                }
+
+                // Find root nodes and build XML
+                for (int i = 0; i < nodeTableCount; i++)
+                {
+                    if (nodes[i].ParentId == -1)
+                    {
+                        xmlBuilder.Append(BuildNodeXml(i));
                     }
                 }
 
                 // 5. Save XML
-                Content = doc.ToString();
+                Content = xmlBuilder.ToString();
             }
         }
 
@@ -213,6 +258,22 @@ namespace Rathalos.Core.Protocol.Tools
             }
 
             return Encoding.UTF8.GetString(data, offset, end - offset);
+        }
+
+        /// <summary>
+        /// Escapes special XML characters in attribute values and text content.
+        /// </summary>
+        private static string EscapeXmlValue(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+                return string.Empty;
+
+            return value
+                .Replace("&", "&amp;")
+                .Replace("<", "&lt;")
+                .Replace(">", "&gt;")
+                .Replace("\"", "&quot;")
+                .Replace("'", "&apos;");
         }
     }
 }
