@@ -1,0 +1,258 @@
+<Objs>
+    <Obj Id="SchedulePrizeDef">
+        <Id>101</Id>
+        <Name />
+        <Note />
+        <Contribution>65</Contribution>
+        <FetchProcs>
+            <Obj Id="ScheduleItemsPrizeDef">
+                <DefaultItem>
+                    <Obj Id="ScheduleItemDef">
+                        <CharLevelRng>
+                            <Obj Id="IntRange">
+                                <Min>0</Min>
+                                <Max>0</Max>
+                            </Obj>
+                        </CharLevelRng>
+                        <Item>390</Item>
+                        <Count>1</Count>
+                    </Obj>
+                </DefaultItem>
+                <Items>
+                    <Obj Id="ScheduleItemDef">
+                        <CharLevelRng>
+                            <Obj Id="IntRange">
+                                <Min>1</Min>
+                                <Max>39</Max>
+                            </Obj>
+                        </CharLevelRng>
+                        <Item>390</Item>
+                        <Count>1</Count>
+                    </Obj>
+                    <Obj Id="ScheduleItemDef">
+                        <CharLevelRng>
+                            <Obj Id="IntRange">
+                                <Min>40</Min>
+                                <Max>40</Max>
+                            </Obj>
+                        </CharLevelRng>
+                        <Item>390</Item>
+                        <Count>1</Count>
+                    </Obj>
+                </Items>
+            </Obj>
+            <Obj Id="ScheduleGoldPrizeDef">
+                <Money>0</Money>
+                <BoundMoney>6</BoundMoney>
+            </Obj>
+            <Obj Id="ScheduleExpPrizeDef">
+                <Exp>1</Exp>
+            </Obj>
+        </FetchProcs>
+    </Obj>
+    <Obj Id="SchedulePrizeDef">
+        <Id>102</Id>
+        <Name />
+        <Note />
+        <Contribution>155</Contribution>
+        <FetchProcs>
+            <Obj Id="ScheduleItemsPrizeDef">
+                <DefaultItem>
+                    <Obj Id="ScheduleItemDef">
+                        <CharLevelRng>
+                            <Obj Id="IntRange">
+                                <Min>0</Min>
+                                <Max>0</Max>
+                            </Obj>
+                        </CharLevelRng>
+                        <Item>391</Item>
+                        <Count>1</Count>
+                    </Obj>
+                </DefaultItem>
+                <Items>
+                    <Obj Id="ScheduleItemDef">
+                        <CharLevelRng>
+                            <Obj Id="IntRange">
+                                <Min>1</Min>
+                                <Max>39</Max>
+                            </Obj>
+                        </CharLevelRng>
+                        <Item>391</Item>
+                        <Count>1</Count>
+                    </Obj>
+                    <Obj Id="ScheduleItemDef">
+                        <CharLevelRng>
+                            <Obj Id="IntRange">
+                                <Min>40</Min>
+                                <Max>40</Max>
+                            </Obj>
+                        </CharLevelRng>
+                        <Item>391</Item>
+                        <Count>1</Count>
+                    </Obj>
+                </Items>
+            </Obj>
+            <Obj Id="ScheduleGoldPrizeDef">
+                <Money>0</Money>
+                <BoundMoney>9</BoundMoney>
+            </Obj>
+            <Obj Id="ScheduleExpPrizeDef">
+                <Exp>1</Exp>
+            </Obj>
+        </FetchProcs>
+    </Obj>
+    <Obj Id="SchedulePrizeDef">
+        <Id>103</Id>
+        <Name />
+        <Note />
+        <Contribution>260</Contribution>
+        <FetchProcs>
+            <Obj Id="ScheduleItemsPrizeDef">
+                <DefaultItem>
+                    <Obj Id="ScheduleItemDef">
+                        <CharLevelRng>
+                            <Obj Id="IntRange">
+                                <Min>0</Min>
+                                <Max>0</Max>
+                            </Obj>
+                        </CharLevelRng>
+                        <Item>392</Item>
+                        <Count>1</Count>
+                    </Obj>
+                </DefaultItem>
+                <Items>
+                    <Obj Id="ScheduleItemDef">
+                        <CharLevelRng>
+                            <Obj Id="IntRange">
+                                <Min>1</Min>
+                                <Max>39</Max>
+                            </Obj>
+                        </CharLevelRng>
+                        <Item>392</Item>
+                        <Count>1</Count>
+                    </Obj>
+                    <Obj Id="ScheduleItemDef">
+                        <CharLevelRng>
+                            <Obj Id="IntRange">
+                                <Min>40</Min>
+                                <Max>40</Max>
+                            </Obj>
+                        </CharLevelRng>
+                        <Item>392</Item>
+                        <Count>1</Count>
+                    </Obj>
+                </Items>
+            </Obj>
+            <Obj Id="ScheduleGoldPrizeDef">
+                <Money>0</Money>
+                <BoundMoney>15</BoundMoney>
+            </Obj>
+            <Obj Id="ScheduleExpPrizeDef">
+                <Exp>2</Exp>
+            </Obj>
+        </FetchProcs>
+    </Obj>
+    <Obj Id="SchedulePrizeDef">
+        <Id>104</Id>
+        <Name />
+        <Note />
+        <Contribution>375</Contribution>
+        <FetchProcs>
+            <Obj Id="ScheduleItemsPrizeDef">
+                <DefaultItem>
+                    <Obj Id="ScheduleItemDef">
+                        <CharLevelRng>
+                            <Obj Id="IntRange">
+                                <Min>0</Min>
+                                <Max>0</Max>
+                            </Obj>
+                        </CharLevelRng>
+                        <Item>393</Item>
+                        <Count>1</Count>
+                    </Obj>
+                </DefaultItem>
+                <Items>
+                    <Obj Id="ScheduleItemDef">
+                        <CharLevelRng>
+                            <Obj Id="IntRange">
+                                <Min>1</Min>
+                                <Max>39</Max>
+                            </Obj>
+                        </CharLevelRng>
+                        <Item>393</Item>
+                        <Count>1</Count>
+                    </Obj>
+                    <Obj Id="ScheduleItemDef">
+                        <CharLevelRng>
+                            <Obj Id="IntRange">
+                                <Min>40</Min>
+                                <Max>40</Max>
+                            </Obj>
+                        </CharLevelRng>
+                        <Item>393</Item>
+                        <Count>1</Count>
+                    </Obj>
+                </Items>
+            </Obj>
+            <Obj Id="ScheduleGoldPrizeDef">
+                <Money>0</Money>
+                <BoundMoney>21</BoundMoney>
+            </Obj>
+            <Obj Id="ScheduleExpPrizeDef">
+                <Exp>2</Exp>
+            </Obj>
+        </FetchProcs>
+    </Obj>
+    <Obj Id="SchedulePrizeDef">
+        <Id>105</Id>
+        <Name />
+        <Note />
+        <Contribution>500</Contribution>
+        <FetchProcs>
+            <Obj Id="ScheduleItemsPrizeDef">
+                <DefaultItem>
+                    <Obj Id="ScheduleItemDef">
+                        <CharLevelRng>
+                            <Obj Id="IntRange">
+                                <Min>0</Min>
+                                <Max>0</Max>
+                            </Obj>
+                        </CharLevelRng>
+                        <Item>394</Item>
+                        <Count>1</Count>
+                    </Obj>
+                </DefaultItem>
+                <Items>
+                    <Obj Id="ScheduleItemDef">
+                        <CharLevelRng>
+                            <Obj Id="IntRange">
+                                <Min>1</Min>
+                                <Max>39</Max>
+                            </Obj>
+                        </CharLevelRng>
+                        <Item>394</Item>
+                        <Count>1</Count>
+                    </Obj>
+                    <Obj Id="ScheduleItemDef">
+                        <CharLevelRng>
+                            <Obj Id="IntRange">
+                                <Min>40</Min>
+                                <Max>40</Max>
+                            </Obj>
+                        </CharLevelRng>
+                        <Item>394</Item>
+                        <Count>1</Count>
+                    </Obj>
+                </Items>
+            </Obj>
+            <Obj Id="ScheduleGoldPrizeDef">
+                <Money>0</Money>
+                <BoundMoney>30</BoundMoney>
+            </Obj>
+            <Obj Id="ScheduleExpPrizeDef">
+                <Exp>3</Exp>
+            </Obj>
+        </FetchProcs>
+    </Obj>
+</Objs>
+      

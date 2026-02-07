@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PVEReboundData>
+<Attacker>
+	<DefenseResult GE="-9999" LE="9999" action="2"/>	<!-- action: rebound level 0(None) 1(Lightly) 2(Normal) 3(Strenuously) -->
+</Attacker>
+<Defender>
+	<DefenseResult GE="-9999" L="-30" action="SUCCESS"/>		<!-- action: defense result -->
+	<DefenseResult GE="-30" L="-20" action="KNOCKBACK1"/>
+	<DefenseResult GE="-20" L="-10" action="KNOCKBACK2"/>
+	<DefenseResult GE="-10" L="0" action="KNOCKBACK3"/>
+	<DefenseResult GE="0" L="9999" action="COLLAPSED"/>
+</Defender>
+</PVEReboundData>

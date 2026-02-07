@@ -1,0 +1,12 @@
+#TSV
+#============Begin of sheet============
+@Sheet=货币信息
+CurrencyID	AttrID	Name	Icon	Tips	SPId
+1	77	Cash Coupons	currency_credit	Can be used to purchase items at the mall	8
+2	78	Dragon Coins	currency_boundcredit	Can be used to purchase items at the mall	7
+3	361	Meow Coins	currency_ailu	Exchange for a variety of useful items at the store	5
+4	360	Honor Points	currency_tournament	With Honor Points, various items can be redeemed at the arena store	6
+5	237	Guild Coins	currency_huntgrouppoint	Guild Coins can be used to purchase items at the guild store	2
+6	197	Poo Coins	currency_farmexp	Can be used for farm and equipmet upgrades	1
+7	408	Skill Points	currency_monster	Skill Points can be used to purchase items at the jewel shop	9
+#============End of sheet==

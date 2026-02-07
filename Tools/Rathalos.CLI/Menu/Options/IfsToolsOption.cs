@@ -22,6 +22,7 @@ namespace Rathalos.CLI.Menu.Options
             var subMenuOptions = new List<IMenuOption>
             {
                 new IfsExtractSubOption(this),
+                new IfsCreateSubOption(this),
                 new IfsViewerSubOption(this),
                 new IfsReturnToMainMenuSubOption()
             };
@@ -112,13 +113,12 @@ namespace Rathalos.CLI.Menu.Options
                     try
                     {
                         var fileName = Path.GetFileNameWithoutExtension(ifsFile);
-                        var archiveOutputPath = Path.Combine(outputPath, fileName);
 
                         Console.WriteLine($"{ConsoleDisplayHelper.Icons.File} Extracting: {Path.GetFileName(ifsFile)}");
 
-                        await Task.Run(() => extractor.Extract(ifsFile, archiveOutputPath));
+                        await Task.Run(() => extractor.Extract(ifsFile, outputPath));
 
-                        Console.WriteLine($"{ConsoleDisplayHelper.Icons.CheckMark} Extracted to: {archiveOutputPath}");
+                        Console.WriteLine($"{ConsoleDisplayHelper.Icons.CheckMark} Extracted to: {outputPath}");
                         successCount++;
                     }
                     catch (Exception ex)
@@ -141,6 +141,81 @@ namespace Rathalos.CLI.Menu.Options
             {
                 Console.WriteLine($"{ConsoleDisplayHelper.Icons.Error} Extraction failed: {ex.Message}");
             }
+        }
+
+        internal async Task CreateArchiveAsync()
+        {
+            Console.Clear();
+            Console.WriteLine($"{ConsoleDisplayHelper.Icons.Folder} IFS Archive Creator");
+            Console.WriteLine(new string('=', 50));
+            Console.WriteLine();
+
+            Console.Write("Enter path to source folder: ");
+            var sourceFolder = Console.ReadLine()?.Trim();
+
+            if (string.IsNullOrWhiteSpace(sourceFolder) || !Directory.Exists(sourceFolder))
+            {
+                Console.WriteLine($"{ConsoleDisplayHelper.Icons.Error} Folder not found.");
+                Console.WriteLine();
+                Console.WriteLine("Press any key to return to the IFS Tools menu...");
+                Console.ReadKey(true);
+                return;
+            }
+
+            Console.Write("Enter output archive path (e.g., patch.ifs): ");
+            var archivePath = Console.ReadLine()?.Trim();
+
+            if (string.IsNullOrWhiteSpace(archivePath))
+            {
+                Console.WriteLine($"{ConsoleDisplayHelper.Icons.Error} Invalid archive path.");
+                Console.WriteLine();
+                Console.WriteLine("Press any key to return to the IFS Tools menu...");
+                Console.ReadKey(true);
+                return;
+            }
+
+            // Ensure .ifs extension
+            if (!archivePath.EndsWith(".ifs", StringComparison.OrdinalIgnoreCase))
+            {
+                archivePath += ".ifs";
+            }
+
+            Console.Write("Enter max file count (default: 256): ");
+            var maxFileCountStr = Console.ReadLine()?.Trim();
+            uint maxFileCount = 256;
+            if (!string.IsNullOrWhiteSpace(maxFileCountStr) && uint.TryParse(maxFileCountStr, out uint parsed))
+            {
+                maxFileCount = parsed;
+            }
+
+            Console.WriteLine();
+            Console.WriteLine($"{ConsoleDisplayHelper.Icons.Cycle} Creating archive...");
+            Console.WriteLine();
+
+            try
+            {
+                using var extractor = new IfsExtractor();
+
+                bool success = await Task.Run(() => extractor.CreateArchive(archivePath, sourceFolder, maxFileCount));
+
+                Console.WriteLine();
+                if (success)
+                {
+                    Console.WriteLine($"{ConsoleDisplayHelper.Icons.Party} Archive created successfully: {archivePath}");
+                }
+                else
+                {
+                    Console.WriteLine($"{ConsoleDisplayHelper.Icons.Error} Failed to create archive.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{ConsoleDisplayHelper.Icons.Error} Error creating archive: {ex.Message}");
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("Press any key to return to the IFS Tools menu...");
+            Console.ReadKey(true);
         }
 
         internal async Task ViewArchiveAsync()
@@ -550,6 +625,27 @@ namespace Rathalos.CLI.Menu.Options
         public async Task<bool> ExecuteAsync()
         {
             await _parent.ExtractArchiveAsync();
+            return true;
+        }
+    }
+
+    /// <summary>
+    /// Sub-menu option for creating IFS archives
+    /// </summary>
+    internal class IfsCreateSubOption : IMenuOption
+    {
+        private readonly IfsToolsOption _parent;
+
+        public IfsCreateSubOption(IfsToolsOption parent)
+        {
+            _parent = parent;
+        }
+
+        public string DisplayName => $"{ConsoleDisplayHelper.Icons.Floppy} Create archive from folder";
+
+        public async Task<bool> ExecuteAsync()
+        {
+            await _parent.CreateArchiveAsync();
             return true;
         }
     }

@@ -1,0 +1,170 @@
+#TSV
+#============Begin of sheet============
+@Sheet=CatTalk
+ID	SignalID	SignalDesc	TalkStyle_1	TalkStyle_2	TalkStyle_3
+1	TKSG_MISSION_START	任务开始时	I'll show you my hunting skills master!	Let me protect you master!	I'll report you if you take too many supplies, meow!
+2	TKSG_MISSION_COMPLETE	任务成功时	Quest complete meow~	Quest complete meow~	Quest complete meow~
+3	TKSG_MISSION_FAILED	任务失败时	Master, what happened~meow?	Master, what happened~meow?	Master, what happened~meow?
+4	TKSG_MASTER_HP_LOW	主人HP不足	if you don't drink a potion soon, you will cart meow!	quickly master! drink a potion!	Master! The situation is getting out of control, meow!
+5	TKSG_MASTER_POISON	主人中毒中	Sleep when hurt, antidote when poisoned, hunting common sense meow~	Sleep when hurt, antidote when poisoned, hunting common sense meow~	Sleep when hurt, antidote when poisoned, hunting common sense meow~
+6	TKSG_MASTER_BIOED	主人臭气中	Master you stink! Get away from me meow~	Master you stink! Get away from me meow~	Master you stink! Get away from me meow~
+7	TKSG_MASTER_PARALYSIS	主人麻痹中	You seem to enjoy being paralyzed meow?	I'll rub you you with my paw meow~	Lightning! Thunder! muscle cramp!
+8	TKSG_MASTER_MUDDING	主人泥状态	Muds! I can help you get out of it meow!	Don't move master~meow!	Master! You suddenly look great meow!
+9	TKSG_MASTER_SNOW	主人雪状态	Master，you look great as a snowman!	Master，you look great as a snowman!	Master，you look great as a snowman!
+10	TKSG_MASTER_SLEEP	主人陷入睡眠	Master there's no time to sleep ~meow!	Get up master!	Hey master get up now ~meow~
+11	TKSG_MASTER_WIND	主人受到风压行动不能时	immobilized again meow! useless, meow!	Master's gonna get blown away by the wind meow!	Today's wind's a bit noisy meow!
+12	TKSG_MASTER_DRAGONWIND	主人受到龙风压行动不能时	they say love comes as fast as a tornado	they say love comes as fast as a tornado	they say love comes as fast as a tornado
+13	TKSG_MASTER_SONIC	主人受到吼叫捂耳时	Master，did you wear your earplugs?	Master，did you wear your earplugs?	Master，did you wear your earplugs?
+14	TKSG_MASTER_ROAR	主人受到咆哮捂耳时	I only brought one pair of earplugs, so master you will have to cover your ears, meow!	Put on earplugs and you won't fear the roars, meow!	Master can't hear me meow! Time for bad-mouthing meow!
+15	TKSG_MASTER_QUAKE	主人受地面震动而行动不能时	Master, hold onto me, meow!	Master, stand fast, meow!	shake it left and right, wanna dance together, master?
+16	TKSG_MASTER_DAZE	主人陷入晕眩时	Wake up meow!	Master's head has pretty little stars~meow!	Hey master let's count how many stars you have meow!
+17	TKSG_MASTER_CAUGHT	主人被捕缚时	Let go of master, I'll show you how it's done~meow!	Let go of master, I'll show you how it's done~meow!	Let go of master, I'll show you how it's done~meow!
+18	TKSG_MASTER_GATHER	主人采集时	lots of good stuff here meow~	lots of good stuff here meow~	lots of good stuff here meow~
+19	TKSG_MASTER_REST	主人睡觉时	yawn~, master, we finally get some proper sleep meow	yawn~, master, we finally get some proper sleep meow	yawn~, master, we finally get some proper sleep meow
+20	TKSG_MASTER_OUGI	主人发动了奥义时	My hands will burn bright red!	My hands will burn bright red!	My hands will burn bright red!
+21	TKSG_IDLE_SLACKING	累得坐在地上时	meow~ where's the cart meow....	I can't... I can't even walk meow.......	I don't like long strolls meow.....
+22	TKSG_IDLE_PLAYING	从主人身边跑开到附近去玩	Aha! got your attention meow?	it's the questing life meow!	I found something interesting meow
+23	TKSG_HP_LOW	自身HP低下	Prepare for tactical retreat meow!	I can't go on much longer... I might let you down, master...	how do you use the health horn? I forgot meow...
+24	TKSG_POISON	自身中毒	I'm poisoned meow!	I'm poisoned meow!	I'm poisoned meow!
+25	TKSG_PARALYSIS	自身陷入麻痹	Paralyzed meow……	tongue going numb... num... can't talk, meow...	Is this the way it goes? no one will come save meow?
+26	TKSG_MUDDING	自身陷入泥状态	I can't move meow~	I can't move meow~	I can't move meow~
+27	TKSG_SNOW	自身陷入雪人状态	I don't think the mafumofu outfit looks like that meow	I turned into a snowman meow... can't move meow...	Snow transformation~meow! why am I fat~meow?
+28	TKSG_SLOW	自身陷入减速状态	so slippery, can't run too fast meow~	so slippery, can't run too fast meow~	so slippery, can't run too fast meow~
+29	TKSG_MADESLEEP	自身陷入睡眠异常状态	can't keep my eyes open... shout me awake meow...	This is not gonna keep me awake meown...	I always wanted to sleep on the hunting ground. What does it feel like~meow?
+30	TKSG_WIND	自身受到风压而行动不能时	Don't think it's possible to stop meow!	The wind is so strong I can't hear anything meow...	I can see the shape of the wind meow! so cool~meow!
+31	TKSG_DRAGON_WIND	自身受到龙风压而行动不能	Even if it's dragon wind... it won't... stop meow!	The dragon wind is too scary meow!	So this is the dragon wind! I feel like I've been locked in place meow!
+32	TKSG_SONIC	自身受到吼叫效果而捂耳伏地时	Oh just let me deal with the roar alone, of course meow...	I forgot the earplugs~meow!	Such a horrible roar meow...
+33	TKSG_ROAR	自身受到咆哮效果而捂耳伏地时	I gave my earplugs to master meow!	what a scary sonic boom meow~	Oh you want a roaring competition? I'm not gonna lose meow! meow ouch...
+34	TKSG_QUAKE	由于地面震动而无法行动	I can keep balance meow!	OOo meow meow, everything seems to be shaking meow!	Everything's spinning meow meow!
+35	TKSG_DAZE	自身陷入晕眩状态	I'm dizzy meow... can't fall over meow...	These stars are beautiful meow!	I can see 5 starfish meow!
+36	TKSG_FLARE	自身被烧伤	So hot meow meow meow meow~~~	So hot meow meow meow meow~~~	So hot meow meow meow meow~~~
+37	TKSG_DAMAGED	被攻击而受伤	ow, this guy has claws meow...	ow, this guy has claws meow...	ow, this guy has claws meow...
+38	TKSG_DIE	死亡后钻地	this hunt is not for meow, I'm going for now meow!	I'll be right back, wait for me master~meow!	I'm down, meow!
+39	TKSG_CAUGHT	陷入被怪物捕搏的状态	Are you not coming to save meow?	I don't wanna be separated from my master meow......	Let go of me, you monster~meow!
+40	TKSG_GATHER	采集时	Meow? there's a huge hole in my backpack meow...	oh shiny! I'll keep this for later meow...	Meow~there is nothing here!
+41	TKSG_ANGRY	发怒	Hey! only I can bully Master~meow!	ow that hurts meow! you can't bully cats like that meow!	Bestow me your strength, for I am a palico!
+42	TKSG_PANIC	自身陷入慌乱状态	I can't tell my left paw from my right leg meow...	Confused meow! out of control meow!	I forgot how to speak paliconese~wan---
+43	TKSG_FAR	当离主人过远时	Hey! it's dangerous to leave my side meow!	Master! wait for meow!	I can't see Master anywhere, does that mean I can go home meow?
+44	TKSG_RELAX	偷懒划水时	I can sense imminent danger meow, let me observe for a while……	sometimes you just gotta run……Forgive me master!	I feel a supernatural power meow!
+45	TKSG_DISRELAX_BY_MASTER	偷懒中被主人踢	Sorry master, I'll stop loafing around~meow!	Sorry master, I'll stop loafing around~meow!	Sorry master, I'll stop loafing around~meow!
+46	TKSG_START_COMBAT	发现目标，进入战斗	We've been found~meow! time to fight!	We've been found~meow! time to fight!	We've been found~meow! time to fight!
+47	TKSG_MELEE	使用自己装备的武器进行近战格斗	Will you lend me this blade~meow?!	Will you lend me this blade~meow?!	Will you lend me this blade~meow?!
+48	TKSG_BOOM	使用小桶爆弹丢向敌人	Small barrel bombay~meow!	Small barrel bombay~meow!	Small barrel bombay~meow!
+49	TKSG_BOOM_BIG	拿出大桶爆弹进行自杀式攻击	Large barrel bombay~meow! for the master!!!	Large barrel bombay~meow! for the master!!!	Large barrel bombay~meow! for the master!!!
+50	TKSG_BOOMERANGE	使用回旋镖攻击	Boomerang out~meow!	Boomerang out~meow!	Boomerang out~meow!
+51	TKSG_BOOMERANGE_Ｌ	使用巨大回旋镖攻击	Boomerang out~meow!	Boomerang out~meow!	Boomerang out~meow!
+52	TKSG_BOOMERANGE_P	使用贯穿回旋镖攻击	If you don't poke your head you won't die, do you understand~meow?	If you don't poke your head you won't die, do you understand~meow?	If you don't poke your head you won't die, do you understand~meow?
+53	TKSG_RESPAWN	复活时	I'm back to offer you moral support~meow!	Fear not master, I'm back meow!	meow? monster's not dead yet meow?
+54	TKSG_GURAD	进行防御成功	Mrreow!	Mrreow!	Mrreow!
+55	TKSG_SKILL_TAUNT	使用角笛术，效果嘲讽，吸引怪物注意	TKSG_SKILL_TAUNT	TKSG_SKILL_TAUNT	TKSG_SKILL_TAUNT
+56	TKSG_SKILL_ANTIDOTE	使用解毒消臭笛，解除主人的毒和臭状态	Stink removal flute, courtesy of yours truly meow!	detox song, now playing meow~	wait this is not the right horn meow!
+57	TKSG_SKILL_HEAL	使用回复笛，为主人回复HP	deploying healing song, meow!	pat it, kiss it, hug it, little hunter's all well again meow!	all that practice blowing the horn has finally paid off meow!
+58	TKSG_SKILL_ATK_UP	使用鬼人笛，为主人提供攻击Buff	TKSG_SKILL_ATK_UP	TKSG_SKILL_ATK_UP	TKSG_SKILL_ATK_UP
+59	TKSG_SKILL_DEF_UP	使用硬化笛，为主人提供防御Buff	TKSG_SKILL_DEF_UP	TKSG_SKILL_DEF_UP	TKSG_SKILL_DEF_UP
+60	TKSG_SKILL_REGENERATE	使用自然回复笛，提高主人自然回复力	feel the sound of the milky way meow!	feel a force of nature, meow!	wait, this is not the antidote horn meow!
+61	TKSG_SKILL_WEATHER_NEGATE	使用防寒防暑笛，为主人提供冷饮或热饮效果	behold, the ancient palico warmth song!	master, listen to my warmth song meow!	playing the wrong song also works? amazing meow!
+62	TKSG_SKILL_DASH	使用强走笛，为主人提供强走Buff	TKSG_SKILL_DASH	TKSG_SKILL_DASH	TKSG_SKILL_DASH
+63	TKSG_SKILL_EARPLUG	使用耳栓笛，为主人提供耳栓效果	Mrreow~~! how's it, can you still hear the roar?	And so the whole world goes quiet meow~	nya, how come suddenly everything went dead silent meow?
+64	TKSG_SKILL_EARPLUG_G	使用高耳笛，为主人提供高级耳栓效果	TKSG_SKILL_EARPLUG_G	TKSG_SKILL_EARPLUG_G	TKSG_SKILL_EARPLUG_G
+65	TKSG_SKILL_ANTIWIND	使用风压笛，为主人提供小风压无效Buff	TKSG_SKILL_ANTIWIND	TKSG_SKILL_ANTIWIND	TKSG_SKILL_ANTIWIND
+66	TKSG_SKILL_ANTIWIND_G	使用龙风压笛，为主人提供风压完全无效Buff	TKSG_SKILL_ANTIWIND_G	TKSG_SKILL_ANTIWIND_G	TKSG_SKILL_ANTIWIND_G
+67	TKSG_SKILL_INDOMITABLE	有七转八起之术的猫每次复活时。效果：每次复活时攻击力上升	I'm super saiyan meow meow meow meow meow~~	I'm super saiyan meow meow meow meow meow~~	I'm super saiyan meow meow meow meow meow~~
+68	TKSG_SKILL_DESPERATE	有背水之阵时，任务开始时。效果：无法复活，攻击大幅上升	TKSG_SKILL_DESPERATE	TKSG_SKILL_DESPERATE	TKSG_SKILL_DESPERATE
+69	TKSG_SKILL_PSYCHOSERUM	有千里眼之术时，每次效果发动时	TKSG_SKILL_PSYCHOSERUM	TKSG_SKILL_PSYCHOSERUM	TKSG_SKILL_PSYCHOSERUM
+70	TKSG_SKILL_SOPHAR_FAILED	使用笛子类技能失败	TKSG_SKILL_SOPHAR_FAILED	TKSG_SKILL_SOPHAR_FAILED	TKSG_SKILL_SOPHAR_FAILED
+71	TKSG_IDLE_SMALL_ACTION	猫在Idle中，播放四处张望、洗脸、抖身子、到处闻这几个小动作时	always keep your posture, meow!	no danger nearby meow......	my ear's itchy... master scratchy scratch please meow~
+72	TKSG_SLEEP_START	在营地跟随主人睡觉，刚刚要躺下时	let's be quiet while we sleep ZzzZZZzz meow....	Don't worry master, I'll be on guard duty meow!	Sweet dreams meow~
+73	TKSG_SLEEPING	在营地跟随主人睡觉，睡得正香时	Im having a wonderful dream, don't wake me up meow.....	*snore*..... *snore*....	Fish……I want a fish……a lot of fish……zzzZZZ
+74	TKSG_SLEEP_END	在营地跟随主人睡觉，要睡醒时	I want more sleep meow~……	Good morning master! I'm full of energy meow!	....5 more minutes meow.....
+75	TKSG_GODEYES_SP	圈尾思奇专用，为玩家提供千里眼并提示注意怪物标示	The monster went to a different area, look at the map, I bet he's in that region!	The monster went to a different area, look at the map, I bet he's in that region!	The monster went to a different area, look at the map, I bet he's in that region!
+76	TKSG_SKILL_DROPTRAP	放置落穴时的发言	Pitfall is down meow!	hush~ and watch me make this monster fall to its knees meow!	Will this monster really fit in this pitfall?
+77	TKSG_SKILL_PARATRAP	放置麻痹陷阱时的发言	*whistles suspiciously*	alright, let him sit for a while meow~	monster sized electric shock therapy meow!
+78			Take this! Art of the horn!	Master！本喵前来支援！角笛之术	让我们嗨起来~~角笛之术
+79			等死吧，怪物们！鬼人笛之术	Master！本喵前来支援！鬼人笛之术	让我们嗨起来~~鬼人笛之术
+80			等死吧，怪物们！硬化笛之术	Master！本喵前来支援！硬化笛之术	让我们嗨起来~~硬化笛之术
+81			圣洁之光将笼罩我们！解毒消臭笛之术	我来负责回复。解毒消臭笛之术	有本喵在，绝对不会有事的！解毒消臭笛之术
+82			圣洁之光将笼罩我们！回复笛之术	我来负责回复。回复笛之术	有本喵在，绝对不会有事的！回复笛之术
+83			圣洁之光将笼罩我们！自然回复笛之术	我来负责回复。自然回复笛之术	有本喵在，绝对不会有事的！自然回复笛之术
+84			等死吧，怪物们！防暑防寒之术	Master！本喵前来支援！防暑防寒之术	让我们嗨起来~~防暑防寒之术
+85			等死吧，怪物们！强走之术	Master！本喵前来支援！强走之术	让我们嗨起来~~强走之术
+86			等死吧，怪物们！听觉保护之术	Master！本喵前来支援！听觉保护之术	让我们嗨起来~~听觉保护之术
+87			等死吧，怪物们！风压无效之术	Master！本喵前来支援！风压无效之术	让我们嗨起来~~风压无效之术
+88			等死吧，怪物们！全属性攻击提升	Master！Meow has come to support！All element attacks are increased.	让我们嗨起来~~全属性攻击提升
+89			等死吧，怪物们！火攻击强化	Master！本喵前来支援！火攻击强化	让我们嗨起来~~火攻击强化
+90			等死吧，怪物们！水攻击强化	Master！本喵前来支援！水攻击强化	让我们嗨起来~~水攻击强化
+91			等死吧，怪物们！冰攻击强化	Master！本喵前来支援！冰攻击强化	让我们嗨起来~~冰攻击强化
+92			等死吧，怪物们！雷攻击强化	Master！本喵前来支援！雷攻击强化	让我们嗨起来~~雷攻击强化
+93			等死吧，怪物们！龙攻击强化	Master！本喵前来支援！龙攻击强化	让我们嗨起来~~龙攻击强化
+94			等死吧，怪物们！全属性攻击强化	Master！本喵前来支援！全属性攻击强化	让我们嗨起来~~全属性攻击强化
+95			等死吧，怪物们！毒攻击强化	Master！本喵前来支援！毒攻击强化	让我们嗨起来~~毒攻击强化
+96			等死吧，怪物们！麻痹攻击强化	Master！本喵前来支援！麻痹攻击强化	让我们嗨起来~~麻痹攻击强化
+97			等死吧，怪物们！睡眠攻击强化	Master！本喵前来支援！睡眠攻击强化	让我们嗨起来~~睡眠攻击强化
+98			等死吧，怪物们！全异常攻击强化	Master！本喵前来支援！全异常攻击强化	让我们嗨起来~~全异常攻击强化
+99			圣洁之光将笼罩我们！泥雪人回复之术	我来负责回复。泥雪人回复之术	有本喵在，绝对不会有事的！泥雪人回复之术
+100			等死吧，怪物们！毒无效之术	Master！本喵前来支援！毒无效之术	让我们嗨起来~~毒无效之术
+101			等死吧，怪物们！风压无效之术	Master！本喵前来支援！风压无效之术	让我们嗨起来~~风压无效之术
+102			等死吧，怪物们！防音之术	Master！本喵前来支援！防音之术	让我们嗨起来~~防音之术
+103			等死吧，怪物们！风压咆哮无效之术	Master！本喵前来支援！风压咆哮无效之术	让我们嗨起来~~风压咆哮无效之术
+104			等死吧，怪物们！攻击力强化	Master！本喵前来支援！攻击力强化	让我们嗨起来~~攻击力强化
+105			等死吧，怪物们！防御力强化	Master！本喵前来支援！防御力强化	让我们嗨起来~~防御力强化
+106			等死吧，怪物们！体力强化	Master！本喵前来支援！体力强化	让我们嗨起来~~体力强化
+107			等死吧，怪物们！格挡技巧	Master！本喵前来支援！格挡技巧	让我们嗨起来~~格挡技巧
+108			等死吧，怪物们！会心攻击强化	Master！本喵前来支援！会心攻击强化	让我们嗨起来~~会心攻击强化
+109			等死吧，怪物们！麻痹陷阱之术	Master！本喵前来支援！麻痹陷阱之术	让我们嗨起来~~麻痹陷阱之术
+110			等死吧，怪物们！大桶爆弹之术	Master！本喵前来支援！大桶爆弹之术	让我们嗨起来~~大桶爆弹之术
+111			等死吧，怪物们！爆弹强化之术	Master！本喵前来支援！爆弹强化之术	让我们嗨起来~~爆弹强化之术
+112			等死吧，怪物们！爆弹伤害减轻	Master！本喵前来支援！爆弹伤害减轻	让我们嗨起来~~爆弹伤害减轻
+113			等死吧，怪物们！巨大回旋镖之术	Master！本喵前来支援！巨大回旋镖之术	让我们嗨起来~~巨大回旋镖之术
+114			等死吧，怪物们！贯通回旋镖	Master！本喵前来支援！贯通回旋镖	让我们嗨起来~~贯通回旋镖
+115			等死吧，怪物们！火耐性强化	Master！本喵前来支援！火耐性强化	让我们嗨起来~~火耐性强化
+116			等死吧，怪物们！水耐性强化	Master！本喵前来支援！水耐性强化	让我们嗨起来~~水耐性强化
+117			等死吧，怪物们！雷耐性强化	Master！本喵前来支援！雷耐性强化	让我们嗨起来~~雷耐性强化
+118			等死吧，怪物们！冰耐性强化	Master！本喵前来支援！冰耐性强化	让我们嗨起来~~冰耐性强化
+119			等死吧，怪物们！龙耐性强化	Master！本喵前来支援！龙耐性强化	让我们嗨起来~~龙耐性强化
+120			等死吧，怪物们！全属性耐性强化	Master！本喵前来支援！全属性耐性强化	让我们嗨起来~~全属性耐性强化
+121			等死吧，怪物们！快速起身之术	Master！本喵前来支援！快速起身之术	让我们嗨起来~~快速起身之术
+122			等死吧，怪物们！七转八起之术	Master！本喵前来支援！七转八起之术	让我们嗨起来~~七转八起之术
+123			等死吧，怪物们！背水之阵	Master！本喵前来支援！背水之阵	让我们嗨起来~~背水之阵
+124			等死吧，怪物们！千里眼之术	Master！本喵前来支援！千里眼之术	让我们嗨起来~~千里眼之术
+125			等死吧，怪物们！采集封印之术	Master！本喵前来支援！采集封印之术	让我们嗨起来~~采集封印之术
+126			等死吧，怪物们！不偷懒之术	Master！本喵前来支援！不偷懒之术	让我们嗨起来~~不偷懒之术
+127			等死吧，怪物们！高速作业之术	Master！本喵前来支援！高速作业之术	让我们嗨起来~~高速作业之术
+128			等死吧，怪物们！高速回复之术	Master！本喵前来支援！高速回复之术	让我们嗨起来~~高速回复之术
+129			等死吧，怪物们！落穴陷阱之术	Master！本喵前来支援！落穴陷阱之术	让我们嗨起来~~落穴陷阱之术
+130			等死吧，怪物们！大便玉之术	Master！本喵前来支援！大便玉之术	让我们嗨起来~~大便玉之术
+131			等死吧，怪物们！SP千里眼之术(圈尾思琦)	Master！本喵前来支援！SP千里眼之术(圈尾思琦)	让我们嗨起来~~SP千里眼之术(圈尾思琦)
+132			等死吧，怪物们！高阶角笛术	Master！本喵前来支援！高阶角笛术	让我们嗨起来~~高阶角笛术
+133			等死吧，怪物们！紧急角笛术	Master！本喵前来支援！紧急角笛术	让我们嗨起来~~紧急角笛术
+134			等死吧，怪物们！盾防术	Master！本喵前来支援！盾防术	让我们嗨起来~~盾防术
+135			等死吧，怪物们！格挡术	Master！本喵前来支援！格挡术	让我们嗨起来~~格挡术
+136			等死吧，怪物们！广域角笛术	Master！本喵前来支援！广域角笛术	让我们嗨起来~~广域角笛术
+137			等死吧，怪物们！守护笛	Master！本喵前来支援！守护笛	让我们嗨起来~~守护笛
+138			The holy light will hang over us！Large Heal Flute！	我来负责回复。高阶回复笛	有本喵在，绝对不会有事的！高阶回复笛
+139			圣洁之光将笼罩我们！苏生笛	我来负责回复。苏生笛	有本喵在，绝对不会有事的！苏生笛
+140			圣洁之光将笼罩我们！自我恢复术	我来负责回复。自我恢复术	有本喵在，绝对不会有事的！自我恢复术
+141			圣洁之光将笼罩我们！紧急回复笛	我来负责回复。紧急回复笛	有本喵在，绝对不会有事的！紧急回复笛
+142			等死吧，怪物们！加速笛	Master！本喵前来支援！加速笛	让我们嗨起来~~加速笛
+143			一切都结束了。愤怒之术	不能再让你们欺负主人了！愤怒之术	嘿！吃本喵一招。愤怒之术
+144			一切都结束了。冲锋	不能再让你们欺负主人了！冲锋	嘿！吃本喵一招。冲锋
+145			一切都结束了。冲击波	不能再让你们欺负主人了！冲击波	嘿！吃本喵一招。冲击波
+146			Die, monsters!!! Art of Courage!	Master！本喵前来支援！勇气提升术	让我们嗨起来~~勇气提升术
+147			等死吧，怪物们！隐匿术	Master！本喵前来支援！隐匿术	让我们嗨起来~~隐匿术
+148			圣洁之光将笼罩我们！高阶解毒	我来负责回复。高阶解毒	有本喵在，绝对不会有事的！高阶解毒
+149			圣洁之光将笼罩我们！高阶解毒消臭	我来负责回复。高阶解毒消臭	有本喵在，绝对不会有事的！高阶解毒消臭
+150			圣洁之光将笼罩我们！高阶解毒消臭治伤	我来负责回复。高阶解毒消臭治伤	有本喵在，绝对不会有事的！高阶解毒消臭治伤
+151			圣洁之光将笼罩我们！高阶解毒消臭治伤	我来负责回复。高阶解毒消臭治伤	有本喵在，绝对不会有事的！高阶解毒消臭治伤
+152			圣洁之光将笼罩我们！高阶自然恢复笛	我来负责回复。高阶自然恢复笛	有本喵在，绝对不会有事的！高阶自然恢复笛
+153			等死吧，怪物们！防寒防暑	Master！本喵前来支援！防寒防暑	让我们嗨起来~~防寒防暑
+154			等死吧，怪物们！高阶强走	Master！本喵前来支援！高阶强走	让我们嗨起来~~高阶强走
+155			等死吧，怪物们！听觉保护	Master！本喵前来支援！听觉保护	让我们嗨起来~~听觉保护
+156			等死吧，怪物们！风压保护	Master！本喵前来支援！风压保护	让我们嗨起来~~风压保护
+157			等死吧，怪物们！全属性攻击提升	Master！Meow has come to support！All element attacks are increased.	让我们嗨起来~~全属性攻击提升
+158			等死吧，怪物们！高阶千里眼之术	Master！本喵前来支援！高阶千里眼之术	让我们嗨起来~~高阶千里眼之术
+159			等死吧，怪物们！高阶大便玉之术	Master！本喵前来支援！高阶大便玉之术	让我们嗨起来~~高阶大便玉之术
+160			等死吧，怪物们！高阶落穴陷阱之术	Master！本喵前来支援！高阶落穴陷阱之术	让我们嗨起来~~高阶落穴陷阱之术
+161			等死吧，怪物们！高阶麻痹陷阱之术	Master！本喵前来支援！高阶麻痹陷阱之术	让我们嗨起来~~高阶麻痹陷阱之术
+162			圣光与你同在！支援广域恢复术	大家一起来加血吧。支援广域恢复术	你以为把我们逼入绝境了？笑话。支援广域恢复术
+163			眼拙的家伙，玩儿死你。支援角笛术	扔个玩具给你，嘿嘿。	吹，吹，吹个大气球~
+164			Show Time！！	主人！你的出场时间到了！	天空一声巨响，主人闪亮登场
+165			哼！区区蝼蚁也敢如此叫嚣！	主人闪开，我来啦！！支援轰炸术	开着飞机唱着歌，顺便把怪炸了
+#============End of sheet========

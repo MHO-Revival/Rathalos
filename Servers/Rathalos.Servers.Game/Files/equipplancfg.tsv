@@ -1,0 +1,25 @@
+#TSV
+#============Begin of sheet============
+@Sheet=装备方案配置
+方案ID	默认解锁	默认方案名	解锁道具ID	需求解锁道具数量
+1	1	Scheme1		
+2	1	Scheme2		
+3	1	Scheme3		
+4	0	Scheme4	40302	1
+5	0	Scheme5	40302	1
+6	0	Scheme6	40302	2
+7	0	Scheme7	40302	2
+8	0	Scheme8	40302	2
+9	0	Scheme9	40302	3
+10	0	Scheme10	40302	3
+11	0	Scheme11	40302	3
+12	0	Scheme12	40302	3
+13	0	Scheme13	40302	4
+14	0	Scheme14	40302	4
+15	0	Scheme15	40302	4
+16	0	Scheme16	40302	4
+17	0	Scheme17	40302	4
+18	0	Scheme18	40302	5
+19	0	Scheme19	40302	5
+20	0	Scheme20	40302	5
+#============End of sheet============

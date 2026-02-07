@@ -1,0 +1,3483 @@
+<Objs>
+    <Obj Id="TaskGroupDef">
+        <Id>1</Id>
+        <Name>河狸兽副本任务</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>5</Min>
+                <Max>9</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>2</Id>
+        <Name>蓝速龙副本任务</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>5</Min>
+                <Max>9</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>3</Id>
+        <Name>大野猪副本任务</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>8</Min>
+                <Max>9</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>4</Id>
+        <Name>大怪鸟副本任务</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>10</Min>
+                <Max>14</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>5</Id>
+        <Name>鬼狩蛛副本任务</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>13</Min>
+                <Max>14</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>6</Id>
+        <Name>黄速龙副本任务</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>10</Min>
+                <Max>14</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>7</Id>
+        <Name>沙狸兽副本任务</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>15</Min>
+                <Max>19</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>8</Id>
+        <Name>毒怪鸟副本任务</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>15</Min>
+                <Max>19</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>9</Id>
+        <Name>桃毛兽王副本任务</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>18</Min>
+                <Max>19</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>10</Id>
+        <Name>沙龙王副本任务</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>20</Min>
+                <Max>24</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>11</Id>
+        <Name>盾蟹副本任务</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>23</Min>
+                <Max>24</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>12</Id>
+        <Name>眠鸟副本任务</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>25</Min>
+                <Max>29</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>13</Id>
+        <Name>青怪鸟副本任务</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>25</Min>
+                <Max>29</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>14</Id>
+        <Name>电龙副本任务</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>30</Min>
+                <Max>34</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>15</Id>
+        <Name>金毛兽副本任务</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>30</Min>
+                <Max>34</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>16</Id>
+        <Name>沙雷鸟副本任务</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>20</Min>
+                <Max>24</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>17</Id>
+        <Name>黑狼鸟副本任务</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>33</Min>
+                <Max>34</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>18</Id>
+        <Name>镰蟹副本任务</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>35</Min>
+                <Max>39</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>19</Id>
+        <Name>紫毒鸟副本任务</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>35</Min>
+                <Max>39</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>20</Id>
+        <Name>雪狮子副本任务</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>38</Min>
+                <Max>39</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>21</Id>
+        <Name>雌火龙副本任务</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>40</Min>
+                <Max>44</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>101</Id>
+        <Name>日程表测试1组</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>1</Min>
+                <Max>99</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>210</Id>
+        <Name>艾露猫技能书交纳</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>99</Min>
+                <Max>99</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>210</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>212</Id>
+        <Name>11级艾露实战讨伐训练</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>11</Min>
+                <Max>12</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>222</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>213</Id>
+        <Name>13级艾露实战讨伐训练</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>13</Min>
+                <Max>14</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>222</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>214</Id>
+        <Name>15级艾露实战讨伐训练</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>15</Min>
+                <Max>17</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>222</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>215</Id>
+        <Name>18级艾露实战讨伐训练</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>18</Min>
+                <Max>19</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>222</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>216</Id>
+        <Name>20级艾露实战讨伐训练</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>20</Min>
+                <Max>22</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>222</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>217</Id>
+        <Name>23级艾露实战讨伐训练</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>23</Min>
+                <Max>24</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>222</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>218</Id>
+        <Name>25级艾露实战讨伐训练</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>25</Min>
+                <Max>29</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>222</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>219</Id>
+        <Name>30级艾露实战讨伐训练</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>30</Min>
+                <Max>32</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>222</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>220</Id>
+        <Name>33级艾露实战讨伐训练</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>33</Min>
+                <Max>34</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>222</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>221</Id>
+        <Name>35级艾露实战讨伐训练</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>35</Min>
+                <Max>37</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>222</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>222</Id>
+        <Name>38级艾露实战讨伐训练</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>38</Min>
+                <Max>40</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>222</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>223</Id>
+        <Name>艾露日常训练</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>11</Min>
+                <Max>24</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>223</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>500</Id>
+        <Name>10级问东问西的秋梨欧</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>10</Min>
+                <Max>24</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>500</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>501</Id>
+        <Name>25级问东问西的秋梨欧</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>25</Min>
+                <Max>40</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>500</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>510</Id>
+        <Name>10级每只怪都很特别</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>10</Min>
+                <Max>12</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>510</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>511</Id>
+        <Name>13级每只怪都很特别</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>13</Min>
+                <Max>14</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>510</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>512</Id>
+        <Name>15级每只怪都很特别</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>15</Min>
+                <Max>17</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>510</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>513</Id>
+        <Name>18级每只怪都很特别</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>18</Min>
+                <Max>19</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>510</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>514</Id>
+        <Name>20级每只怪都很特别</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>20</Min>
+                <Max>22</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>510</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>515</Id>
+        <Name>23级每只怪都很特别</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>23</Min>
+                <Max>24</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>510</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>516</Id>
+        <Name>25级每只怪都很特别</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>25</Min>
+                <Max>29</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>510</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>517</Id>
+        <Name>30级每只怪都很特别</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>30</Min>
+                <Max>32</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>510</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>518</Id>
+        <Name>33级每只怪都很特别</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>33</Min>
+                <Max>34</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>510</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>519</Id>
+        <Name>35级每只怪都很特别</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>35</Min>
+                <Max>37</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>510</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>520</Id>
+        <Name>38级每只怪都很特别</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>38</Min>
+                <Max>39</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>510</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>509</Id>
+        <Name>40级每只怪都很特别</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>40</Min>
+                <Max>40</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>510</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>521</Id>
+        <Name>猎人的基本技能</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>10</Min>
+                <Max>19</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>521</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>522</Id>
+        <Name>想要异闻百科全书</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>12</Min>
+                <Max>40</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>522</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>523</Id>
+        <Name>12-16级异闻录</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>12</Min>
+                <Max>16</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>523</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>524</Id>
+        <Name>17-21级异闻录</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>17</Min>
+                <Max>21</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>523</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>525</Id>
+        <Name>22级异闻录</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>22</Min>
+                <Max>26</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>523</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>526</Id>
+        <Name>27级异闻录</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>27</Min>
+                <Max>31</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>523</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>527</Id>
+        <Name>32级异闻录</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>32</Min>
+                <Max>36</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>523</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>528</Id>
+        <Name>37级异闻录</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>37</Min>
+                <Max>40</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>523</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>560</Id>
+        <Name>商人收藏品</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>10</Min>
+                <Max>40</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>560</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>570</Id>
+        <Name>19级猎人纪念币</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>19</Min>
+                <Max>23</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>570</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>571</Id>
+        <Name>24级猎人纪念币</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>24</Min>
+                <Max>28</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>570</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>572</Id>
+        <Name>29级猎人纪念币</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>29</Min>
+                <Max>33</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>570</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>573</Id>
+        <Name>34级猎人纪念币</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>34</Min>
+                <Max>38</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>570</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>574</Id>
+        <Name>39级猎人纪念币</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>39</Min>
+                <Max>40</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>570</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>580</Id>
+        <Name>交付纪念币</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>19</Min>
+                <Max>40</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>580</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>581</Id>
+        <Name>13级赠送</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>13</Min>
+                <Max>24</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>581</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>582</Id>
+        <Name>25级赠送</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>25</Min>
+                <Max>40</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>581</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>110</Id>
+        <Name>初心发明生产日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>5</Min>
+                <Max>24</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>111</Id>
+        <Name>初心烹饪生产日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>5</Min>
+                <Max>24</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>112</Id>
+        <Name>学徒发明生产日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>5</Min>
+                <Max>24</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>113</Id>
+        <Name>学徒烹饪生产日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>5</Min>
+                <Max>24</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>114</Id>
+        <Name>入门发明生产日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>5</Min>
+                <Max>24</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>115</Id>
+        <Name>入门烹饪生产日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>5</Min>
+                <Max>24</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>116</Id>
+        <Name>见习发明生产日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>5</Min>
+                <Max>24</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>117</Id>
+        <Name>见习烹饪生产日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>5</Min>
+                <Max>24</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>118</Id>
+        <Name>技师发明生产日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>5</Min>
+                <Max>24</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>119</Id>
+        <Name>技师烹饪生产日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>5</Min>
+                <Max>24</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>120</Id>
+        <Name>初心发明生产日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>25</Min>
+                <Max>40</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>121</Id>
+        <Name>初心烹饪生产日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>25</Min>
+                <Max>40</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>122</Id>
+        <Name>学徒发明生产日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>25</Min>
+                <Max>40</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>123</Id>
+        <Name>学徒烹饪生产日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>25</Min>
+                <Max>40</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>124</Id>
+        <Name>入门发明生产日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>25</Min>
+                <Max>40</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>125</Id>
+        <Name>入门烹饪生产日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>25</Min>
+                <Max>40</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>126</Id>
+        <Name>见习发明生产日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>25</Min>
+                <Max>40</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>127</Id>
+        <Name>见习烹饪生产日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>25</Min>
+                <Max>40</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>128</Id>
+        <Name>技师发明生产日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>25</Min>
+                <Max>40</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>129</Id>
+        <Name>技师烹饪生产日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>25</Min>
+                <Max>40</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>130</Id>
+        <Name>工匠发明生产日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>25</Min>
+                <Max>40</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>131</Id>
+        <Name>工匠烹饪生产日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>25</Min>
+                <Max>40</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>132</Id>
+        <Name>达人发明生产日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>25</Min>
+                <Max>40</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>133</Id>
+        <Name>达人烹饪生产日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>25</Min>
+                <Max>40</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>134</Id>
+        <Name>专家发明生产日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>25</Min>
+                <Max>40</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>135</Id>
+        <Name>专家烹饪生产日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>25</Min>
+                <Max>40</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>150</Id>
+        <Name>庄园日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>10</Min>
+                <Max>40</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>151</Id>
+        <Name>庄园日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>30</Min>
+                <Max>35</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>152</Id>
+        <Name>庄园日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>30</Min>
+                <Max>35</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>153</Id>
+        <Name>庄园日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>30</Min>
+                <Max>35</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>154</Id>
+        <Name>庄园日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>20</Min>
+                <Max>24</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>155</Id>
+        <Name>庄园日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>25</Min>
+                <Max>29</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>156</Id>
+        <Name>庄园日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>30</Min>
+                <Max>34</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>157</Id>
+        <Name>庄园日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>35</Min>
+                <Max>40</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>136</Id>
+        <Name>学徒珠宝生产日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>25</Min>
+                <Max>40</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>137</Id>
+        <Name>入门珠宝生产日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>25</Min>
+                <Max>40</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>138</Id>
+        <Name>见习珠宝生产日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>25</Min>
+                <Max>40</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>139</Id>
+        <Name>技师珠宝生产日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>25</Min>
+                <Max>40</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>140</Id>
+        <Name>工匠珠宝生产日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>25</Min>
+                <Max>40</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>141</Id>
+        <Name>达人珠宝生产日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>25</Min>
+                <Max>40</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>142</Id>
+        <Name>专家珠宝生产日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>25</Min>
+                <Max>40</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>143</Id>
+        <Name>初心珠宝生产日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>25</Min>
+                <Max>40</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>30</Id>
+        <Name>测试高效</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>15</Min>
+                <Max>17</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>623</Id>
+        <Name>公会日常12-16级异闻录</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>12</Min>
+                <Max>16</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>623</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>624</Id>
+        <Name>公会日常17-21级异闻录</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>17</Min>
+                <Max>21</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>623</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>625</Id>
+        <Name>公会日常22级异闻录</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>22</Min>
+                <Max>26</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>623</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>626</Id>
+        <Name>公会日常27级异闻录</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>27</Min>
+                <Max>31</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>623</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>627</Id>
+        <Name>公会日常32级异闻录</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>32</Min>
+                <Max>36</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>623</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>628</Id>
+        <Name>公会日常37级异闻录</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>37</Min>
+                <Max>40</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>623</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>670</Id>
+        <Name>公会日常19级公会委托</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>19</Min>
+                <Max>23</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>670</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>671</Id>
+        <Name>公会日常24级公会委托</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>24</Min>
+                <Max>28</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>670</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>672</Id>
+        <Name>公会日常29级公会委托</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>29</Min>
+                <Max>33</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>670</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>673</Id>
+        <Name>公会日常34级公会委托</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>34</Min>
+                <Max>38</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>670</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>674</Id>
+        <Name>公会日常39级公会委托</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>39</Min>
+                <Max>40</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>670</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>691</Id>
+        <Name>公会日常25-29狩猎场</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>25</Min>
+                <Max>29</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>691</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>692</Id>
+        <Name>公会日常30-34狩猎场</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>30</Min>
+                <Max>34</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>691</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>693</Id>
+        <Name>公会日常35-37狩猎场</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>35</Min>
+                <Max>37</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>691</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>645</Id>
+        <Name>猎团日常委托</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>19</Min>
+                <Max>99</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>645</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>646</Id>
+        <Name>猎团日常千层</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>25</Min>
+                <Max>99</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>646</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>647</Id>
+        <Name>猎团日常狩猎场</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>15</Min>
+                <Max>99</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>647</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>648</Id>
+        <Name>猎团日常采集</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>5</Min>
+                <Max>99</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>648</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>649</Id>
+        <Name>猎团日常生产</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>10</Min>
+                <Max>99</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>649</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>650</Id>
+        <Name>猎团日常喵喵</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>12</Min>
+                <Max>99</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>650</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>694</Id>
+        <Name>公会日常38-40狩猎场</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>38</Min>
+                <Max>40</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>691</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>102</Id>
+        <Name>猎人之路</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>1</Min>
+                <Max>99</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>161</Id>
+        <Name>10~19级不删档农场日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>10</Min>
+                <Max>19</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>162</Id>
+        <Name>20~39级不删档农场日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>20</Min>
+                <Max>39</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>163</Id>
+        <Name>40~55级不删档农场日常</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>40</Min>
+                <Max>55</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>164</Id>
+        <Name>15~20级新日常B</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>15</Min>
+                <Max>20</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>165</Id>
+        <Name>21~24级新日常A</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>21</Min>
+                <Max>24</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>166</Id>
+        <Name>21~24级新日常B</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>21</Min>
+                <Max>24</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>167</Id>
+        <Name>25~34级新日常A</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>25</Min>
+                <Max>34</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>168</Id>
+        <Name>25~34级新日常B</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>25</Min>
+                <Max>34</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>169</Id>
+        <Name>35~44级新日常A</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>35</Min>
+                <Max>44</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>170</Id>
+        <Name>35~44级新日常B</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>35</Min>
+                <Max>44</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>171</Id>
+        <Name>45~54级新日常A</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>45</Min>
+                <Max>54</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>172</Id>
+        <Name>45~54级新日常B</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>45</Min>
+                <Max>54</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>173</Id>
+        <Name>55级新日常A</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>55</Min>
+                <Max>55</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>174</Id>
+        <Name>55级新日常B</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>55</Min>
+                <Max>55</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>695</Id>
+        <Name>红黄对抗简单难度任务</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>1</Min>
+                <Max>999</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>696</Id>
+        <Name>红黄对抗中等难度任务</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>1</Min>
+                <Max>999</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>697</Id>
+        <Name>红黄对抗困难难度任务</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>1</Min>
+                <Max>999</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>31</Id>
+        <Name>猎团庆典活动</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>466</Id>
+        <Name>星级赏金1.1.1</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>698</Id>
+        <Name>星盘1</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>1</Min>
+                <Max>999</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>699</Id>
+        <Name>星盘2</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>1</Min>
+                <Max>999</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>700</Id>
+        <Name>星盘3</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>1</Min>
+                <Max>999</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>701</Id>
+        <Name>星盘4</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>1</Min>
+                <Max>999</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1494</Id>
+        <Name>赏金1</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1495</Id>
+        <Name>赏金2</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1496</Id>
+        <Name>赏金3</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1497</Id>
+        <Name>赏金4</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1498</Id>
+        <Name>赏金5</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1499</Id>
+        <Name>赏金6</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1500</Id>
+        <Name>赏金7</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1501</Id>
+        <Name>赏金8</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1502</Id>
+        <Name>赏金9</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1503</Id>
+        <Name>赏金10</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1504</Id>
+        <Name>赏金11</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1505</Id>
+        <Name>赏金12</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1506</Id>
+        <Name>赏金13</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1507</Id>
+        <Name>赏金14</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1508</Id>
+        <Name>赏金15</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1509</Id>
+        <Name>赏金16</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1510</Id>
+        <Name>赏金17</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1511</Id>
+        <Name>赏金18</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1512</Id>
+        <Name>赏金19</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1513</Id>
+        <Name>赏金20</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1514</Id>
+        <Name>赏金21</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1515</Id>
+        <Name>赏金22</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1516</Id>
+        <Name>赏金23</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1517</Id>
+        <Name>赏金24</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1518</Id>
+        <Name>赏金25</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1519</Id>
+        <Name>赏金26</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1520</Id>
+        <Name>赏金27</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1521</Id>
+        <Name>赏金28</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1522</Id>
+        <Name>赏金29</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1523</Id>
+        <Name>赏金30</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1524</Id>
+        <Name>赏金31</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1525</Id>
+        <Name>赏金32</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1526</Id>
+        <Name>赏金33</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1527</Id>
+        <Name>赏金34</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1528</Id>
+        <Name>赏金35</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1529</Id>
+        <Name>赏金36</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1530</Id>
+        <Name>赏金37</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1531</Id>
+        <Name>赏金38</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1532</Id>
+        <Name>赏金39</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1533</Id>
+        <Name>赏金40</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1534</Id>
+        <Name>赏金41</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1535</Id>
+        <Name>赏金42</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1536</Id>
+        <Name>赏金43</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1537</Id>
+        <Name>赏金44</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1538</Id>
+        <Name>赏金45</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1539</Id>
+        <Name>赏金46</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1540</Id>
+        <Name>赏金47</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1541</Id>
+        <Name>赏金48</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1542</Id>
+        <Name>赏金49</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1543</Id>
+        <Name>赏金50</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1544</Id>
+        <Name>赏金51</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1545</Id>
+        <Name>赏金52</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1546</Id>
+        <Name>赏金53</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1547</Id>
+        <Name>赏金54</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1548</Id>
+        <Name>赏金55</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1549</Id>
+        <Name>赏金56</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1550</Id>
+        <Name>赏金57</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1551</Id>
+        <Name>赏金58</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1552</Id>
+        <Name>赏金59</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1553</Id>
+        <Name>赏金60</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1554</Id>
+        <Name>赏金61</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1555</Id>
+        <Name>赏金62</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1556</Id>
+        <Name>赏金63</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1557</Id>
+        <Name>赏金64</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1558</Id>
+        <Name>赏金65</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1559</Id>
+        <Name>赏金66</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1560</Id>
+        <Name>赏金67</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1561</Id>
+        <Name>赏金68</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>702</Id>
+        <Name>端午节</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>1</Min>
+                <Max>999</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>703</Id>
+        <Name>夏祭</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>1</Min>
+                <Max>999</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>704</Id>
+        <Name>627突袭！黑夜猎手</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>1</Min>
+                <Max>999</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>705</Id>
+        <Name>七夕</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>1</Min>
+                <Max>999</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>706</Id>
+        <Name>926回流</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>1</Min>
+                <Max>999</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>707</Id>
+        <Name>Halloween_1</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>1</Min>
+                <Max>999</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>708</Id>
+        <Name>Halloween_2</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>1</Min>
+                <Max>999</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>709</Id>
+        <Name>Halloween_3</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>1</Min>
+                <Max>999</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>710</Id>
+        <Name>Halloween_4</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>1</Min>
+                <Max>999</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>711</Id>
+        <Name>1111</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>1</Min>
+                <Max>999</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>712</Id>
+        <Name>116</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>1</Min>
+                <Max>999</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1562</Id>
+        <Name>赏金69</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1563</Id>
+        <Name>赏金70</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>713</Id>
+        <Name>情人节</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>1</Min>
+                <Max>999</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1564</Id>
+        <Name>赏金71</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1565</Id>
+        <Name>赏金72</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1566</Id>
+        <Name>赏金73</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1567</Id>
+        <Name>赏金74</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>714</Id>
+        <Name>愚人节</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>1</Min>
+                <Max>999</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1568</Id>
+        <Name>赏金G37星</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1569</Id>
+        <Name>赏金G37星</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>715</Id>
+        <Name>趣味大赛</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>1</Min>
+                <Max>999</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1570</Id>
+        <Name>赏金G38星</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>1571</Id>
+        <Name>赏金G38星</Name>
+        <Note />
+        <Level>
+            <Obj Id="Obj" />
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>716</Id>
+        <Name>武器狩猎祭</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>1</Min>
+                <Max>999</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+    <Obj Id="TaskGroupDef">
+        <Id>717</Id>
+        <Name>植树节</Name>
+        <Note />
+        <Level>
+            <Obj Id="IntRange">
+                <Min>1</Min>
+                <Max>999</Max>
+            </Obj>
+        </Level>
+        <Star>0</Star>
+        <Group>0</Group>
+        <FreeHuntStage>0</FreeHuntStage>
+        <Stage>0</Stage>
+    </Obj>
+</Objs>
+       

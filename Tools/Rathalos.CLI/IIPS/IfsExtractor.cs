@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
@@ -13,11 +13,20 @@ public class IfsExtractor : IDisposable
     private IntPtr _hModule;
     private readonly string _dllPath;
 
+    static IfsExtractor()
+    {
+        // Register the code pages provider for CJK encoding support in .NET Core/.NET 5+
+        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+    }
+
     // Offsets from the original C++ script
     private const int OFF_OPEN_ARC = 0x16370;
     private const int OFF_OPEN_FILE = 0x1FA20;
     private const int OFF_READ_FILE = 0x220C0;
     private const int OFF_CLOSE_FILE = 0x20BF0;
+    private const int OFF_ADD_FILE = 0x4A60;
+    private const int OFF_CREATE_ARC = 0xFCC0;
+    private const int OFF_FLUSH_ARC = 0x17DF0;
 
     [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Ansi)]
     private static extern IntPtr LoadLibrary(string lpLibFileName);
@@ -33,9 +42,9 @@ public class IfsExtractor : IDisposable
             throw new FileNotFoundException($"Could not load {_dllPath}. Ensure it's in the bin folder and you are running as x86.");
     }
 
-    public void Extract(string archiveName, string targetDir, Action<int, int, string> onProgress = null)
+    public void Extract(string archiveName, string targetDir, Action<int, int, string>? onProgress = null)
     {
-        Console.WriteLine($"[+] Opening Archive: {archiveName}");
+        Console.WriteLine("Opening Archive ..");
 
         IntPtr hArchive = Call_OpenArchive(archiveName);
         if (hArchive == IntPtr.Zero)
@@ -52,22 +61,25 @@ public class IfsExtractor : IDisposable
                 uint readLen = Call_ReadFile(hListFile, buffer);
                 Call_CloseFile(hListFile);
 
-                string listData = Encoding.ASCII.GetString(buffer, 0, (int)readLen);
+                Console.WriteLine("Parse list_file ..");
+
+                // Use GBK encoding for Chinese character support
+                string listData = Encoding.UTF8.GetString(buffer, 0, (int)readLen);
                 string[] files = listData.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
 
                 if (!Directory.Exists(targetDir)) Directory.CreateDirectory(targetDir);
 
                 // Build a set of directories to skip (entries that are prefixes of other entries)
                 var normalizedPaths = files
-                    .Select(f => f.TrimEnd('\0').Replace('/', '\\').TrimEnd('\\'))
-                    .Where(f => !string.IsNullOrWhiteSpace(f) && !f.Contains("\\."))
+                    //.Select(f => f.TrimEnd('\0').Replace('/', '\\').TrimEnd('\\'))
+                    .Where(f => !string.IsNullOrWhiteSpace(f))
                     .ToList();
 
                 var directories = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 foreach (var path in normalizedPaths)
                 {
                     var prefix = path + "\\";
-                    if (normalizedPaths.Any(p => p.StartsWith(prefix, StringComparison.OrdinalIgnoreCase)))
+                    if (normalizedPaths.Any(p => p.StartsWith(path, StringComparison.OrdinalIgnoreCase) && !p.Equals(path, StringComparison.OrdinalIgnoreCase)))
                     {
                         directories.Add(path);
                     }
@@ -100,7 +112,7 @@ public class IfsExtractor : IDisposable
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"[!] Fatal error during extraction: {ex.Message}");
+            Console.WriteLine($"Error 0 ({ex.Message})");
         }
     }
 
@@ -123,6 +135,12 @@ public class IfsExtractor : IDisposable
                 return;
             }
 
+            // Check for buffer overflow like in C++
+            if (size > buffer.Length)
+            {
+                Console.WriteLine($"warning: need to read more! file too long (atm)!");
+            }
+
             byte[] fileContent = buffer[..(int)size];
             string outPath = Path.Combine(targetDir, fileName);
             string dir = Path.GetDirectoryName(outPath);
@@ -142,7 +160,8 @@ public class IfsExtractor : IDisposable
             }
 
             File.WriteAllBytes(outPath, processedContent);
-            Console.WriteLine($"[-] Extracted: {fileName} -> {Path.GetFileName(outPath)} ({processedContent.Length} bytes)");
+            // Match C++ output format: file (filename): size: N
+            Console.WriteLine($"file ({fileName}): size: {processedContent.Length}");
         }
         catch (Exception ex)
         {
@@ -264,14 +283,15 @@ public class IfsExtractor : IDisposable
         if (hArchive == IntPtr.Zero)
             return string.Empty;
 
-        // 2. Open (listfile)
+        // 2. Open (listfile) with flags=0 as per C++ code
         if (Call_OpenFile(hArchive, "(listfile)", out IntPtr hListFile))
         {
             byte[] buffer = new byte[1024 * 1024 * 64]; // 64MB Buffer
             uint readLen = Call_ReadFile(hListFile, buffer);
             Call_CloseFile(hListFile);
 
-            return Encoding.ASCII.GetString(buffer, 0, (int)readLen);
+            // Use GBK encoding for Chinese character support
+            return Encoding.UTF8.GetString(buffer, 0, (int)readLen);
         }
 
         return string.Empty;
@@ -283,7 +303,7 @@ public class IfsExtractor : IDisposable
     /// <param name="archiveName">Path to the IFS archive</param>
     /// <param name="fileName">File path within the archive</param>
     /// <returns>File content as byte array, or null if not found</returns>
-    public byte[] ReadFile(string archiveName, string fileName)
+    public byte[]? ReadFile(string archiveName, string fileName)
     {
         IntPtr hArchive = Call_OpenArchive(archiveName);
         if (hArchive == IntPtr.Zero)
@@ -307,11 +327,104 @@ public class IfsExtractor : IDisposable
         return null;
     }
 
+    /// <summary>
+    /// Creates a new IFS archive from a folder
+    /// </summary>
+    /// <param name="archivePath">Path where the archive will be created</param>
+    /// <param name="sourceFolder">Folder containing files to add to the archive</param>
+    /// <param name="maxFileCount">Maximum number of files the archive can hold (default: 256)</param>
+    /// <param name="onProgress">Optional progress callback (current, total, filename)</param>
+    /// <returns>True if successful, false otherwise</returns>
+    public bool CreateArchive(string archivePath, string sourceFolder, uint maxFileCount = 256, Action<int, int, string>? onProgress = null)
+    {
+        if (!Directory.Exists(sourceFolder))
+        {
+            Console.WriteLine($"[!] Source folder not found: {sourceFolder}");
+            return false;
+        }
+
+        try
+        {
+            // Remove existing archive if it exists (like C++)
+            if (File.Exists(archivePath))
+            {
+                File.Delete(archivePath);
+                Console.WriteLine($"Removed existing archive: {archivePath}");
+            }
+
+            // Create the archive with flags 0x1000000 as per C++
+            Console.WriteLine($"Creating archive: {archivePath}");
+            Call_CreateArchive(archivePath, 0x1000000, maxFileCount, out IntPtr hArchive);
+
+            if (hArchive == IntPtr.Zero)
+            {
+                Console.WriteLine("[!] Failed to create archive.");
+                return false;
+            }
+
+            // Get all files from the source folder recursively
+            var files = Directory.GetFiles(sourceFolder, "*", SearchOption.AllDirectories);
+            int totalFiles = files.Length;
+            int currentFile = 0;
+
+            foreach (var filePath in files)
+            {
+                currentFile++;
+
+                // Get the relative path (destination path inside the archive)
+                string relativePath = Path.GetRelativePath(sourceFolder, filePath);
+
+                // Normalize path separators to backslashes
+                relativePath = relativePath.Replace('/', '\\');
+
+                // Trigger progress update
+                onProgress?.Invoke(currentFile, totalFiles, relativePath);
+
+                // Add file to archive
+                Call_AddFile(hArchive, filePath, relativePath);
+                Console.WriteLine($"{relativePath} patched!");
+            }
+
+            // Flush/close the archive
+            Call_FlushArchive(hArchive);
+            Console.WriteLine($"Archive created successfully with {totalFiles} files.");
+
+            return true;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"[!] Error creating archive: {ex.Message}");
+            return false;
+        }
+    }
+
+    /// <summary>
+    /// Creates a patch archive from a "patch" folder (convenience method matching C++ createPatch)
+    /// </summary>
+    /// <param name="patchArchiveName">Name of the patch archive to create (default: "patch.ifs")</param>
+    /// <param name="patchFolder">Folder containing patch files (default: "patch")</param>
+    /// <returns>True if successful, false otherwise</returns>
+    public bool CreatePatch(string patchArchiveName = "patch.ifs", string patchFolder = "patch")
+    {
+        return CreateArchive(patchArchiveName, patchFolder);
+    }
+
     #region ASM Bridge Calls
+
+    /// <summary>
+    /// Allocates a native string using the appropriate encoding for MHO (GBK for Chinese support)
+    /// </summary>
+    private IntPtr StringToNativeAnsi(string str)
+    {
+        byte[] bytes = Encoding.UTF8.GetBytes(str + '\0'); // Null-terminated
+        IntPtr ptr = Marshal.AllocHGlobal(bytes.Length);
+        Marshal.Copy(bytes, 0, ptr, bytes.Length);
+        return ptr;
+    }
 
     private IntPtr Call_OpenArchive(string path)
     {
-        IntPtr pPath = Marshal.StringToHGlobalAnsi(path);
+        IntPtr pPath = StringToNativeAnsi(path);
         try
         {
             using var asm = new AsmBuilder();
@@ -327,7 +440,7 @@ public class IfsExtractor : IDisposable
 
     private bool Call_OpenFile(IntPtr hArchive, string fileName, out IntPtr hFile)
     {
-        IntPtr pName = Marshal.StringToHGlobalAnsi(fileName);
+        IntPtr pName = StringToNativeAnsi(fileName);
         IntPtr pOutHandle = Marshal.AllocHGlobal(4);
         try
         {
@@ -354,12 +467,27 @@ public class IfsExtractor : IDisposable
 
     private uint Call_ReadFile(IntPtr hFile, byte[] buffer)
     {
+        // Validate file handle
+        if (hFile == IntPtr.Zero)
+        {
+            Console.WriteLine("[!] Invalid file handle in Call_ReadFile");
+            return 0;
+        }
+
         GCHandle pin = GCHandle.Alloc(buffer, GCHandleType.Pinned);
         IntPtr pReadLen = Marshal.AllocHGlobal(4);
         try
         {
             using var asm = new AsmBuilder();
-            // C++: push 1; lea eax, [read_length]; push eax; mov ecx, size; push ecx; mov edx, buf; mov ecx, file;
+            // C++ assembly pattern:
+            // push 1
+            // lea eax, [read_length]
+            // push eax
+            // mov ecx, buf_size
+            // push ecx
+            // mov edx, buf
+            // mov ecx, file
+            // call ifsReadFile
             asm.Push(1)
                .Push(pReadLen.ToInt32())
                .Push(buffer.Length)
@@ -385,6 +513,70 @@ public class IfsExtractor : IDisposable
         // C++: __asm mov esi, file; call ifsCloseFile
         asm.Mov(Reg.ESI, hFile.ToInt32())
            .Mov(Reg.EAX, _hModule.ToInt32() + OFF_CLOSE_FILE)
+           .Call(Reg.EAX)
+           .Emit(Op.Ret)
+           .Run();
+    }
+
+    private void Call_CreateArchive(string archivePath, uint flags, uint maxFileCount, out IntPtr hArchive)
+    {
+        IntPtr pPath = StringToNativeAnsi(archivePath);
+        IntPtr pOutHandle = Marshal.AllocHGlobal(4);
+        try
+        {
+            using var asm = new AsmBuilder();
+            // C++: mov eax, flags; push eax; mov ebx, max_file_count; push ebx; mov ecx, pName; mov edx, archive; call ifsCreateArchive
+            asm.Mov(Reg.EAX, (int)flags)
+               .Push(Reg.EAX)
+               .Mov(Reg.EBX, (int)maxFileCount)
+               .Push(Reg.EBX)
+               .Mov(Reg.ECX, pPath.ToInt32())
+               .Mov(Reg.EDX, pOutHandle.ToInt32())
+               .Mov(Reg.EAX, _hModule.ToInt32() + OFF_CREATE_ARC)
+               .Call(Reg.EAX)
+               .Emit(Op.Ret)
+               .Run();
+
+            hArchive = (IntPtr)Marshal.ReadInt32(pOutHandle);
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(pPath);
+            Marshal.FreeHGlobal(pOutHandle);
+        }
+    }
+
+    private void Call_AddFile(IntPtr hArchive, string sourceFilePath, string storeAsName)
+    {
+        IntPtr pSource = StringToNativeAnsi(sourceFilePath);
+        IntPtr pStoreName = StringToNativeAnsi(storeAsName);
+        try
+        {
+            using var asm = new AsmBuilder();
+            // C++: mov eax, archive; push eax; mov edx, filename; mov ecx, storename; mov esi, archive; call ifsAddFile
+            asm.Mov(Reg.EAX, hArchive.ToInt32())
+               .Push(Reg.EAX)
+               .Mov(Reg.EDX, pSource.ToInt32())
+               .Mov(Reg.ECX, pStoreName.ToInt32())
+               .Mov(Reg.ESI, hArchive.ToInt32())
+               .Mov(Reg.EAX, _hModule.ToInt32() + OFF_ADD_FILE)
+               .Call(Reg.EAX)
+               .Emit(Op.Ret)
+               .Run();
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(pSource);
+            Marshal.FreeHGlobal(pStoreName);
+        }
+    }
+
+    private void Call_FlushArchive(IntPtr hArchive)
+    {
+        using var asm = new AsmBuilder();
+        // C++: __asm mov esi, archive; call ifsFlushArchive
+        asm.Mov(Reg.ESI, hArchive.ToInt32())
+           .Mov(Reg.EAX, _hModule.ToInt32() + OFF_FLUSH_ARC)
            .Call(Reg.EAX)
            .Emit(Op.Ret)
            .Run();

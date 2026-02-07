@@ -1,0 +1,441 @@
+#TSV
+#============Begin of sheet============
+@Sheet=系统提示
+提示ID	提示内容	提示位置1	信息颜色1	提示位置2	信息颜色2	提示位置3	信息颜色3	提示位置4	信息颜色4	提示位置5	信息颜色5	对应icon
+6500	What a pawky boar!	3	10									
+6501	Lovely baby will be fooled by being knocked on the head?	3	10									
+6502	Don't throw away items you gathered before, they are useful!	3	10									
+6503	Just using those good thing you took before!	3	10									
+6504	Try your best to beat it!	3	10									
+6505	These small monster are very naughty, beat them!	3	10									
+6506	Go for it, young guys!	3	10									
+6507	Don't look down on a Barrel Bomb!	3	10									
+6508	Don't be attracted by its hard-shell!	3	10									
+6509	huh…Actually it is easy to get along with, but a little bad-tempered.	3	10									
+6510	Look! they ran away, means you are successful.	3	10									
+6511	Fight a quick battle to force a quick decision!	3	10									
+6512	Gather more, you must be useful! And don't relax your vigilance!	3	10									
+6513	Don't tell me you miss the mark beacause it's too far???	3	10									
+6514	It seems like that it's hard to deal with!	3	10									
+6515	Huh, do you remember the stuff you dug out? Using it sparingly, you will need it later.	3	10									
+6516	Seize the chance to attack it!	3	10									
+6517	It's almost time to sharpen your knife!	3	10									
+6518	This task is a little bit troublesome!	3	10									
+6519	Ha, what did I say before! Use Sonic Bombs sparingly!	3	10									
+6520	Though their quantity is not too much, they can also arrange in M or H.	3	10									
+6521	Feeling the power of Blue Yian Kut-Ku in advance!	3	10									
+6522	Monster coming again. There are enough bullets, hurry up!	3	10									
+6523	There is not much time!	3	10									
+6524	Using trap is a good way to defeat it	3	10									
+6525	They have some helpers, don't be negligent!	3	10									
+6526	Don't be frightened by their looks	3	10									
+6527	Hey! Listen to me..You'd better get one for each person	3	10									
+6528	If you was hit by something, use Dung Bomb quickly!	3	10									
+6529	It knows where you are even without any vision! How terrible!!!	3	10									
+6530	Maybe hunting one may seem hard to you, but there are four! Go for it!	3	10									
+6531	Being beautiful doesn't mean meekness!	3	10									
+6532	You have 15 sec to get bullets, so Bowgun will be more powerful! Total 3 chances is available.	3	10									
+6533	Whether this task is too hard for you or not, time to prove it!	3	10									
+6534	This task is a little bit troublesome!	3	10									
+6535	This is just a warm-up!	3	10									
+6536	Gathering item as much as possible! You will need it!	3	10									
+6537	More and more Genpreys are coming!	3	10									
+6538	The duty of maintaining world peace will be yours! Hahahah!	3	10									
+6539	You have to hunt a large group of monsters. Don't take it lightly!	3	10									
+6540	Pay attention to Vespoids! Don't be distracted!	3	10									
+6541	Be careful! They often turn angry from embarrassment, and become increasingly intense!	3	10									
+6542	Siezing the opportunity that it is weak and slow. Faster and faster, too late to regret!	3	10									
+6543	To find out which one is the real target!	3	10									
+6544	Rat..Rath…Rathian!!(´Д`)	3	10									
+6545	Accelerated!!!	3	10									
+6546	What did I say? Monster turned angry from embarrassment! Hurry up guys!	3	10									
+6600	Ah~You really have a thing or two	3	10									
+6601	Look at that! There is more than one! Gather much more Sonic Bombs!	3	10									
+6602	There are two in this round~ Good things should be in pairs~ haha!!!	3	10									
+6603	We'll soon be successful, don't give up!	3	10									
+6604	15 seconds have gone by, gathering more bullets!	3	10									
+6605	[Round 1]Kill Bullfangos in 20 seconds											
+6606	[Round 1]Kill Bullfangos in 40 seconds											
+6607	[Round 1]Kill Bullfangos in 50 seconds											
+6608	[Round 1]Kill Bullfangos in 60 seconds											
+6609	[Round 2]Hit Caeserber on the head in 20 seconds											
+6610	[Round 2]Hit Caeserber on the head in 30 seconds											
+6611	[Round 2]Hit Caeserber on the head in 40 seconds											
+6612	[Round 2]Hit Caeserber on the head in 60 seconds											
+6613	[Round 3]Gather Sonic Bombs in 30 seconds											
+6614	[Round 3]Gather Sonic Bombs in 40 seconds											
+6615	[Round 3]Gather Sonic Bombs in 50 seconds											
+6616	[Round 3]Gather Sonic Bombs in 60 seconds											
+6617	[Round 4]Topple Yian Kut-ku in 90 seconds											
+6618	[Round 4]Topple Yian Kut-ku in 130 seconds											
+6619	[Round 4]Topple Yian Kut-ku in 150 seconds											
+6620	[Round 4]Topple Yian Kut-ku in 180 seconds											
+6621	[Round 5]Kill Bulldrome in 120 seconds (not capture)											
+6622	[Round 5]Kill Bulldrome in 160 seconds (not capture)											
+6623	[Round 5]Kill Bulldrome in 200 seconds (not capture)											
+6624	[Round 5]Kill Bulldrome in 240 seconds (not capture)											
+6625	[Round 6]Kill Genpreys in 30 seconds											
+6626	[Round 6]Kill Genpreys in 40 seconds											
+6627	[Round 6]Kill Genpreys in 50 seconds											
+6628	[Round 6]Kill Genpreys in 60 seconds											
+6629	[Round 7]Hit Gendrome on the head in 30 seconds											
+6630	[Round 7]Hit Gendrome on the head in 40 seconds											
+6631	[Round 7]Hit Gendrome on the head in 50 seconds											
+6632	[Round 7]Hit Gendrome on the head in 60 seconds											
+6633	[Round 8]Gather Barrel Bomb L in 30 seconds											
+6634	[Round 8]Gather Barrel Bomb L in 40 seconds											
+6635	[Round 8]Gather Barrel Bomb L in 50 seconds											
+6636	[Round 8]Gather Barrel Bomb L in 60 seconds											
+6637	[Round 9]Topple Baelidae in 90 seconds											
+6638	[Round 9]Topple Baelidae in 130 seconds											
+6639	[Round 9]Topple Baelidae in 150 seconds											
+6640	[Round 9]Topple Baelidae in 180 seconds											
+6641	[Round 10]Kill Yian Kut-ku in 120 seconds (not capture)											
+6642	[Round 10]Kill Yian Kut-ku in 160 seconds (not capture)											
+6643	[Round 10]Kill Yian Kut-ku in 200 seconds (not capture)											
+6644	[Round 10]Kill Yian Kut-ku in 240 seconds (not capture)											
+6645	[Round 11]Defeat Melynxs in 30 seconds											
+6646	[Round 11]Defeat Melynxs in 40 seconds											
+6647	[Round 11]Defeat Melynxs in 50 seconds											
+6648	[Round 11]Defeat Melynxs in 60 seconds											
+6649	[Round 12]Hit Daimyo Hermitaur on the back shell in 30 seconds											
+6650	[Round 12]Hit Daimyo Hermitaur on the back shell in 40 seconds											
+6651	[Round 12]Hit Daimyo Hermitaur on the back shell in 50 seconds											
+6652	[Round 12]Hit Daimyo Hermitaur on the back shell in 60 seconds											
+6653	[Round 13]Gather Sonic Bombs in 30 seconds											
+6654	[Round 13]Gather Sonic Bombs in 40 seconds											
+6655	[Round 13]Gather Sonic Bombs in 50 seconds											
+6656	[Round 13]Gather Sonic Bombs in 60 seconds											
+6657	[Round 14]Break Yellow-Caeserber's head in 90 seconds											
+6658	[Round 14]Break Yellow-Caeserber's head in 130 seconds											
+6659	[Round 14]Break Yellow-Caeserber's head in 150 seconds											
+6660	[Round 14]Break Yellow-Caeserber's head in 180 seconds											
+6661	[Round 15]Kill Gypceros in 120 seconds (not capture)											
+6662	[Round 15]Kill Gypceros in 160 seconds (not capture)											
+6663	[Round 15]Kill Gypceros in 200 seconds (not capture)											
+6664	[Round 15]Kill Gypceros in 240 seconds (not capture)											
+6665	[Round 16]Kill Hermaitaurs in 30 seconds											
+6666	[Round 16]Kill Hermaitaurs in 40 seconds											
+6667	[Round 16]Kill Hermaitaurs in 50 seconds											
+6668	[Round 16]Kill Hermaitaurs in 60 seconds											
+6669	[Round 17]Hit Congalala on the head in 30 seconds											
+6670	[Round 17]Hit Congalala on the head in 40 seconds											
+6671	[Round 17]Hit Congalala on the head in 50 seconds											
+6672	[Round 17]Hit Congalala on the head in 60 seconds											
+6673	[Round 18]Gather Whetstones in 30 seconds											
+6674	[Round 18]Gather Whetstones in 40 seconds											
+6675	[Round 18]Gather Whetstones in 50 seconds											
+6676	[Round 18]Gather Whetstones in 60 seconds											
+6677	[Round 19]Topple Chramine in 90 seconds											
+6678	[Round 19]Topple Chramine in 130 seconds											
+6679	[Round 19]Topple Chramine in 150 seconds											
+6680	[Round 19]Topple Chramine in 180 seconds											
+6681	[Round 20]Kill Cephadrome in 120 seconds (not capture)											
+6682	[Round 20]Kill Cephadrome in 160 seconds (not capture)											
+6683	[Round 20]Kill Cephadrome in 200 seconds (not capture)											
+6684	[Round 20]Kill Cephadrome in 240 seconds (not capture)											
+6685	[Round 21]Kill Bullfangos in 45 seconds											
+6686	[Round 21]Kill Bullfangos in 60 seconds											
+6687	[Round 21]Kill Bullfangos in 75 seconds											
+6688	[Round 21]Kill Bullfangos in 90 seconds											
+6689	[Round 21]Slay Vespoids in 45 seconds											
+6690	[Round 21]Slay Vespoids in 60 seconds											
+6691	[Round 21]Slay Vespoids in 75 seconds											
+6692	[Round 21]Slay Vespoids in 90 seconds											
+6693	[Round 22]Hit Blue Yian Kut-Ku in 45 seconds											
+6694	[Round 22]Hit Blue Yian Kut-Ku in 60 seconds											
+6695	[Round 22]Hit Blue Yian Kut-Ku in 75 seconds											
+6696	[Round 22]Hit Blue Yian Kut-Ku in 90 seconds											
+6697	[Round 23]Kill Cephalos in 60 seconds											
+6698	[Round 23]Kill Cephalos in 80 seconds											
+6699	[Round 23]Kill Cephalos in 100 seconds											
+6700	[Round 23]Kill Cephalos in 120 seconds											
+6701	[Round 24]Break Chramine's head in 60 seconds											
+6702	[Round 24]Break Chramine's head in 90 seconds											
+6703	[Round 24]Break Chramine's head in 110 seconds											
+6704	[Round 24]Break Chramine's head in 120 seconds											
+6705	[Round 25]Kill Blue Yian Kut-Ku in 90 seconds (not capture)											
+6706	[Round 25]Kill Blue Yian Kut-Ku in 130 seconds (not capture)											
+6707	[Round 25]Kill Blue Yian Kut-Ku in 150 seconds (not capture)											
+6708	[Round 25]Kill Blue Yian Kut-Ku in 180 seconds (not capture)											
+6709	[Round 26]Defeat Shakalaka in 45 seconds											
+6710	[Round 26]Defeat Shakalaka in 60 seconds											
+6711	[Round 26]Defeat Shakalaka in 75 seconds											
+6712	[Round 26]Defeat Shakalaka in 90 seconds											
+6713	[Round 27]Topple Silver Hypnocatrice in 60 seconds											
+6714	[Round 27]Topple Silver Hypnocatrice in 80 seconds											
+6715	[Round 27]Topple Silver Hypnocatrice in 100 seconds											
+6716	[Round 27]Topple Silver Hypnocatrice in 120 seconds											
+6717	[Round 28]Gather Dung Bombs in 60 seconds											
+6718	[Round 28]Gather Dung Bombs in 80 seconds											
+6719	[Round 28]Gather Dung Bombs in 100 seconds											
+6720	[Round 28]Gather Dung Bombs in 120 seconds											
+6721	[Round 29]Break Gold-Congalala's head in 90 seconds											
+6722	[Round 29]Break Gold-Congalala's head in 130 seconds											
+6723	[Round 29]Break Gold-Congalala's head in 150 seconds											
+6724	[Round 29]Break Gold-Congalala's head in 180 seconds											
+6725	[Round 30]Kill Khezu in 90 seconds (not capture)											
+6726	[Round 30]Kill Khezu in 130 seconds (not capture)											
+6727	[Round 30]Kill Khezu in 150 seconds (not capture)											
+6728	[Round 30]Kill Khezu in 180 seconds (not capture)											
+6729	[Round 31]Kill Ceanataurs in 45 seconds											
+6730	[Round 31]Kill Ceanataurs in 60 seconds											
+6731	[Round 31]Kill Ceanataurs in 75 seconds											
+6732	[Round 31]Kill Ceanataurs in 90 seconds											
+6733	[Round 32]Topple Hypnocatrice in 60 seconds											
+6734	[Round 32]Topple Hypnocatrice in 80 seconds											
+6735	[Round 32]Topple Hypnocatrice in 100 seconds											
+6736	[Round 32]Topple Hypnocatrice in 120 seconds											
+6737	[Round 33]Slay Vespoids in 60 seconds											
+6738	[Round 33]Slay Vespoids in 80 seconds											
+6739	[Round 33]Slay Vespoids in 100 seconds											
+6740	[Round 33]Slay Vespoids in 120 seconds											
+6741	[Round 34]Break Purple-Gypceros's head in 60 seconds											
+6742	[Round 34]Break Purple-Gypceros's head in 90 seconds											
+6743	[Round 34]Break Purple-Gypceros's head in 110 seconds											
+6744	[Round 34]Break Purple-Gypceros's head in 120 seconds											
+6745	[Round 39]Kill Red Khezu in 120 seconds (not capture)											
+6746	[Round 39]Kill Red Khezu in 160 seconds (not capture)											
+6747	[Round 39]Kill Red Khezu in 200 seconds (not capture)											
+6748	[Round 39]Kill Red Khezu in 240 seconds (not capture)											
+6749	[Round 35]Kill Yian Garuga in 120 seconds (not caoture)											
+6750	[Round 35]Kill Yian Garuga in 160 seconds (not caoture)											
+6751	[Round 35]Kill Yian Garuga in 200 seconds (not caoture)											
+6752	[Round 35]Kill Yian Garuga in 240 seconds (not caoture)											
+6753	[Round 36]Kill Congas in 60 seconds											
+6754	[Round 36]Kill Congas in 80 seconds											
+6755	[Round 36]Kill Congas in 100 seconds											
+6756	[Round 36]Kill Congas in 120 seconds											
+6757	[Round 37]Defeat Felynes in 60 seconds											
+6758	[Round 37]Defeat Felynes in 80 seconds											
+6759	[Round 37]Defeat Felynes in 100 seconds											
+6760	[Round 37]Defeat Felynes in 120 seconds											
+6761	[Round 38]Kill Gendrome in 90 seconds (not capture)											
+6762	[Round 38]Kill Gendrome in 130 seconds (not capture)											
+6763	[Round 38]Kill Gendrome in 150 seconds (not capture)											
+6764	[Round 38]Kill Gendrome in 180 seconds (not capture)											
+6765	[Round 40]Kill Bulldrome in 120 seconds (not capture)											
+6766	[Round 40]Kill Bulldrome in 160 seconds (not capture)											
+6767	[Round 40]Kill Bulldrome in 200 seconds (not capture)											
+6768	[Round 40]Kill Bulldrome in 240 seconds (not capture)											
+6769	[Round 39]Kill Khezu in 120 seconds (not capture)											
+6770	[Round 39]Kill Khezu in 160 seconds (not capture)											
+6771	[Round 39]Kill Khezu in 200 seconds (not capture)											
+6772	[Round 39]Kill Khezu in 240 seconds (not capture)											
+6773	[Round 61]Slay Vespoids in 120 seconds											
+6774	[Round 61]Slay Vespoids in 160 seconds											
+6775	[Round 61]Slay Vespoids in 200 seconds											
+6776	[Round 61]Slay Vespoids in 240 seconds											
+6777	[Round 62]Kill Monoblos in 120 seconds (not capture)											
+6778	[Round 62]Kill Monoblos in 160 seconds (not capture)											
+6779	[Round 62]Kill Monoblos in 200 seconds (not capture)											
+6780	[Round 62]Kill Monoblos in 240 seconds (not capture)											
+6781	[Round 63]Kill Yian Garuga in 120 seconds (not capture)											
+6782	[Round 63]Kill Yian Garuga in 160 seconds (not capture)											
+6783	[Round 63]Kill Yian Garuga in 200 seconds (not capture)											
+6784	[Round 63]Kill Yian Garuga in 240 seconds (not capture)											
+6785	Round {数值} begins											
+6786	Round {数值} ends											
+6787	Kill Red Khezu											
+6788												
+6789	[Round 65]Kill Rathian in 180 seconds (not capture)											
+6790	[Round 65]Kill Rathian in 240 seconds (not capture)											
+6791	[Round 65]Kill Rathian in 300 seconds (not capture)											
+6792	[Round 65]Kill Rathian in 360 seconds (not capture)											
+6793	[Round 63]Kill Purple Gypceros in 120 seconds (not capture)											
+6794	[Round 63]Kill Purple Gypceros in 160 seconds (not capture)											
+6795	[Round 63]Kill Purple Gypceros in 200 seconds (not capture)											
+6796	[Round 63]Kill Purple Gypceros in 240 seconds (not capture)											
+6797	[Round 64]Kill Estrellian in 120 seconds (not capture)											
+6798	[Round 64]Kill Estrellian in 160 seconds (not capture)											
+6799	[Round 64]Kill Estrellian in 200 seconds (not capture)											
+6800	[Round 64]Kill Estrellian in 240 seconds (not capture)											
+6873	[Round 41]Kill Genpreys in 60 seconds (not capture)											
+6874	[Round 41]Kill Genpreys in 80 seconds (not capture)											
+6875	[Round 41]Kill Genpreys in 100 seconds (not capture)											
+6876	[Round 41]Kill Genpreys in 120 seconds (not capture)											
+6877	[Round 42]Topple Red Khezu in 90 seconds											
+6878	[Round 42]Topple Red Khezu in 130 seconds											
+6879	[Round 42]Topple Red Khezu in 150 seconds											
+6880	[Round 42]Topple Red Khezu in 180 seconds											
+6801	[Round 43]Gather Ration in 90 seconds											
+6802	[Round 43]Gather Ration in 130 seconds											
+6803	[Round 43]Gather Ration in 150 seconds											
+6804	[Round 43]Gather Ration in 180 seconds											
+6805	[Round 44]Break Blangonga's head in 120 seconds											
+6806	[Round 44]Break Blangonga's head in 160 seconds											
+6807	[Round 44]Break Blangonga's head in 200 seconds											
+6808	[Round 44]Break Blangonga's head in 240 seconds											
+6809	[Round 45]Kill Basarios in 150 seconds (not capture)											
+6810	[Round 45]Kill Basarios in 200 seconds (not capture)											
+6811	[Round 45]Kill Basarios in 240 seconds (not capture)											
+6812	[Round 45]Kill Basarios in 300 seconds (not capture)											
+6813	[Round 46]Kill Bullfangos in 90 seconds											
+6814	[Round 46]Kill Bullfangos in 130 seconds											
+6815	[Round 46]Kill Bullfangos in 150 seconds											
+6816	[Round 46]Kill Bullfangos in 180 seconds											
+6817	[Round 47]Topple Estrellian in 90 seconds											
+6818	[Round 47]Topple Estrellian in 130 seconds											
+6819	[Round 47]Topple Estrellian in 150 seconds											
+6820	[Round 47]Topple Estrellian in 180 seconds											
+6821	[Round 48]Gather EZ Antidotes in 120 seconds											
+6822	[Round 48]Gather EZ Antidotes in 160 seconds											
+6823	[Round 48]Gather EZ Antidotes in 200 seconds											
+6824	[Round 48]Gather EZ Antidotes in 240 seconds											
+6825	[Round 49]Break Ice-Chramine's head in 150 seconds											
+6826	[Round 49]Break Ice-Chramine's head in 200 seconds											
+6827	[Round 49]Break Ice-Chramine's head in 240 seconds											
+6828	[Round 49]Break Ice-Chramine's head in 300 seconds											
+6829	[Round 50]Kill Purple Gypceros in 150 seconds (not capture)											
+6830	[Round 50]Kill Purple Gypceros in 200 seconds (not capture)											
+6831	[Round 50]Kill Purple Gypceros in 240 seconds (not capture)											
+6832	[Round 50]Kill Purple Gypceros in 300 seconds (not capture)											
+6833	[Round 51]Kill Genpreys in 60 seconds											
+6834	[Round 51]Kill Genpreys in 80 seconds											
+6835	[Round 51]Kill Genpreys in 100 seconds											
+6836	[Round 51]Kill Genpreys in 120 seconds											
+6837	[Round 52]Topple Monoblos in 90 seconds											
+6838	[Round 52]Topple Monoblos in 130 seconds											
+6839	[Round 52]Topple Monoblos in 150 seconds											
+6840	[Round 52]Topple Monoblos in 180 seconds											
+6841	[Round 53]Gather EZ Dash Juice in 90 seconds											
+6842	[Round 53]Gather EZ Dash Juice in 130 seconds											
+6843	[Round 53]Gather EZ Dash Juice in 150 seconds											
+6844	[Round 53]Gather EZ Dash Juice in 180 seconds											
+6845	[Round 54]Break Doom-Estrellian's head in 120 seconds											
+6846	[Round 54]Break Doom-Estrellian's head in 160 seconds											
+6847	[Round 54]Break Doom-Estrellian's head in 200 seconds											
+6848	[Round 54]Break Doom-Estrellian's head in 240 seconds											
+6849	[Round 55]Kill Estrellian in 60 seconds (not capture)											
+6850	[Round 55]Kill Estrellian in 150 seconds (not capture)											
+6851	[Round 55]Kill Estrellian in 200 seconds (not capture)											
+6852	[Round 55]Kill Estrellian in 240 seconds (not capture)											
+6853	[Round 56]Kill Gendrome in 90 seconds (not capture)											
+6854	[Round 56]Kill Gendrome in 130 seconds (not capture)											
+6855	[Round 56]Kill Gendrome in 150 seconds (not capture)											
+6856	[Round 56]Kill Gendrome in 180 seconds (not capture)											
+6857	[Round 57]Topple Yian Garuga in 90 seconds											
+6858	[Round 57]Topple Yian Garuga in 130 seconds											
+6859	[Round 57]Topple Yian Garuga in 150 seconds											
+6860	[Round 57]Topple Yian Garuga in 180 seconds											
+6861	[Round 58]Gather Small Whetstones in 120 seconds											
+6862	[Round 58]Gather Small Whetstones in 160 seconds											
+6863	[Round 58]Gather Small Whetstones in 200 seconds											
+6864	[Round 58]Gather Small Whetstones in 240 seconds											
+6865	[Round 59]Break Silver Hypnocatrice's head in 150 seconds											
+6866	[Round 59]Break Silver Hypnocatrice's head in 200 seconds											
+6867	[Round 59]Break Silver Hypnocatrice's head in 240 seconds											
+6868	[Round 59]Break Silver Hypnocatrice's head in 300 seconds											
+6869	[Round 60]Kill Akura Vashimu in 150 seconds (not capture)											
+6870	[Round 60]Kill Akura Vashimu in 200 seconds (not capture)											
+6871	[Round 60]Kill Akura Vashimu in 240 seconds (not capture)											
+6872	[Round 60]Kill Akura Vashimu in 300 seconds (not capture)											
+6881	[Round 46]Kill Hermitaurs in 90 seconds											
+6882	[Round 46]Kill Hermitaurs in 130 seconds											
+6883	[Round 46]Kill Hermitaurs in 150 seconds											
+6884	[Round 46]Kill Hermitaurs in 180 seconds											
+6885	[Round 62]Kill Basarios in 120 seconds (not capture)											
+6886	[Round 62]Kill Basarios in 160 seconds (not capture)											
+6887	[Round 62]Kill Basarios in 200 seconds (not capture)											
+6888	[Round 62]Kill Basarios in 240 seconds (not capture)											
+6889	[Round 63]Kill Silver Hypnocatrice in 120 seconds (not capture)											
+6890	[Round 63]Kill Silver Hypnocatrice in 160 seconds (not capture)											
+6891	[Round 63]Kill Silver Hypnocatrice in 200 seconds (not capture)											
+6892	[Round 63]Kill Silver Hypnocatrice in 240 seconds (not capture)											
+6893	[Round 64]Kill Doom Estrellian in 120 seconds (not capture)											
+6894	[Round 64]Kill Doom Estrellian in 160 seconds (not capture)											
+6895	[Round 64]Kill Doom Estrellian in 200 seconds (not capture)											
+6896	[Round 64]Kill Doom Estrellian in 240 seconds (not capture)											
+6897	Kill Bullfangos											
+6898	Hit caeserber on the head											
+6899	Gather Sonic Bomb											
+6900	Topple Yian Kut-Ku											
+6901	Kill Bulldrome (not capture)											
+6902	Kill Genpreys											
+6903	Hit Gendrome on the head											
+6904	Gather Barrel Bomb L											
+6905	Topple Baelidae											
+6906	Kill Yian Kut-Ku											
+6907	Defeat Melynx											
+6908	Hit Daimyo Hermitaur on the back shell											
+6909	Gather Sonic Bomb											
+6910	Break Yellow Caeserber's head											
+6911	Kill Gypceros (not capture)											
+6912	Kill Hermitaur											
+6913	Hit Congalala on the head											
+6914	Gaher Whetstone											
+6915	Topple Chramine											
+6916	Kill Cephadrome (not capture)											
+6917	Kill Bullfangos											
+6918	Hit Blue Yian Kut-Ku on the head											
+6919	Kill Cephalos											
+6920	Break Chramine's head											
+6921	Kill Blue Yian Kut-Ku (not capture)											
+6922	Defeat Shakalakas											
+6923	Topple Silver Hypnocatrice											
+6924	Gather Dung Bombs											
+6925	Break Gold-Congalala's head											
+6926	Kill Khezu (not capture)											
+6927	Kill Ceanataurs											
+6928	Topple Hypnocatrice											
+6929	Slay Vespoids											
+6930	Break Purple-Gypceros's head											
+6931	Kill Yian Garuga (capture)											
+6932	Kill Congas											
+6933	Defeat Felyne											
+6934	Kill Gendrome (not capture)											
+6935	Kill Khezu (not capture)											
+6936	Kill Bulldrome (not capture)											
+6937	Kill Genpreys											
+6938	Topple Red Khezu											
+6939	Gather Ration											
+6940	Break Blangonga's head											
+6941	Kill Basarios (not capture)											
+6942	Kill Bullfangos and Hermitaurs											
+6943	Topple Estrellian											
+6944	Gather EZ Antidote											
+6945	Break Ice-Chramine's head											
+6946	Kill Purple Gypceros (not capture)											
+6947	Kill Genpreys											
+6948	Topple Monoblos											
+6949	Gather EZ Dash Juice											
+6950	Break Doom-Estrellian's head											
+6951	Kill Estrellian (not capture)											
+6952	Kill Gendrome											
+6953	Topple Yian Garuga											
+6954	Gather Small Whetstone											
+6955	Break Silver Hypnocatrice's head											
+6956	Kill Akura Vashimu (not capture)											
+6957	Slay Vespoids											
+6958	Kill Monoblos (not capture)											
+6959	Kill Basarios (not capture)											
+6960	Kill Yian Garuga (capture)											
+6961	Kill Purple Gypceros (not capture)											
+6962	Kill Silver Hypnocatrice (not capture)											
+6963	Kill Estrellian (not capture)											
+6964	Kill Doom Estrellian (not capture)											
+6965	Kill Rathian (not capture)											
+6966	Do you see that wooden fence? Open a gap!	3	10									
+6967	Look at this duck-legged things, hunt it by your means!	3	10									
+6968	There are some cannon in several directions	3	10									
+6969	It moves quickly!	3	10									
+6970	This is not granite!	3	10									
+6971	Tips: don’t break the middle wooden fence, defeat them one by one.	3	10									
+6972	Slash….um… seems like that it won't solve the problem.	3	10									
+6973	You‘d better split up, and perform your roles	3	10									
+6974	Seize the opportunity, concentrate fire!	3	10									
+6975	Try you best!	3	10									
+6976	Focus on your step, otherwise the consequence is very serious!	3	10									
+6977	For these big guys, odds and ends on the ground are just small pinpoint.	3	10									
+6978	Do this rapidly!	3	10									
+6979	What the hell!	3	10									
+6980	Not only cut off the tail at this time!	3	10									
+6981	To catch bandits, first catch the ringleader!	3	10									
+6982	It is easy for your mentor, though it seems like fierce!	3	10									
+6983	I told you, concentrate your firepower!	3	10									
+6984	Don't be cheated by its beautiful appearance!	3	10									
+6985	Shakalaka's reinforcements have arrived	10										
+6986	However nothing happened!	10										
+6987	The Shakalaka lauched an attack	10										
+6988	Shakalaka didn't hear the horn.	10										
+#============End of sheet==========

@@ -1,0 +1,167 @@
+#TSV
+#============Begin of sheet============
+@Sheet=猫饭效果表
+料理ID	猫饭等级	HP和耐力系数(BuffID)	猫饭等级权重	1权重	12权重	123权重	1234权重
+1	1	0	15	0	100	100	100
+1	2	0	35	0	100	100	
+1	3	0	50	0	100		
+1	4	0	0	0	0		
+2	1	0	15	0	100	100	100
+2	2	0	35	0	100	100	
+2	3	0	50	0	100		
+2	4	0	0	0	0		
+3	1	0	15	0	100	100	100
+3	2	0	35	0	100	100	
+3	3	0	50	0	100		
+3	4	0	0	0	0		
+4	1	0	15	0	100	100	100
+4	2	0	35	0	100	100	
+4	3	0	50	0	100		
+4	4	0	0	0	0		
+5	1	0	15	0	100	100	100
+5	2	0	35	0	100	100	
+5	3	0	50	0	100		
+5	4	0	0	0	0		
+6	1	0	15	0	100	100	100
+6	2	0	35	0	100	100	
+6	3	0	50	0	100		
+6	4	0	0	0	0		
+7	1	0	15	0	100	100	100
+7	2	0	35	0	100	100	
+7	3	0	50	0	100		
+7	4	0	0	0	0		
+8	1	0	15	0	100	100	100
+8	2	0	35	0	100	100	
+8	3	0	50	0	100		
+8	4	0	0	0	0		
+9	1	0	15	0	100	100	100
+9	2	0	35	0	100	100	
+9	3	0	50	0	100		
+9	4	0	0	0	0		
+10	1	0	15	0	100	100	100
+10	2	0	35	0	100	100	
+10	3	0	50	0	100		
+10	4	0	0	0	0		
+11	1	0	15	0	100	100	100
+11	2	0	35	0	100	100	
+11	3	0	50	0	100		
+11	4	0	0	0	0		
+12	1	0	15	0	100	100	100
+12	2	0	35	0	100	100	
+12	3	0	50	0	100		
+12	4	0	0	0	0		
+13	1	0	15	0	100	100	100
+13	2	0	35	0	100	100	
+13	3	0	50	0	100		
+13	4	0	0	0	0		
+14	1	0	15	0	100	100	100
+14	2	0	35	0	100	100	
+14	3	0	50	0	100		
+14	4	0	0	0	0		
+15	1	0	15	0	100	100	100
+15	2	0	35	0	100	100	
+15	3	0	50	0	100		
+15	4	0	0	0	0		
+16	1	0	15	0	100	100	100
+16	2	0	35	0	100	100	
+16	3	0	50	0	100		
+16	4	0	0	0	0		
+101	1	0	15	0	100	100	100
+101	2	0	35	0	100	100	
+101	3	0	50	0	100		
+101	4	0	0	0	0		
+102	1	0	15	0	100	100	100
+102	2	0	35	0	100	100	
+102	3	0	50	0	100		
+102	4	0	0	0	0		
+103	1	0	15	0	100	100	100
+103	2	0	35	0	100	100	
+103	3	0	50	0	100		
+103	4	0	0	0	0		
+104	1	0	15	0	100	100	100
+104	2	0	35	0	100	100	
+104	3	0	50	0	100		
+104	4	0	0	0	0		
+105	1	0	15	0	100	100	100
+105	2	0	35	0	100	100	
+105	3	0	50	0	100		
+105	4	0	0	0	0		
+106	1	0	15	0	100	100	100
+106	2	0	35	0	100	100	
+106	3	0	50	0	100		
+106	4	0	0	0	0		
+107	1	0	15	0	100	100	100
+107	2	0	35	0	100	100	
+107	3	0	50	0	100		
+107	4	0	0	0	0		
+108	1	0	15	0	100	100	100
+108	2	0	35	0	100	100	
+108	3	0	50	0	100		
+108	4	0	0	0	0		
+109	1	0	15	0	100	100	100
+109	2	0	35	0	100	100	
+109	3	0	50	0	100		
+109	4	0	0	0	0		
+110	1	0	15	0	100	100	100
+110	2	0	35	0	100	100	
+110	3	0	50	0	100		
+110	4	0	0	0	0		
+111	1	0	15	0	100	100	100
+111	2	0	35	0	100	100	
+111	3	0	50	0	100		
+111	4	0	0	0	0		
+112	1	0	15	0	100	100	100
+112	2	0	35	0	100	100	
+112	3	0	50	0	100		
+112	4	0	0	0	0		
+113	1	0	15	0	100	100	100
+113	2	0	35	0	100	100	
+113	3	0	50	0	100		
+113	4	0	0	0	0		
+114	1	0	15	0	100	100	100
+114	2	0	35	0	100	100	
+114	3	0	50	0	100		
+114	4	0	0	0	0		
+115	1	0	15	0	100	100	100
+115	2	0	35	0	100	100	
+115	3	0	50	0	100		
+115	4	0	0	0	0		
+116	1	0	15	0	100	100	100
+116	2	0	35	0	100	100	
+116	3	0	50	0	100		
+116	4	0	0	0	0		
+#============End of sheet============
+
+#============Begin of sheet============
+@Sheet=猫饭配方表
+ID	料理名称	料理描述	料理等级	烹饪方式	烹饪名称	烹饪等级	对应NPC	副本内是否免费	花费游戏币	花费点券	需要食材1	食材1数量	需要食材2	食材2数量	需要食材3	食材3数量	需要食材4	食材4数量	效果1	1是否只副本生效	1是否必出	效果2	2是否只副本生效	2是否必出	效果3	3是否只副本生效	3是否必出	效果4	4是否只副本生效	4是否必出	持续时间	解锁等级	解锁任务ID	解锁星级	解锁活动	猫饭icon	猫饭模型名
+1	Fried Wild Rice	Add all kinds of rare wild rice, it taste delicious, take your time to enjoy it.	1	1	Steamed Rice	1	39910	1	200		21447	1							16044	1	1	16024	1	1	16016	1	0	16018	1	0	86400	1				prop_food_rice_01	
+2	Kut-Ku Fried Rice	The kut-ku eggs are hard to crack, but it is very delicious to make the egg fried rice.	2	1	Steamed Rice	2	39910	1	200		21447	1							16030	1	1	16002	1	1	16020	1	0	16021	1	0	86400	10				prop_food_rice_02	
+3	Tuna Balls	The use of fresh tuna meat and the finest fresh rice, exceptionally delicious.	2	2	Sushi	1	39910	1	200		21447	1							16038	1	1	16024	1	1	16017	1	0	16042	1	0	86400	20				prop_food_suchi_01	
+4	Hand-Rolled Roe	Fresh roe wrapped in handmade rice, bite down and the juices will burst in the mouth, incomparably wonderful taste.	2	2	Sushi	2	39910	1	200		21447	1							16028	1	1	16017	1	1	16046	1	0	16043	1	0	86400	30				prop_food_suchi_02	
+5	Yakitori Waterfowl String	All kinds of birds on the meat string, and then cooked in a fire, one can enjoy a variety of different tastes.	2	3	Kebab	1	39910	1	200		21447	1							16003	1	1	16012	1	1	16015	1	0	16022	1	0	86400	40				prop_food_barbecue_01	
+6	Chicken with Crab Sauce	The use of mixed shellfish meat crab miso with grilled food, crispy outside and tender, rich nutrition.	2	3	Kebab	2	39910	1	200		21447	1							16031	1	1	16024	1	1	16013	1	0	16021	1	0	86400	50				prop_food_barbecue_02	
+7	Braised Long Rice	A hunter's favorite, cooked with fresh dragon meat and various spices in a rice stew.	3	4	Chowder	1	39910	0	200		21447	1	3232	1					16003	1	1	16024	1	1	16014	1	0	16041	1	0	86400	1				prop_food_hunter	
+10	Palico's Fat Free meal	Reduced carbohydrate ratio, suitable for hunters who want to keep fit.	3	4	Chowder	1	39910	1	200		21447	1							16047	1	1	16030	1	1	16017	1	0	16012	1	0	86400	60				prop_food_hunter	
+11	Palico's Muscle Meal	Increased the proportion of protein, suitable for muscle growth and development.	3	4	Chowder	1	39910	1	200		21447	1							16047	1	1	16042	1	1	16017	1	0	16012	1	0	86400	70				prop_food_hunter	
+12	Jasmine's Orange Wonton	This is together the food that is suitable to watch and eat; each wonton are like pieces of white clouds floating on the sea.	3	4	Chowder	1	39910	1	200		21447	1							16048	1	1	16024	1	1	16022	1	0	16028	1	0	86400	80				prop_food_hunter	
+13	Sichuan Pepper Dragon Wonton	Not only in the cooking oil is added pepper, wonton stuffing is basically made of pepper.	3	4	Chowder	1	39910	1	200		21447	1							16049	1	1	16024	1	1	16014	1	0	16030	1	0	86400	90				prop_food_hunter	
+14	Chicken with Chili Pepper	Put a lot of spices in the Sliced Boiled Chicken, makes the lips go numb	3	4	Chowder	1	39910	1	200		21447	1							16050	1	1	16024	1	1	16020	1	0	16002	1	0	86400	100				prop_food_hunter	
+15	Full Dragon Banquet	Add a large number of superior monster ingredients, after cooking in a small fire for a long time does it simmer into a extremely delicious soup.	3	4	Chowder	1	39910	1	200		21447	1							16051	1	1	16024	1	1	16016	1	0	16041	1	0	86400	110				prop_food_hunter	
+16	Frozen Fresh Wet Noodles	After adding eight kinds of ingredients, you need to put it in a freezer and cool it quickly to condense the scent of food into the food without being taken away by the air.	3	4	Chowder	1	39910	1	200		21447	1							16052	1	1	16024	1	1	16013	1	0	16044	1	0	86400	120				prop_food_hunter	
+101	Fried Wild Rice	Add all kinds of rare wild rice, it taste delicious, take your time to enjoy it.	1	1	Steamed Rice	1	33343	1	200		21447	1							16044	1	1	16024	1	1	16016	1	0	16018	1	0	86400	1				prop_food_rice_01	
+102	Kut-Ku Fried Rice	The kut-ku eggs are hard to crack, but it is very delicious to make the egg fried rice.	2	1	Steamed Rice	2	33343	1	200		21447	1							16030	1	1	16002	1	1	16020	1	0	16021	1	0	86400	10				prop_food_rice_02	
+103	Tuna Balls	The use of fresh tuna meat and the finest fresh rice, exceptionally delicious.	2	2	Sushi	1	33343	1	200		21447	1							16038	1	1	16024	1	1	16017	1	0	16042	1	0	86400	20				prop_food_suchi_01	
+104	Hand-Rolled Roe	Fresh roe wrapped in handmade rice, bite down and the juices will burst in the mouth, incomparably wonderful taste.	2	2	Sushi	2	33343	1	200		21447	1							16028	1	1	16017	1	1	16046	1	0	16043	1	0	86400	30				prop_food_suchi_02	
+105	Yakitori Waterfowl String	All kinds of birds on the meat string, and then cooked in a fire, one can enjoy a variety of different tastes.	2	3	Kebab	1	33343	1	200		21447	1							16003	1	1	16012	1	1	16015	1	0	16022	1	0	86400	40				prop_food_barbecue_01	
+106	Chicken with Crab Sauce	The use of mixed shellfish meat crab miso with grilled food, crispy outside and tender, rich nutrition.	2	3	Kebab	2	33343	1	200		21447	1							16031	1	1	16024	1	1	16013	1	0	16021	1	0	86400	50				prop_food_barbecue_02	
+107	Braised Long Rice	A hunter's favorite, cooked with fresh dragon meat and various spices in a rice stew.	3	4	Chowder	1	33343	0	200		21447	1	3232	1					16003	1	1	16024	1	1	16014	1	0	16041	1	0	86400	1				prop_food_hunter	
+110	Palico's Fat Free meal	Reduced carbohydrate ratio, suitable for hunters who want to keep fit.	3	4	Chowder	1	33343	1	200		21447	1							16047	1	1	16030	1	1	16017	1	0	16012	1	0	86400	60				prop_food_hunter	
+111	Palico's Muscle Meal	Increased the proportion of protein, suitable for muscle growth and development.	3	4	Chowder	1	33343	1	200		21447	1							16047	1	1	16042	1	1	16017	1	0	16012	1	0	86400	70				prop_food_hunter	
+112	Jasmine's Orange Wonton	This is together the food that is suitable to watch and eat; each wonton are like pieces of white clouds floating on the sea.	3	4	Chowder	1	33343	1	200		21447	1							16048	1	1	16024	1	1	16022	1	0	16028	1	0	86400	80				prop_food_hunter	
+113	Sichuan Pepper Dragon Wonton	Not only in the cooking oil is added pepper, wonton stuffing is basically made of pepper.	3	4	Chowder	1	33343	1	200		21447	1							16049	1	1	16024	1	1	16014	1	0	16030	1	0	86400	90				prop_food_hunter	
+114	Chicken with Chili Pepper	Put a lot of spices in the Sliced Boiled Chicken, makes the lips go numb	3	4	Chowder	1	33343	1	200		21447	1							16050	1	1	16024	1	1	16020	1	0	16002	1	0	86400	100				prop_food_hunter	
+115	Full Dragon Banquet	Add a large number of superior monster ingredients, after cooking in a small fire for a long time does it simmer into a extremely delicious soup.	3	4	Chowder	1	33343	1	200		21447	1							16051	1	1	16024	1	1	16016	1	0	16041	1	0	86400	110				prop_food_hunter	
+116	Frozen Fresh Wet Noodles	After adding eight kinds of ingredients, you need to put it in a freezer and cool it quickly to condense the scent of food into the food without being taken away by the air.	3	4	Chowder	1	33343	1	200		21447	1							16052	1	1	16024	1	1	16013	1	0	16044	1	0	86400	120				prop_food_hunter	
+#============End of sheet============
+
