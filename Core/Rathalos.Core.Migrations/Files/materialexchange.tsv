@@ -1,0 +1,18 @@
+#TSV
+#============Begin of sheet============
+@Sheet=兑换物品信息
+索引ID	物品id	物品名	物品兑换数量	暴击概率	暴击加成	所需兑换物品数量	兑换组id	兑换描述
+1	1	Recovery Medicine	1	50	1	5	1	任意10个河狸兽素材兑换
+2	4	Antidote	1	0	0	10	2	任意10个河狸兽素材兑换
+3	5	Whetstone	1	100	2	10	3	任意10个河狸兽素材兑换
+#============End of sheet============
+
+#============Begin of sheet============
+@Sheet=兑换种类
+索引ID	物品1id	物品1名	物品2id	物品2名	物品3id	物品3名	物品4id	物品4名	物品5id	物品5名	物品6id	物品6名	物品7id	物品7名	物品8id	物品8名	物品9id	物品9名	物品10id	物品10名
+1	6	Flash Bomb	7	Sonic Bomb	8	Herb	9	Cool Drinks	10	Hot Drinks	11	Going Strong Medicine	12	Life Powder	13	Clairvoyance Medicine	14	Half cooked Meat	15	Roasted Meat
+2	15001	Caeserber Claw	15002	Caeserber Pelt	15003	Caeserber Teeth	15004	Caeserber Spine	15005	Caeserber Head Shell	15016	Velocidrome Claw	15017	Velocidrome Scale	15018	Velocidrome Fang	15019	Velocidrome Crown	15020	Velocidrome Hide
+2	15031	Bullfango Hoof	15032	Bullfango Pelt	15033	Bullfango Teeth	15034	Bullfango Spine	15035	Bullfango Head Shell										
+3	15082	Baelidae Claw	15083	Baelidae Carapace	15084	Baelidae Eye	15085	Baelidae Fur	15086	Baelidae Fluid	15087	Baelidae Threads	15088	Claws of Baelidae	15089	Baelidae Tough Shell	15090	Baelidae Compound Eye	15091	Baelidae Bristle
+3	15092	Baelidae Thick Fluid	15093	Baelidae Knots	15094	Baelidae Tough Claw	15095	Baelidae Heavy Shell	15096	Baelidae Extreme Compound Eye	15097	Baelidae Extremely Tough Fur	15098	Baelidae Extreme Fluid	15099	Baelidae Ironhard Threads				
+#============End of sheet============

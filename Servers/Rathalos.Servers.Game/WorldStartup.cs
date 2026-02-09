@@ -4,6 +4,7 @@ using Rathalos.Servers.Base;
 using Rathalos.Servers.Base.Core.Extensions;
 using Rathalos.Servers.World.Core.Configurations;
 using Rathalos.Servers.World.Core.Databases;
+using Rathalos.Servers.World.Core.Databases.Records;
 using Rathalos.Servers.World.Core.Extensions;
 using Rathalos.Servers.World.Core.Network;
 using Scalar.AspNetCore;
@@ -108,7 +109,66 @@ namespace Rathalos.Servers.World
         /// </summary>
         public static void ConfigureDatabaseEntities(ModelBuilder builder)
         {
+            // Account
             builder.Entity<AccountRecord>();
+
+            // Avatar
+            builder.Entity<FaceInfoRecord>();
+            builder.Entity<HairInfoRecord>();
+            builder.Entity<TattooInfoRecord>();
+            builder.Entity<UnderclothesInfoRecord>();
+
+            // NPC
+            builder.Entity<NpcDataRecord>();
+            builder.Entity<NpcDailyWorkRecord>();
+            builder.Entity<PlayerAttributeRecord>();
+            builder.Entity<HRLevelRecord>();
+            builder.Entity<MonsterAttributeRecord>();
+
+            // NPC Sale
+            builder.Entity<NpcShopMappingRecord>();
+            builder.Entity<ShopInfoRecord>();
+            builder.Entity<RandomGroupRecord>();
+            builder.Entity<RandomProductRecord>();
+            builder.Entity<RandomPoolRecord>();
+
+            // Pet
+            builder.Entity<PetNameRecord>();
+            builder.Entity<PetInfoRecord>();
+            builder.Entity<PetFarewellGiftRecord>();
+            builder.Entity<PetQualityRecord>();
+            builder.Entity<PetPersonalityRecord>();
+            builder.Entity<PetAttackTendencyRecord>();
+            builder.Entity<PetAttackMethodRecord>();
+            builder.Entity<PetSkinRecord>();
+            builder.Entity<PetLevelRecord>();
+            builder.Entity<PetSkillSlotUnlockRecord>();
+            builder.Entity<PetAptitudeQualityRecord>();
+
+            // Pet Skills
+            builder.Entity<PetInnateSkillRecord>();
+            builder.Entity<PetCombatSkillRecord>();
+            builder.Entity<PetSupportSkillRecord>();
+            builder.Entity<PetSkillTriggerRecord>();
+            builder.Entity<PetProductionSkillRecord>();
+            builder.Entity<PetProductionSkillEffectRecord>();
+
+            // Monster
+            builder.Entity<MonsterAbnormalStateRecord>();
+            builder.Entity<MonsterEmotionRecord>();
+            builder.Entity<MonsterLemonRecord>();
+            builder.Entity<MonsterStateRecord>();
+            builder.Entity<MonsterInfoRecord>();
+            builder.Entity<MonsterPartRecord>();
+            builder.Entity<MonsterPartDefenceRecord>();
+            builder.Entity<MonsterPerceptionRecord>();
+
+            // Init
+            builder.Entity<InitAttributeRecord>();
+            builder.Entity<InitItemRecord>();
+            builder.Entity<InitQuickSupplyRecord>();
+            builder.Entity<InitShortcutRecord>();
+            builder.Entity<InitStoreRecord>();
         }
     }
 }

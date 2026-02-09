@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore.Design;
 using Rathalos.Core.ORM;
 using Rathalos.Core.ORM.Extensions;
 using Rathalos.Servers.World;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Rathalos.Core.Migrations;
 
@@ -13,8 +12,9 @@ namespace Rathalos.Core.Migrations;
 /// 
 /// # Add a new migration
 /// dotnet ef migrations add MigrationName --startup-project Core\Rathalos.Core.Migrations
-/// # Apply migrations to database
-/// dotnet ef database --startup-project Core\Rathalos.Core.Migrations
+/// 
+/// # Apply migrations only (using EF CLI)
+/// dotnet ef database update --startup-project Core\Rathalos.Core.Migrations
 /// 
 /// </summary>
 public class RathalosDbContextFactory : IDesignTimeDbContextFactory<RathalosDbContext>

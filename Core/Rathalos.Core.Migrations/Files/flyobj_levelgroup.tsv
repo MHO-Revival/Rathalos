@@ -1,0 +1,205 @@
+#TSV
+#============Begin of sheet============
+@Sheet=射程伤害加成
+Name	ID	Ratio1	Time1	Ratio2	Time2	Ratio3	Time3	RatioFinal	LastDecrease
+VehicleNormalShootLv1	33	1	1	0.8	2	0.5	4	0.8	1
+VehicleNormalShootLV2	101	1	0.6	0.9	0.8	0.5	3	0.01	1
+#============End of sheet============
+
+#============Begin of sheet============
+@Sheet=爆炸效果
+ID	Name	Type	AttackName	Radius	OffsetX	OffsetY	OffsetZ
+101	FieldFog	Normal	FieldFogGrenade	10	0	0	0
+102	BoomerExplosion	Normal	BoomerExplosion	10	0	0	0
+103	HandGrenadeXExplosion	Normal	HandGrenadeX	2	0	0	0
+104	DustBomberExplosion	Normal	DustBomber	4	0	0	0
+105	TestPoisionGrenadeExplosion	Normal	TestPoisionGrenade	2	0	0	0
+106	BoostPoisionGrenadeExplosion	Normal	BoostPoisionGrenade	2	0	0	0
+107	JumpBallExplosion	Normal	JumpBall	2	0	0	0
+108	ShipCannonExplosion	Normal	ShipCannonExplosion	6	0	0	0
+109	BoomerParalysisKnife	Normal	BoomerParalysisKnife	3	0	0	0
+110	ShootLavaBall	Normal	ShootFireBall	2	0	0	0
+111	FlashGrenadePVP	Flash	FlashAttackPVP	10	0	0	0
+112	NoisyGrenadePVP	Noisy	VoiceAttackPVP	10	0	0	0
+113	Hi_GrenadePVP	Normal	Hi_GrenadePVP	5	0	0	0
+114	FieldSleepGrenadePVP	Normal	FieldSleepGrenadePVP	5	0	0	0
+115	Mabi_GrenadePVP	Normal	Mabi_GrenadePVP	3	0	0	0
+116	IceBall	Normal	IceBall	3	0	0	0
+117	IceCone	Normal	IceCone	3	0	0	0
+118	ReisouPVP	Normal	ReisouPVP	5	0	0	0
+119	Laoshan_BlastCannonLV1	Normal	Laoshan_BlastCannonLV1	5	0	0	0
+120	Laoshan_BlastCannonLV2	Normal	Laoshan_BlastCannonLV2	5	0	0	0
+121	Laoshan_BlastCannonLV3	Normal	Laoshan_BlastCannonLV3	5	0	0	0
+122	Laoshan_GumCannonLV1	Normal	Laoshan_GumCannonLV1	5	0	0	0
+123	Laoshan_GumCannonLV2	Normal	Laoshan_GumCannonLV2	5	0	0	0
+124	Laoshan_GumCannonLV3	Normal	Laoshan_GumCannonLV3	5	0	0	0
+125	Laoshan_PoisonCannonLV1	Normal	Laoshan_PoisonCannonLV1	5	0	0	0
+126	Laoshan_PoisonCannonLV2	Normal	Laoshan_PoisonCannonLV2	5	0	0	0
+127	Laoshan_PoisonCannonLV3	Normal	Laoshan_PoisonCannonLV3	5	0	0	0
+#============End of sheet============
+
+#============Begin of sheet============
+@Sheet=生成物体效果
+ID	Name	EntityType	OffsetX	OffsetY	OffsetZ	RotationX	RotationY	RotationZ	DelayTime	SpawnMode	UseHitDir	Param1	Param2	Param3
+101	CrossBomberStep	飞行道具	0	0	0	0	0	0	0			601		
+101		飞行道具	0	0	0	0	0	90	0			601		
+101		飞行道具	0	0	0	0	0	180	0			601		
+101		飞行道具	0	0	0	0	0	270	0			601		
+102	CrossBomberInstance	飞行道具	0	0	0	0	0	0	0			601		
+102		飞行道具	0	0	0	0	0	0	0			601		
+103	JumpBall2	飞行道具	0	1	0	0	0	90	0.2			612		
+103	JumpBall2	飞行道具	0	1	0	0	0	180	0.2			612		
+103	JumpBall2	飞行道具	0	1	0	0	0	270	0.2			612		
+104	FieldFogArea	BT物件	0	0	0	0	0	0	0	水平朝向	0	SceneBuffArea	FieldFogBuffArea.pro	
+105	JumpBall3	飞行道具	0	1	0	0	0	0	0			613		
+106	ThrownBomb	场景物件	0	0	0	0	0	0	0	水平朝向		Bomb.TVTBomb		
+107	ThrownMine	场景物件	0	0	0	0	0	0	0	水平朝向	0	Mine.TVTMine		
+108	HealFogArea	BT物件	0	0	0	0	0	0	0	水平朝向	0	ItemCommon.BuffArea.HealPool		
+1001	StartFrom1001	以下从1001开始												
+1002	LiaoYuanBuff	BT物件	0	0	0	0	0	0	0	水平朝向	0	ItemCommon.BuffArea.LiaoYuanRecovery		
+#============End of sheet============
+
+#============Begin of sheet============
+@Sheet=载具武器配置
+Name	ID	ProjectileEvent
+BalistaBullet1	42	TankCannonShot1
+BalistaBullet2	43	TankCannonShot2
+BalistaBullet3	610	TankCannonShot3
+BalistaBullet4	627	TankCannonShot4
+BalistaBullet5	628	TankCannonShot5
+BalistaBullet6	636	TankCannonShot6
+BalistaBullet7	637	TankCannonShot7
+RapidBallistaShootLV1	638	RapidBallistaShootLV1
+RapidBallistaShootLV2	639	RapidBallistaShootLV2
+RapidBallistaShootLV3	640	RapidBallistaShootLV3
+SlowBallistaShootLV1	641	SlowBallistaShootLV1
+SlowBallistaShootLV2	642	SlowBallistaShootLV2
+SlowBallistaShootLV3	643	SlowBallistaShootLV3
+3ShotBallistaShootLV1	644	3ShotBallistaShootLV1
+3ShotBallistaShootLV2	645	3ShotBallistaShootLV2
+3ShotBallistaShootLV3	646	3ShotBallistaShootLV3
+ParalyzeBallistaShoot	647	ParalyzeBallistaShoot
+SleepBallistaShoot	648	SleepBallistaShoot
+ExplosionBallistaShootLV1	649	ExplosionBallistaShootLV1
+ExplosionBallistaShootLV2	650	ExplosionBallistaShootLV2
+ExplosionBallistaShootLV3	651	ExplosionBallistaShootLV3
+TaiHouBullet	652	TaiHouBullet
+BalistaLaoShanXie	653	BalistaLaoShanXie
+BallistaNB4	654	BallistaNB4
+ShootFireBall	631	ShootFireBall
+LongJiQaiang	655	LongJiQaiang
+LavaBall	656	LavaBall
+BalistaIceLaoShanXie	670	BalistaIceLaoShanXie
+TaiHouBullet_NBY	672	TaiHouBullet_NBY
+Laoshan_RapidCannonLV1	673	Laoshan_RapidCannonLV1
+Laoshan_RapidCannonLV2	674	Laoshan_RapidCannonLV2
+Laoshan_RapidCannonLV3	675	Laoshan_RapidCannonLV3
+Laoshan_ShotCannonLV1	676	Laoshan_ShotCannonLV1
+Laoshan_ShotCannonLV2	677	Laoshan_ShotCannonLV2
+Laoshan_ShotCannonLV3	678	Laoshan_ShotCannonLV3
+Laoshan_BlastCannonLV1	679	Laoshan_BlastCannonLV1
+Laoshan_BlastCannonLV2	680	Laoshan_BlastCannonLV2
+Laoshan_BlastCannonLV3	681	Laoshan_BlastCannonLV3
+Laoshan_GumCannonLV1	682	Laoshan_GumCannonLV1
+Laoshan_GumCannonLV2	683	Laoshan_GumCannonLV2
+Laoshan_GumCannonLV3	684	Laoshan_GumCannonLV3
+Laoshan_PoisonCannonLV1	685	Laoshan_PoisonCannonLV1
+Laoshan_PoisonCannonLV2	686	Laoshan_PoisonCannonLV2
+Laoshan_PoisonCannonLV3	687	Laoshan_PoisonCannonLV3
+#============End of sheet============
+
+#============Begin of sheet============
+@Sheet=飞行道具
+name	说明	UID	SpeedX	SpeedY	SpeedZ	AcceletorX	AcceletorY	AcceletorZ	GChangeTime	AdditiveG	AccChangeTime	AdditiveX	AdditiveY	AdditiveZ	AccMode	RotWithSpeed	FlyType	Effect	VFXOffsetX	VFXOffsetY	VFXOffsetZ	VFXRotateX	VFXRotateY	VFXRotateZ	HideEffectOnDestroy	GeomName	GeomOffsetX	GeomOffsetY	GeomOffsetZ	RotationSpeedX	RotationSpeedY	RotationSpeedZ	GeomRotateX	GeomRotateY	GeomRotateZ	GeomScale	SpawnScale	DestroyEffect	DestroyEffectScale	MeshHitEffect	SurfaceTypeEffect	TrailSound	TriggerArea	Radius	CapOffset1X	CapOffset1Y	CapOffset1Z	CapOffset2X	CapOffset2Y	CapOffset2Z	ColliTime	ColliEntitiesCount	ColliPartsCount	ColliTimeInterval	ColliType	Timer	Distance	DistanceExecTimes	PenetratePower	FriendMonster	FriendHuman	NeutralMonster	NeutralHuman	HostileMonster	HostileHuman	PenetrableObject	UnpenetrableObject	PenetrableWall	UnpenetrableWall	ReboundSurface	Terrian	Ocean	OnTime	OnDistance	DmgRangeID	DefaultAttackName	DefaultSpawnParam	DefaultExplosionParam	TriggerableFx	TriggerableFxScale	ReflectProjectile	ReflectChance
+BalistaBullet1	载具用	42	0	50	3	0	0	-5								1	parabola	Fire_Ability_Pc.PRJ.WN_BreakChargePRJ								Objects/items/ballista_arrow.cgf	0	0	0	0	0	0	0	0	0	2.5		Fire_Ability_Pc.CST.GrenadeCST						0.3							0	1	0	0		6			1	销毁		销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害						销毁	销毁	销毁		33	VehicleNormalShootLV1						
+BalistaBullet2	载具用	43	0	50	3	0	0	-5								1	parabola	Fire_Ability_Pc.PRJ.WN_BreakChargePRJ								Objects/items/ballista_arrow.cgf	0	0	0	0	0	0	0	0	0	2.5		Fire_Ability_Pc.CST.GrenadeCST						0.3							0	0	10	0.1		6			5			伤害	伤害	伤害	伤害		销毁		销毁		销毁	销毁	销毁		12	GuanTongLV1						
+DustBomber	人物用	600	0	15	2	0	0	-9.8								0	parabola	Energy_Ability_PC.PRJ.TrailItem_Dark								Objects/items/flashbomb.cgf	0	0	0	720	0	0	0	0	0	1		Earth_Ability_Pc.HIT.SandGrenade						0.3							0	1	0	0		6			5			销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸	爆炸	销毁,爆炸		销毁,爆炸		销毁,爆炸		销毁,爆炸			DustBomber		104				
+CrossExplosionBall	人物用	601	0	10	0	0	0	0								0	parabola										0	0	0	0	0	0	0	0	0	1		Fire_Ability_Pc.HIT.WN_NormalHIT						1							0.1	10	0	0		0.5			5	伤害	伤害	伤害	伤害	伤害	伤害	伤害							销毁			CrossBomber						
+HandGrenadeX	人物用	602	0	15	2	0	0	-9.8								0	parabola	Energy_Ability_PC.PRJ.TrailItem_Dark								Objects/items/flashbomb.cgf	0	0	0	720	0	0	0	0	0	1		Fire_Ability_Pc.CST.GrenadeCST						0.3							0	1	0	0		20			5			销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸	爆炸	销毁,爆炸		销毁,爆炸		销毁,爆炸		销毁,爆炸			HandGrenadeX		103				
+CrossStepExplosionBasket	人物用	603	0	0	0	0	0	0								0	parabola									objects/items/bucket_small.cgf	0	0	0	0	0	0	0	0	0	2		Fire_Ability_Pc.CST.CrossBombCST						1							0	1	0	0	0	10			1														销毁,生成物件			CrossBomber	101					
+CrossInstanceExplosionBasket	人物用	604	0	0	0	0	0	0								0	parabola									objects/items/bucket_small.cgf	0	0	0	0	0	0	0	0	0	1		Fire_Ability_Pc.CST.CrossBombCST						1							0	1	0	0	0	10			1														销毁,生成物件			CrossBomber	101					
+CrossExplosionRow	人物用	605	0	0	0	0	0	0								0	parabola										0	0	0	0	0	0	0	0	0	1								1							0	1	0	0	0	10			1	伤害	伤害	伤害	伤害	伤害	伤害	伤害							销毁			CrossBomber						
+FlyTeeKnife	人物用	606	0	48	0	0	0	-2								1	parabola	Energy_Ability_PC.CST.Trailing_01								Objects/items/flyingknife.cgf	0	0	0	0	0	0	0	90	180	1.5		Fire_Ability_Pc.HIT.WN_NormalHIT						0.3							0	1	0	0	0	15			1			销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害						销毁		销毁			FlyTeeKnife						
+FlyBlade	人物用	607	0	48	0	0	0	-2								1	parabola	Energy_Ability_PC.CST.Trailing_01								Objects/items/flyingknife.cgf	0	0	0	0	720	0	0	90	180	1.5		Fire_Ability_Pc.HIT.WN_NormalHIT						0.3							0	1	0	0	0	15			1			销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害						销毁		销毁			FlyBlade						
+LoveKnife	人物用	608	0	48	0	0	0	-2								1	parabola	Energy_Ability_PC.CST.Trailing_01								Objects/items/flyingknife.cgf	0	0	0	0	0	0	0	90	180	1.5		Fire_Ability_Pc.HIT.WN_NormalHIT						0.3							0	1	0	0	0	15			1			销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害						销毁		销毁			FlyLoveKnife						
+HighSpeedDustBomber	人物用	609	0	30	2	0	0	-9.8								0	parabola	Energy_Ability_PC.PRJ.TrailItem_Dark								Objects/items/flashbomb.cgf	0	0	0	720	0	0	0	0	0	1		Earth_Ability_Pc.HIT.SandGrenade						0.3							0.1	1	0	0		6			5			销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸	爆炸	销毁,爆炸		销毁,爆炸		销毁,爆炸		销毁,爆炸			DustBomber		104				
+BalistaBullet3	载具用	610	0	110	0	0	0	0								1	parabola	Fire_Ability_Pc.PRJ.WN_BreakChargePRJ								Objects/items/ballista_arrow.cgf	0	0	0	0	0	0	0	0	0	1		Fire_Ability_Pc.HIT.WN_BreakExplodeHIT						0.3							0	0	10	0.1		6			5			伤害	伤害	伤害	伤害						销毁	销毁	销毁		12	VehicleNormalShootBlood						
+JumpBall1	人物用	611	0	7	5	0	0	-10								1	parabola	Energy_Ability_PC.PRJ.TrailItem_Dark								Objects/items/colourbomb.cgf	0	0	0	720	0	0	0	0	0	0.5		Fire_Ability_Pc.CST.GrenadeCST						0.3							0	1	0	0.1		20			1			销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸,生成物件	销毁,爆炸,生成物件	销毁,爆炸,生成物件	销毁,爆炸,生成物件		销毁,爆炸,生成物件		销毁			JumpBall	103	107				
+JumpBall2	人物用	612	0	7	5	0	0	-10								1	parabola	Energy_Ability_PC.PRJ.TrailItem_Dark								Objects/items/colourbomb.cgf	0	0	0	720	0	0	0	0	0	0.5		Fire_Ability_Pc.CST.GrenadeCST						0.3							0.2	1	0	0.1		20			1			销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸	爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸		销毁,爆炸		销毁			JumpBall		107				
+JumpBall3	人物用	613	0	7	5	0	0	-10								1	parabola	Energy_Ability_PC.PRJ.TrailItem_Dark								Objects/items/colourbomb.cgf	0	0	0	720	0	0	0	0	0	0.5		Fire_Ability_Pc.CST.GrenadeCST						0.3							0.2	1	0	0.1		20			1			销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸	爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸		销毁,爆炸		销毁			JumpBall		107				
+BirdKnife	人物用	614	0	48	0	0	0	-2								1	parabola	Energy_Ability_PC.CST.Trailing_01								Objects/items/flyingknife.cgf	0	0	0	0	720	0	0	90	180	1.5		Fire_Ability_Pc.HIT.WN_NormalHIT						0.3							0	1	0	0	0	15			1			销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害						销毁,伤害		销毁			FlyBlade						
+SleepGrenade	人物用	615	0	15	2	0	0	-9.8								1	parabola	Energy_Ability_PC.CST.Trailing_01								Objects/items/flashbomb.cgf	0	0	0	0	720	0	0	0	0	1		Energy_Ability_PC.CST.YW-Sleepball						0.3							0.1	1				15			5			销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害	伤害	销毁				销毁,伤害		销毁,伤害			SleepGrenade						
+GrumeGrenade	人物用	616	0	15	2	0	0	-9.8								1	parabola	Energy_Ability_PC.CST.Trailing_01								Objects/items/flashbomb.cgf	0	0	0	0	0	0	0	0	0	1		Fire_Ability_Pc.CST.GrenadeCST						0.5								1				15			5			销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害						销毁		销毁			GrumeGrenade						
+BirdEgg	人物用	617	0	10	2	0	0	-9.8								1	parabola	Energy_Ability_PC.CST.Trailing_01								Objects/items/egg.cgf	0	0	0	720	720	0	0	90	180	0.5		Organic_Ability_Pc.HIT.EggAttack_Pc						0.5								1				15			5			销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害						销毁		销毁			BirdEgg						
+FieldFogGrenade	人物用	618	0	1	0	0	0	-9.8								1	parabola	Energy_Ability_PC.CST.Trailing_01								Objects/items/flashbomb.cgf	0	0	0	0	0	0	0	0	0	1		Energy_Ability_PC.CST.YWG-Smokeball						1							0	1				10			5												销毁,生成物件		销毁,生成物件			FieldFogGrenade	104					
+ThunderNeedle	人物用	619	0	0	0	0	0	0								1	parabola	Energy_Ability_PC.CST.Trailing_01								Objects/items/thunderneedle.cgf	0	0	0	0	0	0	0	0	0	1		Energy_Ability_PC.CST.ThunderAttract						0.5								1				15			5			销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害						销毁		销毁			ThunderNeedle						
+FieldSleepGrenade	人物用	620	0	15	2	0	0	-9.8								1	parabola	Energy_Ability_PC.CST.Trailing_01								Objects/items/flashbomb.cgf	0	0	0	0	0	0	0	0	0	1		Energy_Ability_PC.CST.YWG-Sleepball						0.5								10				15			5			销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害						销毁		销毁			FieldSleepGrenade						
+IcyGrenade	人物用	621	0	15	2	0	0	-9.8								1	parabola	Energy_Ability_PC.CST.Trailing_01								Objects/items/flashbomb.cgf	0	0	0	0	0	0	0	0	0	1		Ice_Ability_Pc.ITEM.Ice_Grenade						0.5								1				15			5			销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害						销毁		销毁			IcyGrenade						
+FallenSpike	人物用	623	0	0	0	0	0	-9.8								0	parabola	Energy_Ability_PC.CST.Trailing_01								objects/levels/level_001/rock/l001_stalactite10.cgf	0	0	0	0	0	0	90	0	0	0.5		Earth_Environmental.EVN.Stone_level07						0.5							0.5								5			销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害				销毁,伤害		销毁,伤害		销毁,伤害			FallSpike						
+TestPoisionGrenade	人物用	624	0	15	2	0	0	-9.8								1	parabola	Energy_Ability_PC.CST.Trailing_01								Objects/items/colourbomb.cgf	0	0	0	720	0	0	0	90	180	1		Water_Ability_Mst.HIT.PoisonBallHitM_MST						0.3							0	10				15			5			销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸	爆炸	销毁,爆炸		销毁		销毁,爆炸		销毁,爆炸			TestPoisionGrenade		105				
+BoostPoisionGrenade	人物用	625	0	20	2	0	0	-9.8								1	parabola	Energy_Ability_PC.CST.Trailing_01								Objects/items/colourbomb.cgf	0	0	0	720	0	0	0	90	180	0.6		Water_Ability_Mst.HIT.PoisonBallHitM_MST						0.3							0	10				15			5			销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸	爆炸	销毁,爆炸		销毁		销毁,爆炸		销毁,爆炸			BoostPoisionGrenade		106				
+FieldFogGrenadeBall	人物用	626	0	0	0	0	0	0								1	parabola										0	0	0	0	0	0	0	0	0	1								5							0	10				5			5	伤害	伤害	伤害	伤害	伤害	伤害								销毁			FieldFogGrenade						
+BalistaBullet4	载具用	627	0	50	0	0	0	0								1	parabola	Fire_Ability_Pc.PRJ.WN_BreakChargePRJ								Objects/items/ballista_arrow.cgf	0	0	0	0	0	0	0	0	0	2		Fire_Ability_Pc.CST.GrenadeCST						0.3							0	1	0	0		6			1	销毁		销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害	伤害	伤害				销毁	销毁	销毁		101	VehicleNormalShootLV2						
+BalistaBullet5	载具用	628	0	50	3	0	0	-5								1	parabola	Fire_Ability_Pc.PRJ.WN_BreakChargePRJ								Objects/items/ballista_arrow.cgf	0	0	0	0	0	0	0	0	0	2.5		Fire_Ability_Pc.CST.GrenadeCST						0.3							0	1	0	0		6			1	销毁		销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害						销毁	销毁	销毁		33	VehicleNormalShootLV3						
+OutFireGrenade	人物用	629	0	20	-5	0	0	-9.8								1	parabola	Energy_Ability_PC.CST.Trailing_01								Objects/items/flashbomb.cgf	0	0	0	0	0	0	0	0	0	0.3		Water_Ability_Mst.CST.WingTurn_EM014						0.3							0	1				10			5							伤害	销毁,伤害	伤害	销毁,伤害		销毁,伤害	销毁	销毁			OutFireGrenade						
+BoomerParalysisKnife	人物用	630	0	5	-5	0	0	-9.8								1	parabola	Energy_Ability_PC.CST.Trailing_01								Objects/items/flashbomb.cgf	0	0	0	0	0	0	0	0	0	0.3		Energy_Ability_PC.CST.PalsyGrenade						0.3							0	1	0	0	0	15			1	销毁	销毁	销毁	销毁	销毁,爆炸	销毁,爆炸		销毁,爆炸		销毁,爆炸		销毁,爆炸	销毁	销毁			BoomerParalysisKnife		109				
+ShootFireBall	物件用	631	0	52	0	0	0	0								1	parabola	Fire_Environmental.ENV.artillery_fireball01									0	0	0	0	0	0	0	0	0	1		Fire_Ability_Mst.HIT.FireBallHitM_MST						0.8							0	1	0	0	0	30			1	销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害	伤害	销毁		销毁		销毁		销毁			ShootFireBall						
+trap01	物件用	632	0	52	0	0	0	0								1	parabola									"Objects\\levels\\arena_001\\a001_trap01_thorn.cgf"	0	0	0	0	0	0	0	0	0	1								0.8							0	1	0	0	0	30			1	销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害								销毁			trap01						
+DeerJade	人物用	633	0	15	0.2	0	0	-5									parabola	Energy_Ability_PC.CST.Trailing_01								Objects/items/colourbomb.cgf	0	0	0	0	0	0	0	0	0	0.45		Energy_Ability_PC.CST.Dyeing ball			Item_Grenade			0.3							0	1	0	0	0	6			1	销毁	销毁	销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害	伤害	销毁		销毁		销毁		销毁			DeerJade						
+trap02	物件用	634	0	52	0	0	0	0								1	parabola									"Objects\\levels\\arena_001\\a001_trap03_thorn.cgf"	0	0	0	0	0	0	0	0	0	1								0.8							0	1	0	0	0	30			1	销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害								销毁			trap02						
+ShootBoomer	物件用	635	0	0	0	0	0	0								1	parabola									Objects/items/bucket_bigm020.cgf	0	0	0	0	0	0	0	0	0	1		Fire_Ability_Mst.HIT.FireBallHitM_MST						0.8							0.1	1	0	0	0	15			1			销毁,伤害,爆炸		销毁,伤害,爆炸		伤害	销毁,伤害,爆炸		销毁,伤害,爆炸		销毁,伤害,爆炸	销毁	销毁			BoomerExplosion		102				
+BalistaBullet6	载具用	636	0	70	0	0	0	0								1	parabola	Fire_Ability_Pc.PRJ.WN_BreakChargePRJ								Objects/items/ballista_arrow.cgf	0	0	0	0	0	0	0	0	0	2		Fire_Ability_Pc.CST.GrenadeCST						0.3							0.1	1	0	0		6			1			销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害	伤害	销毁,伤害		销毁,伤害		销毁,伤害	销毁	销毁			VehicleNormalShootLV4						
+BalistaBullet7	载具用	637	0	70	0	0	0	0								1	parabola	Fire_Ability_Pc.PRJ.WN_BreakChargePRJ								Objects/items/ballista_arrow.cgf	0	0	0	0	0	0	0	0	0	2		Fire_Ability_Mst.HIT.FireBallHitM_MST						0.3							0.1	1	0	0		6			1			销毁,伤害,爆炸	销毁,伤害,爆炸	销毁,伤害,爆炸	销毁,伤害,爆炸	伤害	销毁,伤害,爆炸		销毁,伤害,爆炸		销毁,伤害,爆炸	销毁	销毁			ShipCannonExplosion		108				
+RapidBallistaShootLV1	载具用	638	0	50	0	0	0	0								1	parabola	Fire_Ability_Pc.PRJ.WN_BreakChargePRJ								Objects/items/ballista_arrow.cgf	0	0	0	0	0	0	0	0	0	2		Fire_Ability_Pc.CST.GrenadeCST						0.3							0	1	0	0		6			1	销毁		销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害	伤害	伤害				销毁	销毁	销毁			RapidBallistaShootLV1						
+RapidBallistaShootLV2	载具用	639	0	50	0	0	0	0								1	parabola	Fire_Ability_Pc.PRJ.WN_BreakChargePRJ								Objects/items/ballista_arrow.cgf	0	0	0	0	0	0	0	0	0	2		Fire_Ability_Pc.CST.GrenadeCST						0.3							0	1	0	0		6			1	销毁		销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害	伤害	伤害				销毁	销毁	销毁			RapidBallistaShootLV2						
+RapidBallistaShootLV3	载具用	640	0	50	0	0	0	0								1	parabola	Fire_Ability_Pc.PRJ.WN_BreakChargePRJ								Objects/items/ballista_arrow.cgf	0	0	0	0	0	0	0	0	0	2		Fire_Ability_Pc.CST.GrenadeCST						0.3							0	1	0	0		6			1	销毁		销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害	伤害	伤害				销毁	销毁	销毁			RapidBallistaShootLV3						
+SlowBallistaShootLV1	载具用	641	0	30	0	0	0	-5								1	parabola	Fire_Ability_Pc.PRJ.WN_BreakChargePRJ								Objects/items/ballista_arrow.cgf	0	0	0	0	0	0	0	0	0	2		Fire_Ability_Pc.CST.GrenadeCST						0.3							0	1	0	0		6			1	销毁		销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害	伤害	伤害				销毁	销毁	销毁			SlowBallistaShootLV1						
+SlowBallistaShootLV2	载具用	642	0	30	0	0	0	-5								1	parabola	Fire_Ability_Pc.PRJ.WN_BreakChargePRJ								Objects/items/ballista_arrow.cgf	0	0	0	0	0	0	0	0	0	2		Fire_Ability_Pc.CST.GrenadeCST						0.3							0	1	0	0		6			1	销毁		销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害	伤害	伤害				销毁	销毁	销毁			SlowBallistaShootLV2						
+SlowBallistaShootLV3	载具用	643	0	30	0	0	0	-5								1	parabola	Fire_Ability_Pc.PRJ.WN_BreakChargePRJ								Objects/items/ballista_arrow.cgf	0	0	0	0	0	0	0	0	0	2		Fire_Ability_Pc.CST.GrenadeCST						0.3							0	1	0	0		6			1	销毁		销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害	伤害	伤害				销毁	销毁	销毁			SlowBallistaShootLV3						
+3ShotBallistaShootLV1	载具用	644	0	40	0	0	0	0								1	parabola	Fire_Ability_Pc.PRJ.WN_BreakChargePRJ								Objects/items/ballista_arrow.cgf	0	0	0	0	0	0	0	0	0	2		Fire_Ability_Pc.CST.GrenadeCST						0.3							0	1	0	0		6			1	销毁		销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害	伤害	伤害				销毁	销毁	销毁			3ShotBallistaShootLV1						
+3ShotBallistaShootLV2	载具用	645	0	40	0	0	0	0								1	parabola	Fire_Ability_Pc.PRJ.WN_BreakChargePRJ								Objects/items/ballista_arrow.cgf	0	0	0	0	0	0	0	0	0	2		Fire_Ability_Pc.CST.GrenadeCST						0.3							0	1	0	0		6			1	销毁		销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害	伤害	伤害				销毁	销毁	销毁			3ShotBallistaShootLV2						
+3ShotBallistaShootLV3	载具用	646	0	40	0	0	0	0								1	parabola	Fire_Ability_Pc.PRJ.WN_BreakChargePRJ								Objects/items/ballista_arrow.cgf	0	0	0	0	0	0	0	0	0	2		Fire_Ability_Pc.CST.GrenadeCST						0.3							0	1	0	0		6			1	销毁		销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害	伤害	伤害				销毁	销毁	销毁			3ShotBallistaShootLV3						
+ParalyzeBallistaShoot	载具用	647	0	50	0	0	0	0								1	parabola	Fire_Ability_Pc.PRJ.WN_BreakChargePRJ								Objects/items/ballista_arrow.cgf	0	0	0	0	0	0	0	0	0	2		Fire_Ability_Pc.CST.GrenadeCST						0.3							0	1	0	0		6			1	销毁		销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害	伤害	伤害				销毁	销毁	销毁			ParalyzeBallistaShoot						
+SleepBallistaShoot	载具用	648	0	50	0	0	0	0								1	parabola	Fire_Ability_Pc.PRJ.WN_BreakChargePRJ								Objects/items/ballista_arrow.cgf	0	0	0	0	0	0	0	0	0	2		Fire_Ability_Pc.CST.GrenadeCST						0.3							0	1	0	0		6			1	销毁		销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害	伤害	伤害				销毁	销毁	销毁			SleepBallistaShoot						
+ExplosionBallistaShootLV1	载具用	649	0	50	0	0	0	0								1	parabola	Fire_Ability_Pc.PRJ.WN_BreakChargePRJ								Objects/items/ballista_arrow.cgf	0	0	0	0	0	0	0	0	0	2		Fire_Ability_Pc.CST.GrenadeCST						0.3							0	1	0	0		6			1	销毁		销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害	伤害	伤害				销毁	销毁	销毁			ExplosionBallistaShootLV1						
+ExplosionBallistaShootLV2	载具用	650	0	50	0	0	0	0								1	parabola	Fire_Ability_Pc.PRJ.WN_BreakChargePRJ								Objects/items/ballista_arrow.cgf	0	0	0	0	0	0	0	0	0	2		Fire_Ability_Pc.CST.GrenadeCST						0.3							0	1	0	0		6			1	销毁		销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害	伤害	伤害				销毁	销毁	销毁			ExplosionBallistaShootLV2						
+ExplosionBallistaShootLV3	载具用	651	0	50	0	0	0	0								1	parabola	Fire_Ability_Pc.PRJ.WN_BreakChargePRJ								Objects/items/ballista_arrow.cgf	0	0	0	0	0	0	0	0	0	2		Fire_Ability_Pc.CST.GrenadeCST						0.3							0	1	0	0		6			1	销毁		销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害	伤害	伤害				销毁	销毁	销毁			ExplosionBallistaShootLV3						
+TaiHouBullet	载具用	652	0	70	0	0	0	-9.8								1	parabola	Fire_Ability_Pc.PRJ.CannonPRJ								objects/levels/level_005/objects/l005_cannonball.cgf	0	0	0	0	0	0	0	0	0	2		Fire_Ability_Pc.CST.GrenadeCST						0.3							0	1	0	0		30			1			销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害	伤害	销毁,伤害		销毁,伤害		销毁,伤害	销毁				TaiHouBullet		102				
+BalistaLaoShanXie	载具用	653	0	70	0	0	0	0								1	parabola	Fire_Ability_Pc.PRJ.WN_BreakChargePRJ								Objects/items/ballista_arrow.cgf	0	0	0	0	0	0	0	0	0	2		Fire_Ability_Pc.CST.GrenadeCST						0.3							0	1	0	0		30			1			销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害		销毁,伤害		销毁,伤害	销毁	销毁			BalistaLaoShanXie						
+BallistaNB4	载具用	654	0	70	0	0	0	0								1	parabola	Fire_Ability_Pc.PRJ.WN_BreakChargePRJ								Objects/items/ballista_arrow.cgf	0	0	0	0	0	0	0	0	0	2		Organic_Ability_Pc.HIT.ArrowHit						0.3							0	1	0	0		6			1			伤害	伤害	伤害	伤害	伤害	销毁,伤害		销毁,伤害		销毁	销毁	销毁			BallistaNB4						
+LongJiQaiang	物件用	655	0	52	0	0	0	0								1	parabola	Fire_Environmental.ENV.artillery_fireball01									0	0	0	0	0	0	0	0	0	1		Fire_Ability_Mst.HIT.FireBallHitM_MST						0.8							0	1	0	0	0	30			1					销毁,伤害									销毁			LongJiQaiang						
+LavaBall	物件用	656	0	52	0	0	0	0								1	parabola	Fire_Environmental.ENV.MagmaBall_L014									0	0	0	0	0	0	0	0	0	1		Fire_Environmental.ENV.MagmaBall_Bst_L014						0.3							0	1	0	0	0	30			1	销毁(0),伤害,爆炸	销毁(0),伤害,爆炸	销毁(0),伤害,爆炸	销毁(0),伤害,爆炸	销毁(0),伤害,爆炸	销毁(0),伤害,爆炸	伤害	销毁(0),伤害,爆炸		销毁(0),伤害,爆炸		销毁(0),命中特效,伤害,爆炸		销毁			ShootFireBall		110	Fire_Environmental.ENV.MagmaBall_Bst_L014			
+FlashGrenadePVP	人物用	657	0	15	0.2	0	0	-5									parabola									Objects/items/flashbomb.cgf	0	0	0	0	0	0	0	0	0	1		Energy_Ability_PC.CST.FlashGrenade_Pc			Item_Grenade			0.3							0	1	0	0	0	1.5			1				销毁,爆炸		销毁,爆炸						销毁,爆炸		销毁,爆炸					111				
+NoisyGrenadePVP	人物用	658	0	15	0.2	0	0	-5									parabola									Objects/items/flashbomb.cgf	0	0	0	0	0	0	0	0	0	1		Energy_Ability_PC.CST.SoundGrenade			Item_Grenade			0.3							0	1	0	0	0	1.5			1				销毁,爆炸		销毁,爆炸						销毁,爆炸		销毁,爆炸					112				
+Hi_GrenadePVP	人物用	659	0	17	1	0	0	-30									parabola									Objects/items/flashbomb.cgf	0	0	0	720	0	0	0	0	0	1.5		Fire_Ability_Pc.CST.G_ExplodeArrowExplode			Item_Grenade			0.5							0	1	0	0	0	6			5				销毁,爆炸,伤害		销毁,爆炸,伤害		销毁,爆炸		销毁,爆炸		销毁,爆炸		销毁,爆炸					113				
+FieldSleepGrenadePVP	人物用	660	0	15	2	0	0	-9.8								1	parabola	Energy_Ability_PC.CST.Trailing_01								Objects/items/flashbomb.cgf	0	0	0	0	0	0	0	0	0	1		Energy_Ability_PC.CST.YWG-Sleepball						0.5								10				15			5						销毁,爆炸		销毁,爆炸		销毁,爆炸		销毁,爆炸		销毁,爆炸					114				
+Mabi_GrenadePVP	人物用	661	0	13	1	0	0	-10									parabola									Objects/items/flashbomb.cgf	0	0	0	720	0	0	0	0	0	1		Energy_Ability_PC.HIT.PalsyGrenade_HIT			Item_Grenade			0.5							0	1	0	0	0	6			5				销毁,爆炸		销毁,爆炸,伤害		销毁,爆炸		销毁,爆炸		销毁,爆炸		销毁,爆炸					115				
+ThrownBombPVP	人物用	662	0	15	2	0	0	-9.8								1	parabola									Objects/items/flashbomb.cgf	0	0	0	0	0	0	0	0	0	1								0.1								10				15			5												销毁,生成物件		销毁				106					
+ThrownMinePVP	人物用	663	0	13	1	0	0	-10									parabola									Objects/items/flashbomb.cgf	0	0	0	720	0	0	0	0	0	1					Item_Grenade			0.1							0	1	0	0	0	6			5												销毁,生成物件		销毁				107					
+ConfusePVP	人物用	664	0	17	1	0	0	-30									parabola									Objects/items/flashbomb.cgf	0	0	0	720	0	0	0	0	0	1.5		Energy_Ability_PC.HIT.MindBlockGrenade_HIT			Item_Grenade			0.5							0	1	0	0	0	6			5				销毁,伤害				销毁,爆炸		销毁,爆炸		销毁,爆炸		销毁,爆炸			ConfusePVP						
+WinePVP	人物用	665	0	17	1	0	0	-30									parabola									Objects/items/flashbomb.cgf	0	0	0	720	0	0	0	0	0	1.5		Water_Ability_Pc.HIT.LiquorHit			Item_Grenade			0.5							0	1	0	0	0	6			5				销毁,伤害				销毁,爆炸		销毁,爆炸		销毁,爆炸		销毁,爆炸			WinePVP						
+HealPool	人物用	666	0	1	0	0	0	-9.8								1	parabola	Energy_Ability_PC.CST.Trailing_01								Objects/items/flashbomb.cgf	0	0	0	720	0	0	0	0	0	1.5		Energy_Ability_PC.BUF.LifeDust_Money			Item_Grenade			0.5							0	1	0	0	0	10			5												销毁,生成物件		销毁,生成物件				108					
+SnowBall	物件用	667	0	20	0	0	0	-20								1	parabola	Ice_Environmental.PRJ.SnowBall_Trail								objects/share/collection/snowball.cgf	0	0	0	720	0	0	0	0	0	2		Ice_Environmental.Hit.SnowBall_Hit						0.8							0	1	0	0	0	30			1	销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害	伤害	销毁		销毁		销毁		销毁			SnowBall						
+IceBall	物件用	668	0	15	0	0	0	-10								1	parabola	Ice_Environmental.PRJ.IceBall_Trail								objects/share/collection/iceblock.cgf	0	0	0	720	0	0	0	0	0	2		Ice_Environmental.Hit.IceBall_Hit						0.8							0	1	0	0	0	30			1	销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸		销毁,爆炸		销毁,爆炸		销毁,爆炸		销毁,爆炸					116				
+IceCone	物件用	669	0	5	0	0	0	-1								1	parabola	Ice_Environmental.PRJ.IcePick_Trail								objects/share/collection/ice.cgf	0	0	0	0	720	0	0	0	0	2		Ice_Environmental.Hit.IcePick_Hit						0.8							0	1	0	0	0	30			1	销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸		销毁,爆炸		销毁,爆炸		销毁,爆炸		销毁,爆炸					117				
+BalistaIceLaoShanXie	载具用	670	0	70	0	0	0	0								1	parabola	Ice_Environmental.PRJ.SnowBall_Trail								Objects/items/ballista_arrow.cgf	0	0	0	0	0	0	0	0	0	2		Ice_Ability_Pc.HIT.IceBomb_Hit						0.3							0	1	0	0		30			1			销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害		销毁,伤害		销毁,伤害	销毁	销毁			BalistaIceLaoShanXie						
+TaiHouBullet_NBY	载具用	672	0	70	0	0	0	-9.8								1	parabola	Fire_Ability_Pc.PRJ.CannonPRJ								objects/levels/level_005/objects/l005_cannonball.cgf	0	0	0	0	0	0	0	0	0	2		Fire_Ability_Pc.CST.GrenadeCST						0.6							0	1	0	0		30			1			销毁,伤害,爆炸	销毁,伤害,爆炸	销毁,伤害,爆炸	销毁,伤害,爆炸	销毁,伤害,爆炸	销毁,伤害,爆炸		销毁,伤害,爆炸	销毁,伤害,爆炸	销毁,伤害,爆炸	销毁,爆炸	销毁,爆炸			TaiHouBullet_NBY		102				
+Laoshan_RapidCannonLV1	载具用	673	0	150	0	0	0	0								1	parabola	Fire_Ability_Pc.PRJ.WN_BreakChargePRJ								Objects/items/ballista_arrow.cgf	0	0	0	0	0	0	0	0	0	2		Fire_Ability_Pc.CST.GrenadeCST						0.3							0	1	0	0		6			1	销毁		销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害	伤害	伤害				销毁	销毁	销毁			Laoshan_RapidCannonLV1						
+Laoshan_RapidCannonLV2	载具用	674	0	150	0	0	0	0								1	parabola	Fire_Ability_Pc.PRJ.WN_BreakChargePRJ								Objects/items/ballista_arrow.cgf	0	0	0	0	0	0	0	0	0	2		Fire_Ability_Pc.CST.GrenadeCST						0.3							0	1	0	0		6			1	销毁		销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害	伤害	伤害				销毁	销毁	销毁			Laoshan_RapidCannonLV2						
+Laoshan_RapidCannonLV3	载具用	675	0	150	0	0	0	0								1	parabola	Fire_Ability_Pc.PRJ.WN_BreakChargePRJ								Objects/items/ballista_arrow.cgf	0	0	0	0	0	0	0	0	0	2		Fire_Ability_Pc.CST.GrenadeCST						0.3							0	1	0	0		6			1	销毁		销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害	伤害	伤害				销毁	销毁	销毁			Laoshan_RapidCannonLV3						
+Laoshan_ShotCannonLV1	载具用	676	0	100	0	0	0	0								1	parabola	Fire_Ability_Pc.PRJ.WN_BreakChargePRJ								Objects/items/ballista_arrow.cgf	0	0	0	0	0	0	0	0	0	2		Fire_Ability_Pc.CST.GrenadeCST						0.3							0	1	0	0		6			1	销毁		销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害	伤害	伤害				销毁	销毁	销毁			Laoshan_ShotCannonLV1						
+Laoshan_ShotCannonLV2	载具用	677	0	100	0	0	0	0								1	parabola	Fire_Ability_Pc.PRJ.WN_BreakChargePRJ								Objects/items/ballista_arrow.cgf	0	0	0	0	0	0	0	0	0	2		Fire_Ability_Pc.CST.GrenadeCST						0.3							0	1	0	0		6			1	销毁		销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害	伤害	伤害				销毁	销毁	销毁			Laoshan_ShotCannonLV2						
+Laoshan_ShotCannonLV3	载具用	678	0	100	0	0	0	0								1	parabola	Fire_Ability_Pc.PRJ.WN_BreakChargePRJ								Objects/items/ballista_arrow_liudan.cgf	0	0	0	0	0	0	0	0	0	2		Fire_Ability_Pc.CST.GrenadeCST						0.3							0	1	0	0		6			1	销毁		销毁,伤害	销毁,伤害	销毁,伤害	销毁,伤害	伤害	伤害				销毁	销毁	销毁			Laoshan_ShotCannonLV3						
+Laoshan_BlastCannonLV1	载具用	679	0	35	0	0	-1	-1								1	parabola	Fire_Ability_Pc.PRJ.WN_BreakChargePRJ								Objects/items/ballista_arrow_liudan.cgf	0	0	0	0	0	0	0	0	0	2		Fire_Ability_Pc.CST.MineCST						0.3								10	0	0		6			1	销毁		销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸				销毁,爆炸	销毁,爆炸	销毁,爆炸			Laoshan_BlastCannonLV1		119				
+Laoshan_BlastCannonLV2	载具用	680	0	35	0	0	-1	-1								1	parabola	Fire_Ability_Pc.PRJ.WN_BreakChargePRJ								Objects/items/ballista_arrow_liudan.cgf	0	0	0	0	0	0	0	0	0	2		Fire_Ability_Pc.CST.MineCST						0.3								10	0	0		6			1	销毁		销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸				销毁,爆炸	销毁,爆炸	销毁,爆炸			Laoshan_BlastCannonLV2		120				
+Laoshan_BlastCannonLV3	载具用	681	0	35	0	0	-1	-1								1	parabola	Fire_Ability_Pc.PRJ.WN_BreakChargePRJ								Objects/items/ballista_arrow.cgf	0	0	0	0	0	0	0	0	0	2		Fire_Ability_Pc.CST.MineCST						0.3								10	0	0		6			1	销毁		销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸				销毁,爆炸	销毁,爆炸	销毁,爆炸			Laoshan_BlastCannonLV3		121				
+Laoshan_GumCannonLV1	载具用	682	0	35	0	0	-1	-1								1	parabola									Objects/items/arrow_crystal.cgf	0	0	0	0	0	0	0	0	0	2		Ice_Ability_Mst.HIT.NM_IceHit_MST	2					0.3							0	10	0	0		6			1	销毁		销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸				销毁,爆炸	销毁,爆炸	销毁,爆炸			Laoshan_GumCannonLV1		122				
+Laoshan_GumCannonLV2	载具用	683	0	35	0	0	-1	-1								1	parabola									Objects/items/arrow_crystal.cgf	0	0	0	0	0	0	0	0	0	2		Ice_Ability_Mst.HIT.NM_IceHit_MST	2					0.3							0	10	0	0		6			1	销毁		销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸				销毁,爆炸	销毁,爆炸	销毁,爆炸			Laoshan_GumCannonLV2		123				
+Laoshan_GumCannonLV3	载具用	684	0	35	0	0	-1	-1								1	parabola									Objects/items/arrow_crystal.cgf	0	0	0	0	0	0	0	0	0	2		Ice_Ability_Mst.HIT.NM_IceHit_MST	2					0.3							0	10	0	0		6			1	销毁		销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸				销毁,爆炸	销毁,爆炸	销毁,爆炸			Laoshan_GumCannonLV3		124				
+Laoshan_PoisonCannonLV1	载具用	685	0	50	0	0	0	0								1	parabola	Fire_Ability_Pc.PRJ.WN_BreakChargePRJ								Objects/items/ballista_arrow.cgf	0	0	0	0	0	0	0	0	0	2		Air_Ability_Mst.CST.Attack_poisonball03-1_HIT_em033	2					0.3							0	10	0	0		6			1	销毁		销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸				销毁,爆炸	销毁,爆炸	销毁,爆炸			Laoshan_PoisonCannonLV1		125				
+Laoshan_PoisonCannonLV2	载具用	686	0	50	0	0	0	0								1	parabola	Fire_Ability_Pc.PRJ.WN_BreakChargePRJ								Objects/items/ballista_arrow.cgf	0	0	0	0	0	0	0	0	0	2		Air_Ability_Mst.CST.Attack_poisonball03-1_HIT_em033	2					0.3							0	10	0	0		6			1	销毁		销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸				销毁,爆炸	销毁,爆炸	销毁,爆炸			Laoshan_PoisonCannonLV2		126				
+Laoshan_PoisonCannonLV3	载具用	687	0	50	0	0	0	0								1	parabola	Fire_Ability_Pc.PRJ.WN_BreakChargePRJ								Objects/items/ballista_arrow.cgf	0	0	0	0	0	0	0	0	0	2		Air_Ability_Mst.CST.Attack_poisonball03-1_HIT_em033	2					0.3							0	10	0	0		6			1	销毁		销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸				销毁,爆炸	销毁,爆炸	销毁,爆炸			Laoshan_PoisonCannonLV3		127				
+FlyingBomb	载具用	688	0	50	0	0	0	-10								1	parabola	Fire_Ability_Pc.PRJ.WN_BreakChargePRJ								Objects/items/flashbomb.cgf	0	0	0	0	0	0	0	0	0	2		Fire_Ability_Pc.CST.MineCST						0.3								10	0	0		6			1	销毁		销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸	销毁,爆炸				销毁,爆炸	销毁,爆炸	销毁,爆炸			Laoshan_BlastCannonLV2		119				
+#============End of sheet============
+
+           

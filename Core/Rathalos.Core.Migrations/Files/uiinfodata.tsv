@@ -1,0 +1,287 @@
+#TSV
+#============Begin of sheet============
+@Sheet=UIInfo
+id	name	path	CacheType	xPos	yPos	layer	layoutModel	isLockPos	CallMouseTyp	winModel	togetherOpenWin	togetherCloseWin	escLevel	uiModelElement	inventoryShowMode	weaponType	canCloseByEsc	openDenyOther	WontDenyByOther
+0	Inventory	widgets/Inventory.swf	1	0	0	1	2	0	1	1	-1	-1	0	1			1		
+2	playerWidget	widgets/NewPlayerPropertyWidget.swf	2	0	0	1	1	0	1	1	-1	-1	0	1			1		0
+3	ActionBars	widgets/ActionBarsView.swf	0	0	0	0	0	0	0	1	-1	-1	0	0			1		1
+4	LevelSettlement	widgets/LevelSettlement.swf	0	0	0	1	0	0	1	1	-1	-1	0	1			1		
+9	Chatlog	widgets/ChatlogWidget.swf	0	0	0	0	0	0	2	1	-1	-1	0	0			1		1
+12			0	0	0	6	0	0	1	1	-1	-1	0	1			1		
+13	NpcTalkContent	widgets/NpcTalkContent.swf	0	0	0	1	0	0	1	1	-1	-1	0	1			1		
+14	NewMHFCNpcTaskDlg	widgets/NewMHFCNpcTaskDlg.swf	0	0	0	1	0	0	1	1	-1	-1	0	1			1		
+15	NewNpcTaskDescribe.fla	widgets/NewNpcTaskDescribe.swf	0	0	0	1	0	0	1	1	-1	-1	0	1			1		
+16	NewPlayerTaskDlg	widgets/NewPlayerTaskDlg.swf	2	0	0	1	1	0	1	1	-1	-1	0	1			1		
+17	MiniMapView	widgets/MiniMapView.swf	0	0	0	0	0	0	0	1	-1	-1	0	0			1		1
+18	SocialView	widgets/SocialView.swf	0	0	0	1	1	0	1	1	-1	-1	0	1			1		
+19	ForgeView	widgets/ForgeView.swf	0	0	0	1	1	0	1	1	90	90	0	1			1		
+20	MainHud	widgets/MainHudView.swf	0	0	0	0	0	0	0	1	-1	-1	0	0			1		1
+21	SystemBarView	widgets/NewSysBarDlg.swf	0	0	0	0	0	0	1	1	-1	-1	0	0			1		1
+22	CrossBowBar	widgets/CrossBowBar.swf	0	0	0	0	0	0	0	1	-1	-1	0	0		5	1		1
+23	InstanceDownTimeMessageBox	widgets/InstanceDownTimeMessageBox.swf	0	0	0	2	0	0	1	1	-1	-1	0	0			1		
+24	SupplyBox	widgets/SupplyBox.swf	0	0	0	1	1	1	1	1	0	0	0	1			1		
+25	PromptContainerView	widgets/PromptContainerView.swf	0	0	0	3	0	0	0	1	-1	-1	0	0			1		
+26	MainMenuView	widgets/MainMenuView.swf	0	0	0	5	0	0	1	1	-1	-1	0	1			1	1	
+28	systemSetting	widgets/systemSetting.swf	0	0	0	5	0	0	1	1	-1	-1	0	1			1		
+29	ShopWindow	widgets/ShopWindow.swf	0	0	0	1	1	1	1	1	0	0	0	0	1		1		
+30	StoreHouseView	widgets/StoreHouse.swf	1	0	0	1	1	1	1	1	0	0	0	1			1		
+31	ManufactureView	widgets/ManufactureView.swf	1	0	0	1	1	0	1	1	-1	-1	0	1			1		
+32	ManufactureStudyView	widgets/ManufactureStudyView.swf	0	0	0	1	1	1	1	1	-1	-1	0	1			1		
+33			0	0	0	5	0	0	2	1	-1	-1	0	0			1		
+34	TradeDlg	widgets/TradeDlg.swf	0	0	0	1	1	1	1	1	0	0	0	0	1		1		
+35	QuestTrackPanel	widgets/QuestTrackPanel.swf	0	0	0	0	0	0	0	1	-1	-1	0	0			1		
+36	RankLevelUp	widgets/EquipRankUp.swf	0	0	0	1	1	1	1	1	0	0	0	0	1		1		
+37	ActionPointHudView	widgets/ActionPointHudView.swf	0	0	0	0	0	0	0	1	-1	-1	0	0			1		
+38	ActionPointSettingView	widgets/ActionPointSettingView.swf	0	0	0	1	0	0	1	1	-1	-1	0	0			1		
+39	InstanceBtlAssess		0	0	0	0	0	0	0	1	-1	-1	0	0			1		
+40	InstanceScoreView	widgets/InstanceScoreView.swf	0	0	0	1	0	0	1	1	-1	-1	0	0			1		
+41	InstanceRewardView	widgets/InstanceRewardView.swf	0	0	0	1	0	0	1	1	-1	-1	0	0			1		
+42	EquipEmbedJewelWindow	widgets/EquipEmbedJewel.swf	0	0	0	1	0	1	1	1	169	169	0	0	1		1		
+43	MailBoxMainView	widgets/MailBoxMain.swf	0	0	0	1	1	0	1	1	0	0	0	0	1		1		
+44	AuctionView	widgets/Auction.swf	0	0	0	1	1	0	1	1	0	0	0	0	1		1		
+45	PetUnEmployment	widgets/PetUnEmploymentDlg.swf	2	0	0	1	0	0	1	1	0	169	0	0			1		
+46	PetEmployment	widgets/PetEmploymentDlg.swf	0	0	0	1	1	1	1	1	90	90	0	0			1		
+47	PetForgeView	widgets/PetForgeView.swf	0	0	0	1	1	0	1	1	90	90	0	0			1		
+48	MailBoxReaderView	widgets/MailBoxReader.swf	0	0	0	1	0	0	1	1	-1	-1	0	0			1		
+49	EquipEnforceView	widgets/EquipEnforce.swf	0	0	0	1	0	1	1	1	169	169	0	0	1		1		
+50	EquipSkillView	widgets/EquipSkillView.swf	0	0	0	1	0	0	1	1	-1	-1	0	0			1		
+51	ActionBoardView	widgets/ActionBoard.swf	0	0	0	7	0	0	1	1	-1	-1	0	0			1		
+52	KeyMapView	widgets/KeyMapSetting.swf	0	0	0	5	0	0	1	1	-1	-1	0	1			1		
+53														0			1		
+54	EquipFound	widgets/EquipFound.swf	0	0	0	1	0	1	1	1	0	0	0	0			1		
+55	WorldMap	widgets/WorldMap.swf	0	0	0	1	0	0	1	1	-1	-1	0	0			1		
+56	SkillVideo	widgets/SKillVideoDlg.swf	0	0	0	1	0	0	1	1	-1	-1	0	0			1		
+57	CatCarHudView	widgets/CatCarHudView.swf	0	0	0	0	0	0	0	1	-1	-1	0	0			1		
+58	MaskView	widgets/MaskView.swf	0	0	0	1	0	0	0	1	-1	-1	0	0			1		
+59	DailySchedule	widgets/DailySchedule.swf	0	0	0	1	0	1	1	1	-1	-1	0	1			1		
+60	QuitGameRewardItem	widgets/QuitGameRewardItem.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			1		
+61	QuitGameRestQuest	widgets/QuitGameRestQuest.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			1		
+62	DailyScheduleFirstItem	widgets/DailyScheduleFirstItem.swf	0	0	0	1	1	1	1	1	-1	-1	0	0			1		
+63	NewNpcTaskDescribeWithItem	widgets/NewNpcTaskDescribeWithItem.swf	0	0	0	6	0	0	1	1	-1	-1	0	0			1		
+64	PackItemBox	widgets/PackItemBox.swf	0	0	0	2	0	1	1	1	-1	-1	0	0			1		
+65	BroadcastSendView	widgets/BroadcastSendView.swf	0	0	0	2	0	1	1	1	-1	-1	0	0			1		
+66	CreateHunterGroup	widgets/CreateHunterGroupView.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			1		
+67	SearchHunterGroup	widgets/SearchHunterGroupView.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			1		
+68	ManagerHunterGroup	widgets/ManagerHunterGroupView.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			1		
+69	HunterStarLevel	widgets/HunterStarLevel.swf	0	0	0	1	0	1	1	3	-1	-1	0	0			1		
+70	InstanceDailyTaskView	widgets/InstanceDailyTaskPanel.swf	0	0	0	1	0	0	1	1	-1	-1	0	0			1		
+71	HunterStarCardCollect	widgets/HunterStarCardCollect.swf	0	0	0	1	1	1	1	1	-1	-1	0	0			1		
+72	FriendFarmView	widgets/FriendFarmView.swf	0	0	0	1	0	0	0	1	-1	-1	0	0			1		
+73	PetMaterialDecompose	widgets/PetMaterialDecompose.swf	0	0	0	1	1	1	1	1	0	0	0	0			1		
+74	NpcFriendUI	widgets/NpcFriendUI.swf	0	0	0	0	0	0	1	1	-1	-1	0	0			1		
+75	EntrustInfoView	widgets/EntrustInfoView.swf	0	0	0	1	1	0	1	1	-1	-1	0	0			1		
+76	EntrustListView	widgets/EntrustListView.swf	0	0	0	1	1	0	1	1	-1	-1	0	0			1		
+77	EntrustStartView	widgets/EntrustStartView.swf	0	0	0	1	0	0	1	1	-1	-1	0	0			0		1
+78	FarmMainHudView	widgets/FarmMainHudView.swf	0	0	0	0	0	1	0	1	-1	-1	0	0			1		
+79	FarmReturnHomeView	widgets/FarmReturnHomeView.swf	0	0	0	0	0	0	0	1	-1	-1	0	0			1		
+80	FarmMainView	widgets/FarmMainView.swf	0	0	0	1	1	1	1	1	-1	123	0	0			1		
+81	FarmCutSceneView	widgets/FarmCutSceneView.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			1		
+82	FarmSeedView	widgets/FarmSeedView.swf	0	0	0	1	1	1	1	1	-1	-1	0	0			1		
+83	FarmStoreHouse	widgets/FarmStoreHouse.swf	0	0	0	1	1	1	1	1	0	0	0	0			1		
+84	BowBarView	widgets/BowBarView.swf	0	0	0	0	0	0	0	1	-1	-1	0	0		10	1		1
+85	LevelTrackView	widgets/LevelEntrustTrack.swf	0	0	0	0	0	0	0	1	-1	-1	0	0			1		
+86	GiftPackView	widgets/GiftPackView.swf	0	0	0	1	0	0	1	1	-1	-1	0	0			1		
+87	InGameSelectLineView	widgets/InGameSelectLineView.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			1		
+88	CurrentEquip	widgets/CurrentEquipView.swf	0	0	0	1	0	0	1	1	-1	-1	0	0			1		
+89	CatFood	widgets/CatFood.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			1		
+90	EquipShow	widgets/EquipShowUI.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			1		
+91	CatFoodResult	widgets/CatFoodResultView.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			1		
+92	GiftPackHudView	widgets/GiftPackHudView.swf	0	0	0	0	0	0	0	1	-1	-1	0	0			1		
+93	SelectLineBtnView	widgets/SelectLineBtnView.swf	0	0	0	0	0	0	0	1	-1	-1	0	0			1		1
+94	RemainTimeView	widgets/RemainTimeView.swf	0	0	0	3	0	1	0	1	-1			0			1		
+95	BangBangHudView	widgets/BangBangHudView.swf	0	0	0	0	0	0	0	1	-1	-1	0	0			1		
+96	TurnInBoxView	widgets/TurnInBoxView.swf	0	0	0	1	1	1	1	1	-1	-1	0	1			1		
+97	RankingListOfPlayer	widgets/RankingListOfPlayer.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			1		
+98	WeaponTalent	widgets/WeaponTalent_c3v.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			1		
+99	HunterGroupEditIcon	widgets/HunterGroupEditIcon.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			1		
+100	HunterGroupLevelUp	widgets/HunterGroupLevelUp.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			1		
+101	HunterGroupWarehouse	widgets/HunterGroupWarehouse.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			1		
+102	HunterGroupUnlockShop	widgets/HunterGroupUnlockShop.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			1		
+103	HunterGroupSkill	widgets/HunterGroupSkill.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			1		
+104	MailHudView	widgets/MailHudView.swf	0	0	0	0	0	0	0	1	-1	-1	0				1		
+105	ThousandLayerSupplyView	widgets/ThousandLayerSupply.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			1		1
+106	HammerView		0	0	0	0	0	0	0	1	-1	-1	0	0		2	1		1
+108	BigSwordView		0	0	0	0	0	0	0	1	-1	-1	0	0		1	1		1
+109	CrossBowVehicleView	widgets/CrossBowVehicle.swf	0	0	0	0	0	0	0	1	-1	-1	0	0			1		1
+110	ReviveView	widgets/ReviveView.swf	0	0	0	4	0	0	0	1	-1	-1	0	0			1		1
+111	DeathWatchView	widgets/DeathWatchView.swf	0	0	0	0	0	0	0	1	-1	-1	0	0			1		
+112	TaskSeriesView	widgets/TaskSeriesPanel.swf	0	0	0	4	0	0	0	1	-1	-1	0	0			1		
+113	CentreScreenInfoView	widgets/CentreScreenInfoView.swf	0	0	0	3	0	1	0	1	-1	-1	0	0			1		
+114	PVPPersonalSettlement	widgets/PVPPersonalSettlement.swf	0	0	0	9	0	1	1	1	-1	0	0	0			1		
+115	PVPGroupSettlement	widgets/PVPGroupSettlement.swf	0	0	0	9	0	1	1	1	-1	0	0	0			1		
+116	PVPHunterBox	widgets/PVPHunterBox.swf	0	0	0	8	0	1	1	1	-1	-1	0	0			1		
+117	OtherPlayerPropertyUI	widgets/NewOtherPlayerPropertyWidget.swf	0	0	0	1	1	0	1	1	-1	-1	0				1		
+118	BannerView	widgets/BannerView.swf	0	0	0	3	0	1	0	1	-1	-1	0	0			0		
+119	MainHud	widgets/PvpReadyMainHud.swf	0	0	0	8	0	0	0	1	-1	-1	0	0			0		
+120	DualBladesView	widgets/DualBlades.swf	0	0	0	0	0	0	0	1	-1	-1	0	0		6	1		1
+121	PvpSpecialHud	widgets/PvpSpecialHud.swf	0	0	0	9	0	0	0	1	-1	-1	0	0			0		
+122	HunterGroupInventory	widgets/HunterGroupInventory.swf	0	0	0	1	1	1	1	1	0	0	0	0			1		
+123	PetList	widgets/PetListDlg.swf	0	0	0	1	0	0	1	1	-1	-1	0	0			1		
+124	MartView	widgets/MartView.swf	0	0	0	1	0	0	1	3	-1	133	0	0			1		
+125	HunterGroupLeagueRegistrationView	widgets/HunterGroupLeagueRegistration.swf	0	0	0	1	0	0	1	1	-1	-1	0	0			1		
+126	FightTeamRegisterView	widgets/CreateBattleTeamView.swf	0	0	0	1	0	0	1	1	-1	-1	0	0			1		
+127	BattleTeamManagedView	widgets/BattleTeamManagedView.swf	0	0	0	1	0	0	1	1	-1	-1	0	0			1		
+128	HunterGroupLeagueMap	widgets/HunterGroupLeagueMap.swf	0	0	0	1	0	0	1	1	-1	-1	0	0			1		
+129	FarmLargeFacilitiesMainView	widgets/FarmLargeFacilitiesMainView.swf	0	0	0	1	1	1	1	1	-1	-1	0	0			1		
+130	FarmLargeFacilitiesToolsView	widgets/FarmLargeFacilitiesToolsView.swf	0	0	0	1	0	2	1	1	-1	-1	0	0			1		
+131	FarmLargeFacilitiesSettlementView	widgets/FarmLargeFacilitiesSettlementView.swf	0	0	0	1	0	0	1	1	-1	-1	0	0			1		
+132	CrossBowMotorboatView	widgets/CrossBowMotorboatView.swf	0	0	0	0	0	0	0	1	-1	-1	0	0			1		
+133	GiftBoxMainView	widgets/GiftBoxMainView.swf	0	0	0	1	0	0	1	1	-1	134	0	0			1		
+134	GiftBoxReaderView	widgets/GiftBoxReaderView.swf	0	0	0	1	0	0	1	1	-1	-1	0	0			1		
+135	GuildPrimaryView	widgets/GuildPrimaryView.swf	0	0	0	1	0	0	1	1	-1	-1	0	0			1		
+136	EquipUpgrade	widgets/EquipUpgrade.swf	0	0	0	1	1	0	1	1	169	169	0	0	1		1		
+137	HunterRoad	widgets/HunterRoad.swf	0	0	0	1	0	1	1	1	-1	0	0	0			1		
+138	Contest	widgets/ContestRankListView.swf	0	0	0	1	1	0	1	1	-1	-1	0	0			1		
+139	EquipAwakeningView	widgets/EquipAwakeningView.swf	0	0	0	1	1	0	1	1	169	169	0	0	1		1		
+140	WarningTipsView	widgets/WarningTipsView.swf	0	0	0	3	0	1	0	1	-1	-1	0	0			0		
+141	SuperStarView	widgets/SuperStarView.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			1		
+142	CharmFoundView	widgets/CharmFoundView.swf	0	0	0	1	1	1	1	1	0	0	0	0	1		1		
+143	ItemDecomposeMainView	widgets/ItemDecomposeMainView.swf	0	0	0	1	1	1	1	1	0	144	0	0	1		1		
+144	ItemDecomposeResultView	widgets/ItemDecomposeResultView.swf	0	0	0	1	1	0	1	1	-1	-1	0	0			1		
+145	CommonGroupHudView	widgets/CommonGroupViewInBattle.swf	0		0	0	0	1	0	1	-1	-1	0	0			0		1
+146	EntrustTreasures	widgets/EntrustTreasures.swf	0	0	0	1	1	0	1	1	-1	-1	0	0			1		
+147	EntrustTreasuresShop	widgets/EntrustTreasuresShop.swf	0	0	0	1	2	0	1	1	-1	-1	0	0			1		
+148	OpenTreasureChest	widgets/OpenTreasuresView.swf	0	0	0	1	0	0	1	1	-1	-1	0	0			1		
+149	ScrollAnouncementView	widgets/ScrollAnouncementView.swf	0	0	0	3	0	0	0	1	-1	-1	0	0			1		
+150	AirshipVIew	widgets/AirshipControl.swf	0	0	0	1	0	0	1	1	-1	-1	0	0			0		
+151	MoneyExchangeView	widgets/MoneyExchange.swf	0	0	0	1	1	0	1	1	-1	-1	0	0			1		
+152	FireworksView	widgets/FireworksView.swf	0	0	0	1	1	0	1	1	-1	154	0	0			1		
+153	RoseView	widgets/RoseView.swf	0	0	0	1	1	0	1	1	-1	154	0	0			1		
+154	HandselListView	widgets/HandselListView.swf	0	0	0	1	0	0	1	1	-1	-1	0	0					
+155		widgets/BattleWatch.swf	0	0	0	1	0	1	0	1	-1	-1	0	0			0		
+156		widgets/WeaponTutorialVideo.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			1		
+157		widgets/CommonFunctionalListView.swf	0	0	0	1	0	0	1	1	-1	-1	0	0			0	1	
+158	MatchView	widgets/MatchView.swf	0	0	0	2	0	0	1	1	-1	-1	0	0			0	0	
+159	AwardWindow	widgets/FarmWelfare.swf	0	0	0	1	0	0	1	1	-1	-1	0	0			1		
+160	OperationActivityBoard	widgets/OperationActivityBoard.swf	0	0	0	1	0	0	1	1	-1	-1	0	1			1		
+161	RapidHuntAwardView	widgets/RapidHuntAwardView.swf	0	0	0	1	1	0	1	1	-1	-1	0	0			1		
+162	EntrustMedalTreasures	widgets/EntrustMedalTreasures.swf	0	0	0	1	1	0	1	1	-1	-1	0	0			1		
+163	WeaponUnlockView	widgets/WeaponUnlockView.swf	0	0	0	1	0	0	1	1	-1	-1	0	0			1		
+164	UIFluteInBattle	widgets/UIFluteInBattle.swf	0	0	0	0	0	0	0	1	-1	-1	0	0		8	1		1
+165	EquipWakeHud		0	0	0	0	0	1	0	1	-1	-1	0	0			1		
+166	InstanceSelectView	widgets/InstanceSelectView.swf	0	0	0	1	0	0	1	1	-1	-1	0	0			1	1	
+167	RaidHudview	widgets/RaidHudview.swf	0	0	0	0	0	0	0	1	-1	-1	0	0			0		1
+168	ItemExchangeView	widgets/ItemExchangeView.swf	0	0	0	1	1	1	1	1	169	169	0	0			1		
+169	ItemFilterView	widgets/ItemFilterView.swf	0	0	0	1	2	1	1	1	-1	168	0	0			1		
+170	IpvpScoreView	widgets/IpvpScoreView.swf	0	0	0	0	0	0	0	0	-1	-1	0	0			0		
+171	IpvpRankView	widgets/IpvpRankView.swf	0	0	0	8	0	0	0	0	-1	-1	0	0			0		
+172	IpvpSettlementView	widgets/IpvpSettlementView.swf	0	0	0	9	0	0	1	0	-1	-1	0	0			0		
+173	QueueView	widgets/QueueView.swf	0	0	0	0	0	1	0	0	-1	-1	0	0			0		
+174	RandomPetEmployment	widgets/PetEmploymentRandomDlg.swf	0	0	0	1	1	1	1	1	90	90	0	0			1		
+175	FarmCDReduceView	widgets/FarmCDReduceView.swf	0	0	0	1	1	1	1	1	-1	-1	0	0			1		
+176	RapidBuyVipView	widgets/RapidBuyVipView.swf	0	0	0	0	0	1	0	0	-1	-1	0	0			0		
+177	WeaponTutorialQTEView	widgets/WeaponTutorialQTE.swf	0	0	0	0	0	1	0	0	-1	-1	0	0					
+178	WeaponTutorialSelection	widgets/WeaponTutorialSelection.swf	0	0	0	0	0	1	1	0	-1	-1	0	0			1		
+179	CatTreasureView	widgets/CatTreastureCheckout.swf	0	0	0	1	0	0	1	1	-1	-1	0	0			1		
+180	TeachPrompt	widgets/TeachPrompt.swf	0	0	0	0	0	1	0	0	-1	-1	0	0			0		
+181	PurchaseVipView	widgets/PurchaseVipView.swf	0	0	0	2	0	1	1	4	-1	-1	0	0			1		
+182	PurchaseItemView	widgets/PurchaseItemView.swf	0	0	0	1	0	1	1	4	-1	-1	0	0			1		1
+183	PvpBattleListView	widgets/PvpBattleListView.swf	0	0	0	1	1	0	1	1	-1	-1	0	0			1		
+184	CreateRoleView	widgets/NewLobbyWindow.swf																	
+185	GuildInstanceInfoView	widgets/GuildInstanceInfoView.swf	0	0	0	1	0	0	1	1	-1	-1	0	0					1
+186	ReportPlayerView	widgets/ReportPlayerView.swf	0	0	0	1	0	0	2	1	-1	-1	0	0			1		
+187	GunLanceView	widgets/GunLance.swf	0	0	0	0	0	0	0	1	-1	-1	0	0		9	0		1
+188	LoginCoachView	widgets/LoginCoachView.swf	0	0	0	1	1	0	1	1	-1	-1	0	0		0	1		
+189	LordOfSkyView	widgets/LordOfSkyView.swf	0	0	0	1	1	0	1	1	-1	-1	0	0		0	1		
+190	YoukuReplayHudView	widgets/YoukuReplayHudView.swf	0	0	0	0	0	0	0	1	-1	-1	0	0			0		1
+191	YoukuReplayUploadView	widgets/YoukuReplayUploadView.swf	0	0	0	1	0	0	1	1	-1	-1	0	0			0		
+192	YoukuReplaySettingView	widgets/YoukuReplaySettingView.swf	0	0	0	1	0	0	1	1	-1	-1	0	0			1		
+193	EquipDyeColorView	widgets/EquipDyeColor.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			1		
+194	StarStoneDevelopView	widgets/StarStoneDevelop.swf	0	0	0	1	0	1	1	1	169	169	0	0			1		
+195	StarStoneInlayView	widgets/StarStoneInlay.swf	0	0	0	1	0	1	1	1	169	169	0	0			1		
+196	NianMonsterFireworksView	widgets/NianMonsterFireworksView.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			1		
+197	NianMonsterExchangeView	widgets/NianMonsterExchangeView.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			1		
+198	BattleGiveupView	widgets/BattleGiveup.swf	0	0	0	4	0	1	0	1	-1	-1	0	0			0		
+199	RapidBuyChangeFaceView	widgets/RapidBuyChangeFaceView.swf	0	0	0	0	0	1	0	0	-1	-1	0	0			0		
+200	GiftMartBoxView	widgets/GiftMartBox.swf	0	0	0	4	0	1	1	1	-1	-1	0	0			1		
+201	NianMonsterPopupView	widgets/NianMonsterPopupView.swf	0	0	0	0	0	1	0	1	-1	-1	0	0			0		
+202	FarmEquipGalleryView	widgets/FarmEquipGalleryView.swf	0	0	0	1	1	0	1	1	169	169	0	1			1		0
+203	SecurityNumberView	widgets/SecurityNumber.swf	0	0	0	1	0	0	1	1	-1	-1	0	0			1		1
+204	PetMonsterMvMHud	widgets/PetMonsterMvMHud.swf	0	0	0	0	0	1	0	1	-1	-1	0	0					
+205	PetMonsterSkillHud	widgets/PetMonsterSkillHud.swf	0	0	0	0	0	1	0	1	-1	-1	0	0					
+206	PetMonsterSelectView	widgets/PetMonsterSelectView.swf	0	0	0	1	0	0	1	1	-1	-1	0	0					
+207	QuickSpeakPad	widgets/QuickSpeakPad.swf	0	0	0	1	0	1	0	1	-1	-1	0	0			1		
+208	QuickSpeakConfigPad	widgets/QuickSpeakConfigPad.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			1		
+209	EquipTransmogrifyView	widgets/EquipTransmogrify.swf	0	0	0	1	0	1	1	1	90	90	0	0			1		
+210	HunterGroupRenameView	widgets/HunterGroupRenameView.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			1		
+211	EquipQuenchView	widgets/EquipQuench.swf	0	0	0	1	1	0	1	1	169	169	0	0	1		1		
+212	MatchEntryView	widgets/MatchEntry.swf	0	0	0	1	0	0	1	1	-1	-1	0	0			1		1
+213	RoadOfGrowthHintView	widgets/RoadOfGrowthHintView.swf	0	0	0	0	0	0	0	1	-1	-1	0	0			0		1
+214	RoadOfGrowthView	widgets/RoadOfGrowthView.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			1		
+215	WildHuntSignUpView	widgets/WildHuntSignUp.swf	0	0	0	1	0	0	1	1	-1	-1	0	0			1		
+216	WildHuntInfoView	widgets/WildHuntInfo.swf	0	0	0	1	0	0	1	1	-1	-1	0	0			1		
+217	WildHuntGuideView	widgets/WildHuntGuide.swf	0	0	0	1	0	0	1	1	-1	-1	0	0			1		
+218	NewRealmWelfareExchangeView	widgets/NewRealmWelfareExchangeView.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			1		
+219	BattleTeamRenameView	widgets/BattleTeamRenameView.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			1		
+220	QCoinActivityView	widgets/QCoinActivityView.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			1		
+221	QCoinPopupView	widgets/QCoinPopupView.swf	0	0	0	0	0	1	0	1	-1	-1	0	0			0		
+222	MaterialPutInView	widgets/MaterialPutInView.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			1		
+223	SupplyPlanPreview	widgets/SupplyPlanPreview.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			1		
+224	SuitSkillView	widgets/SuitSkill.swf	0	0	0	1	0	0	1	1	-1	-1	0	0			1		
+225	PetSkillNoticeHud	widgets/PetSkillNoticeHud.swf	0	0	0	0	0	0	0	1	-1	-1	0	0			0		1
+226	WeaponTrialEntranceView	widgets/WeaponTrialEntranceView.swf	0	0	0	1	1	0	1	1	-1	-1	0	0			1		
+227	WeaponTrialStartView	widgets/WeaponTrialStartView.swf	0	0	0	1	0	0	1	1	-1	-1	0	0			0		1
+228	DivinationView	widgets/DivinationView.swf	0	0	0	1	0	0	1	1	-1	-1	0	0		0	1		
+229	HunterKingBossFornoticeView	widgets/HunterKingBossFornoticeView.swf	0	0	0	1	0	1	0	1	-1	-1	0	0			0		
+230	NetworkSelectView	widgets/NetworkSelectView.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			1		1
+231	PrivateChatHintView	widgets/PrivateChatHintView.swf	0	0	0	0	0	0	0	1	-1	-1	0	0			0		1
+232	PrivateChatView	widgets/PrivateChatView.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			1		
+233	QuickInventory	widgets/QuickInventory.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			1		
+234	ChatEmojiView	widgets/ChatEmoji.swf	0	0	0	1	0	0	1	1	-1	-1	0	0		0	1		
+235	EquipRecastView	widgets/EquipRecastView.swf	0	0	0	1	1	0	1	1	169	169	0	0	1		1		
+236	GetEmojiView	widgets/GetEmoji.swf	0	0	0	1	0	0	1	1	-1	-1	0	0		0	1		
+237	RandomMatchView	widgets/RandomMatch.swf	0	0	0	0	0	0	0	1	-1	-1	0	0			0		1
+238	NewWorldMapView	widgets/NewWorldMapView.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			1		
+239	MonoplayView	widgets/MonoplayView.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			1		
+240	YamatsukamiView	widgets/Yamatsukami.swf	0	0	0	0	0	0	0	1	250	250	0	0			0		1
+241	ItemRemoveBindView	widgets/ItemRemoveBindView.swf	0	0	0	1	1	0	1	1	0	-1	0	0	1		1		
+242	NewbieVideoPlay	widgets/NewbieVideoPlay.swf	0	0	0	1	0	1	0	1	-1	-1	0	0			1		
+243	TowerDefense	widgets/TowerDefense.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			1		
+244	TransformSwordView	widgets/TransformSword.swf	0	0	0	0	0	0	0	1	-1	-1	0	0		12	0		1
+245	SoulHuntStoneView	widgets/SoulHuntStone.swf	0	0	0	1	0	0	1	1	-1	-1	0	0			1		
+246	MonsterSelectView	widgets/MonsterSelectView.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			1		
+247	MonsterOperationView	widgets/MonsterOperation.swf	0	0	0	0	0	0	0	1	-1	-1	0	0			0		
+248	IllustrateBookView	widgets/IllustratedBook.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			1		
+249	GuardStoneView	widgets/GuardStone.swf	0	0	0	1	1	1	1	1	0	0	0	0			1		
+250	YamatsukamiView	widgets/Yamatsukami_Area.swf	0	0	0	0	0	0	0	1	-1	-1	0	0			0		1
+251	EquipQuickLevelUpView	widgets/EquipQuickLevelUp.swf	0	0	0	1	0	1	1	3	169	169	0	0			1		
+252	UnifiedNpcStore	widgets/UnifiedNpcStore.swf	0	0	0	1	0	0	1	1	-1	-1	0	0	1		1		
+253	MeiCityView	widgets/MeiCityView.swf	0	0	0	1	0	0	1	1	-1	-1	0	0	1		1		
+254	NewOperationActivity	widgets/NewOperationActivity.swf	0	0	0	1	0	0	1	1	-1	-1	0	1			1		
+255	ProfoundIconView	widgets/ProfoundIconView.swf	0	0	0	0	0	0	0	1	-1	-1	0	0			0		1
+256	UltimateChallengeView	widgets/UltimateChallengeView.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			1		
+257	UltimateChallengeSettlementView	widgets/UltimateChallengeSettlementView.swf	0	0	0	9	0	0	1	0	-1	-1	0	0			0		
+258	GuildActivityView	widgets/GuildActivity.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			1		
+259	NewOperationActivityTemplate	widgets/NewOperationActivityTemplate.swf	0	0	0	1	0	0	1	1	-1	-1	0	1			1		
+260	NewbieWeaponTutorialView	widgets/NewbieWeaponTutorial.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			1		
+261	FullWeaponSkillView	widgets/FullWeaponSkill.swf	0	0	0	0	0	0	0	1	-1	-1	0	0			0		
+262	XmasActivityView	widgets/XmasActivity.swf	0	0	0	1	0	0	1	1	-1	-1	0	0	1		1		
+263	RestrictStatusView	widgets/RestrictStatus.swf	0	0	0	0	0	1	0	1	-1	-1	0	0			0		
+264	XmasTreeView	widgets/XmasTreeView.swf	0	0	0	1	0	0	1	1	-1	-1	0	0	1		1		
+265	PlayVideoView	widgets/PlayVideo.swf	0	0	0	10	0	1	0	1	-1	-1	0	0			0		1
+266	GuideSystemView	widgets/GuideSystem.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			1		
+267	UltimateChallengePopUpView	widgets/UltimateChallengePopUpView.swf	0	0	0	0	0	1	0	1	-1	-1	0	0			0		
+268	TowerDefensePopUpView	widgets/TowerDefensePopUpView.swf	0	0	0	0	0	1	0	1	-1	-1	0	0			0		
+269	WarningView	widgets/WarningView.swf	0	0	0	1	0	1	0	1	-1	-1	0	0			0		
+270	StarLevelPromptView	widgets/StarLevelPromptView.swf	0	0	0	1	0	1	1	1	-1	-1	0	0			0		
+271	WardrobeView	widgets/Wardrobe.swf	0	0	0	1	0	1	1	3	-1	-1	0	0			1		
+272	CommonPurchaseView	widgets/CommonPurchaseView.swf	0	0	0	1	0	1	1	3	-1	-1	0	0			1		
+273	SuperHunterView	widgets/SuperHunterView.swf	0	0	0	1	0	0	1	1	-1	-1	0	0			1		
+274	PackItemBox	widgets/PackItemBox.swf	0	0	0	2	0	1	1	1	-1	-1	0	0			0		
+275	GuideBookView	widgets/GuideBookView.swf	0	0	0	2	0	0	1	1	-1	-1	0	0			1		
+276	HunterTeamBattle	widgets/HunterTeamBattle.swf	0	0	0	1	0	0	1	1	-1	-1	0	0			1		
+277	SecretResearch	widgets/SecretResearch.swf	0	0	0	1	1	0	1	1	-1	-1	0	0			1		
+278	MonsterCardView	widgets/MonsterCardView.swf	0	0	0	1	0	0	1	1	-1	-1	0	0			1		
+279	LuckyShopEntranceView	widgets/LuckyShopEntranceView.swf	0	0	0	0	0	0	0	1	-1	-1	0	0			0		1
+280	LuckyShopView	widgets/LuckyShopView.swf	0	0	0	1	0	0	1	1	-1	-1	0	0			1		
+#============End of sheet============
+
+#============Begin of sheet============
+@Sheet=UIOpenProcess
+OpenUIID	RespondUIID	FunctionType
+45	90	1
+129	130	1
+129	123	1
+#============End of sheet============
+
+             

@@ -1,0 +1,588 @@
+<Objs>
+    <Obj Id="SoulBeastDef">
+        <Id>3</Id>
+        <Name>桃毛魂兽</Name>
+        <Note />
+        <EvolveRule>4</EvolveRule>
+        <LevelUpRule>4</LevelUpRule>
+        <AcceptChecks>
+            <Obj Id="SoulBeastSoulStoneLevelCheckDef">
+                <SoulStoneLevel>240</SoulStoneLevel>
+            </Obj>
+        </AcceptChecks>
+        <Foods>
+            <Obj Id="SoulBeastFoodDef">
+                <Item>10508</Item>
+                <Count>1</Count>
+                <Exp>3000</Exp>
+                <Glut>10</Glut>
+            </Obj>
+            <Obj Id="SoulBeastFoodDef">
+                <Item>10509</Item>
+                <Count>1</Count>
+                <Exp>4000</Exp>
+                <Glut>10</Glut>
+            </Obj>
+            <Obj Id="SoulBeastFoodDef">
+                <Item>10510</Item>
+                <Count>1</Count>
+                <Exp>6000</Exp>
+                <Glut>10</Glut>
+            </Obj>
+        </Foods>
+        <Images>
+            <Obj Id="SoulBeastImageDef">
+                <ID>1</ID>
+                <Image>FlashAssets/images/icon/ep_p_soul001.png</Image>
+                <Icon>FlashAssets/images/mart/p_soul_001_1.png</Icon>
+                <EntityCustomType>Objects/characters/pet/soul/p_soul_001/p_soul_001.cdf</EntityCustomType>
+                <BeastLevel>1</BeastLevel>
+                <EffectName />
+                <EntityName>Pet_Soul_001</EntityName>
+            </Obj>
+            <Obj Id="SoulBeastImageDef">
+                <ID>2</ID>
+                <Image>FlashAssets/images/icon/ep_p_soul001.png</Image>
+                <Icon>FlashAssets/images/mart/p_soul_001_2.png</Icon>
+                <EntityCustomType>Objects/characters/pet/soul/p_soul_001/p_soul_001_02.cdf</EntityCustomType>
+                <BeastLevel>31</BeastLevel>
+                <EffectName />
+                <EntityName>Pet_Soul_001_02</EntityName>
+            </Obj>
+            <Obj Id="SoulBeastImageDef">
+                <ID>3</ID>
+                <Image>FlashAssets/images/icon/ep_p_soul001.png</Image>
+                <Icon>FlashAssets/images/mart/p_soul_001_3.png</Icon>
+                <EntityCustomType>Objects/characters/pet/soul/p_soul_001/p_soul_001_03.cdf</EntityCustomType>
+                <BeastLevel>70</BeastLevel>
+                <EffectName />
+                <EntityName>Pet_Soul_001_03</EntityName>
+            </Obj>
+        </Images>
+        <SocialActions>
+            <Obj Id="SoulBeastSocialActionDef">
+                <ID>Interact_1</ID>
+                <ActionName>生气</ActionName>
+                <BeastLevel>11</BeastLevel>
+            </Obj>
+            <Obj Id="SoulBeastSocialActionDef">
+                <ID>Interact_2</ID>
+                <ActionName>撒娇</ActionName>
+                <BeastLevel>21</BeastLevel>
+            </Obj>
+            <Obj Id="SoulBeastSocialActionDef">
+                <ID>Interact_3</ID>
+                <ActionName>吃东西</ActionName>
+                <BeastLevel>41</BeastLevel>
+            </Obj>
+            <Obj Id="SoulBeastSocialActionDef">
+                <ID>Interact_4</ID>
+                <ActionName>挑衅</ActionName>
+                <BeastLevel>51</BeastLevel>
+            </Obj>
+            <Obj Id="SoulBeastSocialActionDef">
+                <ID>Interact_5</ID>
+                <ActionName>蠢萌</ActionName>
+                <BeastLevel>61</BeastLevel>
+            </Obj>
+        </SocialActions>
+    </Obj>
+    <Obj Id="SoulBeastDef">
+        <Id>4</Id>
+        <Name>河狸魂兽</Name>
+        <Note>集齐4颗河狸门牙在发明家马克处或统一商店兑换河狸魂兽核心，可兑换并解锁河狸魂兽。&lt;BR&gt;来源：天地争锋、极限猎人、梅城大冒险、神秘星盘</Note>
+        <EvolveRule>4</EvolveRule>
+        <LevelUpRule>4</LevelUpRule>
+        <Foods>
+            <Obj Id="SoulBeastFoodDef">
+                <Item>10508</Item>
+                <Count>1</Count>
+                <Exp>3000</Exp>
+                <Glut>10</Glut>
+            </Obj>
+            <Obj Id="SoulBeastFoodDef">
+                <Item>10509</Item>
+                <Count>1</Count>
+                <Exp>4000</Exp>
+                <Glut>10</Glut>
+            </Obj>
+            <Obj Id="SoulBeastFoodDef">
+                <Item>10510</Item>
+                <Count>1</Count>
+                <Exp>6000</Exp>
+                <Glut>10</Glut>
+            </Obj>
+        </Foods>
+        <Images>
+            <Obj Id="SoulBeastImageDef">
+                <ID>1</ID>
+                <Image>FlashAssets/images/icon/ep_p_soul002.png</Image>
+                <Icon>FlashAssets/images/mart/p_soul_002_1.png</Icon>
+                <EntityCustomType>Objects/characters/pet/soul/p_soul_002/p_soul_002.cdf</EntityCustomType>
+                <BeastLevel>1</BeastLevel>
+                <EffectName />
+                <EntityName>Pet_Soul_002</EntityName>
+            </Obj>
+            <Obj Id="SoulBeastImageDef">
+                <ID>2</ID>
+                <Image>FlashAssets/images/icon/ep_p_soul002.png</Image>
+                <Icon>FlashAssets/images/mart/p_soul_002_2.png</Icon>
+                <EntityCustomType>Objects/characters/pet/soul/p_soul_002/p_soul_002_02.cdf</EntityCustomType>
+                <BeastLevel>31</BeastLevel>
+                <EffectName />
+                <EntityName>Pet_Soul_002_02</EntityName>
+            </Obj>
+            <Obj Id="SoulBeastImageDef">
+                <ID>3</ID>
+                <Image>FlashAssets/images/icon/ep_p_soul002.png</Image>
+                <Icon>FlashAssets/images/mart/p_soul_002_3.png</Icon>
+                <EntityCustomType>Objects/characters/pet/soul/p_soul_002/p_soul_002_03.cdf</EntityCustomType>
+                <BeastLevel>70</BeastLevel>
+                <EffectName />
+                <EntityName>Pet_Soul_002_03</EntityName>
+            </Obj>
+        </Images>
+        <SocialActions>
+            <Obj Id="SoulBeastSocialActionDef">
+                <ID>Interact_1</ID>
+                <ActionName>生气</ActionName>
+                <BeastLevel>11</BeastLevel>
+            </Obj>
+            <Obj Id="SoulBeastSocialActionDef">
+                <ID>Interact_2</ID>
+                <ActionName>撒娇</ActionName>
+                <BeastLevel>21</BeastLevel>
+            </Obj>
+            <Obj Id="SoulBeastSocialActionDef">
+                <ID>Interact_3</ID>
+                <ActionName>吃东西</ActionName>
+                <BeastLevel>41</BeastLevel>
+            </Obj>
+            <Obj Id="SoulBeastSocialActionDef">
+                <ID>Interact_4</ID>
+                <ActionName>挑衅</ActionName>
+                <BeastLevel>51</BeastLevel>
+            </Obj>
+            <Obj Id="SoulBeastSocialActionDef">
+                <ID>Interact_5</ID>
+                <ActionName>蠢萌</ActionName>
+                <BeastLevel>61</BeastLevel>
+            </Obj>
+        </SocialActions>
+    </Obj>
+    <Obj Id="SoulBeastDef">
+        <Id>5</Id>
+        <Name>香猪魂兽</Name>
+        <Note>集齐8枚香猪脚印在发明家马克处或统一商店兑换香猪魂兽核心，可兑换并解锁香猪魂兽。&lt;BR&gt;来源：商城售卖</Note>
+        <EvolveRule>5</EvolveRule>
+        <LevelUpRule>5</LevelUpRule>
+        <Foods>
+            <Obj Id="SoulBeastFoodDef">
+                <Item>10508</Item>
+                <Count>1</Count>
+                <Exp>3000</Exp>
+                <Glut>10</Glut>
+            </Obj>
+            <Obj Id="SoulBeastFoodDef">
+                <Item>10509</Item>
+                <Count>1</Count>
+                <Exp>4000</Exp>
+                <Glut>10</Glut>
+            </Obj>
+            <Obj Id="SoulBeastFoodDef">
+                <Item>10510</Item>
+                <Count>1</Count>
+                <Exp>6000</Exp>
+                <Glut>10</Glut>
+            </Obj>
+        </Foods>
+        <Images>
+            <Obj Id="SoulBeastImageDef">
+                <ID>1</ID>
+                <Image>FlashAssets/images/icon/ep_p_soul003.png</Image>
+                <Icon>FlashAssets/images/mart/p_soul_003_1.png</Icon>
+                <EntityCustomType>Objects/characters/pet/soul/p_soul_003/p_soul_003.cdf</EntityCustomType>
+                <BeastLevel>1</BeastLevel>
+                <EffectName />
+                <EntityName>Pet_Soul_003</EntityName>
+            </Obj>
+            <Obj Id="SoulBeastImageDef">
+                <ID>2</ID>
+                <Image>FlashAssets/images/icon/ep_p_soul003.png</Image>
+                <Icon>FlashAssets/images/mart/p_soul_003_2.png</Icon>
+                <EntityCustomType>Objects/characters/pet/soul/p_soul_003/p_soul_003_02.cdf</EntityCustomType>
+                <BeastLevel>31</BeastLevel>
+                <EffectName />
+                <EntityName>Pet_Soul_003_02</EntityName>
+            </Obj>
+            <Obj Id="SoulBeastImageDef">
+                <ID>3</ID>
+                <Image>FlashAssets/images/icon/ep_p_soul003.png</Image>
+                <Icon>FlashAssets/images/mart/p_soul_003_3.png</Icon>
+                <EntityCustomType>Objects/characters/pet/soul/p_soul_003/p_soul_003_03.cdf</EntityCustomType>
+                <BeastLevel>70</BeastLevel>
+                <EffectName />
+                <EntityName>Pet_Soul_003_03</EntityName>
+            </Obj>
+        </Images>
+        <SocialActions>
+            <Obj Id="SoulBeastSocialActionDef">
+                <ID>Interact_1</ID>
+                <ActionName>生气</ActionName>
+                <BeastLevel>11</BeastLevel>
+            </Obj>
+            <Obj Id="SoulBeastSocialActionDef">
+                <ID>Interact_2</ID>
+                <ActionName>撒娇</ActionName>
+                <BeastLevel>21</BeastLevel>
+            </Obj>
+            <Obj Id="SoulBeastSocialActionDef">
+                <ID>Interact_3</ID>
+                <ActionName>吃东西</ActionName>
+                <BeastLevel>41</BeastLevel>
+            </Obj>
+            <Obj Id="SoulBeastSocialActionDef">
+                <ID>Interact_4</ID>
+                <ActionName>挑衅</ActionName>
+                <BeastLevel>51</BeastLevel>
+            </Obj>
+            <Obj Id="SoulBeastSocialActionDef">
+                <ID>Interact_5</ID>
+                <ActionName>蠢萌</ActionName>
+                <BeastLevel>61</BeastLevel>
+            </Obj>
+        </SocialActions>
+    </Obj>
+    <Obj Id="SoulBeastDef">
+        <Id>6</Id>
+        <Name>熊猫魂兽</Name>
+        <Note>使用熊猫魂兽核心在发明家马克处或统一商店兑换并解锁熊猫魂兽。&lt;BR&gt;来源：充值活动</Note>
+        <EvolveRule>5</EvolveRule>
+        <LevelUpRule>5</LevelUpRule>
+        <Foods>
+            <Obj Id="SoulBeastFoodDef">
+                <Item>10508</Item>
+                <Count>1</Count>
+                <Exp>3000</Exp>
+                <Glut>10</Glut>
+            </Obj>
+            <Obj Id="SoulBeastFoodDef">
+                <Item>10509</Item>
+                <Count>1</Count>
+                <Exp>4000</Exp>
+                <Glut>10</Glut>
+            </Obj>
+            <Obj Id="SoulBeastFoodDef">
+                <Item>10510</Item>
+                <Count>1</Count>
+                <Exp>6000</Exp>
+                <Glut>10</Glut>
+            </Obj>
+        </Foods>
+        <Images>
+            <Obj Id="SoulBeastImageDef">
+                <ID>1</ID>
+                <Image>FlashAssets/images/icon/ep_p_soul004.png</Image>
+                <Icon>FlashAssets/images/mart/p_soul_004_1.png</Icon>
+                <EntityCustomType>Objects/characters/pet/soul/p_soul_004/p_soul_004.cdf</EntityCustomType>
+                <BeastLevel>1</BeastLevel>
+                <EffectName />
+                <EntityName>Pet_Soul_004</EntityName>
+            </Obj>
+            <Obj Id="SoulBeastImageDef">
+                <ID>2</ID>
+                <Image>FlashAssets/images/icon/ep_p_soul004.png</Image>
+                <Icon>FlashAssets/images/mart/p_soul_004_2.png</Icon>
+                <EntityCustomType>Objects/characters/pet/soul/p_soul_004/p_soul_004_02.cdf</EntityCustomType>
+                <BeastLevel>31</BeastLevel>
+                <EffectName />
+                <EntityName>Pet_Soul_004_02</EntityName>
+            </Obj>
+            <Obj Id="SoulBeastImageDef">
+                <ID>3</ID>
+                <Image>FlashAssets/images/icon/ep_p_soul004.png</Image>
+                <Icon>FlashAssets/images/mart/p_soul_004_3.png</Icon>
+                <EntityCustomType>Objects/characters/pet/soul/p_soul_004/p_soul_004_03.cdf</EntityCustomType>
+                <BeastLevel>70</BeastLevel>
+                <EffectName />
+                <EntityName>Pet_Soul_004_03</EntityName>
+            </Obj>
+        </Images>
+        <SocialActions>
+            <Obj Id="SoulBeastSocialActionDef">
+                <ID>Interact_1</ID>
+                <ActionName>生气</ActionName>
+                <BeastLevel>11</BeastLevel>
+            </Obj>
+            <Obj Id="SoulBeastSocialActionDef">
+                <ID>Interact_2</ID>
+                <ActionName>撒娇</ActionName>
+                <BeastLevel>21</BeastLevel>
+            </Obj>
+            <Obj Id="SoulBeastSocialActionDef">
+                <ID>Interact_3</ID>
+                <ActionName>吃东西</ActionName>
+                <BeastLevel>41</BeastLevel>
+            </Obj>
+            <Obj Id="SoulBeastSocialActionDef">
+                <ID>Interact_4</ID>
+                <ActionName>挑衅</ActionName>
+                <BeastLevel>51</BeastLevel>
+            </Obj>
+            <Obj Id="SoulBeastSocialActionDef">
+                <ID>Interact_5</ID>
+                <ActionName>蠢萌</ActionName>
+                <BeastLevel>61</BeastLevel>
+            </Obj>
+        </SocialActions>
+    </Obj>
+    <Obj Id="SoulBeastDef">
+        <Id>7</Id>
+        <Name>九尾魂兽</Name>
+        <Note>集齐9支九尾之尾在发明家马克处或统一商店兑换九尾魂兽核心，可兑换并解锁九尾魂兽。&lt;BR&gt;来源：商城-九尾魂兽礼包</Note>
+        <EvolveRule>6</EvolveRule>
+        <LevelUpRule>6</LevelUpRule>
+        <Foods>
+            <Obj Id="SoulBeastFoodDef">
+                <Item>10508</Item>
+                <Count>1</Count>
+                <Exp>3000</Exp>
+                <Glut>10</Glut>
+            </Obj>
+            <Obj Id="SoulBeastFoodDef">
+                <Item>10509</Item>
+                <Count>1</Count>
+                <Exp>4000</Exp>
+                <Glut>10</Glut>
+            </Obj>
+            <Obj Id="SoulBeastFoodDef">
+                <Item>10510</Item>
+                <Count>1</Count>
+                <Exp>6000</Exp>
+                <Glut>10</Glut>
+            </Obj>
+        </Foods>
+        <Images>
+            <Obj Id="SoulBeastImageDef">
+                <ID>1</ID>
+                <Image>FlashAssets/images/icon/ep_p_soul005.png</Image>
+                <Icon>FlashAssets/images/mart/p_soul_005_1.png</Icon>
+                <EntityCustomType>Objects/characters/pet/soul/p_soul_005/p_soul_005.cdf</EntityCustomType>
+                <BeastLevel>1</BeastLevel>
+                <EffectName />
+                <EntityName>Pet_Soul_005</EntityName>
+            </Obj>
+            <Obj Id="SoulBeastImageDef">
+                <ID>2</ID>
+                <Image>FlashAssets/images/icon/ep_p_soul005.png</Image>
+                <Icon>FlashAssets/images/mart/p_soul_005_2.png</Icon>
+                <EntityCustomType>Objects/characters/pet/soul/p_soul_005/p_soul_005_02.cdf</EntityCustomType>
+                <BeastLevel>31</BeastLevel>
+                <EffectName />
+                <EntityName>Pet_Soul_005_02</EntityName>
+            </Obj>
+            <Obj Id="SoulBeastImageDef">
+                <ID>3</ID>
+                <Image>FlashAssets/images/icon/ep_p_soul005.png</Image>
+                <Icon>FlashAssets/images/mart/p_soul_005_3.png</Icon>
+                <EntityCustomType>Objects/characters/pet/soul/p_soul_005/p_soul_005_03.cdf</EntityCustomType>
+                <BeastLevel>70</BeastLevel>
+                <EffectName>Energy_Ability_Mst.HOD.P_Soul_005_Body</EffectName>
+                <EntityName>Pet_Soul_005_03</EntityName>
+            </Obj>
+        </Images>
+        <SocialActions>
+            <Obj Id="SoulBeastSocialActionDef">
+                <ID>Interact_1</ID>
+                <ActionName>生气</ActionName>
+                <BeastLevel>11</BeastLevel>
+            </Obj>
+            <Obj Id="SoulBeastSocialActionDef">
+                <ID>Interact_2</ID>
+                <ActionName>撒娇</ActionName>
+                <BeastLevel>21</BeastLevel>
+            </Obj>
+            <Obj Id="SoulBeastSocialActionDef">
+                <ID>Interact_3</ID>
+                <ActionName>吃东西</ActionName>
+                <BeastLevel>41</BeastLevel>
+            </Obj>
+            <Obj Id="SoulBeastSocialActionDef">
+                <ID>Interact_4</ID>
+                <ActionName>挑衅</ActionName>
+                <BeastLevel>51</BeastLevel>
+            </Obj>
+            <Obj Id="SoulBeastSocialActionDef">
+                <ID>Interact_5</ID>
+                <ActionName>蠢萌</ActionName>
+                <BeastLevel>61</BeastLevel>
+            </Obj>
+        </SocialActions>
+    </Obj>
+    <Obj Id="SoulBeastDef">
+        <Id>8</Id>
+        <Name>雷狼魂兽</Name>
+        <Note>集齐7颗雷狼鳞片在发明家马克处或统一商店兑换雷狼魂兽核心，可兑换并解锁雷狼魂兽。&lt;BR&gt;来源：活动</Note>
+        <EvolveRule>6</EvolveRule>
+        <LevelUpRule>6</LevelUpRule>
+        <Foods>
+            <Obj Id="SoulBeastFoodDef">
+                <Item>10508</Item>
+                <Count>1</Count>
+                <Exp>3000</Exp>
+                <Glut>10</Glut>
+            </Obj>
+            <Obj Id="SoulBeastFoodDef">
+                <Item>10509</Item>
+                <Count>1</Count>
+                <Exp>4000</Exp>
+                <Glut>10</Glut>
+            </Obj>
+            <Obj Id="SoulBeastFoodDef">
+                <Item>10510</Item>
+                <Count>1</Count>
+                <Exp>6000</Exp>
+                <Glut>10</Glut>
+            </Obj>
+        </Foods>
+        <Images>
+            <Obj Id="SoulBeastImageDef">
+                <ID>1</ID>
+                <Image>FlashAssets/images/icon/ep_p_soul006.png</Image>
+                <Icon>FlashAssets/images/mart/p_soul_006_1.png</Icon>
+                <EntityCustomType>Objects/characters/pet/soul/p_soul_006/p_soul_006.cdf</EntityCustomType>
+                <BeastLevel>1</BeastLevel>
+                <EffectName />
+                <EntityName>Pet_Soul_006</EntityName>
+            </Obj>
+            <Obj Id="SoulBeastImageDef">
+                <ID>2</ID>
+                <Image>FlashAssets/images/icon/ep_p_soul006.png</Image>
+                <Icon>FlashAssets/images/mart/p_soul_006_2.png</Icon>
+                <EntityCustomType>Objects/characters/pet/soul/p_soul_006/p_soul_006_02.cdf</EntityCustomType>
+                <BeastLevel>31</BeastLevel>
+                <EffectName />
+                <EntityName>Pet_Soul_006_02</EntityName>
+            </Obj>
+            <Obj Id="SoulBeastImageDef">
+                <ID>3</ID>
+                <Image>FlashAssets/images/icon/ep_p_soul006.png</Image>
+                <Icon>FlashAssets/images/mart/p_soul_006_3.png</Icon>
+                <EntityCustomType>Objects/characters/pet/soul/p_soul_006/p_soul_006_03.cdf</EntityCustomType>
+                <BeastLevel>70</BeastLevel>
+                <EffectName>Energy_Ability_Mst.HOD.P_Soul_006_Body</EffectName>
+                <EntityName>Pet_Soul_006_03</EntityName>
+            </Obj>
+        </Images>
+        <SocialActions>
+            <Obj Id="SoulBeastSocialActionDef">
+                <ID>Interact_1</ID>
+                <ActionName>生气</ActionName>
+                <BeastLevel>11</BeastLevel>
+            </Obj>
+            <Obj Id="SoulBeastSocialActionDef">
+                <ID>Interact_2</ID>
+                <ActionName>撒娇</ActionName>
+                <BeastLevel>21</BeastLevel>
+            </Obj>
+            <Obj Id="SoulBeastSocialActionDef">
+                <ID>Interact_3</ID>
+                <ActionName>吃东西</ActionName>
+                <BeastLevel>41</BeastLevel>
+            </Obj>
+            <Obj Id="SoulBeastSocialActionDef">
+                <ID>Interact_4</ID>
+                <ActionName>挑衅</ActionName>
+                <BeastLevel>51</BeastLevel>
+            </Obj>
+            <Obj Id="SoulBeastSocialActionDef">
+                <ID>Interact_5</ID>
+                <ActionName>蠢萌</ActionName>
+                <BeastLevel>61</BeastLevel>
+            </Obj>
+        </SocialActions>
+    </Obj>
+    <Obj Id="SoulBeastDef">
+        <Id>9</Id>
+        <Name>恶霸魂兽</Name>
+        <Note>使用恶霸魂兽核心在发明家马克处或统一商店兑换并解锁恶霸魂兽。使用恶霸魂兽核心在发明家马克处或统一商店兑换并解锁恶霸魂兽。&lt;BR&gt;来源：活动</Note>
+        <EvolveRule>5</EvolveRule>
+        <LevelUpRule>5</LevelUpRule>
+        <Foods>
+            <Obj Id="SoulBeastFoodDef">
+                <Item>10508</Item>
+                <Count>1</Count>
+                <Exp>3000</Exp>
+                <Glut>10</Glut>
+            </Obj>
+            <Obj Id="SoulBeastFoodDef">
+                <Item>10509</Item>
+                <Count>1</Count>
+                <Exp>4000</Exp>
+                <Glut>10</Glut>
+            </Obj>
+            <Obj Id="SoulBeastFoodDef">
+                <Item>10510</Item>
+                <Count>1</Count>
+                <Exp>6000</Exp>
+                <Glut>10</Glut>
+            </Obj>
+        </Foods>
+        <Images>
+            <Obj Id="SoulBeastImageDef">
+                <ID>1</ID>
+                <Image>FlashAssets/images/icon/ep_p_soul007.png</Image>
+                <Icon>FlashAssets/images/mart/p_soul_007_1.png</Icon>
+                <EntityCustomType>Objects/characters/pet/soul/p_soul_007/p_soul_007.cdf</EntityCustomType>
+                <BeastLevel>1</BeastLevel>
+                <EffectName />
+                <EntityName>Pet_Soul_007</EntityName>
+            </Obj>
+            <Obj Id="SoulBeastImageDef">
+                <ID>2</ID>
+                <Image>FlashAssets/images/icon/ep_p_soul007.png</Image>
+                <Icon>FlashAssets/images/mart/p_soul_007_2.png</Icon>
+                <EntityCustomType>Objects/characters/pet/soul/p_soul_007/p_soul_007_02.cdf</EntityCustomType>
+                <BeastLevel>31</BeastLevel>
+                <EffectName />
+                <EntityName>Pet_Soul_007_02</EntityName>
+            </Obj>
+            <Obj Id="SoulBeastImageDef">
+                <ID>3</ID>
+                <Image>FlashAssets/images/icon/ep_p_soul007.png</Image>
+                <Icon>FlashAssets/images/mart/p_soul_007_3.png</Icon>
+                <EntityCustomType>Objects/characters/pet/soul/p_soul_007/p_soul_007_03.cdf</EntityCustomType>
+                <BeastLevel>70</BeastLevel>
+                <EffectName>Energy_Ability_Mst.HOD.P_Soul_007_Body</EffectName>
+                <EntityName>Pet_Soul_006_03</EntityName>
+            </Obj>
+        </Images>
+        <SocialActions>
+            <Obj Id="SoulBeastSocialActionDef">
+                <ID>Interact_1</ID>
+                <ActionName>生气</ActionName>
+                <BeastLevel>11</BeastLevel>
+            </Obj>
+            <Obj Id="SoulBeastSocialActionDef">
+                <ID>Interact_2</ID>
+                <ActionName>撒娇</ActionName>
+                <BeastLevel>21</BeastLevel>
+            </Obj>
+            <Obj Id="SoulBeastSocialActionDef">
+                <ID>Interact_3</ID>
+                <ActionName>吃东西</ActionName>
+                <BeastLevel>41</BeastLevel>
+            </Obj>
+            <Obj Id="SoulBeastSocialActionDef">
+                <ID>Interact_4</ID>
+                <ActionName>挑衅</ActionName>
+                <BeastLevel>51</BeastLevel>
+            </Obj>
+            <Obj Id="SoulBeastSocialActionDef">
+                <ID>Interact_5</ID>
+                <ActionName>蠢萌</ActionName>
+                <BeastLevel>61</BeastLevel>
+            </Obj>
+        </SocialActions>
+    </Obj>
+</Objs>

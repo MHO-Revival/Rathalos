@@ -21,6 +21,8 @@ namespace Rathalos.Servers.World.Handlers.Game.Handlers
             SendCharacterListResponse(client);
         }
 
+
+
         public static void SendCharacterListResponse(WorldClient client)
         {
             var response = new CSPkgBodyListRoleRsp

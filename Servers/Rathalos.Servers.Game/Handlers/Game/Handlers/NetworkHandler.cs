@@ -60,6 +60,8 @@ namespace Rathalos.Servers.World.Handlers.Game.Handlers
                 Code = 0,
             });
 
+            CharacterHandler.SendCharacterListResponse(client);
+
             return Task.CompletedTask;
         }
 

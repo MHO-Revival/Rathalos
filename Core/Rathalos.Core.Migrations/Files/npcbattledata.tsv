@@ -1,0 +1,307 @@
+#TSV
+#============Begin of sheet============
+@Sheet=战斗NPC数据
+ID	Name	Gender	Title	LevelEnabled	HPMul	AttackMul	MonsterEnabled	DefenseMul	CRIMul	AvatarId1	AvatarId2	AvatarId3	AvatarId4	AvatarId5	AvatarId6	AvatarId7	AvatarId8	SkeletonFile	BlackBoardName	BTFolder	BTFiles	EventBT
+10001	Lily	0	Familiar Hunter	0	1.1	0.3	0	1.5	0.1				221002	321002	421002	521002	340002	"Objects\\characters\\NPC\\n_m_lily\\n_m_lily_battle.cdf"	BB_Lily.xml	CN001	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNpc.xml
+10002	贺菲	1	Familiar Hunter	0	1.1	0.1	0	1.5	0.1				212001	312001	412001	512001	350001	"Objects\\characters\\NPC\\n_m_revi\\n_m_revi_battle.cdf"	BB_Revi.xml	CN001	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNpc.xml
+10003	埃兰	1	Hunter	0	1.1	0.2	0	1.5	0.3				211012	311012	411012	511012	370012	"Objects\\characters\\NPC\\n_m_alan\\n_m_alan_battle.cdf"	BB_Alan.xml	CN001	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNpc.xml
+10004	Lily	0	Hunter	0	1.1	0.3	0	1.5	0.3				221009	321009	421009	521009	340011	"Objects\\characters\\NPC\\n_m_lily\\n_m_lily_battle.cdf"	BB_Lily.xml	CN001	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNpc.xml
+10005	贺菲	1	Hunter	0	1.1	0.1	0	1.5	0.3				212008	312008	412008	512008	350008	"Objects\\characters\\NPC\\n_m_revi\\n_m_revi_battle.cdf"	BB_Revi.xml	CN001	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNpc.xml
+10006	埃兰	1	精英猎人	0	1.1	0.2	0	1.5	0.3				211012	311012	411012	511012	370021	"Objects\\characters\\NPC\\n_m_alan\\n_m_alan_battle.cdf"	BB_Alan.xml	CN001	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNpc.xml
+10007	Lily	0	精英猎人	0	1.1	0.3	0	1.5	0.3				221015	321015	421015	521015	340015	"Objects\\characters\\NPC\\n_m_lily\\n_m_lily_battle.cdf"	BB_Lily.xml	CN001	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNpc.xml
+10008	贺菲	1	精英猎人	0	1.1	0.1	0	1.5	0.3				212016	312016	412016	512016	350021	"Objects\\characters\\NPC\\n_m_revi\\n_m_revi_battle.cdf"	BB_Revi.xml	CN001	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNpc.xml
+10009	埃兰	1	精英猎人	0	1.1	0.2	0	1.5	0.3				211021	311021	411021	511021	370021	"Objects\\characters\\NPC\\n_m_alan\\n_m_alan_battle.cdf"	BB_Alan.xml	CN001	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNpc.xml
+10010	涅尔	1	猎人志愿者	0	1.1	0.1	0	1.5	0.3				211000	311000		511000	340200	"Objects\\characters\\NPC\\NPC_Quest\\Battle_01.cdf"	BB_Lily.xml	CN001	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNpc.xml
+10011	莱维	1	不良猎人	0	1.1	0.2	0	1.5	0.3				211205	311205	411205	511205	370204	"Objects\\characters\\NPC\\NPC_Quest\\Battle_02.cdf"	BB_Alan.xml	CN001	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNpc.xml
+10012	雷欧	1	不良猎人	0	1.1	0.2	0	1.5	0.3								370999	"Objects\\characters\\NPC\\n_s_leo\\n_s_leo_battle.cdf"	BB_Leo.xml	CN001	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNpc.xml
+10013	教官	1		0	1.1	0.2	0	1.5	0.3								370999	"Objects\\characters\\NPC\\n_s_teach\\n_s_teach_battle.cdf"	BB_Sir.xml	CN001	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNpc.xml
+10014	琳蒂丝	0		0	1.1	0.2	0	1.5	0.3								370999	"Objects\\characters\\NPC\\n_m_basbleu\\n_m_basbleu_battle.cdf"	BB_Rindis.xml	CN001	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNpc.xml
+10015	玛茜	0	莉莉的队友	0	1.1	0.1	0	1.5	0.1								350012	"Objects\\characters\\NPC\\NPC_Quest\\Battle_03.cdf"	BB_Lily.xml	CN001	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNpc.xml
+10016	蕾安	0	莉莉的队友	0	1.1	0.1	0	1.5	0.1								350023	"Objects\\characters\\NPC\\NPC_Quest\\Battle_04.cdf"	BB_Lily.xml	CN001	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNpc.xml
+10017		1		0	1.1	0.2	0	1.5	0.3				211012	311012	411012	511012	370012	"Objects\\characters\\NPC\\n_m_alan\\n_m_alan_battle.cdf"	BB_Alan.xml	CN001	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNpc.xml
+10018	洛奇猎人	1	十岁杀死熊	0	1.1	0.1	0	1.5	0.3				212016	312016	412016	512016	350021	"Objects\\characters\\NPC\\n_m_revi\\n_m_revi_battle.cdf"	BB_CNSP01.xml	CNSP01	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNpc.xml
+10019	菲特	0	赏金猎人三姐妹	0	1.1	40	1	1.5	0.3								370071	"Objects\\characters\\NPC\\NPC_Quest\\Battle_05.cdf"	BB_Nana.xml	CN001	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain_Nana.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNana.xml
+10020	吉普利露	0	赏金猎人三姐妹	0	1.1	20	1	1.5	0.3								340071	"Objects\\characters\\NPC\\NPC_Quest\\Battle_06.cdf"	BB_Yukari.xml	CN001	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain_Nana.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNana.xml
+10021	夏露露	0	赏金猎人三姐妹	0	1.1	20	1	1.5	0.3								350071	"Objects\\characters\\NPC\\NPC_Quest\\Battle_07.cdf"	BB_Yui.xml	CN001	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain_Nana.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNana.xml
+10022	Lily	0	教官猎人	0	1.1	0.3	0	1.5	0.3				211481	311481	411481	511481	340015	"Objects\\characters\\NPC\\n_m_lily\\n_m_lily_battle.cdf"	BB_Lily.xml	CN001	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNpc.xml
+10023	贺菲	1	王立猎人	0	1.1	0.1	0	1.5	0.3				212249	312249	412249	512249	350021	"Objects\\characters\\NPC\\n_m_revi\\n_m_revi_battle.cdf"	BB_Revi.xml	CN001	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNpc.xml
+10024	埃兰	1	剑极狼猎人	0	1.1	0.2	0	1.5	0.3				211072	311072	411072	511072	370021	"Objects\\characters\\NPC\\n_m_alan\\n_m_alan_battle.cdf"	BB_Alan.xml	CN001	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNpc.xml
+10025	克丽丝	0	要塞领主	0	1.1	0.1	0	1.5	0.3								340200	"Objects\\characters\\NPC\\n_m_kris\\n_m_kris.cdf"	BB_Lily.xml	CN001	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNpc.xml
+10026	索菲亚	0	三公主	0	1.1	0.3	0	1.5	0.3								350021	"Objects\\characters\\NPC\\n_m_sophia\\n_m_sophia.cdf"	BB_Revi.xml	CN001	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNpc.xml
+10027	赫尔曼	1	美食猎人	0	1.1	0.3	0	1.5	0.3								340015	"Objects\\characters\\NPC\\n_m_herman\\n_m_herman.cdf"	BB_Rindis.xml	CN001	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNpc.xml
+10028	克拉特	0	王立骑士团长	0	1.1	0.3	0	1.5	0.3								350021	"Objects\\characters\\NPC\\n_s_carat\\n_s_carat.cdf"	BB_Rindis.xml	CN001	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNpc.xml
+10029	妮娅	0	侍女	0	1.1	0.2	0	1.5	0.3								370999	"Objects\\characters\\NPC\\n_s_neya\\n_s_neya.cdf"	BB_Rindis.xml	CN001	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNpc.xml
+10030	依赛亚	0	王立猎人	0	1.1	0.3	0	1.5	0.3								340015	"Objects\\characters\\NPC\\n_m_isaiah\\n_m_isaiah_battle.cdf"	BB_Lily.xml	CN001	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNpc.xml
+10031	耶蜜莉	0	王立猎人	0	1.1	0.3	0	1.5	0.3								350021	"Objects\\characters\\NPC\\n_m_jeremiah\\n_m_jeremiah_battle.cdf"	BB_Revi.xml	CN001	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNpc.xml
+10032	伊泽克尔	1	王立猎人	0	1.1	0.3	0	1.5	0.3								370021	"Objects\\characters\\NPC\\n_m_ezekiel\\n_m_ezekiel_battle.cdf"	BB_Alan.xml	CN001	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNpc.xml
+10033	丹尼尔	1	王立猎人	0	1.1	0.3	0	1.5	0.3								350021	"Objects\\characters\\NPC\\n_m_daniel\\n_m_daniel_battle.cdf"	BB_Revi.xml	CN001	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNpc.xml
+10034	王立男骑士	1	骑士	0	1.1	0.2	0	1.5	0.3								370021	"Objects\\characters\\NPC\\n_s_cavamale\\n_s_cavamale.cdf"	BB_Alan.xml	CN001	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNpc.xml
+10035	王立女骑士	1	骑士	0	1.1	0.2	0	1.5	0.3								370021	"Objects\\characters\\NPC\\n_s_cavafemal\\n_s_cavafemal.cdf"	BB_Alan.xml	CN001	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNpc.xml
+10036	莱维	1	更新装备的莱维	0	1.1	0.2	0	1.5	0.3				211444	311444	411444	511444	370033	"Objects\\characters\\NPC\\NPC_Quest\\Battle_02.cdf"	BB_Alan.xml	CN001	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNpc.xml
+10037	Elise	0	新手剧情中的莉莉	0	1.1	0.3	0	1.5	0.3				222478	322478	422478	522478	370999	"Objects\\characters\\NPC\\n_m_lily\\n_m_lily_battle.cdf"	BB_Lily.xml	CN001	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNpc.xml
+10038	凯撒	1	新手剧情中的西撒	0	1.1	0.3	0	1.5	0.3									"Objects\\characters\\NPC\\n_m_revi\\n_m_revi_battle.cdf"	BB_Revi.xml	CN001	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNpc.xml
+10039	罗欧	1	新手剧情中的罗登	0	1.1	0.3	0	1.5	0.3									"Objects\\characters\\NPC\\n_m_alan\\n_m_alan_battle.cdf"	BB_Alan.xml	CN001	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNpc.xml
+10040	艾琳	0	风泉驿站长	0	1.1	0.3	0	1.5	0.3								340026	"Objects\\characters\\NPC\\n_m_elin\\n_m_elin.cdf"	BB_Lily.xml	CN001	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNpc.xml
+10041	里奥	1	龙人正太学者	0	1.1	0.3	0	1.5	0.3								340017	"Objects\\characters\\NPC\\n_m_leo\\n_m_leo.cdf"	BB_Lily.xml	CN001	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNpc.xml
+10042	琪琪	0	樱火龙猎人	0	1.1	0.3	0	1.5	0.3								350213	"Objects\\characters\\NPC\\n_m_gigi\\n_m_gigi.cdf"	BB_Revi.xml	CN001	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNpc.xml
+10043	斯科特	1	妖刀猎人	0	1.1	0.3	0	1.5	0.3								370368	"Objects\\characters\\NPC\\n_m_sector\\n_m_sector.cdf"	BB_Alan.xml	CN001	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNpc.xml
+10044	Lily	0	Familiar Hunter	0	1.1	0.3	0	1.5	0.1								370999	"Objects\\characters\\NPC\\n_m_lily\\n_m_lily_battle002.cdf"	BB_Lily.xml	CN001	Brain.xml;FG_CombatBrain.xml;FG_FollowBrain.xml;FG_ReactBrain.xml;Perception.xml;StimulusReaction.xml;LocomotionMove.xml;LocomotionRotate.xml;Z_BrainController.xml;Z_PlayerStatusSensor.xml;Z_SituationSensor.xml	EventBT_CombatNpc.xml
+#============End of sheet============
+
+#============Begin of sheet============
+@Sheet=等级属性关系表
+Level	HP	Attack	Defence	CRILevel
+1	100	50	9	5
+2	100	50	9	5
+3	100	50	9	5
+4	100	50	9	5
+5	100	50	9	5
+6	105	53	10	5
+7	110	56	10	5
+8	115	59	10	5
+9	120	62	10	5
+10	125	65	10	6
+11	128	68	11	6
+12	131	71	11	7
+13	134	74	12	7
+14	137	77	13	7
+15	140	80	14	8
+16	144	83	15	8
+17	148	86	16	8
+18	152	90	17	9
+19	156	94	18	9
+20	160	98	20	10
+21	164	105	21	10
+22	168	112	23	11
+23	172	119	25	11
+24	176	127	27	12
+25	180	135	29	12
+26	185	140	32	13
+27	190	145	35	14
+28	195	151	38	14
+29	200	157	41	15
+30	205	163	44	16
+31	211	170	49	17
+32	217	177	54	18
+33	223	184	59	18
+34	229	191	64	19
+35	235	199	70	20
+36	245	208	78	21
+37	255	217	86	22
+38	265	226	94	24
+39	275	235	102	25
+40	285	245	110	26
+41	295	255	123	27
+42	305	266	136	29
+43	315	277	149	30
+44	325	288	162	32
+45	335	299	177	33
+46	347	311	192	35
+47	359	323	207	36
+48	371	336	222	38
+49	383	349	237	40
+50	395	362	252	42
+51	407	376	272	44
+52	419	390	292	47
+53	431	405	312	49
+54	443	420	332	51
+55	465	435	352	54
+#============End of sheet============
+
+#============Begin of sheet============
+@Sheet=连招组合
+ComboID	CombotVariant	ComboName1	ComboName2	ComboName3	ComboName4	ComboName5
+1	1	COMBAT_PL04_COMBO1	COMBAT_PL04_COMBO2	COMBAT_PL04_COMBO3	COMBAT_PL04_COMBO4	
+1	2	COMBAT_PL04_COMBO1	COMBAT_PL04_COMBO2	COMBAT_PL04_COMBO3	COMBAT_PL04_SMITE	
+1	3	COMBAT_PL04_COMBO1	COMBAT_PL04_COMBO2	COMBAT_PL04_COMBO3	COMBAT_PL04_ROLLRIGHTATTACK	
+1	4	COMBAT_PL04_COMBO1	COMBAT_PL04_COMBO2	COMBAT_PL04_COMBO3	COMBAT_PL04_ROLLLEFTATTACK	
+1	5	COMBAT_PL04_COMBO1	COMBAT_PL04_COMBO2	COMBAT_PL04_COMBO3	COMBAT_PL04_BACKATTACK	
+1	6	COMBAT_PL04_COMBO1	COMBAT_PL04_COMBO2	COMBAT_PL04_SMITE	COMBAT_PL04_COMBO4	
+1	7	COMBAT_PL04_COMBO1	COMBAT_PL04_COMBO2	COMBAT_PL04_SMITE	COMBAT_PL04_DODGEATTACK	
+1	8	COMBAT_PL04_COMBO1	COMBAT_PL04_COMBO2	COMBAT_PL04_SMITE	COMBAT_PL04_ROLLRIGHTATTACK	
+1	9	COMBAT_PL04_COMBO1	COMBAT_PL04_COMBO2	COMBAT_PL04_SMITE	COMBAT_PL04_ROLLLEFTATTACK	
+1	30	COMBAT_PL04_COMBO1	COMBAT_PL04_COMBO2	COMBAT_PL04_ROLLRIGHTATTACK		
+1	31	COMBAT_PL04_COMBO1	COMBAT_PL04_COMBO2	COMBAT_PL04_ROLLLEFTATTACK		
+1	32	COMBAT_PL04_COMBO1	COMBAT_PL04_COMBO2	COMBAT_PL04_BACKATTACK		
+1	33	COMBAT_PL04_COMBO1	COMBAT_PL04_COMBO4			
+1	34	COMBAT_PL04_COMBO1	COMBAT_PL04_COMBO2	COMBAT_PL04_COMBO4		
+1	35	COMBAT_PL04_COMBO1	COMBAT_PL04_SMITE	COMBAT_PL04_COMBO4		
+1	36	COMBAT_PL04_COMBO1	COMBAT_PL04_SMITE	COMBAT_PL04_DODGEATTACK		
+1	37	COMBAT_PL04_COMBO1	COMBAT_PL04_SMITE	COMBAT_PL04_ROLLRIGHTATTACK		
+1	38	COMBAT_PL04_COMBO1	COMBAT_PL04_SMITE	COMBAT_PL04_ROLLLEFTATTACK		
+2	10	COMBAT_PL04_JUMPATTACK	COMBAT_PL04_UPPERATTACK	COMBAT_PL04_COMBO3	COMBAT_PL04_COMBO4	
+2	11	COMBAT_PL04_JUMPATTACK	COMBAT_PL04_UPPERATTACK	COMBAT_PL04_COMBO3	COMBAT_PL04_SMITE	
+2	12	COMBAT_PL04_JUMPATTACK	COMBAT_PL04_UPPERATTACK	COMBAT_PL04_COMBO3	COMBAT_PL04_ROLLRIGHTATTACK	
+2	13	COMBAT_PL04_JUMPATTACK	COMBAT_PL04_UPPERATTACK	COMBAT_PL04_COMBO3	COMBAT_PL04_ROLLLEFTATTACK	
+2	14	COMBAT_PL04_JUMPATTACK	COMBAT_PL04_UPPERATTACK	COMBAT_PL04_COMBO3	COMBAT_PL04_BACKATTACK	
+2	15	COMBAT_PL04_JUMPATTACK	COMBAT_PL04_UPPERATTACK	COMBAT_PL04_SMITE	COMBAT_PL04_COMBO4	
+2	16	COMBAT_PL04_JUMPATTACK	COMBAT_PL04_UPPERATTACK	COMBAT_PL04_SMITE	COMBAT_PL04_DODGEATTACK	
+2	17	COMBAT_PL04_JUMPATTACK	COMBAT_PL04_UPPERATTACK	COMBAT_PL04_SMITE	COMBAT_PL04_ROLLRIGHTATTACK	
+2	18	COMBAT_PL04_JUMPATTACK	COMBAT_PL04_UPPERATTACK	COMBAT_PL04_SMITE	COMBAT_PL04_ROLLLEFTATTACK	
+2	28	COMBAT_PL04_JUMPATTACK	COMBAT_PL04_JUMPATTACKCONTINUATION			
+2	39	COMBAT_PL04_JUMPATTACK	COMBAT_PL04_UPPERATTACK	COMBAT_PL04_COMBO4		
+2	40	COMBAT_PL04_JUMPATTACK	COMBAT_PL04_UPPERATTACK	COMBAT_PL04_ROLLRIGHTATTACK		
+2	41	COMBAT_PL04_JUMPATTACK	COMBAT_PL04_UPPERATTACK	COMBAT_PL04_ROLLLEFTATTACK		
+2	42	COMBAT_PL04_JUMPATTACK	COMBAT_PL04_UPPERATTACK			
+3	19	COMBAT_PL04_RUNJUMPATTACK	COMBAT_PL04_UPPERATTACK	COMBAT_PL04_COMBO3	COMBAT_PL04_COMBO4	
+3	20	COMBAT_PL04_RUNJUMPATTACK	COMBAT_PL04_UPPERATTACK	COMBAT_PL04_COMBO3	COMBAT_PL04_SMITE	
+3	21	COMBAT_PL04_RUNJUMPATTACK	COMBAT_PL04_UPPERATTACK	COMBAT_PL04_COMBO3	COMBAT_PL04_ROLLRIGHTATTACK	
+3	22	COMBAT_PL04_RUNJUMPATTACK	COMBAT_PL04_UPPERATTACK	COMBAT_PL04_COMBO3	COMBAT_PL04_ROLLLEFTATTACK	
+3	23	COMBAT_PL04_RUNJUMPATTACK	COMBAT_PL04_UPPERATTACK	COMBAT_PL04_COMBO3	COMBAT_PL04_BACKATTACK	
+3	24	COMBAT_PL04_RUNJUMPATTACK	COMBAT_PL04_UPPERATTACK	COMBAT_PL04_SMITE	COMBAT_PL04_COMBO4	
+3	25	COMBAT_PL04_RUNJUMPATTACK	COMBAT_PL04_UPPERATTACK	COMBAT_PL04_SMITE	COMBAT_PL04_DODGEATTACK	
+3	26	COMBAT_PL04_RUNJUMPATTACK	COMBAT_PL04_UPPERATTACK	COMBAT_PL04_SMITE	COMBAT_PL04_ROLLRIGHTATTACK	
+3	27	COMBAT_PL04_RUNJUMPATTACK	COMBAT_PL04_UPPERATTACK	COMBAT_PL04_SMITE	COMBAT_PL04_ROLLLEFTATTACK	
+3	43	COMBAT_PL04_RUNJUMPATTACK	COMBAT_PL04_UPPERATTACK	COMBAT_PL04_COMBO4		
+3	44	COMBAT_PL04_RUNJUMPATTACK	COMBAT_PL04_UPPERATTACK	COMBAT_PL04_ROLLRIGHTATTACK		
+3	45	COMBAT_PL04_RUNJUMPATTACK	COMBAT_PL04_UPPERATTACK	COMBAT_PL04_ROLLLEFTATTACK		
+3	46	COMBAT_PL04_RUNJUMPATTACK	COMBAT_PL04_UPPERATTACK			
+3	29	COMBAT_PL04_RUNJUMPATTACK	COMBAT_PL04_JUMPATTACKCONTINUATION			
+9	47	COMBAT_STAB	COMBAT_DashSlash_Back			
+9	48	COMBAT_STAB	COMBAT_DashSlash_Left			
+9	49	COMBAT_STAB	COMBAT_DashSlash_Right			
+9	50	COMBAT_VERTICAL_StepForward	COMBAT_DashSlash_Back			
+9	51	COMBAT_VERTICAL_StepForward	COMBAT_DashSlash_Left			
+9	52	COMBAT_VERTICAL_StepForward	COMBAT_DashSlash_Right			
+9	53	COMBAT_STAB	COMBAT_NewChop	COMBAT_DashSlash_Back		
+9	54	COMBAT_STAB	COMBAT_NewChop	COMBAT_DashSlash_Left		
+9	55	COMBAT_STAB	COMBAT_NewChop	COMBAT_DashSlash_Right		
+9	56	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_DashSlash_Back		
+9	57	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_DashSlash_Left		
+9	58	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_DashSlash_Right		
+9	59	COMBAT_VERTICAL_StepForward	COMBAT_STAB	COMBAT_DashSlash_Back		
+9	60	COMBAT_VERTICAL_StepForward	COMBAT_STAB	COMBAT_DashSlash_Left		
+9	61	COMBAT_VERTICAL_StepForward	COMBAT_STAB	COMBAT_DashSlash_Right		
+9	62	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_DashSlash_Back		
+9	63	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_DashSlash_Left		
+9	64	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_DashSlash_Right		
+9	65	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_VERTICAL	COMBAT_DashSlash_Back	
+10	66	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_VERTICAL	COMBAT_DashSlash_Left	
+10	67	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_VERTICAL	COMBAT_DashSlash_Right	
+10	68	COMBAT_VERTICAL_StepForward	COMBAT_STAB	COMBAT_NewChop	COMBAT_DashSlash_Back	
+10	69	COMBAT_VERTICAL_StepForward	COMBAT_STAB	COMBAT_NewChop	COMBAT_DashSlash_Left	
+10	70	COMBAT_VERTICAL_StepForward	COMBAT_STAB	COMBAT_NewChop	COMBAT_DashSlash_Right	
+10	71	COMBAT_VERTICAL_StepForward	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_DashSlash_Back	
+10	72	COMBAT_VERTICAL_StepForward	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_DashSlash_Left	
+10	73	COMBAT_VERTICAL_StepForward	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_DashSlash_Right	
+10	74	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_STAB	COMBAT_DashSlash_Back	
+10	75	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_STAB	COMBAT_DashSlash_Left	
+10	76	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_STAB	COMBAT_DashSlash_Right	
+10	77	COMBAT_VERTICAL_StepForward	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_VERTICAL	COMBAT_DashSlash_Back
+10	78	COMBAT_VERTICAL_StepForward	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_VERTICAL	COMBAT_DashSlash_Left
+10	79	COMBAT_VERTICAL_StepForward	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_VERTICAL	COMBAT_DashSlash_Right
+10	80	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_STAB	COMBAT_NewChop	COMBAT_DashSlash_Back
+10	81	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_STAB	COMBAT_NewChop	COMBAT_DashSlash_Left
+10	82	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_STAB	COMBAT_NewChop	COMBAT_DashSlash_Right
+10	83	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_DashSlash_Back
+10	84	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_DashSlash_Left
+10	85	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_DashSlash_Right
+10	86	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_VERTICAL
+10	87	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_VERTICAL
+10	88	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_VERTICAL
+11	89	COMBAT_STAB	COMBAT_DashSlash_Back	COMBAT_DashSlashContinue_Front		
+11	90	COMBAT_STAB	COMBAT_DashSlash_Left	COMBAT_DashSlashContinue_Right		
+11	91	COMBAT_STAB	COMBAT_DashSlash_Right	COMBAT_DashSlashContinue_Left		
+11	92	COMBAT_VERTICAL_StepForward	COMBAT_DashSlash_Back	COMBAT_DashSlashContinue_Front		
+11	93	COMBAT_VERTICAL_StepForward	COMBAT_DashSlash_Left	COMBAT_DashSlashContinue_Right		
+11	94	COMBAT_VERTICAL_StepForward	COMBAT_DashSlash_Right	COMBAT_DashSlashContinue_Left		
+11	95	COMBAT_STAB	COMBAT_NewChop	COMBAT_DashSlash_Back	COMBAT_DashSlashContinue_Front	
+11	96	COMBAT_STAB	COMBAT_NewChop	COMBAT_DashSlash_Left	COMBAT_DashSlashContinue_Right	
+11	97	COMBAT_STAB	COMBAT_NewChop	COMBAT_DashSlash_Right	COMBAT_DashSlashContinue_Left	
+11	98	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_DashSlash_Back	COMBAT_DashSlashContinue_Front	
+11	99	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_DashSlash_Left	COMBAT_DashSlashContinue_Right	
+11	100	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_DashSlash_Right	COMBAT_DashSlashContinue_Left	
+11	101	COMBAT_VERTICAL_StepForward	COMBAT_STAB	COMBAT_DashSlash_Back	COMBAT_DashSlashContinue_Front	
+11	102	COMBAT_VERTICAL_StepForward	COMBAT_STAB	COMBAT_DashSlash_Left	COMBAT_DashSlashContinue_Right	
+11	103	COMBAT_VERTICAL_StepForward	COMBAT_STAB	COMBAT_DashSlash_Right	COMBAT_DashSlashContinue_Left	
+11	104	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_DashSlash_Back	COMBAT_DashSlashContinue_Front	
+11	105	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_DashSlash_Left	COMBAT_DashSlashContinue_Right	
+11	106	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_DashSlash_Right	COMBAT_DashSlashContinue_Left	
+12	107	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_VERTICAL	COMBAT_DashSlash_Back	COMBAT_DashSlashContinue_Front
+12	108	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_VERTICAL	COMBAT_DashSlash_Left	COMBAT_DashSlashContinue_Right
+12	109	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_VERTICAL	COMBAT_DashSlash_Right	COMBAT_DashSlashContinue_Left
+12	110	COMBAT_VERTICAL_StepForward	COMBAT_STAB	COMBAT_NewChop	COMBAT_DashSlash_Back	COMBAT_DashSlashContinue_Front
+12	111	COMBAT_VERTICAL_StepForward	COMBAT_STAB	COMBAT_NewChop	COMBAT_DashSlash_Left	COMBAT_DashSlashContinue_Right
+12	112	COMBAT_VERTICAL_StepForward	COMBAT_STAB	COMBAT_NewChop	COMBAT_DashSlash_Right	COMBAT_DashSlashContinue_Left
+12	113	COMBAT_VERTICAL_StepForward	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_DashSlash_Back	COMBAT_DashSlashContinue_Front
+12	114	COMBAT_VERTICAL_StepForward	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_DashSlash_Left	COMBAT_DashSlashContinue_Right
+12	115	COMBAT_VERTICAL_StepForward	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_DashSlash_Right	COMBAT_DashSlashContinue_Left
+12	116	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_STAB	COMBAT_DashSlash_Back	COMBAT_DashSlashContinue_Front
+12	117	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_STAB	COMBAT_DashSlash_Left	COMBAT_DashSlashContinue_Right
+12	118	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_STAB	COMBAT_DashSlash_Right	COMBAT_DashSlashContinue_Left
+12	119	COMBAT_VERTICAL_StepForward	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_VERTICAL	COMBAT_DashSlash_Back
+12	120	COMBAT_VERTICAL_StepForward	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_VERTICAL	COMBAT_DashSlash_Left
+12	121	COMBAT_VERTICAL_StepForward	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_VERTICAL	COMBAT_DashSlash_Right
+12	122	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_STAB	COMBAT_NewChop	COMBAT_DashSlash_Back
+12	123	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_STAB	COMBAT_NewChop	COMBAT_DashSlash_Left
+12	124	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_STAB	COMBAT_NewChop	COMBAT_DashSlash_Right
+12	125	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_DashSlash_Back
+12	126	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_DashSlash_Left
+12	127	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_DashSlash_Right
+12	128	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_VERTICAL
+12	129	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_VERTICAL
+12	130	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_VERTICAL
+13	131	COMBAT_QiRenDaHuiXuan0	COMBAT_QiRenDaHuiXuan1	COMBAT_QiRenDaHuiXuan2		
+13	132	COMBAT_QiRen1	COMBAT_QiRen2	COMBAT_QiRen3	COMBAT_QiRenDaHuiXuan1	COMBAT_QiRenDaHuiXuan2
+13	133	COMBAT_QiRen1	COMBAT_QiRen2	COMBAT_QiRen3	COMBAT_QiRenDaHuiXuan0	COMBAT_QiRenDaHuiXuan1
+13	134	COMBAT_STAB	COMBAT_QiRen1	COMBAT_QiRen2	COMBAT_QiRen3	COMBAT_QiRenDaHuiXuan1
+13	135	COMBAT_VERTICAL_StepForward	COMBAT_QiRen1	COMBAT_QiRen2	COMBAT_QiRen3	COMBAT_QiRenDaHuiXuan1
+13	136	COMBAT_QiRen1	COMBAT_STAB	COMBAT_QiRen2	COMBAT_UP_Slash	COMBAT_QiRen3
+13	137	COMBAT_STAB	COMBAT_QiRen1	COMBAT_QiRen2	COMBAT_QiRen3	COMBAT_QiRenDaHuiXuan0
+13	138	COMBAT_STAB	COMBAT_NewChop	COMBAT_QiRen1	COMBAT_QiRen2	COMBAT_QiRen3
+13	139	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_QiRen1	COMBAT_QiRen2	COMBAT_QiRen3
+13	140	COMBAT_VERTICAL_StepForward	COMBAT_QiRen1	COMBAT_QiRen2	COMBAT_QiRen3	COMBAT_QiRenDaHuiXuan0
+13	141	COMBAT_VERTICAL_StepForward	COMBAT_STAB	COMBAT_QiRen1	COMBAT_QiRen2	COMBAT_QiRen3
+13	142	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_QiRen1	COMBAT_QiRen2	COMBAT_QiRen3
+14	143	COMBAT_QiRen1	COMBAT_STAB	COMBAT_QiRen2	COMBAT_UP_Slash	COMBAT_QiRen3
+14	144	COMBAT_STAB	COMBAT_QiRen1	COMBAT_STAB	COMBAT_QiRen2	COMBAT_UP_Slash
+14	145	COMBAT_STAB	COMBAT_NewChop	COMBAT_QiRen1	COMBAT_QiRen2	COMBAT_QiRen3
+14	146	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_QiRen1	COMBAT_QiRen2	COMBAT_QiRen3
+14	147	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_VERTICAL	COMBAT_QiRen1	COMBAT_QiRen2
+14	148	COMBAT_VERTICAL_StepForward	COMBAT_QiRen1	COMBAT_STAB	COMBAT_QiRen2	COMBAT_UP_Slash
+14	149	COMBAT_VERTICAL_StepForward	COMBAT_STAB	COMBAT_QiRen1	COMBAT_QiRen2	COMBAT_QiRen3
+14	150	COMBAT_VERTICAL_StepForward	COMBAT_STAB	COMBAT_NewChop	COMBAT_QiRen1	COMBAT_QiRen2
+14	151	COMBAT_VERTICAL_StepForward	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_QiRen1	COMBAT_QiRen2
+14	152	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_QiRen1	COMBAT_QiRen2	COMBAT_QiRen3
+14	153	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_STAB	COMBAT_QiRen1	COMBAT_QiRen2
+14	154	COMBAT_STAB	COMBAT_QiRen1	COMBAT_STAB	COMBAT_QiRen2	COMBAT_UP_Slash
+14	155	COMBAT_STAB	COMBAT_NewChop	COMBAT_QiRen1	COMBAT_STAB	COMBAT_QiRen2
+14	156	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_QiRen1	COMBAT_STAB	COMBAT_QiRen2
+14	157	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_VERTICAL	COMBAT_QiRen1	COMBAT_QiRen2
+14	158	COMBAT_VERTICAL_StepForward	COMBAT_QiRen1	COMBAT_STAB	COMBAT_QiRen2	COMBAT_UP_Slash
+14	159	COMBAT_VERTICAL_StepForward	COMBAT_STAB	COMBAT_QiRen1	COMBAT_STAB	COMBAT_QiRen2
+14	160	COMBAT_VERTICAL_StepForward	COMBAT_STAB	COMBAT_NewChop	COMBAT_QiRen1	COMBAT_QiRen2
+14	161	COMBAT_VERTICAL_StepForward	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_QiRen1	COMBAT_QiRen2
+14	162	COMBAT_VERTICAL_StepForward	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_VERTICAL	COMBAT_QiRen1
+14	163	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_QiRen1	COMBAT_STAB	COMBAT_QiRen2
+14	164	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_STAB	COMBAT_QiRen1	COMBAT_QiRen2
+14	165	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_STAB	COMBAT_NewChop	COMBAT_QiRen1
+14	166	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_QiRen1
+15	167	COMBAT_STAB	COMBAT_NewChop	COMBAT_QiRen1	COMBAT_STAB	COMBAT_QiRen2
+15	168	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_QiRen1	COMBAT_STAB	COMBAT_QiRen2
+15	169	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_VERTICAL	COMBAT_QiRen1	COMBAT_STAB
+15	170	COMBAT_VERTICAL_StepForward	COMBAT_STAB	COMBAT_QiRen1	COMBAT_STAB	COMBAT_QiRen2
+15	171	COMBAT_VERTICAL_StepForward	COMBAT_STAB	COMBAT_NewChop	COMBAT_QiRen1	COMBAT_STAB
+15	172	COMBAT_VERTICAL_StepForward	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_QiRen1	COMBAT_STAB
+15	173	COMBAT_VERTICAL_StepForward	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_VERTICAL	COMBAT_QiRen1
+15	174	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_QiRen1	COMBAT_STAB	COMBAT_QiRen2
+15	175	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_STAB	COMBAT_QiRen1	COMBAT_STAB
+15	176	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_STAB	COMBAT_NewChop	COMBAT_QiRen1
+15	177	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_QiRen1
+15	178	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_VERTICAL
+15	179	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_VERTICAL	COMBAT_QiRen1	COMBAT_STAB
+15	180	COMBAT_VERTICAL_StepForward	COMBAT_STAB	COMBAT_NewChop	COMBAT_QiRen1	COMBAT_STAB
+15	181	COMBAT_VERTICAL_StepForward	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_QiRen1	COMBAT_STAB
+15	182	COMBAT_VERTICAL_StepForward	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_VERTICAL	COMBAT_QiRen1
+15	183	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_STAB	COMBAT_QiRen1	COMBAT_STAB
+15	184	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_STAB	COMBAT_NewChop	COMBAT_QiRen1
+15	185	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_QiRen1
+15	186	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_VERTICAL
+15	187	COMBAT_VERTICAL_StepForward	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_VERTICAL	COMBAT_QiRen1
+15	188	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_STAB	COMBAT_NewChop	COMBAT_QiRen1
+15	189	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_QiRen1
+15	190	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_VERTICAL
+15	191	COMBAT_VERTICAL_StepForward	COMBAT_VERTICAL	COMBAT_STAB	COMBAT_UP_Slash	COMBAT_VERTICAL
+101	192	COMBAT_PL04_Rage02_FirstStabMove				
+#============End of sheet============
+

@@ -1,0 +1,421 @@
+#TSV
+#============Begin of sheet============
+@Sheet=Attribute
+ID	CName	Name	Type	Version	Self	Appear	Query	Bonus	SaveDB	Sync	InitVal	PvPInitVal	Event	ResetVal	Reset1	Reset2	Reset3	Reset4	Lower	Upper	InUse	Note	Other
+1	角色等级	CharLevel	int	2	1	1	1	1	1	2	NA	NA	1	NA	0	0	0	0	NA	180	1		Char=character，角色
+2	角色名称	CharName	string	3	0	0	0	0	0	4	NA	NA	0	NA	0	0	0	0	NA	NA	1	弃用！	
+3	角色性别	CharSex	int	4	1	1	1	0	0	2	NA	NA	1	NA	0	0	0	0	NA	NA	1		
+4	当前称号	CharTitle	string	5	0	0	0	0	0	4	NA	NA	0	NA	0	0	0	0	NA	NA	1	弃用！	
+5	当前经验	CharExp	int	6	1	1	1	0	1	2	NA	NA	1	NA	0	0	0	0	NA	NA	1		
+6	星级等级	StarLevel	int	7	1	1	1	0	1	2	NA	NA	1	NA	0	0	0	0	NA	NA	1		HR=Hunter Rank
+7	收藏分支积分	StarCollection	int	8	0	0	1	0	0	0	NA	NA	1	NA	0	0	0	0	NA	NA	1		星级积分为各分支总分；分支等级根据分支积分计算
+8	任务分支积分	StarQuest	int	9	0	0	1	0	0	0	NA	NA	1	NA	0	0	0	0	NA	NA	1		同上
+9	战斗分支积分	StarCombat	int	10	0	0	1	0	0	0	NA	NA	1	NA	0	0	0	0	NA	NA	1		同上
+10	宠物分支积分	StarPet	int	11	0	0	1	0	0	0	NA	NA	1	NA	0	0	0	0	NA	NA	1		同上
+11	生产分支积分	StarProduct	int	12	0	0	1	0	0	0	NA	NA	1	NA	0	0	0	0	NA	NA	1		同上
+12	团队分支积分	StarGuild	int	13	0	0	1	0	0	0	NA	NA	1	NA	0	0	0	0	NA	NA	1		同上
+13	驯龙分支积分	StarTame	int	14	0	0	1	0	0	0	NA	NA	1	NA	0	0	0	0	NA	NA	1		同上
+14	竞技分支积分	StarPvP	int	15	0	0	1	0	0	0	NA	NA	1	NA	0	0	0	0	NA	NA	1		同上
+15	当前生命	CharHP	int	16	1	1	1	0	1	2	NA	NA	1	100	0	0	0	0	NA	150	1	和最大生命的最后加成结果一致	
+16	最大生命	CharMaxHP	int	17	1	1	1	1	1	2	NA	100	1	NA	0	0	0	0	NA	150	1		
+17	生命自然回复速度	CharReju	int	18	1	0	0	1	0	2	1	3	1	1	1	0	0	0	NA	NA	1		Reju=Rejuvenation；程序用Buff方式实现，属于特殊Buff类别（2012/9/29）
+18	生命自然回复上限	CharMaxReju	int	19	1	1	0	1	0	2	NA	NA	1	NA	0	0	0	0	NA	150	1	和最大生命的最后加成结果一致	表现为红色血条；决定生命自然回复时可达到的上限值；其数值不小于当前生命值，否则等于当前生命值；其数值不大于最大生命
+19	角色死亡	Death	bool	20	1	1	1	0	0	4	0	NA	1	0	1	0	0	0	NA	NA	1		
+20	当前耐力	CharSta	float	21	1	0	0	0	0	0	NA	NA	1	NA	0	0	0	0	NA	150	1	和最大耐力的最后加成结果一致	
+21	最大耐力	CharMaxSta	int	22	1	0	1	1	0	2	100	100	1	100	1	1	0	0	NA	150	1	重置为100；Buff加成另算	决定自然回复耐力时可达到的上限值（当角色吃肉时，同时增加最大耐力以及耐力）
+22	耐力回复速度	CharStaRecovery	float	23	1	0	0	1	0	1	2	2	1	2	0	0	0	0	NA	NA	1		
+23	最大耐力消耗量	CharStaDdct	float	24	1	0	0	1	0	1	25	25	1	25	0	0	0	0	NA	NA	1		决定最大耐力每个周期减少的值；Ddct=Deduction减少
+24	最大耐力消耗周期	CharStaDdctPeriod	int	25	1	0	0	1	0	1	360	240	1	240	0	0	0	0	NA	NA	1		决定每隔多久最大耐力会减少一次
+25	力量	CharStr	int	26	0	0	1	1	1	0	NA	NA	1	NA	0	0	0	0	NA	NA	1		
+26	爆发	CharBst	int	27	0	0	1	1	1	0	NA	NA	1	NA	0	0	0	0	NA	NA	1		
+27	运气	CharLck	int	28	0	0	1	1	1	0	NA	NA	1	NA	0	0	0	0	NA	NA	1		
+28	体力	CharVgr	int	29	0	0	1	1	1	0	NA	NA	1	NA	0	0	0	0	NA	NA	1		vgr=vigor；每点体力增加最大生命值x点
+29	近程攻击力	CharMelee	float	30	0	0	1	1	0	0	NA	100	1	NA	0	0	0	0	NA	NA	1		
+30	远程攻击力	CharRange	float	31	0	0	1	1	0	0	NA	100	1	NA	0	0	0	0	NA	NA	1		
+31	防御力	CharDefence	int	32	1	0	1	1	1	1	NA	100	1	NA	0	0	0	0	NA	NA	1		
+32	会心一击等级	CritLevel	int	33	1	0	1	1	0	1	0	0	1	NA	0	0	0	0	NA	NA	1		Crit=critical；正负会心率都是按照会心等级通过公式计算得出
+33	会心一击伤害比例	CritDmg	int	34	1	0	1	1	0	1	125	125	1	125	0	0	0	0	NA	NA	1		百分比，会心伤害为原是伤害的1.25倍
+34	负会心一击伤害比例	AntiCritDmg	int	35	1	0	1	1	0	1	75	75	1	75	0	0	0	0	NA	NA	1		百分比，负会心伤害为原是伤害的0.75倍
+35	斩味值	Sharpness	int	36	1	1	0	0	0	2	0	NA	1	0	0	0	0	0	NA	NA	1		斩味值是角色所装备近战武器的所有斩味的总和
+36	最大斩味值	MaxSharpness	int	37	1	0	0	1	0	1	0	0	1	0	0	0	0	0	NA	NA	1		
+37	斩味倍率修正	SharpAttackMdf	int	38	1	0	0	1	0	1	100	100	1	100	0	0	0	0	NA	NA	1		斩味修正值影响攻击力以及弹刀判定；需要除以100
+38	水属性攻击	WaterAttack	int	39	1	0	1	1	0	4	NA	0	1	NA	0	0	0	0	NA	NA	1		影响角色对水属性攻击的防御效果
+39	火属性攻击	FireAttack	int	40	1	0	1	1	0	4	NA	0	1	NA	0	0	0	0	NA	NA	1		类上
+40	雷属性攻击	LightningAttack	int	41	1	0	1	1	0	4	NA	0	1	NA	0	0	0	0	NA	NA	1		类上
+41	龙属性攻击	DragonAttack	int	42	1	0	1	1	0	4	NA	0	1	NA	0	0	0	0	NA	NA	1		类上
+42	冰属性攻击	IceAttack	int	43	1	0	1	1	0	4	NA	0	1	NA	0	0	0	0	NA	NA	1		类上
+43	无属性攻击	NonAttack	int	44	1	0	1	1	0	4	NA	0	1	NA	0	0	0	0	NA	NA	1		类上
+44	毒状态攻击	PoisonAttack	int	45	1	0	1	1	0	4	NA	0	1	NA	0	0	0	0	NA	NA	1		
+45	眠状态攻击	SleepyAttack	int	46	1	0	1	1	0	4	NA	0	1	NA	0	0	0	0	NA	NA	1		
+46	麻状态攻击	ParalysisAttack	int	47	1	0	1	1	0	4	NA	0	1	NA	0	0	0	0	NA	NA	1		
+47	水抗性	WaterRes	int	48	0	0	1	1	0	1	NA	NA	1	NA	0	0	0	0	NA	NA	1		影响角色对水属性攻击的防御效果；Res=resistance；用于计算属性肉质
+48	火抗性	FireRes	int	49	0	0	1	1	0	1	NA	NA	1	NA	0	0	0	0	NA	NA	1		类上
+49	雷抗性	LightningRes	int	50	0	0	1	1	0	1	NA	NA	1	NA	0	0	0	0	NA	NA	1		类上
+50	龙抗性	DragonRes	int	51	0	0	1	1	0	1	NA	NA	1	NA	0	0	0	0	NA	NA	1		类上
+51	冰抗性	IceRes	int	52	0	0	1	1	0	1	NA	NA	1	NA	0	0	0	0	NA	NA	1		类上
+52	水当前蓄积值	WaterAccum	int	53	1	0	0	0	0	0	0	NA	1	0	1	1	0	0	NA	NA	1	清零	角色受到水属性武器攻击时，所产生的累积值；Accum=accumulation，累积
+53	火当前蓄积值	FireAccum	int	54	1	0	0	0	0	0	0	NA	1	0	1	1	0	0	NA	NA	1	清零	类上
+54	雷当前蓄积值	LightningAccum	int	55	1	0	0	0	0	0	0	NA	1	0	1	1	0	0	NA	NA	1	清零	类上
+55	龙当前蓄积值	DragonAccum	int	56	1	0	0	0	0	0	0	NA	1	0	1	1	0	0	NA	NA	1	清零	类上
+56	冰当前蓄积值	IceAccum	int	57	1	0	0	0	0	0	0	NA	1	0	1	1	0	0	NA	NA	1	清零	类上
+57	无当前蓄积值	NonAccum	int	58	1	0	0	0	0	0	0	NA	1	0	1	1	0	0	NA	NA	1	清零	类上
+58	水蓄积阈值	WaterThrsh	int	59	1	0	0	1	0	0	100	100	1	NA	0	0	0	0	NA	NA	1		影响角色受到水属性武器攻击，所造成蓄积值的减免效果；Def=defence
+59	火蓄积阈值	FireThrsh	int	60	1	0	0	1	0	0	100	100	1	NA	0	0	0	0	NA	NA	1		类上
+60	雷蓄积阈值	LightningThrsh	int	61	1	0	0	1	0	0	100	100	1	NA	0	0	0	0	NA	NA	1		类上
+61	龙蓄积阈值	DragonThrsh	int	62	1	0	0	1	0	0	100	100	1	NA	0	0	0	0	NA	NA	1		类上
+62	冰蓄积阈值	IceThrsh	int	63	1	0	0	1	0	0	100	100	1	NA	0	0	0	0	NA	NA	1		类上
+63	无蓄积阈值	NonThrsh	int	64	1	0	0	1	0	0	100	100	1	NA	0	0	0	0	NA	NA	1		类上
+64	气绝阈值	PiyoThrsh	int	65	1	0	0	1	0	0	100	100	1	NA	0	0	0	0	NA	NA	1		影响角色受到攻击时，决定气绝状态产生的蓄积阈值
+65	中毒阈值	PoisonThrsh	int	66	1	0	0	1	0	0	100	100	1	NA	0	0	0	0	NA	NA	1		影响角色受到毒属性攻击时，决定中毒效果产生的蓄积阈值
+66	眠阈值	SleepingThrsh	int	67	1	0	0	1	0	0	100	100	1	NA	0	0	0	0	NA	NA	1		影响角色受到眠属性攻击时，决定睡眠效果产生的蓄积阈值
+67	麻痹阈值	ParaThrsh	int	68	1	0	1	1	0	0	100	100	1	NA	0	0	0	0	NA	NA	1		影响角色受到麻痹属性攻击时，决定麻痹效果产生的蓄积阈值；Para=paralysis
+68	气绝衰减值	PiyoDdct	int	69	1	0	0	1	0	0	1	1	1	NA	0	0	0	0	NA	NA	1		决定每隔一段时间，气绝蓄积值的减少数量；Ddct=deduction
+69	气绝当前蓄积值	PiyoAccum	int	70	1	0	0	0	0	0	0	NA	1	0	1	1	0	0	NA	NA	1	清零	角色受到攻击时，所产生的气绝累积值
+70	中毒当前蓄积值	PoisonAccum	int	71	1	0	0	0	0	0	0	NA	1	0	1	1	0	0	NA	NA	1	清零	角色受到毒属性攻击时，所产生的毒累积值
+71	眠当前蓄积值	SleepingAccum	int	72	1	0	0	0	0	0	0	NA	1	0	1	1	0	0	NA	NA	1	清零	角色受到眠属性攻击时，所产生的眠累积值
+72	麻痹当前蓄积值	ParaAccum	int	73	1	0	0	0	0	0	0	NA	1	0	1	1	0	0	NA	NA	1	清零	角色受到麻痹属性攻击时，所产生的麻痹累积值
+73	移动速度	CharSpeed	int	74	1	0	0	1	0	0	100	100	1	100	0	0	0	0	NA	NA	1		
+74	人物动作速度	CharAnimSpeed	int	75	1	1	0	1	0	0	10000	10000	1	10000	1	0	0	0	NA	NA	1		
+75	金钱数量	CharMoney	int	76	1	0	0	0	1	1	NA	NA	1	NA	0	0	0	0	NA	NA	1		
+76	绑定金钱数量	CharBoundMoney	int	77	1	0	0	0	1	1	NA	NA	1	NA	0	0	0	0	NA	NA	1		
+77	点券数量	CharCredit	int	78	1	0	0	0	1	1	NA	NA	1	NA	0	0	0	0	NA	NA	1		
+78	绑定点券数量	CharBoundCredit	int	79	1	0	0	0	1	1	NA	NA	1	NA	0	0	0	0	NA	NA	1		
+79	物品栏格子数量	ItemSlotNum	int	80	0	0	0	0	0	0	NA	NA	1	NA	0	0	0	0	NA	NA	1		
+80	仓库格子数量	BankSlotNum	int	81	0	0	0	0	0	0	NA	NA	1	NA	0	0	0	0	NA	NA	1		
+81	好友数量上限	FriendNum	int	82	0	0	0	0	0	0	100	NA	1	NA	0	0	0	0	NA	NA	1		
+82	黑名单上限	BlackListNum	int	83	0	0	0	0	0	0	100	NA	1	NA	0	0	0	0	NA	NA	1		
+83	复活币	CharCoin	int	84	0	0	0	0	0	0	NA	NA	1	NA	0	0	0	0	NA	NA	1		
+84	赠送复活币	CharPreCoin	int	85	0	0	0	0	0	0	NA	NA	1	NA	0	0	0	0	NA	NA	1		Pre=present，礼物
+85	狩猎券	CharFatigue	int	86	1	0	0	0	1	1	NA	NA	1	NA	0	0	0	0	NA	NA	1	与最大行动力加成结果；重置规则参见行动力规则	
+86	VIP额外狩猎券消耗数据	CharMaxFatigue	int	87	1	0	0	0	1	1	NA	NA	1	NA	0	0	0	0	NA	NA	1		
+87	活力	CharEnergy	int	88	0	0	1	0	0	0	NA	NA	1	NA	0	0	0	0	NA	NA	1	与最大活力加成结果一致；；重置规则参见活力规则	目前没有使用
+88	最大活力	CharMaxEnergy	int	89	0	0	1	1	0	0	NA	NA	1	NA	0	0	0	0	NA	NA	1		同上
+89	大剑武器熟练度	ClaymoreExp	int	90	1	0	1	0	1	1	NA	NA	1	NA	0	0	0	0	NA	NA	1		同上
+90	大锤武器熟练度	HammerExp	int	91	1	0	1	0	1	1	NA	NA	1	NA	0	0	0	0	NA	NA	1		同上
+91	太刀武器熟练度	KatanaExp	int	92	1	0	1	0	1	1	NA	NA	1	NA	0	0	0	0	NA	NA	1		同上
+92	双刀武器熟练度	DuelSwordExp	int	93	1	0	1	0	1	1	NA	NA	1	NA	0	0	0	0	NA	NA	1		同上
+93	片手武器熟练度	SwordExp	int	94	1	0	1	0	1	1	NA	NA	1	NA	0	0	0	0	NA	NA	1		同上
+94	长枪武器熟练度	SpearExp	int	95	1	0	1	0	1	1	NA	NA	1	NA	0	0	0	0	NA	NA	1		同上
+95	铳枪武器熟练度	GunExp	int	96	1	0	1	0	1	1	NA	NA	1	NA	0	0	0	0	NA	NA	1		同上
+96	弓武器熟练度	BowExp	int	97	1	0	1	0	1	1	NA	NA	1	NA	0	0	0	0	NA	NA	1		同上
+97	弩武器熟练度	CrossbowExp	int	98	1	0	1	0	1	1	NA	NA	1	NA	0	0	0	0	NA	NA	1		同上
+98	笛子武器熟练度	FluteExp	int	99	1	0	1	0	1	1	NA	NA	1	NA	0	0	0	0	NA	NA	1		同上
+99	NPC1友好度	Friendship1	int	100	0	0	0	0	0	0	NA	NA	1	NA	0	0	0	0	NA	NA	1		玩家不同友好度开放不同权限给玩家，以前的设计
+100	NPC2友好度	Friendship2	int	101	0	0	0	0	0	0	NA	NA	1	NA	0	0	0	0	NA	NA	1		同上
+101	NPC3友好度	Friendship3	int	102	0	0	0	0	0	0	NA	NA	1	NA	0	0	0	0	NA	NA	1		同上
+102	NPC4友好度	Friendship4	int	103	0	0	0	0	0	0	NA	NA	1	NA	0	0	0	0	NA	NA	1		同上
+103	NPC5友好度	Friendship5	int	104	0	0	0	0	0	0	NA	NA	1	NA	0	0	0	0	NA	NA	1		同上
+104	NPC6友好度	Friendship6	int	105	0	0	0	0	0	0	NA	NA	1	NA	0	0	0	0	NA	NA	1	n/a	同上
+105	所属猎团	CharGuild	int	106	0	0	1	0	0	0	NA	NA	1	NA	0	0	0	0	NA	NA	1		*
+106	所属战队	CharWarteam	int	107	0	0	1	0	0	0	NA	NA	1	NA	0	0	0	0	NA	NA	1		
+107	脸型	MaleFace	int	108	1	1	1	0	1	1	NA	NA	1	NA	0	0	0	0	NA	NA	1		对应脸型映射表中的ID，非AvatarID
+108	发型	MaleHair	int	109	1	1	1	0	1	1	NA	NA	1	NA	0	0	0	0	NA	NA	1		
+109	当前怒气	CharRage	int	110	1	0	0	0	0	1	0	NA	1	0	1	0	0	0	NA	NA	1		当前的怒气值，满怒气可以释放武器奥义
+110	最大怒气	CharMaxRage	int	111	1	0	0	1	0	1	20000	20000	1	20000	0	0	0	0	NA	NA	1		最大怒气值
+111	扣血比例	RejuDmgRatio	int	112	1	0	0	1	0	1	50	50	1	50	0	0	0	0	NA	NA	1		角色受到非DOT攻击伤害时，扣除MaxReju的比例值，数值越大，扣除越多，当前血量+扣血比例*受到伤害作为当前生命自然回复上限（如：角色满血时受到100点攻击伤害，扣除100点生命以及50点生命自然回复上限）
+112	怒气转化系数	RageRatio	int	113	1	0	0	1	0	1	20	50	1	20	0	0	0	0	NA	NA	1		角色受到伤害按照角色HP的比例转化成怒气，为百分比值；怒气增长=扣血百分比*怒气转化系数
+113	气刃槽当前值	QiRenValue	int	114	1	0	0	0	0	0	0	NA	1	0	1	0	0	0	NA	NA	1		使用太刀的气刃槽当前值
+114	气刃槽最大值	QiRenMax	int	115	1	0	0	1	0	1	100	100	1	100	0	0	0	0	NA	NA	1		气刃槽当前值
+115	气刃槽等级	QiRenLevel	int	116	1	1	0	0	0	2	0	NA	1	0	1	0	0	0	NA	NA	1		气刃槽等级
+116	气刃槽自然变化速度	QirenSpeed	int	117	1	0	0	1	0	1	1	1	1	1	0	0	0	0	NA	NA	1		气刃槽自然衰减速度
+117	LV1等级持续时间	LV1QiRenTime	int	118	1	0	0	1	0	1	300	300	0	300	0	0	0	0	NA	NA	1		太刀气刃一级的持续时间
+118	LV2等级持续时间	LV2QiRenTime	int	119	1	0	0	1	0	1	180	180	0	180	0	0	0	0	NA	NA	1		太刀气刃二级的持续时间
+119	LV3等级持续时间	LV3QiRenTime	int	120	1	0	0	1	0	1	80	80	0	80	0	0	0	0	NA	NA	1		太刀气刃三级的持续时间
+120	气刃槽满时不减维持时间	QirenMaxTime	int	121	1	0	0	1	0	1	15	15	0	15	0	0	0	0	NA	NA	1		气刃槽满时不减维持时间
+121	自然回血启动计数	RejuFlag	int	122	1	1	0	0	0	2	1	NA	0	1	1	0	0	0	NA	NA	1		程序实现自用，为负数开始自然回血
+122	当前子弹上限	AmmoMax	int	123	1	0	0	1	0	1	0	0	1	0	1	0	0	0	NA	NA	1		
+123	当前子弹数	AmmoCount	int	124	1	0	0	0	0	1	0	NA	1	0	1	0	0	0	NA	NA	1		重置时回复到AmmoMax值
+124	当前主子弹物品ID	AmmoID	int	125	1	0	0	0	0	1	0	NA	0	0	1	0	0	0	NA	NA	1		
+125	当前激活子弹物品ID	NextAmmoID	int	126	1	0	0	0	0	0	0	NA	0	0	1	0	0	0	NA	NA	1		
+126	当前副子弹物品ID	SubAmmoID	int	127	1	0	0	0	0	0	0	NA	0	0	1	0	0	0	NA	NA	1		
+127	队伍ID	TeamID	int	128	1	1	0	0	0	4	0	NA	0	NA	0	0	0	0	NA	NA	1		
+128	自然耐力回复启动计数	StaFlag	int	129	0	0	0	0	0	0	1	NA	0	1	1	0	0	0	NA	NA	1		程序实现自用，耐力自然恢复 0为able 1为disable
+129	跑步耐力衰减	StaReduce	float	130	1	0	0	1	0	0	1	1	0	1	0	0	0	0	NA	NA	1		用于跑步的耐力消耗
+130	耐力衰减启动计数	StaReduceFlag	int	131	0	0	0	0	0	0	1	NA	0	1	1	0	0	0	NA	NA	1		程序实现自用，小于0 开始衰减
+131	怒气增加速度	RageSpeed	int	132	1	0	0	1	0	1	20	20	0	20	1	0	0	0	NA	NA	1		
+132	防御状态	DefenceState	bool	133	0	0	0	0	0	0	0	NA	0	0	0	0	0	0	NA	NA	1		
+133	PVE防御	PVEDef	int	134	0	0	1	1	0	0	NA	NA	0	NA	0	0	0		NA	NA	1		
+134	PVE防御角度	PVEDefAngle	int	135	0	0	1	1	0	0	NA	NA	0	NA	0	0	0		NA	NA	1		
+135	PVP防御	PVPDef	int	136	0	1	1	1	0	4	NA	NA	0	NA	0	0	0		NA	NA	1		
+136	PVP防御角度	PVPDefAngle	int	137	0	1	1	1	0	4	NA	NA	0	NA	0	0	0		NA	NA	1		
+137	当前耐力衰减	CurStaReduce	float	138	1	0	0	1	0	0	0	0	0	0	0	0	0	0	NA	NA	1		用于技能持续性的耐力消耗
+138	当前完美子弹起始位置	PerfAmmoPos	int	139	1	0	0	0	0	1	0	NA	1	0	1	0	0	0	NA	NA	1		
+139	当前强力子弹位置	PowerAmmoPos	int	140	1	0	0	0	0	1	0	NA	1	0	1	0	0	0	NA	NA	1		0为无强力子弹
+140	完美上弹时间	PerfectReloadTime	float	141	1	0	0	1	0	1	0.2	NA	1	0.2	1	0	0	0	NA	NA	1		
+141	完美上弹数量	PerfectReloadAmount	int	142	1	0	0	1	0	1	1	NA	1	1	1	0	0	0	NA	NA	1		
+142	风压抗性	WindPressureDef	int	143	1	0	0	0	0	1	0	NA	1	0	0	0	0	0	NA	NA	1		
+143	地震抗性	QuakeDef	int	144	1	0	0	0	0	1	0	NA	1	0	0	0	0	0	NA	NA	1		
+144	吼叫抗性	RoarDef	int	145	1	0	0	0	0	1	0	NA	1	0	0	0	0	0	NA	NA	1		
+145	麻痹抗性	PalsyDef	int	146	1	0	0	0	0	1	0	NA	1	0	0	0	0	0	NA	NA	1		
+146	雪人抗性	SnowManDef	int	147	1	0	0	0	0	1	0	NA	1	0	0	0	0	0	NA	NA	1		
+147	疲惫抗性	TiredDef	int	148	1	0	0	0	0	1	0	NA	1	0	0	0	0	0	NA	NA	1		
+148	霸体抗性	AttackLevelDef	int	149	1	0	0	1	0	0	0	0	1	0	0	0	0	0	NA	NA	1		
+149	区域ID	Region	int	150	1	1	0	0	0	2	0	NA	1	NA	0	0	0	0	NA	NA	1		区域ID号
+150	成年	Adult	int	151	1	0	0	0	0	1	0	NA	1	0	0	0	0	0	NA	NA	1		是否成年
+151	防沉迷状态	AASStatus	int	152	1	0	0	0	0	1	0	NA	1	0	0	0	0	0	NA	NA	1		
+152	防具精铸次数	EquipFoundDay	int	153	1	0	0	0	1	1	NA	NA	1	NA	0	0	0	0	NA	NA	1		
+153	装填速度等级	ReloadLevel	int	154	1	0	0	1	0	1	0	0	0	0	0	0	0	0	NA	NA	1		
+154	反动等级	RecoilLevel	int	155	1	0	0	1	0	1	0	0	0	0	0	0	0	0	NA	NA	1		后坐力
+155	射速	BulletSpeed	int	156	1	0	0	1	0	1	0	0	0	0	0	0	0	0	NA	NA	1		
+156	晃动幅度	RecoilCameraShake	int	157	1	0	0	1	0	1	0	0	0	0	0	0	0	0	NA	NA	1		
+157	通常弹Lv1上限	NormalLv1ClipSize	int	158	0	0	0	1	0	0	0	0	0	0	0	0	0	0	NA	NA	1		
+158	通常弹Lv2上限	NormalLv2ClipSize	int	159	0	0	0	1	0	0	0	0	0	0	0	0	0	0	NA	NA	1		
+159	通常弹Lv3上限	NormalLv3ClipSize	int	160	0	0	0	1	0	0	0	0	0	0	0	0	0	0	NA	NA	1		
+160	散弹Lv1上限	ShotgunLv1ClipSize	int	161	0	0	0	1	0	0	0	0	0	0	0	0	0	0	NA	NA	1		
+161	散弹Lv2上限	ShotgunLv2ClipSize	int	162	0	0	0	1	0	0	0	0	0	0	0	0	0	0	NA	NA	1		
+162	散弹Lv3上限	ShotgunLv3ClipSize	int	163	0	0	0	1	0	0	0	0	0	0	0	0	0	0	NA	NA	1		
+163	贯通弹Lv1上限	PenetrateLv1ClipSize	int	164	0	0	0	1	0	0	0	0	0	0	0	0	0	0	NA	NA	1		
+164	贯通弹Lv2上限	PenetrateLv2ClipSize	int	165	0	0	0	1	0	0	0	0	0	0	0	0	0	0	NA	NA	1		
+165	贯通弹Lv3上限	PenetrateLv3ClipSize	int	166	0	0	0	1	0	0	0	0	0	0	0	0	0	0	NA	NA	1		
+166	彻甲榴弹Lv1上限	ExplosiveLv1ClipSize	int	167	0	0	0	1	0	0	0	0	0	0	0	0	0	0	NA	NA	1		
+167	彻甲榴弹Lv2上限	ExplosiveLv2ClipSize	int	168	0	0	0	1	0	0	0	0	0	0	0	0	0	0	NA	NA	1		
+168	彻甲榴弹Lv3上限	ExplosiveLv3ClipSize	int	169	0	0	0	1	0	0	0	0	0	0	0	0	0	0	NA	NA	1		
+169	毒弹上限	PoisonClipSize	int	170	0	0	0	1	0	0	0	0	0	0	0	0	0	0	NA	NA	1		
+170	麻弹上限	ParalysisClipSize	int	171	0	0	0	1	0	0	0	0	0	0	0	0	0	0	NA	NA	1		
+171	火弹上限	FireClipSize	int	172	0	0	0	1	0	0	0	0	0	0	0	0	0	0	NA	NA	1		
+172	内衣	UnderClothes	int	173	1	1	1	0	1	1	NA	NA	0	NA	0	0	0	0	NA	NA	1		对应脸型映射表中的ID，非AvatarID
+173	是否完成新手引导关卡	Newbie	int	174	0	0	1	0	1	0	NA	NA	1	NA	0	0	0		NA	NA	1		
+174	状态标志	StateFlag	int	175	1	0	1	0	0	1	0	NA	1	0	0	0	0		NA	NA	1		通用状态标志位
+175	生命百分比自然回复速度	CharRejuPer	int	176	1	1	0	1	0	2	75	75	0	75	1	0	0	0	NA	NA	1		Reju=Rejuvenation；程序用Buff方式实现，属于特殊Buff类别（2012/9/29）
+176	携带宠物栏数量	PetCarryNum	int	177	1	0	1	0	0	0	2	NA	0	NA	0	0	0		NA	NA	1		
+177	农场宠物栏数量	PetHomeNum	int	178	1	0	1	0	0	0	2	NA	0	NA	0	0	0		NA	NA	1		
+178	宠物拥有上限	PetOwendNumMax	int	179	1	0	1	0	0	0	10	NA	0	NA	0	0	0		NA	NA	1		
+179	贡献度	CharContribution	int	180	1	0	1	0	1	1	NA	NA	1	0	0	0	0		NA	NA	1	每日清零	人物贡献度
+180	弓弦韧度	BowStringTenacity	int	181	1	0	0	1	0	1	0	0	0	0	0	0	0	0	NA	NA	1		
+181	接击瓶上限	MeleeBottleMax	int	182	1	0	0	1	0	1	0	0	1	0	0	0	0	0	NA	NA	1		
+182	强击瓶上限	StrikeBottleMax	int	183	1	0	0	1	0	1	0	0	1	0	0	0	0	0	NA	NA	1		
+183	毒瓶上限	PoisonBottleMax	int	184	1	0	0	1	0	1	0	0	1	0	0	0	0	0	NA	NA	1		
+184	眠瓶上限	SleepyBottleMax	int	185	1	0	0	1	0	1	0	0	1	0	0	0	0	0	NA	NA	1		
+185	麻瓶上限	ParaBottleMax	int	186	1	0	0	1	0	1	0	0	1	0	0	0	0	0	NA	NA	1		
+186	接击瓶已消耗数	MeleeBottleUsed	int	187	1	0	0	0	0	1	-1	NA	0	-1	1	0	0	0	NA	NA	1		
+187	强击瓶已消耗数	StrikeBottleUsed	int	188	1	0	0	0	0	1	-1	NA	0	-1	1	0	0	0	NA	NA	1		
+188	毒瓶已消耗数	PoisonBottleUsed	int	189	1	0	0	0	0	1	-1	NA	0	-1	1	0	0	0	NA	NA	1		
+189	眠瓶已消耗数	SleepyBottleUsed	int	190	1	0	0	0	0	1	-1	NA	0	-1	1	0	0	0	NA	NA	1		
+190	麻瓶已消耗数	ParaBottleUsed	int	191	1	0	0	0	0	1	-1	NA	0	-1	1	0	0	0	NA	NA	1		
+191	弓槽满次数	BowBlastMaxCount	int	192	0	0	0	1	0	0	0	0	0	0	0	0	0	0	NA	NA	1		
+192	安全状态	SecurityStatus	int	195	1	0	0	0	0	0	0	NA	0	NA	0	0	0	0	NA	NA	1		
+193	弓发射次数	BowShootCount	int	196	1	0	0	0	0	0	0	NA	0	0	0	0	0	0	NA	NA	1		
+194	弓爆发状态	BowBlastType	int	199	1	0	0	0	0	0	0	NA	1	0	0	0	0	0	NA	NA	1		
+195	当前可获得的剩余经验	CharRemainsExp	int	200	1	1	1	0	1	2	NA	NA	1	NA	0	0	0	0	NA	NA	1		
+196	农场开启标志	FarmOpenFlag	bool	201	0	0	1	0	1	1	NA	NA	1	NA	0	0	0		NA	NA	1		
+197	农场精算点数	FarmExp	int	202	1	0	1	0	1	1	NA	NA	1	NA	0	0	0		NA	NA	1		
+198	农场实力值	FarmEvaluation	int	203	1	0	1	0	1	1	NA	NA	1	NA	0	0	0		NA	NA	1		
+199	最后一次重置时间	LastResetTime	int	204	0	1	1	0	1	0	NA	NA	1	NA	0	0	0	0	NA	NA	1		
+200	皮肤颜色	SkinColor	int	205	1	1	1	0	1	1	NA	NA	0	NA	0	0	0	0	NA	NA	1		对应脸型映射表中的ID，非AvatarID
+201	头发颜色	HairColor	int	206	1	1	1	0	1	1	NA	NA	0	NA	0	0	0	0	NA	NA	1		
+202	内衣颜色	InnerColor	int	207	1	1	1	0	1	1	NA	NA	0	NA	0	0	0	0	NA	NA	1		
+203	脸部贴花	FaceTattooIndex	int	208	1	1	1	0	1	1	NA	NA	0	NA	0	0	0	0	NA	NA	1		
+204	眼睛	EyeBall	int	209	1	1	1	0	1	1	NA	NA	0	NA	0	0	0	0	NA	NA	1		
+205	怪物对玩家的额外仇恨值	AdditionalHate	int	210	0	0	1	1	0	0	0	0	0	0	0	0	0	0	NA	NA	1		
+206	攻击力	PlayerAtk	float	211	1	0	1	1	0	4	NA	100	1	NA	0	0	0	0	NA	NA	1		
+207	好友农场采集次数	FarmFriendGatherCount	int	212	1	0	1	0	1	1	NA	NA	1	0	0	0	0		NA	NA	1		主动采集他人的次数
+208	背向Boss跑动耐力消耗	BackBossRunStaReduce	float	213	1	0	0	1	0	0	2	2	0	2	0	0	0	0	NA	NA	1		用于跑步的耐力消耗
+209	人物基础会心率	PlayerCrit	float	214	1	0	1	1	0	1	0	0	1	NA	0	0	0	0	NA	NA	1		
+210	眠弹上限	SleepClipSize	int	215	0	0	0	1	0	0	0	0	0	0	0	0	0	0	NA	NA	1		
+211	水弹上限	WaterClipSize	int	216	0	0	0	1	0	0	0	0	0	0	0	0	0	0	NA	NA	1		
+212	雷弹上限	ElectricClipSize	int	217	0	0	0	1	0	0	0	0	0	0	0	0	0	0	NA	NA	1		
+213	龙弹上限	DragonClipSize	int	218	0	0	0	1	0	0	0	0	0	0	0	0	0	0	NA	NA	1		
+214	冰弹上限	IceClipSize	int	219	0	0	0	1	0	0	0	0	0	0	0	0	0	0	NA	NA	1		
+215	脸部颜色	FaceTattooColor	int	220	1	1	1	0	1	1	NA	NA	0	NA	0	0	0	0	NA	NA	1		
+216	眼睛颜色	EyeColor	int	221	1	1	1	0	1	1	NA	NA	0	NA	0	0	0	0	NA	NA	1		
+217	属性攻击标记位	AttrAtkFlag	int	222	1	0	1	1	0	4	0	NA	1	NA	0	0	0		NA	NA	1		判定此位，来看是否开启属性攻击，按位标记 水 火 雷等属性
+218	战斗NPCID	CombatNPCID	int	223	0	1	1	0	0	0	0	NA	0	NA	0	0	0		NA	NA	1		战斗NPC用数据ID
+219	战斗状态	BattleState	int	224	1	0	1	0	0	2	0	NA	1	0	0	0	0		NA	NA	1		战斗NPC用数据ID
+220	重击槽模式	HammerMode	int	225	1	0	0	0	0	1	0	NA	1	0	1	0	0	1	NA	NA	1		
+221	重击槽模式保持时间	HammerModeTime	int	226	1	0	1	1	0	1	60000	60000	1	60000	1	0	0	999999	NA	NA	1		
+222	隐藏时装	HideFashion	bool	227	1	1	1	0	1	1	NA	NA	1	NA	0	0	0		NA	NA	1		
+223	隐藏套件	HideSuite	bool	228	1	1	1	0	1	1	NA	NA	1	NA	0	0	0		NA	NA	1		
+224	隐藏头盔	HideHelm	bool	229	1	1	1	0	1	1	NA	NA	1	NA	0	0	0		NA	NA	1		
+225	猫车券数量	CharCatCredit	int	230	1	0	0	0	1	1	NA	NA	1	NA	0	0	0	0	NA	NA	1		
+226	复活币数量	CharReviveCredit	int	231	1	0	0	0	1	1	NA	NA	1	NA	0	0	0	0	NA	NA	1		
+227	劲力槽当前值	JinLiValue	int	232	1	1	1	0	0	2	0	NA	1	0	1	0	0	999999	NA	NA	1		劲力比较劲力槽阶段得到劲力level
+228	劲力槽第一阶段最大值	JinLiStep1MaxValue	int	233	1	0	1	1	0	1	100	100	1	100	1	0	0	999999	NA	NA	1		第一阶段的阈值
+229	劲力槽第二阶段最大值	JinLiStep2MaxValue	int	234	1	0	1	1	0	1	150	150	1	150	1	0	0	999999	NA	NA	1		第二阶段的阈值
+230	劲力值第一阶段衰减值	JinLiStep1ReduceValue	int	235	1	0	1	0	0	1	1	NA	1	1	1	0	0	999999	NA	NA	1		小于第一阶段的递减值
+231	劲力值第二阶段衰减值	JinLiStep2ReduceValue	int	236	1	0	1	0	0	1	25	NA	1	25	1	0	0	999999	NA	NA	1		大于第一阶段的递减值
+232	携带称号ID	EquipTitleID	int	237	1	1	1	0	0	4	NA	NA	1	NA	0	0	0		NA	NA	1		
+233	称号经验	TitleExp	int	238	1	0	1	0	0	1	NA	NA	1	NA	0	0	0		NA	NA	1		
+234	称号等级	TitleLevel	int	239	1	1	1	0	0	1	NA	NA	1	NA	0	0	0		NA	NA	1		
+235	携带称号Buff	EquipTitleBuff	int	240	1	0	1	0	0	1	NA	NA	1	NA	0	0	0		NA	NA	1		
+236	系统解锁	SystemUnlockData	int	241	1	0	1	0	1	1	NA	NA	1	NA	0	0	0		NA	NA	1		解锁系统扩展数据，按位存储 ，0到32位的存储在这里
+237	猎团贡献度	GuildContribution	int	242	1	0	1	0	0	1	NA	NA	1	NA	0	0	0		NA	NA	1		
+238	额外增加的每日经验上限	ExtDailyExp	int	243	1	0	1	0	1	1	NA	NA	1	NA	0	0	0		NA	NA	1		
+239	猎团标识	GuildId	int	244	1	1	1	0	0	1	NA	NA	1	NA	0	0	0		NA	NA	1		
+240	队伍密码标记	TeamPasswordFlag	bool	245	1	1	1	0	0	4	0	NA	1	NA	0	0	0		NA	NA	1		有密码为1 没有为0
+241	鬼人槽左当前值	LeftGhostValue	float	246	1	0	0	0	0	1	0	NA	0	0	1	0	0	0	NA	NA	1		
+242	鬼人槽右当前值	RightGhostValue	float	247	1	0	0	0	0	1	0	NA	0	0	1	0	0	0	NA	NA	1		
+243	鬼人槽最大值	GhostMax	float	248	1	0	0	1	0	1	60	60	1	60	1	0	0	0	NA	NA	1		
+244	鬼人槽等级	GhostLevel	int	249	1	0	0	0	0	2	0	0	1	0	1	0	0	0	NA	NA	1		
+245	鬼人槽自然衰减速度	GhostDdctSpeed	float	250	1	0	0	1	0	1	4	4	1	4	1	0	0	0	NA	NA	1		
+246	鬼人化耐力自然衰减速度	GhostStaminaDdctSpeed	int	251	1	0	0	1	0	1	7	7	1	7	1	0	0	0	NA	NA	1		
+247	捏脸数据1	FacialInfo1	short	252	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		捏脸数据
+248	捏脸数据2	FacialInfo2	short	253	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+249	捏脸数据3	FacialInfo3	short	254	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+250	捏脸数据4	FacialInfo4	short	255	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+251	捏脸数据5	FacialInfo5	short	256	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+252	捏脸数据6	FacialInfo6	short	257	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+253	捏脸数据7	FacialInfo7	short	258	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+254	捏脸数据8	FacialInfo8	short	259	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+255	捏脸数据9	FacialInfo9	short	260	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+256	捏脸数据10	FacialInfo10	short	261	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+257	捏脸数据11	FacialInfo11	short	262	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+258	捏脸数据12	FacialInfo12	short	263	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+259	捏脸数据13	FacialInfo13	short	264	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+260	捏脸数据14	FacialInfo14	short	265	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+261	捏脸数据15	FacialInfo15	short	266	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+262	捏脸数据16	FacialInfo16	short	267	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+263	捏脸数据17	FacialInfo17	short	268	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+264	捏脸数据18	FacialInfo18	short	269	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+265	捏脸数据19	FacialInfo19	short	270	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+266	捏脸数据20	FacialInfo20	short	271	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+267	捏脸数据21	FacialInfo21	short	272	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+268	捏脸数据22	FacialInfo22	short	273	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+269	捏脸数据23	FacialInfo23	short	274	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+270	捏脸数据24	FacialInfo24	short	275	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+271	捏脸数据25	FacialInfo25	short	276	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+272	无距箭上限	DistArrowMax	int	277	0	0	0	1	0	1	0	NA	0	0	0	0	0	0	NA	NA	1		
+273	爆裂箭上限	ExplodeArrowMax	int	278	0	0	0	1	0	1	0	NA	0	0	0	0	0	0	NA	NA	1		
+274	气绝箭上限	TiringArrowMax	int	279	0	0	0	1	0	1	0	NA	0	0	0	0	0	0	NA	NA	1		
+275	无距箭已消耗数	DistArrowUsed	int	280	1	0	0	0	0	1	0	NA	0	0	1	0	0	0	NA	NA	1		
+276	爆裂箭已消耗数	ExplodeArrowUsed	int	281	1	0	0	0	0	1	0	NA	0	0	1	0	0	0	NA	NA	1		
+277	气绝箭已消耗数	TiringArrowUsed	int	282	1	0	0	0	0	1	0	NA	0	0	1	0	0	0	NA	NA	1		
+278	积分	CharScore	int	283	1	0	0	0	0	1	0	NA	1	NA	0	0	0	0	NA	NA	1		
+279	是否会员	VIP	bool	284	1	1	1	0	1	4	NA	NA	1	NA	0	0	0	0	NA	NA	1		
+280	完美上弹时优质子弹部分刷新	PerfReloadPartRefresh	int	285	0	0	0	1	0	4	0	NA	0	0	1	0	0	0	NA	NA	1		
+281	武器觉醒积累值	WakePoint	int	286	0	0	0	0	0	1	0	NA	1	0	1	0	0		NA	NA	1		
+282	委托小组货币1	EntrustMoney1	int	287	1	0	0	0	1	1	NA	NA	1	NA	0	0	0	0	NA	NA	1		
+283	委托小组货币2	EntrustMoney2	int	288	1	0	0	0	1	1	NA	NA	1	NA	0	0	0	0	NA	NA	1		
+284	护石精铸次数	CharmFoundTimes	int	289	1	0	0	0	1	1	NA	NA	1	NA	0	0	0		NA	NA	1		每天刷新
+285	武器系统解锁标识	WeapSysUnlockFlag	int	290	1	0	0	0	1	1	NA	NA	1	NA	0	0	0		NA	NA	1		武器解锁标志 按位存储
+286	当前可获得的剩余双倍经验	CharRemainsDoubleExp	int	291	1	0	0	0	1	2	NA	NA	1	NA	0	0	0	0	NA	NA	1		
+287	额外增加的每日双倍经验上限	ExtDailyDoubleExp	int	292	1	0	0	0	1	2	NA	NA	1	NA	0	0	0		NA	NA	1		
+288	VIP等级	VIPLevel	int	293	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		
+289	当前VIP成长值	VIPExp	int	294	1	1	1	0	1	2	NA	NA	1	NA	0	0	0	0	NA	NA	1		
+290	VIP基础服务到期时间	VIPBaseEndTime	int	295	1	0	0	0	1	1	NA	NA	1	NA	0	0	0	0	NA	NA	1		
+291	VIP成长助力到期时间	VIPGrowthEndTime	int	296	1	0	0	0	1	1	NA	NA	1	NA	0	0	0	0	NA	NA	1		
+292	VIP收益帮手到期时间	VIPProfitEndTime	int	297	1	0	0	0	1	1	NA	NA	1	NA	0	0	0	0	NA	NA	1		
+293	禁言到期时间	BanChatEndTime	int	298	1	0	0	0	1	1	NA	NA	1	NA	0	0	0		NA	NA	1		
+294	VIP增值服务是否冻结	VIPVASFrozen	bool	299	1	0	0	0	1	1	NA	NA	1	NA	0	0	0	0	NA	NA	1		
+295	VIP基础服务是否可用	VIPBaseCanUse	bool	300	1	1	1	0	1	1	NA	NA	1	NA	0	0	0		NA	NA	1		
+296	VIP成长助力是否可用	VIPGrowthCanUse	bool	301	1	0	0	0	1	1	NA	NA	1	NA	0	0	0		NA	NA	1		
+297	VIP收益帮手是否可用	VIPProfitCanUse	bool	302	1	0	0	0	1	1	NA	NA	1	NA	0	0	0		NA	NA	1		
+298	系统解锁扩展数据	SystemUnlockExtData1	int	303	1	0	0	0	1	1	NA	NA	1	NA	0	0	0		NA	NA	1		解锁系统扩展数据，按位存储，大于32位的存储在这里
+299	弓蓄力等级	BowChargeLevelMax	int	304	1	0	0	1	0	4	3	NA	0	3	0	0	0	0	NA	NA	1		
+300	VIP基础服务过期当天是否提醒过	IsVIPBaseExpireNtf	bool	305	1	0	0	0	1	1	NA	NA	0	NA	0	0	0		NA	NA	1		
+301	VIP基础服务上一次提醒时间	VIPBaseExpireLastNtfTime	int	306	1	0	0	0	1	1	NA	NA	0	NA	0	0	0		NA	NA	1		
+302	蓝钻会员	GameVIP	short	307	1	1	1	0	0	4	0	0	0	NA	0	0	0		NA	NA	1		
+303	QQ会员	QQVIP	short	308	1	1	1	0	0	4	0	0	0	NA	0	0	0		NA	NA	1		
+304	QQ年费会员	YearQQVIP	short	309	1	1	1	0	0	4	0	0	0	NA	0	0	0		NA	NA	1		
+305	QQ超级会员	SuperQQVIP	short	310	1	1	1	0	0	4	0	0	0	NA	0	0	0		NA	NA	1		
+306	网吧等级	NetbarLevel	short	311	1	1	1	0	0	4	0	0	0	NA	0	0	0		NA	NA	1		
+307	VIP增值服务冻结时间	VIPVASFrozenTime	int	312	1	0	0	0	1	1	NA	NA	1	NA	0	0	0		NA	NA	1		
+308	战队个人积分	ClanScore	int	313	1	0	0	0	1	1	NA	NA	1	NA	0	0	0		NA	NA	1		
+309	战队个人历史最高积分	ClanScoreMax	int	314	1	0	0	0	1	1	NA	NA	1	NA	0	0	0		NA	NA	1		
+310	战队兑换币	ClanMoney	int	315	1	0	0	0	1	1	NA	NA	1	NA	0	0	0		NA	NA	1		
+311	铳枪槽当前值	GunLanceValue	float	316	1	0	0	0	0	1	0	NA	0	0	1	0	0	0	NA	NA	1		
+312	铳枪槽最大值	GunLanceMax	float	317	1	0	0	1	0	1	900	900	1	900	1	0	0	0	NA	NA	1		
+313	铳枪槽自然衰减速度	GunLanceDdctSpeed	float	318	1	0	0	1	0	1	30	30	1	30	1	0	0	0	NA	NA	1		
+314	铳枪当前弹数	GunLanceAmmoCount	int	319	1	0	0	0	0	1	0	0	0	0	0	0	0	0	NA	NA	1		
+315	铳枪最大弹数	GunLanceMaxAmmoCount	int	320	1	0	0	1	0	1	0	0	0	0	0	0	0	0	NA	NA	1		
+316	弩炮速射子弹加成	RapidShootAdd	int	321	1	0	0	1	0	1	0	NA	0	0	0	0	0	0	NA	NA	1		
+317	角色HR等级	CharHRLevel	int	322	1	1	1	0	1	2	NA	NA	1	NA	0	0	0	0	NA	300	1		Char=character，角色
+318	当前HR点	CharHRPoint	int	323	1	1	1	0	1	2	NA	NA	1	NA	0	0	0	0	NA	NA	1		
+319	战队兑换币PVP	ClanMoneyPVP	int	324	1	0	0	0	1	1	NA	NA	1	NA	0	0	0		NA	NA	1		
+320	防御霸体等级	CharDefenseSuperArmorLevel	int	325	1	0	0	1	0	1	0	0	1	0	1	0	0		NA	NA	1		
+321	战队退出时间	ClanLeaveTime	int	326	1	0	0	0	1	1	NA	NA	1	NA	0	0	0		NA	NA	1		
+322	长枪蓄力防御等级	CharLanceDefenseChargeLv	int	327	1	0	0	1	0	1	1	0	1	NA	0	0	0		NA	NA	1		
+323	心悦会员	XYVIP	short	328	1	1	1	0	0	4	0	0	0	NA	0	0	0		NA	NA	1		
+324	捏脸数据26	FacialInfo26	short	329	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		新增捏脸数据
+325	捏脸数据27	FacialInfo27	short	330	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+326	捏脸数据28	FacialInfo28	short	331	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+327	捏脸数据29	FacialInfo29	short	332	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+328	捏脸数据30	FacialInfo30	short	333	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+329	捏脸数据31	FacialInfo31	short	334	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+330	捏脸数据32	FacialInfo32	short	335	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+331	捏脸数据33	FacialInfo33	short	336	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+332	捏脸数据34	FacialInfo34	short	337	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+333	捏脸数据35	FacialInfo35	short	338	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+334	捏脸数据36	FacialInfo36	short	339	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+335	捏脸数据37	FacialInfo37	short	340	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+336	捏脸数据38	FacialInfo38	short	341	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+337	捏脸数据39	FacialInfo39	short	342	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+338	捏脸数据40	FacialInfo40	short	343	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+339	捏脸数据41	FacialInfo41	short	344	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+340	捏脸数据42	FacialInfo42	short	345	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+341	捏脸数据43	FacialInfo43	short	346	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+342	捏脸数据44	FacialInfo44	short	347	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+343	捏脸数据45	FacialInfo45	short	348	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+344	捏脸数据46	FacialInfo46	short	349	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+345	捏脸数据47	FacialInfo47	short	350	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		同上
+346	收益制裁结束时间	SanctionPunishEndTime	int	351	1	0	0	0	0	1	0	NA	1	NA	0	0	0	0	NA	NA	1		
+347	TGP会员	TGPVIP	short	352	1	1	1	0	0	4	0	0	0	NA	0	0	0		NA	NA	1		
+348	MVM第一顺位养成怪	MVMMonsterFirst	int	353	1	0	0	0	0	4	NA	NA	0	NA	0	0	0	0	0	NA	1		同上
+349	MVM第二顺位养成怪	MVMMonsterSecond	int	354	1	0	0	0	0	4	NA	NA	0	NA	0	0	0	0	0	NA	1		同上
+350	MVM第三顺位养成怪	MVMMonsterThird	int	355	1	0	0	0	0	4	NA	NA	0	NA	0	0	0	0	0	NA	1		同上
+351	幸运值	LuckValule	int	356	1	0	0	1	0	0	0	0	0	NA	0	0	0	0	0	NA	1		
+352	收益制裁比例	SanctionPunishRatio	int	357	1	0	0	0	0	1	100	NA	1	NA	0	0	0	0	0	100	1		tss sdk的收益制裁比例
+353	外挂收益制裁比例	CheatSanctionPunishRatio	int	358	1	0	0	0	0	1	100	NA	1	NA	0	0	0	0	0	100	1		游戏自身逻辑计算的收益制裁比例
+354	狩猎笛旋律	FluteTune	int	359	1	1	1	0	0	4	NA	NA	0	0	1	0	0		NA	NA	1		猎笛旋律
+355	防御扣血修饰基础比率	DefenseReduceHPModifyRate	float	360	1	1	1	1	0	4	100	100	0	NA	0	0	0		NA	NA	1		
+356	防御扣耐修饰基础比率	DefenseReduceStaModifyRate	float	361	1	1	1	1	0	4	100	100	0	NA	0	0	0		NA	NA	1		
+357	铳枪技能Z轴旋转速度	GunLanceSkillZAngleSpeed	float	362	1	0	0	1	0	1	0	0	1	NA	0	0	0		NA	NA	1		
+358	死亡时间	DeadTime	int	363	1	1	0	0	0	4	0	0	1	NA	0	0	0		NA	NA	1		
+359	个人战力	PersonalELO	int	364	1	0	0	0	1	1	NA	NA	1	NA	0	0	0		NA	NA	1		
+360	荣誉勋章	PVPMoney	int	365	1	0	0	0	1	1	NA	NA	1	NA	0	0	0		NA	NA	1		
+361	喵喵币	CharCatMoney	int	366	1	0	0	0	1	1	NA	NA	1	NA	0	0	0		NA	NA	1		
+362	本周获得的喵喵币	CharCatMoneyWeek	int	367	1	0	0	0	1	1	NA	NA	1	NA	0	0	0		NA	NA	1		
+363	本周可获得的喵喵币上限	CharCatMoneyWeekMax	int	368	1	0	0	0	1	1	NA	NA	1	NA	0	0	0		NA	NA	1		
+364	猎人之魂	HuntSoul	int	369	1	0	0	0	1	1	NA	NA	1	NA	0	0	0		NA	NA	1		
+365	狂猎祭阵营	WildHuntCamp	int	370	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		
+366	狂猎祭期数	WildHuntPhase	int	371	1	0	0	0	1	1	NA	NA	1	NA	0	0	0		NA	NA	1		
+367	狂猎祭猎团	WildHuntGuild	uint64	372	1	0	0	0	1	1	NA	NA	1	NA	0	0	0		NA	NA	1		
+368	玩家总信用度	TotalCredit	float	373	1	0	0	0	1	1	NA	NA	1	NA	0	0	0	0	0	NA	1		玩家总信用度, 单局归一化后累加
+369	玩家副本次数	BattleCount	int	374	1	0	0	0	1	1	NA	NA	1	NA	0	0	0	0	0	NA	1		玩家副本次数
+370	第一次登录时间	FirstLoginTime	int	375	1	0	0	0	1	1	NA	NA	1	NA	0	0	0		NA	NA	1		
+371	上一期猎人之魂	LastHuntSoul	int	376	1	0	0	0	1	1	NA	NA	1	NA	0	0	0		NA	NA	1		
+372	累计HR点	TotalHRPoint	int	377	1	1	1	0	1	2	NA	NA	1	NA	0	0	0	0	NA	NA	1		
+373	教官点赞数量	LikeHunterOfficer	int	378	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		
+374	宠物技能人品值	PetSkillMoral	int	379	0	0	0	0	1	0	NA	NA	1	NA	0	0	0		NA	NA	1		
+375	宠物技能升级人品值	PetSkillUpgradeMoral	int	380	0	0	0	0	1	0	NA	NA	1	NA	0	0	0		NA	NA	1		
+376	本周狩猎券转换值	HuntingCreditExchange	int	381	1	0	0	0	1	1	NA	NA	1	NA	0	0	0	0	NA	NA	1		
+377	PvP霸体抗性	PvPAttackLevelDef	int	382	1	0	0	1	0	0	0	0	1	0	0	0	0	0	NA	NA	1		
+378	等级显示方案	LevelShowType	int	383	1	1	1	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		
+379	回避时间	CharEvadeTime	int	384	1	0	0	1	0	0	250	250	1	NA	0	0	0	0	NA	NA	1	角色回避时间	
+380	大富翁完成圈数	MonolopyRoundCount	int	385	1	1	1	0	1	2	NA	NA	1	NA	0	0	0	0	NA	NA	1		
+381	大富翁活动id	MonolopyActivity	int	386	1	1	1	0	1	2	NA	NA	1	NA	0	0	0	0	NA	NA	1		
+382	大富翁当前位置	MonolopyCurGrid	int	387	1	1	1	0	1	2	NA	NA	1	1	0	0	0	0	NA	NA	1		
+383	斩斧斩击槽	ZhanJiValue	int	388	1	0	0	1	0	1	100	100	1	100	0	0	0	0	0	100	1		
+384	狩魂点	ShouHunPoint	int	389	1	0	0	0	1	1	NA	NA	1	0	0	0	0	0	NA	NA	1		
+385	烈魂点	LieHunPoint	int	390	1	0	0	0	1	1	NA	NA	1	0	0	0	0	0	NA	NA	1		
+386	MVP指数	MVPPoint	int	391	1	0	0	0	1	0	NA	NA	0	0	0	0	0	0	NA	NA	1		
+387	极限猎人分数	XHunterScore	int	392	1	0	0	0	1	0	NA	NA	0	0	0	0	0	0	NA	NA	1		
+388	弓满槽速度系数-特快	BowBlastSpeedVeryFast	float	393	1	0	0	0	0	0	1.25	1.25	1	NA	0	0	0	0	NA	NA	1	弓满槽速度系数-特快	
+389	弓满槽速度系数-快	BowBlastSpeedFast	float	394	1	0	0	0	0	0	0.875	0.875	1	NA	0	0	0	0	NA	NA	1	弓满槽速度系数-快	
+390	弓满槽速度系数-中	BowBlastSpeedNormal	float	395	1	0	0	0	0	0	0.7	0.7	1	NA	0	0	0	0	NA	NA	1	弓满槽速度系数-中	
+391	弓满槽速度系数-慢	BowBlastSpeedSlow	float	396	1	0	0	0	0	0	0.5	0.5	1	NA	0	0	0	0	NA	NA	1	弓满槽速度系数-慢	
+392	弓槽当前值	BowBlastSP	float	397	1	0	0	0	0	0	0	NA	1	0	1	0	0	0	NA	NA	1		弓槽当前值
+393	弓槽最大值	BowBlastSPMax	float	398	1	0	0	1	0	1	100	100	1	100	0	0	0	0	NA	NA	1		弓槽最大值
+394	当前弓满槽速度系数	CurrentBowBlastSpeed	float	399	1	0	0	1	0	0	1	1	1	0	1	0	0	0	NA	NA	1		当前弓满槽速度系数
+395	大富翁累计步数	MonolopyAccStep	int	400	1	0	0	0	1	1	NA	NA	1	0	0	0	0	0	NA	NA	1		
+396	极限猎人单局最高分	XHunterHighScore	int	401	1	0	0	0	1	0	NA	NA	0	0	0	0	0	0	NA	NA	1		
+397	狩魂石等级	SoulStoneLevel	int	402	1	1	1	0	1	4	NA	NA	0	0	0	0	0	0	NA	NA	1		
+398	每周重置时间	WeeklyRefreshTime	int	403	0	1	1	0	1	0	NA	NA	1	NA	0	0	0	0	NA	NA	1		
+399	周副本银币获取	WeekMoneyGain	int	404	1	0	0	0	1	1	NA	NA	1	NA	0	0	0	0	NA	NA	1		
+400	狩魂石攻击等级	SoulStoneAtkLevel	int	405	1	1	1	0	1	4	NA	NA	0	0	0	0	0	0	NA	NA	1		
+401	极限猎人活动ID	XHunterActivity	int	406	1	0	0	0	1	0	NA	NA	0	0	0	0	0	0	NA	NA	1		
+402	是否新手	IsNewbie	short	407	1	0	0	0	1	4	NA	NA	0	0	0	0	0	0	NA	NA	1		
+403	关卡奖励猎人之魂	LevelHuntSoul	int	408	1	0	0	0	1	1	NA	NA	1	NA	0	0	0		NA	NA	1		
+404	任务奖励猎人之魂	TaskHuntSoul	int	409	1	0	0	0	1	1	NA	NA	1	NA	0	0	0		NA	NA	1		
+405	阵营奖励猎人之魂	CampHuntSoul	int	410	1	0	0	0	1	1	NA	NA	1	NA	0	0	0		NA	NA	1		
+406	本次个人实际获得的猎人之魂	PrivateRealHuntSoul	int	411	1	0	0	0	0	1	NA	NA	1	NA	0	0	0		NA	NA	1		
+407	隐藏武器突破特效	HideWeaponBreakEffect	int	412	1	0	0	0	1	4	NA	NA	1	NA	0	0	0		NA	NA	1		
+408	怪物图鉴货币	IllustratePoint	int	413	1	0	0	0	1	1	NA	NA	1	NA	0	0	0		NA	NA	1		
+809	爆破抗性	DynamiteDef	int	414	1	0	0	0	0	1	0	NA	1	0	0	0	0	0	NA	NA	1		
+810	爆破状态攻击	DynamiteAttack	int	415	1	0	1	1	0	4	NA	0	1	NA	0	0	0	0	NA	NA	1		
+811	爆破当前积蓄值	DynamiteAccum	int	416	1	0	0	0	0	0	0	NA	1	0	1	1	0	0	NA	NA	1	清零	角色受到毒属性攻击时，所产生的毒累积值
+812	爆破阈值	DynamiteThrsh	int	417	1	0	0	1	0	0	100	100	1	NA	0	0	0	0	NA	NA	1		影响角色受到毒属性攻击时，决定中毒效果产生的蓄积阈值
+813	爆破弹上限	DynamiteClipSize	int	418	0	0	0	1	0	0	0	0	0	0	0	0	0	0	NA	NA	1		
+814	爆破瓶上限	DynamiteBottleMax	int	419	1	0	0	1	0	1	0	0	1	0	0	0	0	0	NA	NA	1		
+#============End of sheet============
+
+     

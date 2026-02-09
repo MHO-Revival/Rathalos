@@ -11,4 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Rathalos.Core.Utils\Rathalos.Core.Utils.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\NpcSale\Records\" />
+  </ItemGroup>
 </Project>

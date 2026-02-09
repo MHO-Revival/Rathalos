@@ -1,0 +1,8 @@
+#TSV
+#============Begin of sheet============
+@Sheet=公告内容
+ID	类型	内容	对应messagelistID	起始日期	结束日期	发布时间类型	每周发布	每月发布	指定日期发布	发布时间	间隔时间1	间隔时间2	间隔时间3	间隔时间4	间隔时间5	间隔时间6	间隔时间7	间隔时间8
+1	2	The queen of land arrives, the ban has been lifted!	3111			1			2013/7/4	19:40:00	1800	3600	5400	7200	9000			
+5	1	I am an emergency announcement and can not be deleted	3112			0					300	600	660	720	780	840	890	895
+6	3	I am a general announcement and cannot be deleted	3116			0												
+#============End of sheet======

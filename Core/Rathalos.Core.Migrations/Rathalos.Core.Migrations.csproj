@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net10.0</TargetFramework>
@@ -14,8 +14,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Rathalos.Core.ORM\Rathalos.Core.ORM.csproj" />
 		<ProjectReference Include="..\..\Servers\Rathalos.Servers.Game\Rathalos.Servers.World.csproj" />
+		<ProjectReference Include="..\Rathalos.Core.ORM\Rathalos.Core.ORM.csproj" />
+		<ProjectReference Include="..\Rathalos.Core.Protocol\Rathalos.Core.Protocol.csproj" />
+	</ItemGroup>
+
+	<!-- Include TSV files for seeding -->
+	<ItemGroup>
+		<Content Include="Files\**\*.*">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Custom\" />
 	</ItemGroup>
 
 </Project>

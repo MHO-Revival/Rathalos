@@ -5,6 +5,7 @@ using Rathalos.Core.Utils.Cryptography;
 using Rathalos.Core.Utils.IO;
 using Rathalos.Servers.Base.Core.Network;
 using Rathalos.Servers.World.Core.Databases;
+using Rathalos.Servers.World.Core.Game.Actors;
 using Rathalos.Servers.World.Handlers;
 using Rathalos.Servers.World.Handlers.Game;
 using System.Net.Sockets;
@@ -20,6 +21,7 @@ namespace Rathalos.Servers.World.Core.Network
 
         public AccountRecord Account { get; internal set; }
         public Guid SyncGuid { get; internal set; }
+        public List<Character> Characters { get; internal set; }
 
         protected override async Task OnMessageReceived(TPDUExt message, BigEndianReader bodyReader)
         {
