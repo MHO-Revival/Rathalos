@@ -29,7 +29,7 @@ namespace Rathalos.Servers.World.Handlers
         }
 
 
-        public override void Initialize()
+        public override Task Initialize()
         {
             foreach (var (messageId, messageType, type, method) in from type in _assembly.GetTypes()
                                                                    from method in type.GetMethods()
@@ -50,6 +50,8 @@ namespace Rathalos.Servers.World.Handlers
 
                 _handlers.TryAdd(messageId, (type, tqqMessageType, factory));
             }
+
+            return Task.CompletedTask;
         }
 
         public async Task HandleMessage(WorldClient client, TPDUExt message, BigEndianReader bodyReader)

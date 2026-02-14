@@ -28,10 +28,4 @@
 		<PackageReference Include="OpenTelemetry.Instrumentation.Runtime" Version="1.15.0" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <None Update="Files\*">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </None>
-	</ItemGroup>
-
 </Project>

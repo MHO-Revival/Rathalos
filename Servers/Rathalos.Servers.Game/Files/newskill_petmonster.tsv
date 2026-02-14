@@ -1,8 +1,0 @@
-#TSV
-#============Begin of sheet============
-@Sheet=新招解锁
-新招ID	新招Skill ID	怪物	新招名称	ICON	Tips
-101	1008	Caeserber	First Hit		Aim for the enemy.
-102	1010	Caeserber	Retreating		It's a hard thing to run.
-1001	10001	Shield crab	Sweep attack		Sweep, sweep.
-#============End of sheet==

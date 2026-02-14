@@ -26,7 +26,7 @@ namespace Rathalos.Servers.Base.Handlers
 			_logger = logger;
 		}
 
-		public override void Initialize()
+		public override Task Initialize()
 		{
 			foreach (var (messageId, messageType, type, method) in from type in _assembly.GetTypes()
 																   from method in type.GetMethods()
@@ -38,6 +38,8 @@ namespace Rathalos.Servers.Base.Handlers
 				var factory = method.CreateDelegate<TClient, TMessage, Task>();
 				_handlers.TryAdd(messageId, (type, factory));
 			}
+
+			return Task.CompletedTask;
 		}
 
 		public async Task HandleMessage(TClient client, TMessage message)

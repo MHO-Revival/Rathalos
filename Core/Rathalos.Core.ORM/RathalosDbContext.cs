@@ -60,6 +60,14 @@ namespace Rathalos.Core.ORM
                 : Set<T>().AsNoTracking().AsQueryable();
         }
 
+        public void Save<T>(T poco) where T : BaseRecord
+        {
+            if (poco.Id == 0)
+                Insert(poco);
+            else
+                Update(poco);
+        }
+
         public T Insert<T>(T poco) where T : BaseRecord
         {
             UpdatePoco(poco);

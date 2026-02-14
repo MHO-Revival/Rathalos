@@ -4,9 +4,9 @@ namespace Rathalos.UI.World
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-            WorldStart.Start(args);
+           await WorldStart.Start(args);
         }
     }
 }

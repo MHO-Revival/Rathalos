@@ -112,6 +112,8 @@ namespace Rathalos.Servers.World
             // Account
             builder.Entity<AccountRecord>();
 
+            builder.Entity<CharacterRecord>();
+
             // Avatar
             builder.Entity<FaceInfoRecord>();
             builder.Entity<HairInfoRecord>();
@@ -121,8 +123,13 @@ namespace Rathalos.Servers.World
             // NPC
             builder.Entity<NpcDataRecord>();
             builder.Entity<NpcDailyWorkRecord>();
+
+            // Player
             builder.Entity<PlayerAttributeRecord>();
             builder.Entity<HRLevelRecord>();
+            builder.Entity<PlayerLevelUpRecord>();
+
+            // Monster Attribute
             builder.Entity<MonsterAttributeRecord>();
 
             // NPC Sale

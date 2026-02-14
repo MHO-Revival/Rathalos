@@ -9,7 +9,7 @@ namespace Rathalos.Servers.World
 {
     public static class WorldStart
     {
-        public static void Start(string[] args)
+        public static async Task Start(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
                 builder.Configuration
@@ -37,7 +37,7 @@ namespace Rathalos.Servers.World
 
             var app = builder.Build();
             startup.Configure(app, app.Environment);
-            WorldServer.SaveableServices = app.Services.WarmUp();
+            WorldServer.SaveableServices = await app.Services.WarmUp();
 
             app.Run();
         }

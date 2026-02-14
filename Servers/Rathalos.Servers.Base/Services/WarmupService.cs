@@ -2,14 +2,14 @@
 {
 	public interface IWarmupService
 	{
-		void Initialize();
+		Task Initialize();
 	}
 	public abstract class WarmupService<T> : IWarmupService
 		where T : WarmupService<T>
 	{
 		public static T Instance { get; private set; }
 
-		public virtual void Initialize() { }
+		public virtual Task Initialize() => Task.CompletedTask;
 
 		public void SetInstance(T instance)
 		{

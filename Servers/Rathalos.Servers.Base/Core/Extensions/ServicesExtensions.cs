@@ -59,7 +59,7 @@ namespace Rathalos.Servers.Base.Core.Extensions
             }
         }
 
-        public static IEnumerable<ISaveService> WarmUp(this IServiceProvider provider, params Assembly[] additionalAssemblies)
+        public static async Task<IEnumerable<ISaveService>> WarmUp(this IServiceProvider provider, params Assembly[] additionalAssemblies)
         {
             if (provider == null)
                 return [];
@@ -76,14 +76,14 @@ namespace Rathalos.Servers.Base.Core.Extensions
             List<ISaveService> saveServices = new List<ISaveService>();
             foreach (var type in types)
             {
-                var service = WarmupService(provider, type, logger);
+                var service = await WarmupService(provider, type, logger);
                 if (service is ISaveService saveService)
                     saveServices.Add(saveService);
             }
             return saveServices;
         }
 
-        private static IWarmupService WarmupService(IServiceProvider provider, Type type, ILogger logger)
+        private static async Task<IWarmupService> WarmupService(IServiceProvider provider, Type type, ILogger logger)
         {
             if (type.HasCustomAttribute<WarmupDependenciesAttribute>())
             {
@@ -91,7 +91,7 @@ namespace Rathalos.Servers.Base.Core.Extensions
 
                 foreach (var dependancy in dependancies)
                 {
-                    WarmupService(provider, dependancy, logger);
+                    await WarmupService(provider, dependancy, logger);
                 }
             }
 
@@ -109,7 +109,7 @@ namespace Rathalos.Servers.Base.Core.Extensions
 
             try
             {
-                service.Initialize();
+                await service.Initialize();
                 return service;
             }
             catch (Exception ex)

@@ -1,6 +1,10 @@
 ﻿using Rathalos.Core.Protocol.Messages.Csproto;
+using Rathalos.Core.Protocol.Messages.Custom.Csproto.Enums;
 using Rathalos.Servers.World.Core.Databases;
 using Rathalos.Servers.World.Core.Game.Helpers;
+using Rathalos.Servers.World.Core.Game.Stats;
+using Rathalos.Servers.World.Core.Network;
+using Rathalos.Servers.World.Services;
 using System.Numerics;
 using Quaternion = System.Numerics.Quaternion;
 
@@ -11,35 +15,35 @@ namespace Rathalos.Servers.World.Core.Game.Actors
     /// </summary>
     public class Character
     {
-        /// <summary>
-        /// The underlying database record for this character.
-        /// </summary>
+        public WorldClient Client { get; }
         public CharacterRecord Record { get; }
-
-        /// <summary>
-        /// Current position as a 3D vector.
-        /// </summary>
+        public PlayerAttributes Attributes { get; }
         public Vector3 Position { get; private set; }
-
-        /// <summary>
-        /// Current rotation/direction in degrees.
-        /// </summary>
         public float Rotation { get; private set; }
-
-        /// <summary>
-        /// Movement speed (units per second).
-        /// </summary>
         public float MovementSpeed { get; set; } = 5.0f;
 
         /// <summary>
         /// Creates a new character instance from a database record.
         /// </summary>
         /// <param name="record">The character database record.</param>
-        public Character(CharacterRecord record)
+        public Character(WorldClient client, CharacterRecord record)
         {
+            Client = client;
             Record = record ?? throw new ArgumentNullException(nameof(record));
+            Attributes = new PlayerAttributes();
+            LoadRecord(record);
+        }
+
+        private void LoadRecord(CharacterRecord record)
+        {
             Position = new Vector3(record.Position.X, record.Position.Y, record.Position.Z);
             Rotation = record.Position.W;
+
+            // Initialize all attributes with their default values from PlayerAttributeRecord definitions
+            Attributes.InitializeDefaults();
+
+            // Then load saved attributes from record (overriding defaults where applicable)
+            Attributes.LoadFromRecord(record);
         }
 
         /// <summary>
@@ -140,8 +144,11 @@ namespace Rathalos.Servers.World.Core.Game.Actors
             TeleportToMap(mapId, new Vector3(x, y, z), rotation);
         }
 
-        public void Save()
+        public void Save(Rathalos.Core.ORM.RathalosDbContext db)
         {
+            // Sync attributes back to record
+            Attributes.SaveToRecord(Record);
+
             Record.Position = new Quaternion
             {
                 X = Position.X,
@@ -149,6 +156,8 @@ namespace Rathalos.Servers.World.Core.Game.Actors
                 Z = Position.Z,
                 W = Rotation
             };
+
+            db.Save(Record);
         }
 
         public CSRoleBaseInfo GetCSRoleBaseInfo()
@@ -156,31 +165,31 @@ namespace Rathalos.Servers.World.Core.Game.Actors
             return new CSRoleBaseInfo
             {
                 RoleID = (ulong)Record.Id,
-                RoleIndex = Record.RoleIndex,
                 RoleState = Record.RoleState,
                 RoleStateEndLeftTime = 0,
                 Equip = [],
                 AvatarSetID = Record.AvatarSetId,
-                FacialInfo = Record.FacialInfo,
-                FaceId = Record.FaceId,
-                HairId = Record.HairId,
-                UnderclothesId = Record.UnderclothesId,
-                EyeBall = Record.EyeBall,
-                EyeColor = Record.EyeColor,
-                FaceTattooIndex = Record.FaceTattooIndex,
-                FaceTattooColor = Record.FaceTattooColor,
-                SkinColor = Record.SkinColor,
-                HairColor = Record.HairColor,
-                InnerColor = Record.InnerColor,
-                Gender = Record.Gender,
-                HideFashion = (byte)(Record.HideFashion ? 1 : 0),
-                HideHelm = (byte)(Record.HideHelm ? 1 : 0),
-                HideSuite = (byte)(Record.HideSuite ? 1 : 0),
-                HRLevel = Record.HRLevel,
-                Name = Record.Name,
-                Level = Record.Level,
+                FacialInfo = Attributes.GetAllFacialInfo(),
+                FaceId = (ushort)Attributes.MaleFace,
+                HairId = (ushort)Attributes.MaleHair,
+                UnderclothesId = (ushort)Attributes.UnderClothes,
+                EyeBall = Attributes.EyeBall,
+                EyeColor = Attributes.EyeColor,
+                FaceTattooIndex = Attributes.FaceTattooIndex,
+                FaceTattooColor = Attributes.FaceTattooColor,
+                SkinColor = Attributes.SkinColor,
+                HairColor = Attributes.HairColor,
+                InnerColor = Attributes.InnerColor,
+                Gender = (byte)Attributes.CharSex,
+                HideFashion = (byte)(Attributes.HideFashion ? 1 : 0),
+                HideHelm = (byte)(Attributes.HideHelm ? 1 : 0),
+                HideSuite = (byte)(Attributes.HideSuite ? 1 : 0),
+                HRLevel = Attributes.CharHRPoint,
+                Name = Attributes.CharName,
+                Level = ExperienceService.Instance.GetLevelForExperience(Attributes.CharExp),
                 StarLevel = Record.StarLevel,
-                SoulStoneLv = Record.SoulStoneLv,
+                SoulStoneLv = Attributes.SoulStoneLevel,
+                RoleIndex = Client.Characters.FindIndex(c => c.Record.Id == this.Record.Id),
             };
         }
     }
