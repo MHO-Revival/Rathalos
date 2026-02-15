@@ -41,15 +41,15 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		public void Serialize(IDataWriter writer)
 		{
 			writer.WriteInt(OperType);
-			if (Executor.Length != CsprotoConstants.CS_MAX_ROLE_NAME)
+			if (Executor.Length > (CsprotoConstants.CS_MAX_ROLE_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Executor' should be of length of {CsprotoConstants.CS_MAX_ROLE_NAME} but was {Executor.Length}.");
+				throw new InvalidOperationException($"String length of 'Executor' should be of length of {(CsprotoConstants.CS_MAX_ROLE_NAME - 1)} but was {Executor.Length}.");
 			}
 
 			writer.WriteUTF(Executor);
-			if (BeExecutored.Length != CsprotoConstants.CS_MAX_ROLE_NAME)
+			if (BeExecutored.Length > (CsprotoConstants.CS_MAX_ROLE_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'BeExecutored' should be of length of {CsprotoConstants.CS_MAX_ROLE_NAME} but was {BeExecutored.Length}.");
+				throw new InvalidOperationException($"String length of 'BeExecutored' should be of length of {(CsprotoConstants.CS_MAX_ROLE_NAME - 1)} but was {BeExecutored.Length}.");
 			}
 
 			writer.WriteUTF(BeExecutored);

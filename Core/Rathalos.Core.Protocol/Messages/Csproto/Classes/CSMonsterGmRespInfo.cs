@@ -38,9 +38,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		{
 			writer.WriteInt(MonsterID);
 			writer.WriteByte(Result);
-			if (StrResult.Length != CsprotoConstants.MAX_NORMAL_PKG_LENGTH)
+			if (StrResult.Length > (CsprotoConstants.MAX_NORMAL_PKG_LENGTH - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'StrResult' should be of length of {CsprotoConstants.MAX_NORMAL_PKG_LENGTH} but was {StrResult.Length}.");
+				throw new InvalidOperationException($"String length of 'StrResult' should be of length of {(CsprotoConstants.MAX_NORMAL_PKG_LENGTH - 1)} but was {StrResult.Length}.");
 			}
 
 			writer.WriteUTF(StrResult);

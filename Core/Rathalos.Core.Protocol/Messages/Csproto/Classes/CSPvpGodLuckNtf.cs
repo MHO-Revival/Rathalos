@@ -42,9 +42,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		{
 			writer.WriteUInt(NetID);
 			writer.WriteInt(CampType);
-			if (Name.Length != CsprotoConstants.CS_MAX_ROLE_NAME)
+			if (Name.Length > (CsprotoConstants.CS_MAX_ROLE_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Name' should be of length of {CsprotoConstants.CS_MAX_ROLE_NAME} but was {Name.Length}.");
+				throw new InvalidOperationException($"String length of 'Name' should be of length of {(CsprotoConstants.CS_MAX_ROLE_NAME - 1)} but was {Name.Length}.");
 			}
 
 			writer.WriteUTF(Name);

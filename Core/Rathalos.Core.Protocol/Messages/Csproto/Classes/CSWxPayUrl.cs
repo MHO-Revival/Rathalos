@@ -70,9 +70,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		public void Serialize(IDataWriter writer)
 		{
 			writer.WriteInt(Ret);
-			if (PayUrl.Length != CsprotoConstants.CS_WXPAY_MAX_URL_LEN)
+			if (PayUrl.Length > (CsprotoConstants.CS_WXPAY_MAX_URL_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'PayUrl' should be of length of {CsprotoConstants.CS_WXPAY_MAX_URL_LEN} but was {PayUrl.Length}.");
+				throw new InvalidOperationException($"String length of 'PayUrl' should be of length of {(CsprotoConstants.CS_WXPAY_MAX_URL_LEN - 1)} but was {PayUrl.Length}.");
 			}
 
 			writer.WriteUTF(PayUrl);

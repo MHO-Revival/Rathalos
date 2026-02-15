@@ -64,24 +64,24 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		public void Serialize(IDataWriter writer)
 		{
 			writer.WriteULong(Id);
-			if (Name.Length != CsprotoConstants.CS_MAX_GUILD_NAME_LEN)
+			if (Name.Length > (CsprotoConstants.CS_MAX_GUILD_NAME_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Name' should be of length of {CsprotoConstants.CS_MAX_GUILD_NAME_LEN} but was {Name.Length}.");
+				throw new InvalidOperationException($"String length of 'Name' should be of length of {(CsprotoConstants.CS_MAX_GUILD_NAME_LEN - 1)} but was {Name.Length}.");
 			}
 
 			writer.WriteUTF(Name);
 			writer.WriteInt(Icon);
-			if (Note.Length != CsprotoConstants.CS_MAX_GUILD_NOTE_LEN)
+			if (Note.Length > (CsprotoConstants.CS_MAX_GUILD_NOTE_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Note' should be of length of {CsprotoConstants.CS_MAX_GUILD_NOTE_LEN} but was {Note.Length}.");
+				throw new InvalidOperationException($"String length of 'Note' should be of length of {(CsprotoConstants.CS_MAX_GUILD_NOTE_LEN - 1)} but was {Note.Length}.");
 			}
 
 			writer.WriteUTF(Note);
 			writer.WriteInt(Level);
 			writer.WriteInt(Repute);
-			if (Leader.Length != CsprotoConstants.CS_MAX_GUILD_NOTE_LEN)
+			if (Leader.Length > (CsprotoConstants.CS_MAX_GUILD_NOTE_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Leader' should be of length of {CsprotoConstants.CS_MAX_GUILD_NOTE_LEN} but was {Leader.Length}.");
+				throw new InvalidOperationException($"String length of 'Leader' should be of length of {(CsprotoConstants.CS_MAX_GUILD_NOTE_LEN - 1)} but was {Leader.Length}.");
 			}
 
 			writer.WriteUTF(Leader);

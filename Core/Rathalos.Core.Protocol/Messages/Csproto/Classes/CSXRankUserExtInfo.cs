@@ -35,9 +35,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 			writer.WriteULong(Uid);
 			writer.WriteULong(BestRankTime);
 			writer.WriteUInt(BestRank);
-			if (UserData.Length != CsprotoConstants.CS_XRANK_USERDATA_LEN)
+			if (UserData.Length > (CsprotoConstants.CS_XRANK_USERDATA_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'UserData' should be of length of {CsprotoConstants.CS_XRANK_USERDATA_LEN} but was {UserData.Length}.");
+				throw new InvalidOperationException($"String length of 'UserData' should be of length of {(CsprotoConstants.CS_XRANK_USERDATA_LEN - 1)} but was {UserData.Length}.");
 			}
 
 			writer.WriteUTF(UserData);

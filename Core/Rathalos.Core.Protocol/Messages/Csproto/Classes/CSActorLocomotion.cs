@@ -92,15 +92,15 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 			writer.WriteUInt(UserDataU1);
 			writer.WriteUInt(UserDataU2);
 			writer.WriteInt(UserDataI1);
-			if (UserDataS1.Length != CsprotoConstants.CS_MAX_SEQ_NAME)
+			if (UserDataS1.Length > (CsprotoConstants.CS_MAX_SEQ_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'UserDataS1' should be of length of {CsprotoConstants.CS_MAX_SEQ_NAME} but was {UserDataS1.Length}.");
+				throw new InvalidOperationException($"String length of 'UserDataS1' should be of length of {(CsprotoConstants.CS_MAX_SEQ_NAME - 1)} but was {UserDataS1.Length}.");
 			}
 
 			writer.WriteUTF(UserDataS1);
-			if (UserDataS2.Length != CsprotoConstants.CS_MAX_SEQ_NAME)
+			if (UserDataS2.Length > (CsprotoConstants.CS_MAX_SEQ_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'UserDataS2' should be of length of {CsprotoConstants.CS_MAX_SEQ_NAME} but was {UserDataS2.Length}.");
+				throw new InvalidOperationException($"String length of 'UserDataS2' should be of length of {(CsprotoConstants.CS_MAX_SEQ_NAME - 1)} but was {UserDataS2.Length}.");
 			}
 
 			writer.WriteUTF(UserDataS2);

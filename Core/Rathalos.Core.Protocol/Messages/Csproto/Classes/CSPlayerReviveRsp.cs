@@ -54,9 +54,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		{
 			writer.WriteInt(PlayerID);
 			writer.WriteInt(FactionID);
-			if (RevivePointName.Length != 64)
+			if (RevivePointName.Length > (64 - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'RevivePointName' should be of length of {64} but was {RevivePointName.Length}.");
+				throw new InvalidOperationException($"String length of 'RevivePointName' should be of length of {(64 - 1)} but was {RevivePointName.Length}.");
 			}
 
 			writer.WriteUTF(RevivePointName);

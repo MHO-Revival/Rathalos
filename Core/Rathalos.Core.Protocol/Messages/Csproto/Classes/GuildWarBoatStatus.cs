@@ -78,46 +78,46 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 			writer.WriteUInt(LevelId);
 			writer.WriteUInt(MinTime);
 			writer.WriteULong(GuildId);
-			if (GuildName.Length != CsprotoConstants.CS_MAX_GUILD_NAME_LEN)
+			if (GuildName.Length > (CsprotoConstants.CS_MAX_GUILD_NAME_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'GuildName' should be of length of {CsprotoConstants.CS_MAX_GUILD_NAME_LEN} but was {GuildName.Length}.");
+				throw new InvalidOperationException($"String length of 'GuildName' should be of length of {(CsprotoConstants.CS_MAX_GUILD_NAME_LEN - 1)} but was {GuildName.Length}.");
 			}
 
 			writer.WriteUTF(GuildName);
-			if (RoleName.Length != CsprotoConstants.CS_MAX_ROLE_NAME)
+			if (RoleName.Length > (CsprotoConstants.CS_MAX_ROLE_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'RoleName' should be of length of {CsprotoConstants.CS_MAX_ROLE_NAME} but was {RoleName.Length}.");
+				throw new InvalidOperationException($"String length of 'RoleName' should be of length of {(CsprotoConstants.CS_MAX_ROLE_NAME - 1)} but was {RoleName.Length}.");
 			}
 
 			writer.WriteUTF(RoleName);
 			writer.WriteUInt(Status);
-			if (OhterGuildName.Length != CsprotoConstants.CS_MAX_GUILD_NAME_LEN)
+			if (OhterGuildName.Length > (CsprotoConstants.CS_MAX_GUILD_NAME_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'OhterGuildName' should be of length of {CsprotoConstants.CS_MAX_GUILD_NAME_LEN} but was {OhterGuildName.Length}.");
+				throw new InvalidOperationException($"String length of 'OhterGuildName' should be of length of {(CsprotoConstants.CS_MAX_GUILD_NAME_LEN - 1)} but was {OhterGuildName.Length}.");
 			}
 
 			writer.WriteUTF(OhterGuildName);
-			if (OtherRoleName1.Length != CsprotoConstants.CS_MAX_ROLE_NAME)
+			if (OtherRoleName1.Length > (CsprotoConstants.CS_MAX_ROLE_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'OtherRoleName1' should be of length of {CsprotoConstants.CS_MAX_ROLE_NAME} but was {OtherRoleName1.Length}.");
+				throw new InvalidOperationException($"String length of 'OtherRoleName1' should be of length of {(CsprotoConstants.CS_MAX_ROLE_NAME - 1)} but was {OtherRoleName1.Length}.");
 			}
 
 			writer.WriteUTF(OtherRoleName1);
-			if (OtherRoleName2.Length != CsprotoConstants.CS_MAX_ROLE_NAME)
+			if (OtherRoleName2.Length > (CsprotoConstants.CS_MAX_ROLE_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'OtherRoleName2' should be of length of {CsprotoConstants.CS_MAX_ROLE_NAME} but was {OtherRoleName2.Length}.");
+				throw new InvalidOperationException($"String length of 'OtherRoleName2' should be of length of {(CsprotoConstants.CS_MAX_ROLE_NAME - 1)} but was {OtherRoleName2.Length}.");
 			}
 
 			writer.WriteUTF(OtherRoleName2);
-			if (OtherRoleName3.Length != CsprotoConstants.CS_MAX_ROLE_NAME)
+			if (OtherRoleName3.Length > (CsprotoConstants.CS_MAX_ROLE_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'OtherRoleName3' should be of length of {CsprotoConstants.CS_MAX_ROLE_NAME} but was {OtherRoleName3.Length}.");
+				throw new InvalidOperationException($"String length of 'OtherRoleName3' should be of length of {(CsprotoConstants.CS_MAX_ROLE_NAME - 1)} but was {OtherRoleName3.Length}.");
 			}
 
 			writer.WriteUTF(OtherRoleName3);
-			if (OtherRoleName4.Length != CsprotoConstants.CS_MAX_ROLE_NAME)
+			if (OtherRoleName4.Length > (CsprotoConstants.CS_MAX_ROLE_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'OtherRoleName4' should be of length of {CsprotoConstants.CS_MAX_ROLE_NAME} but was {OtherRoleName4.Length}.");
+				throw new InvalidOperationException($"String length of 'OtherRoleName4' should be of length of {(CsprotoConstants.CS_MAX_ROLE_NAME - 1)} but was {OtherRoleName4.Length}.");
 			}
 
 			writer.WriteUTF(OtherRoleName4);

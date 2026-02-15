@@ -38,9 +38,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		{
 			writer.WriteUInt(DstPlayerId);
 			writer.WriteInt(JoinRet);
-			if (DstPlayerName.Length != CsprotoConstants.CS_MAX_ROLE_NAME)
+			if (DstPlayerName.Length > (CsprotoConstants.CS_MAX_ROLE_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'DstPlayerName' should be of length of {CsprotoConstants.CS_MAX_ROLE_NAME} but was {DstPlayerName.Length}.");
+				throw new InvalidOperationException($"String length of 'DstPlayerName' should be of length of {(CsprotoConstants.CS_MAX_ROLE_NAME - 1)} but was {DstPlayerName.Length}.");
 			}
 
 			writer.WriteUTF(DstPlayerName);

@@ -38,9 +38,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		{
 			writer.WriteInt(NetId);
 			writer.WriteInt(MsgId);
-			if (Content.Length != CsprotoConstants.CS_SPEAK_SELF_DEFINE_LENGTH)
+			if (Content.Length > (CsprotoConstants.CS_SPEAK_SELF_DEFINE_LENGTH - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Content' should be of length of {CsprotoConstants.CS_SPEAK_SELF_DEFINE_LENGTH} but was {Content.Length}.");
+				throw new InvalidOperationException($"String length of 'Content' should be of length of {(CsprotoConstants.CS_SPEAK_SELF_DEFINE_LENGTH - 1)} but was {Content.Length}.");
 			}
 
 			writer.WriteUTF(Content);

@@ -90,23 +90,23 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 			writer.WriteShort(SpawnType);
 			writer.WriteInt(MonsterInfoID);
 			writer.WriteULong(EntGUID);
-			if (Name.Length != CsprotoConstants.CS_MAX_ROLE_NAME)
+			if (Name.Length > (CsprotoConstants.CS_MAX_ROLE_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Name' should be of length of {CsprotoConstants.CS_MAX_ROLE_NAME} but was {Name.Length}.");
+				throw new InvalidOperationException($"String length of 'Name' should be of length of {(CsprotoConstants.CS_MAX_ROLE_NAME - 1)} but was {Name.Length}.");
 			}
 
 			writer.WriteUTF(Name);
-			if (Class.Length != CsprotoConstants.CS_MAX_ROLE_NAME)
+			if (Class.Length > (CsprotoConstants.CS_MAX_ROLE_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Class' should be of length of {CsprotoConstants.CS_MAX_ROLE_NAME} but was {Class.Length}.");
+				throw new InvalidOperationException($"String length of 'Class' should be of length of {(CsprotoConstants.CS_MAX_ROLE_NAME - 1)} but was {Class.Length}.");
 			}
 
 			writer.WriteUTF(Class);
 			Pose?.Serialize(writer);
 			writer.WriteInt(Faction);
-			if (BTState.Length != CsprotoConstants.CS_MAX_LENGTH_FOR_OBJ_STATENAME)
+			if (BTState.Length > (CsprotoConstants.CS_MAX_LENGTH_FOR_OBJ_STATENAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'BTState' should be of length of {CsprotoConstants.CS_MAX_LENGTH_FOR_OBJ_STATENAME} but was {BTState.Length}.");
+				throw new InvalidOperationException($"String length of 'BTState' should be of length of {(CsprotoConstants.CS_MAX_LENGTH_FOR_OBJ_STATENAME - 1)} but was {BTState.Length}.");
 			}
 
 			writer.WriteUTF(BTState);

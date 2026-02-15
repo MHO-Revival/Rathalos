@@ -22,9 +22,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		{
 			writer.WriteUInt(BattleSvrID);
 			writer.WriteUInt(InstanceID);
-			if (LevelName.Length != CsprotoConstants.CS_MAX_LEVEL_NAME)
+			if (LevelName.Length > (CsprotoConstants.CS_MAX_LEVEL_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'LevelName' should be of length of {CsprotoConstants.CS_MAX_LEVEL_NAME} but was {LevelName.Length}.");
+				throw new InvalidOperationException($"String length of 'LevelName' should be of length of {(CsprotoConstants.CS_MAX_LEVEL_NAME - 1)} but was {LevelName.Length}.");
 			}
 
 			writer.WriteUTF(LevelName);

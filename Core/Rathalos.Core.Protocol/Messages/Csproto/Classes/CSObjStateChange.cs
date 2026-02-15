@@ -41,9 +41,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		public void Serialize(IDataWriter writer)
 		{
 			writer.WriteUInt(NetObjId);
-			if (StateName.Length != CsprotoConstants.CS_MAX_LENGTH_FOR_OBJ_STATENAME)
+			if (StateName.Length > (CsprotoConstants.CS_MAX_LENGTH_FOR_OBJ_STATENAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'StateName' should be of length of {CsprotoConstants.CS_MAX_LENGTH_FOR_OBJ_STATENAME} but was {StateName.Length}.");
+				throw new InvalidOperationException($"String length of 'StateName' should be of length of {(CsprotoConstants.CS_MAX_LENGTH_FOR_OBJ_STATENAME - 1)} but was {StateName.Length}.");
 			}
 
 			writer.WriteUTF(StateName);

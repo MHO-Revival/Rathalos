@@ -48,16 +48,16 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		/// <param name="writer">The data writer to serialize to.</param>
 		public void Serialize(IDataWriter writer)
 		{
-			if (FromName.Length != CsprotoConstants.CS_MAX_ROLE_NAME)
+			if (FromName.Length > (CsprotoConstants.CS_MAX_ROLE_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'FromName' should be of length of {CsprotoConstants.CS_MAX_ROLE_NAME} but was {FromName.Length}.");
+				throw new InvalidOperationException($"String length of 'FromName' should be of length of {(CsprotoConstants.CS_MAX_ROLE_NAME - 1)} but was {FromName.Length}.");
 			}
 
 			writer.WriteUTF(FromName);
 			writer.WriteULong(FromID);
-			if (TargetName.Length != CsprotoConstants.CS_MAX_ROLE_NAME)
+			if (TargetName.Length > (CsprotoConstants.CS_MAX_ROLE_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'TargetName' should be of length of {CsprotoConstants.CS_MAX_ROLE_NAME} but was {TargetName.Length}.");
+				throw new InvalidOperationException($"String length of 'TargetName' should be of length of {(CsprotoConstants.CS_MAX_ROLE_NAME - 1)} but was {TargetName.Length}.");
 			}
 
 			writer.WriteUTF(TargetName);

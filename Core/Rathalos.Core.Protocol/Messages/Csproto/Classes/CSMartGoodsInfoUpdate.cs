@@ -178,9 +178,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		{
 			writer.WriteInt(ID);
 			writer.WriteInt(GroupID);
-			if (Name.Length != CsprotoConstants.CS_MAX_MART_GOODS_NAME_LEN)
+			if (Name.Length > (CsprotoConstants.CS_MAX_MART_GOODS_NAME_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Name' should be of length of {CsprotoConstants.CS_MAX_MART_GOODS_NAME_LEN} but was {Name.Length}.");
+				throw new InvalidOperationException($"String length of 'Name' should be of length of {(CsprotoConstants.CS_MAX_MART_GOODS_NAME_LEN - 1)} but was {Name.Length}.");
 			}
 
 			writer.WriteUTF(Name);
@@ -202,24 +202,24 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 			writer.WriteByte(Card);
 			writer.WriteByte(Gift);
 			writer.WriteByte(AutoUse);
-			if (BeginTime.Length != CsprotoConstants.CS_MAX_MART_TIME_LEN)
+			if (BeginTime.Length > (CsprotoConstants.CS_MAX_MART_TIME_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'BeginTime' should be of length of {CsprotoConstants.CS_MAX_MART_TIME_LEN} but was {BeginTime.Length}.");
+				throw new InvalidOperationException($"String length of 'BeginTime' should be of length of {(CsprotoConstants.CS_MAX_MART_TIME_LEN - 1)} but was {BeginTime.Length}.");
 			}
 
 			writer.WriteUTF(BeginTime);
-			if (EndTime.Length != CsprotoConstants.CS_MAX_MART_TIME_LEN)
+			if (EndTime.Length > (CsprotoConstants.CS_MAX_MART_TIME_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'EndTime' should be of length of {CsprotoConstants.CS_MAX_MART_TIME_LEN} but was {EndTime.Length}.");
+				throw new InvalidOperationException($"String length of 'EndTime' should be of length of {(CsprotoConstants.CS_MAX_MART_TIME_LEN - 1)} but was {EndTime.Length}.");
 			}
 
 			writer.WriteUTF(EndTime);
 			writer.WriteInt(NumLimit);
 			writer.WriteByte(PeriodLimit);
 			writer.WriteByte(IsShow);
-			if (Icon.Length != CsprotoConstants.CS_MAX_COMMON_NAME)
+			if (Icon.Length > (CsprotoConstants.CS_MAX_COMMON_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Icon' should be of length of {CsprotoConstants.CS_MAX_COMMON_NAME} but was {Icon.Length}.");
+				throw new InvalidOperationException($"String length of 'Icon' should be of length of {(CsprotoConstants.CS_MAX_COMMON_NAME - 1)} but was {Icon.Length}.");
 			}
 
 			writer.WriteUTF(Icon);
@@ -232,9 +232,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 			writer.WriteInt(WxID);
 			writer.WriteByte(IsVIPGoods);
 			writer.WriteInt(Ver);
-			if (IconFemale.Length != CsprotoConstants.CS_MAX_COMMON_NAME)
+			if (IconFemale.Length > (CsprotoConstants.CS_MAX_COMMON_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'IconFemale' should be of length of {CsprotoConstants.CS_MAX_COMMON_NAME} but was {IconFemale.Length}.");
+				throw new InvalidOperationException($"String length of 'IconFemale' should be of length of {(CsprotoConstants.CS_MAX_COMMON_NAME - 1)} but was {IconFemale.Length}.");
 			}
 
 			writer.WriteUTF(IconFemale);

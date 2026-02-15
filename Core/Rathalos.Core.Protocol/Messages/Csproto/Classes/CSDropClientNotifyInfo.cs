@@ -33,9 +33,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		public void Serialize(IDataWriter writer)
 		{
 			writer.WriteInt(IsParentControl);
-			if (NotifyInfo.Length != CsprotoConstants.CS_MAX_NOTIFY_INFO_LEN)
+			if (NotifyInfo.Length > (CsprotoConstants.CS_MAX_NOTIFY_INFO_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'NotifyInfo' should be of length of {CsprotoConstants.CS_MAX_NOTIFY_INFO_LEN} but was {NotifyInfo.Length}.");
+				throw new InvalidOperationException($"String length of 'NotifyInfo' should be of length of {(CsprotoConstants.CS_MAX_NOTIFY_INFO_LEN - 1)} but was {NotifyInfo.Length}.");
 			}
 
 			writer.WriteUTF(NotifyInfo);

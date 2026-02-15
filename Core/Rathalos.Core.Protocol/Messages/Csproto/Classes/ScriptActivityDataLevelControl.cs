@@ -57,15 +57,15 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 			writer.WriteInt(Id);
 			writer.WriteInt(DateType);
 			writer.WriteInt(DateInterval);
-			if (DateDays.Length != CsprotoConstants.CS_SACTIVITY_STR_LENGTH)
+			if (DateDays.Length > (CsprotoConstants.CS_SACTIVITY_STR_LENGTH - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'DateDays' should be of length of {CsprotoConstants.CS_SACTIVITY_STR_LENGTH} but was {DateDays.Length}.");
+				throw new InvalidOperationException($"String length of 'DateDays' should be of length of {(CsprotoConstants.CS_SACTIVITY_STR_LENGTH - 1)} but was {DateDays.Length}.");
 			}
 
 			writer.WriteUTF(DateDays);
-			if (DateTime.Length != CsprotoConstants.CS_SACTIVITY_STR_LENGTH)
+			if (DateTime.Length > (CsprotoConstants.CS_SACTIVITY_STR_LENGTH - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'DateTime' should be of length of {CsprotoConstants.CS_SACTIVITY_STR_LENGTH} but was {DateTime.Length}.");
+				throw new InvalidOperationException($"String length of 'DateTime' should be of length of {(CsprotoConstants.CS_SACTIVITY_STR_LENGTH - 1)} but was {DateTime.Length}.");
 			}
 
 			writer.WriteUTF(DateTime);

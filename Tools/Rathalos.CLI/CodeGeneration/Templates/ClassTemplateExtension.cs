@@ -395,9 +395,9 @@ namespace Rathalos.CLI.CodeGeneration.Templates
                     if (!int.TryParse(stringMaxSize, out _))
                         stringMaxSize = $"{CodeModel.TargetName}Constants.{stringMaxSize}";
 
-                    sb.AppendLine($"\t\t\tif ({property.Name}.Length != {stringMaxSize})");
+                    sb.AppendLine($"\t\t\tif ({property.Name}.Length > ({stringMaxSize} - 1))");
                     sb.AppendLine("\t\t\t{");
-                    sb.AppendLine($"\t\t\t\tthrow new InvalidOperationException($\"Array length of '{property.Name}' should be of length of {{{stringMaxSize}}} but was {{{property.Name}.Length}}.\");");
+                    sb.AppendLine($"\t\t\t\tthrow new InvalidOperationException($\"String length of '{property.Name}' should be of length of {{({stringMaxSize} - 1)}} but was {{{property.Name}.Length}}.\");");
                     sb.AppendLine("\t\t\t}");
                     sb.AppendLine();
                 }

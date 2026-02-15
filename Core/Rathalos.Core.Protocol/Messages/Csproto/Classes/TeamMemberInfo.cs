@@ -93,9 +93,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		{
 			writer.WriteUInt(NetId);
 			writer.WriteULong(DBId);
-			if (Name.Length != CsprotoConstants.CS_MAX_ROLE_NAME)
+			if (Name.Length > (CsprotoConstants.CS_MAX_ROLE_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Name' should be of length of {CsprotoConstants.CS_MAX_ROLE_NAME} but was {Name.Length}.");
+				throw new InvalidOperationException($"String length of 'Name' should be of length of {(CsprotoConstants.CS_MAX_ROLE_NAME - 1)} but was {Name.Length}.");
 			}
 
 			writer.WriteUTF(Name);
@@ -111,9 +111,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 			Dir?.Serialize(writer);
 			writer.WriteInt(LineId);
 			writer.WriteInt(HRLevel);
-			if (HunterStar.Length != CsprotoConstants.CS_MAX_HUNTER_STAR_LEVEL_LEN)
+			if (HunterStar.Length > (CsprotoConstants.CS_MAX_HUNTER_STAR_LEVEL_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'HunterStar' should be of length of {CsprotoConstants.CS_MAX_HUNTER_STAR_LEVEL_LEN} but was {HunterStar.Length}.");
+				throw new InvalidOperationException($"String length of 'HunterStar' should be of length of {(CsprotoConstants.CS_MAX_HUNTER_STAR_LEVEL_LEN - 1)} but was {HunterStar.Length}.");
 			}
 
 			writer.WriteUTF(HunterStar);

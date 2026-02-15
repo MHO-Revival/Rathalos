@@ -87,15 +87,15 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 			writer.WriteByte(Gift);
 			writer.WriteUInt(RecvUin);
 			writer.WriteULong(RecvDBID);
-			if (RecvName.Length != CsprotoConstants.CS_MAX_ROLE_NAME)
+			if (RecvName.Length > (CsprotoConstants.CS_MAX_ROLE_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'RecvName' should be of length of {CsprotoConstants.CS_MAX_ROLE_NAME} but was {RecvName.Length}.");
+				throw new InvalidOperationException($"String length of 'RecvName' should be of length of {(CsprotoConstants.CS_MAX_ROLE_NAME - 1)} but was {RecvName.Length}.");
 			}
 
 			writer.WriteUTF(RecvName);
-			if (Msg.Length != CsprotoConstants.CS_MAX_GIFT_MSG_LEN)
+			if (Msg.Length > (CsprotoConstants.CS_MAX_GIFT_MSG_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Msg' should be of length of {CsprotoConstants.CS_MAX_GIFT_MSG_LEN} but was {Msg.Length}.");
+				throw new InvalidOperationException($"String length of 'Msg' should be of length of {(CsprotoConstants.CS_MAX_GIFT_MSG_LEN - 1)} but was {Msg.Length}.");
 			}
 
 			writer.WriteUTF(Msg);

@@ -55,9 +55,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 			writer.WriteInt(ResultParam2);
 			writer.WriteInt(ResultParam3);
 			writer.WriteInt(ResultParam4);
-			if (ResultParamStr.Length != 256)
+			if (ResultParamStr.Length > (256 - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'ResultParamStr' should be of length of {256} but was {ResultParamStr.Length}.");
+				throw new InvalidOperationException($"String length of 'ResultParamStr' should be of length of {(256 - 1)} but was {ResultParamStr.Length}.");
 			}
 
 			writer.WriteUTF(ResultParamStr);

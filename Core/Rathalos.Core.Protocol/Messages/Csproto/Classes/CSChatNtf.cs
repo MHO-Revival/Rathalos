@@ -112,9 +112,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 			writer.WriteUInt(SrcUin);
 			writer.WriteULong(SrcDBID);
 			writer.WriteInt(SrcLevelGrpId);
-			if (SourceName.Length != CsprotoConstants.CS_MAX_ROLE_NAME)
+			if (SourceName.Length > (CsprotoConstants.CS_MAX_ROLE_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'SourceName' should be of length of {CsprotoConstants.CS_MAX_ROLE_NAME} but was {SourceName.Length}.");
+				throw new InvalidOperationException($"String length of 'SourceName' should be of length of {(CsprotoConstants.CS_MAX_ROLE_NAME - 1)} but was {SourceName.Length}.");
 			}
 
 			writer.WriteUTF(SourceName);
@@ -137,9 +137,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 			{
 				writer.WriteByte(Head[i]);
 			}
-			if (Content.Length != CsprotoConstants.MAX_CHAT_CONTENT_LEN)
+			if (Content.Length > (CsprotoConstants.MAX_CHAT_CONTENT_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Content' should be of length of {CsprotoConstants.MAX_CHAT_CONTENT_LEN} but was {Content.Length}.");
+				throw new InvalidOperationException($"String length of 'Content' should be of length of {(CsprotoConstants.MAX_CHAT_CONTENT_LEN - 1)} but was {Content.Length}.");
 			}
 
 			writer.WriteUTF(Content);
@@ -147,15 +147,15 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 			writer.WriteByte(ContainBanWords);
 			Items?.Serialize(writer);
 			writer.WriteInt(SrcLevel);
-			if (SrcGuildName.Length != CsprotoConstants.CS_MAX_GUILD_NAME_LEN)
+			if (SrcGuildName.Length > (CsprotoConstants.CS_MAX_GUILD_NAME_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'SrcGuildName' should be of length of {CsprotoConstants.CS_MAX_GUILD_NAME_LEN} but was {SrcGuildName.Length}.");
+				throw new InvalidOperationException($"String length of 'SrcGuildName' should be of length of {(CsprotoConstants.CS_MAX_GUILD_NAME_LEN - 1)} but was {SrcGuildName.Length}.");
 			}
 
 			writer.WriteUTF(SrcGuildName);
-			if (SrcHunterStar.Length != CsprotoConstants.CS_MAX_GUILD_HUNTERSTAR_LEN)
+			if (SrcHunterStar.Length > (CsprotoConstants.CS_MAX_GUILD_HUNTERSTAR_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'SrcHunterStar' should be of length of {CsprotoConstants.CS_MAX_GUILD_HUNTERSTAR_LEN} but was {SrcHunterStar.Length}.");
+				throw new InvalidOperationException($"String length of 'SrcHunterStar' should be of length of {(CsprotoConstants.CS_MAX_GUILD_HUNTERSTAR_LEN - 1)} but was {SrcHunterStar.Length}.");
 			}
 
 			writer.WriteUTF(SrcHunterStar);

@@ -54,23 +54,23 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		{
 			writer.WriteByte(Result);
 			writer.WriteUInt(VerifyUrlLen);
-			if (VerifyUrl.Length != CsprotoConstants.CS_MAX_SENSITIVE_VERIFY_URL_LEN)
+			if (VerifyUrl.Length > (CsprotoConstants.CS_MAX_SENSITIVE_VERIFY_URL_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'VerifyUrl' should be of length of {CsprotoConstants.CS_MAX_SENSITIVE_VERIFY_URL_LEN} but was {VerifyUrl.Length}.");
+				throw new InvalidOperationException($"String length of 'VerifyUrl' should be of length of {(CsprotoConstants.CS_MAX_SENSITIVE_VERIFY_URL_LEN - 1)} but was {VerifyUrl.Length}.");
 			}
 
 			writer.WriteUTF(VerifyUrl);
 			writer.WriteUInt(TitleLen);
-			if (Title.Length != CsprotoConstants.CS_MAX_SENSITIVE_VERIFY_URL_LEN)
+			if (Title.Length > (CsprotoConstants.CS_MAX_SENSITIVE_VERIFY_URL_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Title' should be of length of {CsprotoConstants.CS_MAX_SENSITIVE_VERIFY_URL_LEN} but was {Title.Length}.");
+				throw new InvalidOperationException($"String length of 'Title' should be of length of {(CsprotoConstants.CS_MAX_SENSITIVE_VERIFY_URL_LEN - 1)} but was {Title.Length}.");
 			}
 
 			writer.WriteUTF(Title);
 			writer.WriteUInt(TipsLen);
-			if (Tips.Length != CsprotoConstants.CS_MAX_SENSITIVE_VERIFY_URL_LEN)
+			if (Tips.Length > (CsprotoConstants.CS_MAX_SENSITIVE_VERIFY_URL_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Tips' should be of length of {CsprotoConstants.CS_MAX_SENSITIVE_VERIFY_URL_LEN} but was {Tips.Length}.");
+				throw new InvalidOperationException($"String length of 'Tips' should be of length of {(CsprotoConstants.CS_MAX_SENSITIVE_VERIFY_URL_LEN - 1)} but was {Tips.Length}.");
 			}
 
 			writer.WriteUTF(Tips);

@@ -49,16 +49,16 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		public void Serialize(IDataWriter writer)
 		{
 			writer.WriteUInt(UinA);
-			if (NameA.Length != CsprotoConstants.CS_MAX_ROLE_NAME)
+			if (NameA.Length > (CsprotoConstants.CS_MAX_ROLE_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'NameA' should be of length of {CsprotoConstants.CS_MAX_ROLE_NAME} but was {NameA.Length}.");
+				throw new InvalidOperationException($"String length of 'NameA' should be of length of {(CsprotoConstants.CS_MAX_ROLE_NAME - 1)} but was {NameA.Length}.");
 			}
 
 			writer.WriteUTF(NameA);
 			writer.WriteUInt(NetIDB);
-			if (NameB.Length != CsprotoConstants.CS_MAX_ROLE_NAME)
+			if (NameB.Length > (CsprotoConstants.CS_MAX_ROLE_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'NameB' should be of length of {CsprotoConstants.CS_MAX_ROLE_NAME} but was {NameB.Length}.");
+				throw new InvalidOperationException($"String length of 'NameB' should be of length of {(CsprotoConstants.CS_MAX_ROLE_NAME - 1)} but was {NameB.Length}.");
 			}
 
 			writer.WriteUTF(NameB);

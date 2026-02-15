@@ -25,9 +25,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		/// <param name="writer">The data writer to serialize to.</param>
 		public void Serialize(IDataWriter writer)
 		{
-			if (SoulBeastType.Length != CsprotoConstants.CS_SOULBEAST_INTERACTOR_NAME_MAX)
+			if (SoulBeastType.Length > (CsprotoConstants.CS_SOULBEAST_INTERACTOR_NAME_MAX - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'SoulBeastType' should be of length of {CsprotoConstants.CS_SOULBEAST_INTERACTOR_NAME_MAX} but was {SoulBeastType.Length}.");
+				throw new InvalidOperationException($"String length of 'SoulBeastType' should be of length of {(CsprotoConstants.CS_SOULBEAST_INTERACTOR_NAME_MAX - 1)} but was {SoulBeastType.Length}.");
 			}
 
 			writer.WriteUTF(SoulBeastType);

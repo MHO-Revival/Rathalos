@@ -54,15 +54,15 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 			writer.WriteInt(Param4);
 			writer.WriteInt(Param5);
 			writer.WriteInt(Param6);
-			if (Str1.Length != CsprotoConstants.CS_SACTIVITY_PARAM_LENGTH)
+			if (Str1.Length > (CsprotoConstants.CS_SACTIVITY_PARAM_LENGTH - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Str1' should be of length of {CsprotoConstants.CS_SACTIVITY_PARAM_LENGTH} but was {Str1.Length}.");
+				throw new InvalidOperationException($"String length of 'Str1' should be of length of {(CsprotoConstants.CS_SACTIVITY_PARAM_LENGTH - 1)} but was {Str1.Length}.");
 			}
 
 			writer.WriteUTF(Str1);
-			if (Str2.Length != CsprotoConstants.CS_SACTIVITY_PARAM_LENGTH)
+			if (Str2.Length > (CsprotoConstants.CS_SACTIVITY_PARAM_LENGTH - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Str2' should be of length of {CsprotoConstants.CS_SACTIVITY_PARAM_LENGTH} but was {Str2.Length}.");
+				throw new InvalidOperationException($"String length of 'Str2' should be of length of {(CsprotoConstants.CS_SACTIVITY_PARAM_LENGTH - 1)} but was {Str2.Length}.");
 			}
 
 			writer.WriteUTF(Str2);

@@ -64,16 +64,16 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		public void Serialize(IDataWriter writer)
 		{
 			writer.WriteULong(Dbid);
-			if (Name.Length != CsprotoConstants.CS_MAX_ROLE_NAME)
+			if (Name.Length > (CsprotoConstants.CS_MAX_ROLE_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Name' should be of length of {CsprotoConstants.CS_MAX_ROLE_NAME} but was {Name.Length}.");
+				throw new InvalidOperationException($"String length of 'Name' should be of length of {(CsprotoConstants.CS_MAX_ROLE_NAME - 1)} but was {Name.Length}.");
 			}
 
 			writer.WriteUTF(Name);
 			writer.WriteUInt(Uin);
-			if (Str1.Length != CsprotoConstants.CS_MAX_GUILD_NAME_LEN)
+			if (Str1.Length > (CsprotoConstants.CS_MAX_GUILD_NAME_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Str1' should be of length of {CsprotoConstants.CS_MAX_GUILD_NAME_LEN} but was {Str1.Length}.");
+				throw new InvalidOperationException($"String length of 'Str1' should be of length of {(CsprotoConstants.CS_MAX_GUILD_NAME_LEN - 1)} but was {Str1.Length}.");
 			}
 
 			writer.WriteUTF(Str1);
@@ -81,21 +81,21 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 			writer.WriteInt(Arg2);
 			writer.WriteInt(Arg3);
 			writer.WriteInt(Param1);
-			if (Str2.Length != CsprotoConstants.CS_MAX_ROLE_NAME)
+			if (Str2.Length > (CsprotoConstants.CS_MAX_ROLE_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Str2' should be of length of {CsprotoConstants.CS_MAX_ROLE_NAME} but was {Str2.Length}.");
+				throw new InvalidOperationException($"String length of 'Str2' should be of length of {(CsprotoConstants.CS_MAX_ROLE_NAME - 1)} but was {Str2.Length}.");
 			}
 
 			writer.WriteUTF(Str2);
-			if (Str3.Length != CsprotoConstants.CS_MAX_ROLE_NAME)
+			if (Str3.Length > (CsprotoConstants.CS_MAX_ROLE_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Str3' should be of length of {CsprotoConstants.CS_MAX_ROLE_NAME} but was {Str3.Length}.");
+				throw new InvalidOperationException($"String length of 'Str3' should be of length of {(CsprotoConstants.CS_MAX_ROLE_NAME - 1)} but was {Str3.Length}.");
 			}
 
 			writer.WriteUTF(Str3);
-			if (Str4.Length != CsprotoConstants.CS_MAX_ROLE_NAME)
+			if (Str4.Length > (CsprotoConstants.CS_MAX_ROLE_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Str4' should be of length of {CsprotoConstants.CS_MAX_ROLE_NAME} but was {Str4.Length}.");
+				throw new InvalidOperationException($"String length of 'Str4' should be of length of {(CsprotoConstants.CS_MAX_ROLE_NAME - 1)} but was {Str4.Length}.");
 			}
 
 			writer.WriteUTF(Str4);

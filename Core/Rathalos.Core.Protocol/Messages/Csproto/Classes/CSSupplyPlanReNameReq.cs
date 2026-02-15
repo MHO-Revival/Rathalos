@@ -33,9 +33,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		public void Serialize(IDataWriter writer)
 		{
 			writer.WriteInt(IPlanID);
-			if (PlanName.Length != CsprotoConstants.CS_SUPPLYPLANNAME_SIZE)
+			if (PlanName.Length > (CsprotoConstants.CS_SUPPLYPLANNAME_SIZE - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'PlanName' should be of length of {CsprotoConstants.CS_SUPPLYPLANNAME_SIZE} but was {PlanName.Length}.");
+				throw new InvalidOperationException($"String length of 'PlanName' should be of length of {(CsprotoConstants.CS_SUPPLYPLANNAME_SIZE - 1)} but was {PlanName.Length}.");
 			}
 
 			writer.WriteUTF(PlanName);

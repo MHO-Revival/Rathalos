@@ -32,15 +32,15 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		public void Serialize(IDataWriter writer)
 		{
 			writer.WriteByte(Type);
-			if (Days.Length != CsprotoConstants.CS_SACTIVITY_DAYS_LENGTH)
+			if (Days.Length > (CsprotoConstants.CS_SACTIVITY_DAYS_LENGTH - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Days' should be of length of {CsprotoConstants.CS_SACTIVITY_DAYS_LENGTH} but was {Days.Length}.");
+				throw new InvalidOperationException($"String length of 'Days' should be of length of {(CsprotoConstants.CS_SACTIVITY_DAYS_LENGTH - 1)} but was {Days.Length}.");
 			}
 
 			writer.WriteUTF(Days);
-			if (Time.Length != CsprotoConstants.CS_SACTIVITY_TIME_LENGTH)
+			if (Time.Length > (CsprotoConstants.CS_SACTIVITY_TIME_LENGTH - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Time' should be of length of {CsprotoConstants.CS_SACTIVITY_TIME_LENGTH} but was {Time.Length}.");
+				throw new InvalidOperationException($"String length of 'Time' should be of length of {(CsprotoConstants.CS_SACTIVITY_TIME_LENGTH - 1)} but was {Time.Length}.");
 			}
 
 			writer.WriteUTF(Time);

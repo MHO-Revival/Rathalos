@@ -56,22 +56,22 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		/// <param name="writer">The data writer to serialize to.</param>
 		public void Serialize(IDataWriter writer)
 		{
-			if (Name.Length != CsprotoConstants.CS_MAX_ROLE_NAME)
+			if (Name.Length > (CsprotoConstants.CS_MAX_ROLE_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Name' should be of length of {CsprotoConstants.CS_MAX_ROLE_NAME} but was {Name.Length}.");
+				throw new InvalidOperationException($"String length of 'Name' should be of length of {(CsprotoConstants.CS_MAX_ROLE_NAME - 1)} but was {Name.Length}.");
 			}
 
 			writer.WriteUTF(Name);
 			writer.WriteInt(Level);
-			if (GuildName.Length != CsprotoConstants.CS_MAX_GUILD_NAME_LEN)
+			if (GuildName.Length > (CsprotoConstants.CS_MAX_GUILD_NAME_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'GuildName' should be of length of {CsprotoConstants.CS_MAX_GUILD_NAME_LEN} but was {GuildName.Length}.");
+				throw new InvalidOperationException($"String length of 'GuildName' should be of length of {(CsprotoConstants.CS_MAX_GUILD_NAME_LEN - 1)} but was {GuildName.Length}.");
 			}
 
 			writer.WriteUTF(GuildName);
-			if (HunterStar.Length != CsprotoConstants.CS_MAX_GUILD_HUNTERSTAR_LEN)
+			if (HunterStar.Length > (CsprotoConstants.CS_MAX_GUILD_HUNTERSTAR_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'HunterStar' should be of length of {CsprotoConstants.CS_MAX_GUILD_HUNTERSTAR_LEN} but was {HunterStar.Length}.");
+				throw new InvalidOperationException($"String length of 'HunterStar' should be of length of {(CsprotoConstants.CS_MAX_GUILD_HUNTERSTAR_LEN - 1)} but was {HunterStar.Length}.");
 			}
 
 			writer.WriteUTF(HunterStar);

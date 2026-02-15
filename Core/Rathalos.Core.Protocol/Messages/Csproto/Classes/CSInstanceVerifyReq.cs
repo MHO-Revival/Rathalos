@@ -62,9 +62,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 			writer.WriteInt(VerifyType);
 			writer.WriteInt(RoleID);
 			writer.WriteInt(ServiceID);
-			if (Key.Length != CsprotoConstants.CS_MAX_KEY_LEN)
+			if (Key.Length > (CsprotoConstants.CS_MAX_KEY_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Key' should be of length of {CsprotoConstants.CS_MAX_KEY_LEN} but was {Key.Length}.");
+				throw new InvalidOperationException($"String length of 'Key' should be of length of {(CsprotoConstants.CS_MAX_KEY_LEN - 1)} but was {Key.Length}.");
 			}
 
 			writer.WriteUTF(Key);

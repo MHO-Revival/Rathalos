@@ -42,9 +42,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		{
 			writer.WriteByte(BagColumn);
 			writer.WriteShort(BagGrid);
-			if (Content.Length != CsprotoConstants.MAX_CHAT_CONTENT_LEN)
+			if (Content.Length > (CsprotoConstants.MAX_CHAT_CONTENT_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Content' should be of length of {CsprotoConstants.MAX_CHAT_CONTENT_LEN} but was {Content.Length}.");
+				throw new InvalidOperationException($"String length of 'Content' should be of length of {(CsprotoConstants.MAX_CHAT_CONTENT_LEN - 1)} but was {Content.Length}.");
 			}
 
 			writer.WriteUTF(Content);

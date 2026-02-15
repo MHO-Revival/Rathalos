@@ -30,9 +30,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		public void Serialize(IDataWriter writer)
 		{
 			writer.WriteByte(Hub);
-			if (Pages.Length != CsprotoConstants.CS_SACTIVITY_LEVEL_LENGTH)
+			if (Pages.Length > (CsprotoConstants.CS_SACTIVITY_LEVEL_LENGTH - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Pages' should be of length of {CsprotoConstants.CS_SACTIVITY_LEVEL_LENGTH} but was {Pages.Length}.");
+				throw new InvalidOperationException($"String length of 'Pages' should be of length of {(CsprotoConstants.CS_SACTIVITY_LEVEL_LENGTH - 1)} but was {Pages.Length}.");
 			}
 
 			writer.WriteUTF(Pages);

@@ -41,18 +41,18 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		/// <param name="writer">The data writer to serialize to.</param>
 		public void Serialize(IDataWriter writer)
 		{
-			if (Label.Length != CsprotoConstants.CS_SACTIVITY_BUTTON_LABEL_LENGTH)
+			if (Label.Length > (CsprotoConstants.CS_SACTIVITY_BUTTON_LABEL_LENGTH - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Label' should be of length of {CsprotoConstants.CS_SACTIVITY_BUTTON_LABEL_LENGTH} but was {Label.Length}.");
+				throw new InvalidOperationException($"String length of 'Label' should be of length of {(CsprotoConstants.CS_SACTIVITY_BUTTON_LABEL_LENGTH - 1)} but was {Label.Length}.");
 			}
 
 			writer.WriteUTF(Label);
 			writer.WriteUInt(LevelID);
 			writer.WriteByte(EnterMode);
 			writer.WriteByte(DataID);
-			if (Condition.Length != CsprotoConstants.CS_SACTIVITY_PARAM_LENGTH)
+			if (Condition.Length > (CsprotoConstants.CS_SACTIVITY_PARAM_LENGTH - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Condition' should be of length of {CsprotoConstants.CS_SACTIVITY_PARAM_LENGTH} but was {Condition.Length}.");
+				throw new InvalidOperationException($"String length of 'Condition' should be of length of {(CsprotoConstants.CS_SACTIVITY_PARAM_LENGTH - 1)} but was {Condition.Length}.");
 			}
 
 			writer.WriteUTF(Condition);

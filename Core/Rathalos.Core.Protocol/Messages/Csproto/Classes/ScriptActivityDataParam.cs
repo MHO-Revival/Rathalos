@@ -65,24 +65,24 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 			writer.WriteInt(Param2);
 			writer.WriteInt(Param3);
 			writer.WriteInt(Param4);
-			if (Param5.Length != CsprotoConstants.CS_SACTIVITY_PARAM_LENGTH)
+			if (Param5.Length > (CsprotoConstants.CS_SACTIVITY_PARAM_LENGTH - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Param5' should be of length of {CsprotoConstants.CS_SACTIVITY_PARAM_LENGTH} but was {Param5.Length}.");
+				throw new InvalidOperationException($"String length of 'Param5' should be of length of {(CsprotoConstants.CS_SACTIVITY_PARAM_LENGTH - 1)} but was {Param5.Length}.");
 			}
 
 			writer.WriteUTF(Param5);
-			if (Param6.Length != CsprotoConstants.CS_SACTIVITY_PARAM_LENGTH)
+			if (Param6.Length > (CsprotoConstants.CS_SACTIVITY_PARAM_LENGTH - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Param6' should be of length of {CsprotoConstants.CS_SACTIVITY_PARAM_LENGTH} but was {Param6.Length}.");
+				throw new InvalidOperationException($"String length of 'Param6' should be of length of {(CsprotoConstants.CS_SACTIVITY_PARAM_LENGTH - 1)} but was {Param6.Length}.");
 			}
 
 			writer.WriteUTF(Param6);
 			writer.WriteInt(Param7);
 			writer.WriteInt(Param8);
 			writer.WriteInt(Param9);
-			if (Param10.Length != CsprotoConstants.CS_SACTIVITY_PARAM_LENGTH)
+			if (Param10.Length > (CsprotoConstants.CS_SACTIVITY_PARAM_LENGTH - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Param10' should be of length of {CsprotoConstants.CS_SACTIVITY_PARAM_LENGTH} but was {Param10.Length}.");
+				throw new InvalidOperationException($"String length of 'Param10' should be of length of {(CsprotoConstants.CS_SACTIVITY_PARAM_LENGTH - 1)} but was {Param10.Length}.");
 			}
 
 			writer.WriteUTF(Param10);

@@ -51,15 +51,15 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 			writer.WriteInt(CharLevel);
 			writer.WriteInt(Weapon);
 			writer.WriteInt(BoxID);
-			if (RoleName.Length != CsprotoConstants.CS_MAX_ROLE_NAME)
+			if (RoleName.Length > (CsprotoConstants.CS_MAX_ROLE_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'RoleName' should be of length of {CsprotoConstants.CS_MAX_ROLE_NAME} but was {RoleName.Length}.");
+				throw new InvalidOperationException($"String length of 'RoleName' should be of length of {(CsprotoConstants.CS_MAX_ROLE_NAME - 1)} but was {RoleName.Length}.");
 			}
 
 			writer.WriteUTF(RoleName);
-			if (StarLevel.Length != CsprotoConstants.CS_MAX_HUNTER_STAR_LEVEL_LEN)
+			if (StarLevel.Length > (CsprotoConstants.CS_MAX_HUNTER_STAR_LEVEL_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'StarLevel' should be of length of {CsprotoConstants.CS_MAX_HUNTER_STAR_LEVEL_LEN} but was {StarLevel.Length}.");
+				throw new InvalidOperationException($"String length of 'StarLevel' should be of length of {(CsprotoConstants.CS_MAX_HUNTER_STAR_LEVEL_LEN - 1)} but was {StarLevel.Length}.");
 			}
 
 			writer.WriteUTF(StarLevel);

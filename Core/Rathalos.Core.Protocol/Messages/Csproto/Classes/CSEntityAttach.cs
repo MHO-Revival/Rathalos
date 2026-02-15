@@ -49,15 +49,15 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		{
 			writer.WriteUInt(ParentEntNetId);
 			writer.WriteUInt(ChildEntNetId);
-			if (AttachmentName.Length != CsprotoConstants.CS_MAX_LENGTH_FOR_OBJ_STATENAME)
+			if (AttachmentName.Length > (CsprotoConstants.CS_MAX_LENGTH_FOR_OBJ_STATENAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'AttachmentName' should be of length of {CsprotoConstants.CS_MAX_LENGTH_FOR_OBJ_STATENAME} but was {AttachmentName.Length}.");
+				throw new InvalidOperationException($"String length of 'AttachmentName' should be of length of {(CsprotoConstants.CS_MAX_LENGTH_FOR_OBJ_STATENAME - 1)} but was {AttachmentName.Length}.");
 			}
 
 			writer.WriteUTF(AttachmentName);
-			if (BoneName.Length != CsprotoConstants.CS_MAX_LENGTH_FOR_OBJ_STATENAME)
+			if (BoneName.Length > (CsprotoConstants.CS_MAX_LENGTH_FOR_OBJ_STATENAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'BoneName' should be of length of {CsprotoConstants.CS_MAX_LENGTH_FOR_OBJ_STATENAME} but was {BoneName.Length}.");
+				throw new InvalidOperationException($"String length of 'BoneName' should be of length of {(CsprotoConstants.CS_MAX_LENGTH_FOR_OBJ_STATENAME - 1)} but was {BoneName.Length}.");
 			}
 
 			writer.WriteUTF(BoneName);

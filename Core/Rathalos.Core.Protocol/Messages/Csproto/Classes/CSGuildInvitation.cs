@@ -41,15 +41,15 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		{
 			writer.WriteInt(Id);
 			writer.WriteULong(Guild);
-			if (Name.Length != CsprotoConstants.CS_MAX_GUILD_NAME_LEN)
+			if (Name.Length > (CsprotoConstants.CS_MAX_GUILD_NAME_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Name' should be of length of {CsprotoConstants.CS_MAX_GUILD_NAME_LEN} but was {Name.Length}.");
+				throw new InvalidOperationException($"String length of 'Name' should be of length of {(CsprotoConstants.CS_MAX_GUILD_NAME_LEN - 1)} but was {Name.Length}.");
 			}
 
 			writer.WriteUTF(Name);
-			if (Sender.Length != CsprotoConstants.CS_MAX_ROLE_NAME)
+			if (Sender.Length > (CsprotoConstants.CS_MAX_ROLE_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Sender' should be of length of {CsprotoConstants.CS_MAX_ROLE_NAME} but was {Sender.Length}.");
+				throw new InvalidOperationException($"String length of 'Sender' should be of length of {(CsprotoConstants.CS_MAX_ROLE_NAME - 1)} but was {Sender.Length}.");
 			}
 
 			writer.WriteUTF(Sender);

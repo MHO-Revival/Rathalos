@@ -66,21 +66,21 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		{
 			writer.WriteLong(SyncTime);
 			writer.WriteUInt(MonsterID);
-			if (PartName.Length != CsprotoConstants.CS_MAX_PART_NAME)
+			if (PartName.Length > (CsprotoConstants.CS_MAX_PART_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'PartName' should be of length of {CsprotoConstants.CS_MAX_PART_NAME} but was {PartName.Length}.");
+				throw new InvalidOperationException($"String length of 'PartName' should be of length of {(CsprotoConstants.CS_MAX_PART_NAME - 1)} but was {PartName.Length}.");
 			}
 
 			writer.WriteUTF(PartName);
-			if (PartBoneName.Length != CsprotoConstants.CS_MAX_BONE_NAME)
+			if (PartBoneName.Length > (CsprotoConstants.CS_MAX_BONE_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'PartBoneName' should be of length of {CsprotoConstants.CS_MAX_BONE_NAME} but was {PartBoneName.Length}.");
+				throw new InvalidOperationException($"String length of 'PartBoneName' should be of length of {(CsprotoConstants.CS_MAX_BONE_NAME - 1)} but was {PartBoneName.Length}.");
 			}
 
 			writer.WriteUTF(PartBoneName);
-			if (PartTemplate.Length != CsprotoConstants.CS_MAX_PART_TEMPLATE)
+			if (PartTemplate.Length > (CsprotoConstants.CS_MAX_PART_TEMPLATE - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'PartTemplate' should be of length of {CsprotoConstants.CS_MAX_PART_TEMPLATE} but was {PartTemplate.Length}.");
+				throw new InvalidOperationException($"String length of 'PartTemplate' should be of length of {(CsprotoConstants.CS_MAX_PART_TEMPLATE - 1)} but was {PartTemplate.Length}.");
 			}
 
 			writer.WriteUTF(PartTemplate);

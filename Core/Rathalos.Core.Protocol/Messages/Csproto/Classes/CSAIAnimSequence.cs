@@ -126,9 +126,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		{
 			writer.WriteLong(SyncTime);
 			writer.WriteUInt(MonsterID);
-			if (AnimSeqName.Length != CsprotoConstants.CS_MAX_ANIM_SEQ_NAME)
+			if (AnimSeqName.Length > (CsprotoConstants.CS_MAX_ANIM_SEQ_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'AnimSeqName' should be of length of {CsprotoConstants.CS_MAX_ANIM_SEQ_NAME} but was {AnimSeqName.Length}.");
+				throw new InvalidOperationException($"String length of 'AnimSeqName' should be of length of {(CsprotoConstants.CS_MAX_ANIM_SEQ_NAME - 1)} but was {AnimSeqName.Length}.");
 			}
 
 			writer.WriteUTF(AnimSeqName);

@@ -63,18 +63,18 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 			writer.WriteUInt(SignUpID);
 			writer.WriteInt(SignUpTM);
 			writer.WriteULong(GuildID);
-			if (GuildName.Length != CsprotoConstants.CS_MAX_GUILD_NAME_LEN)
+			if (GuildName.Length > (CsprotoConstants.CS_MAX_GUILD_NAME_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'GuildName' should be of length of {CsprotoConstants.CS_MAX_GUILD_NAME_LEN} but was {GuildName.Length}.");
+				throw new InvalidOperationException($"String length of 'GuildName' should be of length of {(CsprotoConstants.CS_MAX_GUILD_NAME_LEN - 1)} but was {GuildName.Length}.");
 			}
 
 			writer.WriteUTF(GuildName);
 			writer.WriteInt(BestScore);
 			writer.WriteInt(BestScoreTm);
 			writer.WriteChar(AcceptRound);
-			if (TeamName.Length != CsprotoConstants.CS_MAX_TEAM_NAME)
+			if (TeamName.Length > (CsprotoConstants.CS_MAX_TEAM_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'TeamName' should be of length of {CsprotoConstants.CS_MAX_TEAM_NAME} but was {TeamName.Length}.");
+				throw new InvalidOperationException($"String length of 'TeamName' should be of length of {(CsprotoConstants.CS_MAX_TEAM_NAME - 1)} but was {TeamName.Length}.");
 			}
 
 			writer.WriteUTF(TeamName);

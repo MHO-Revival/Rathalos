@@ -33,9 +33,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		public void Serialize(IDataWriter writer)
 		{
 			writer.WriteInt(RoleIndex);
-			if (MacAddress.Length != CsprotoConstants.CS_MAC_ADDRESS_LEN)
+			if (MacAddress.Length > (CsprotoConstants.CS_MAC_ADDRESS_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'MacAddress' should be of length of {CsprotoConstants.CS_MAC_ADDRESS_LEN} but was {MacAddress.Length}.");
+				throw new InvalidOperationException($"String length of 'MacAddress' should be of length of {(CsprotoConstants.CS_MAC_ADDRESS_LEN - 1)} but was {MacAddress.Length}.");
 			}
 
 			writer.WriteUTF(MacAddress);

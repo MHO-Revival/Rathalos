@@ -38,9 +38,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		{
 			writer.WriteInt(MonsterID);
 			writer.WriteByte(Result);
-			if (AiXmlInfo.Length != CsprotoConstants.CS_MAX_GAME_MANAGER_CMD_LEN)
+			if (AiXmlInfo.Length > (CsprotoConstants.CS_MAX_GAME_MANAGER_CMD_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'AiXmlInfo' should be of length of {CsprotoConstants.CS_MAX_GAME_MANAGER_CMD_LEN} but was {AiXmlInfo.Length}.");
+				throw new InvalidOperationException($"String length of 'AiXmlInfo' should be of length of {(CsprotoConstants.CS_MAX_GAME_MANAGER_CMD_LEN - 1)} but was {AiXmlInfo.Length}.");
 			}
 
 			writer.WriteUTF(AiXmlInfo);

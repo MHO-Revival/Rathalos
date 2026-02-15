@@ -64,16 +64,16 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 			writer.WriteInt(ErrNo);
 			writer.WriteInt(RoleId);
 			writer.WriteInt(InstanceID);
-			if (BattleSvr.Length != CsprotoConstants.CS_MAX_URL_LEN)
+			if (BattleSvr.Length > (CsprotoConstants.CS_MAX_URL_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'BattleSvr' should be of length of {CsprotoConstants.CS_MAX_URL_LEN} but was {BattleSvr.Length}.");
+				throw new InvalidOperationException($"String length of 'BattleSvr' should be of length of {(CsprotoConstants.CS_MAX_URL_LEN - 1)} but was {BattleSvr.Length}.");
 			}
 
 			writer.WriteUTF(BattleSvr);
 			writer.WriteInt(ServiceID);
-			if (Key.Length != CsprotoConstants.CS_MAX_KEY_LEN)
+			if (Key.Length > (CsprotoConstants.CS_MAX_KEY_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Key' should be of length of {CsprotoConstants.CS_MAX_KEY_LEN} but was {Key.Length}.");
+				throw new InvalidOperationException($"String length of 'Key' should be of length of {(CsprotoConstants.CS_MAX_KEY_LEN - 1)} but was {Key.Length}.");
 			}
 
 			writer.WriteUTF(Key);

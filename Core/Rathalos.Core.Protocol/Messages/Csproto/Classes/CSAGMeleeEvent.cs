@@ -41,15 +41,15 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 			writer.WriteUInt(NetObjId);
 			writer.WriteUInt(Event);
 			writer.WriteUShort(Flags);
-			if (Ptr_str.Length != CsprotoConstants.CS_MAX_AG_MELEE_EVENT_STR_SIZE)
+			if (Ptr_str.Length > (CsprotoConstants.CS_MAX_AG_MELEE_EVENT_STR_SIZE - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Ptr_str' should be of length of {CsprotoConstants.CS_MAX_AG_MELEE_EVENT_STR_SIZE} but was {Ptr_str.Length}.");
+				throw new InvalidOperationException($"String length of 'Ptr_str' should be of length of {(CsprotoConstants.CS_MAX_AG_MELEE_EVENT_STR_SIZE - 1)} but was {Ptr_str.Length}.");
 			}
 
 			writer.WriteUTF(Ptr_str);
-			if (Param_str.Length != CsprotoConstants.CS_MAX_AG_MELEE_EVENT_STR_SIZE)
+			if (Param_str.Length > (CsprotoConstants.CS_MAX_AG_MELEE_EVENT_STR_SIZE - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Param_str' should be of length of {CsprotoConstants.CS_MAX_AG_MELEE_EVENT_STR_SIZE} but was {Param_str.Length}.");
+				throw new InvalidOperationException($"String length of 'Param_str' should be of length of {(CsprotoConstants.CS_MAX_AG_MELEE_EVENT_STR_SIZE - 1)} but was {Param_str.Length}.");
 			}
 
 			writer.WriteUTF(Param_str);

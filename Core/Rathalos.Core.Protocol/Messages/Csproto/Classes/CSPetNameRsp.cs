@@ -43,9 +43,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 			writer.WriteInt(ErrCode);
 			writer.WriteInt(Idx);
 			writer.WriteInt(UID);
-			if (Name.Length != CsprotoConstants.CS_MAX_PET_NAME)
+			if (Name.Length > (CsprotoConstants.CS_MAX_PET_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Name' should be of length of {CsprotoConstants.CS_MAX_PET_NAME} but was {Name.Length}.");
+				throw new InvalidOperationException($"String length of 'Name' should be of length of {(CsprotoConstants.CS_MAX_PET_NAME - 1)} but was {Name.Length}.");
 			}
 
 			writer.WriteUTF(Name);

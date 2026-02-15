@@ -53,9 +53,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 			writer.WriteUInt(TargetID);
 			AttachOffset?.Serialize(writer);
 			AttachRotation?.Serialize(writer);
-			if (AttachmentName.Length != CsprotoConstants.CS_MAX_BONE_NAME)
+			if (AttachmentName.Length > (CsprotoConstants.CS_MAX_BONE_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'AttachmentName' should be of length of {CsprotoConstants.CS_MAX_BONE_NAME} but was {AttachmentName.Length}.");
+				throw new InvalidOperationException($"String length of 'AttachmentName' should be of length of {(CsprotoConstants.CS_MAX_BONE_NAME - 1)} but was {AttachmentName.Length}.");
 			}
 
 			writer.WriteUTF(AttachmentName);

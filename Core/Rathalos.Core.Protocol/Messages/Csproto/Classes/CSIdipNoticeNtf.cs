@@ -48,9 +48,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 			writer.WriteInt(RollCnt);
 			writer.WriteByte(RollSpeed);
 			writer.WriteByte(PreLevel);
-			if (SContent.Length != CsprotoConstants.CS_MAX_NOTICE_CONTENT_LEN)
+			if (SContent.Length > (CsprotoConstants.CS_MAX_NOTICE_CONTENT_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'SContent' should be of length of {CsprotoConstants.CS_MAX_NOTICE_CONTENT_LEN} but was {SContent.Length}.");
+				throw new InvalidOperationException($"String length of 'SContent' should be of length of {(CsprotoConstants.CS_MAX_NOTICE_CONTENT_LEN - 1)} but was {SContent.Length}.");
 			}
 
 			writer.WriteUTF(SContent);

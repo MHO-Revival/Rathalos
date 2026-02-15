@@ -53,17 +53,17 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		public void Serialize(IDataWriter writer)
 		{
 			writer.WriteUInt(KillerNetID);
-			if (KillerName.Length != CsprotoConstants.CS_MAX_ROLE_NAME)
+			if (KillerName.Length > (CsprotoConstants.CS_MAX_ROLE_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'KillerName' should be of length of {CsprotoConstants.CS_MAX_ROLE_NAME} but was {KillerName.Length}.");
+				throw new InvalidOperationException($"String length of 'KillerName' should be of length of {(CsprotoConstants.CS_MAX_ROLE_NAME - 1)} but was {KillerName.Length}.");
 			}
 
 			writer.WriteUTF(KillerName);
 			writer.WriteInt(KillerCampType);
 			writer.WriteUInt(BeKillerNetID);
-			if (BeKillerName.Length != CsprotoConstants.CS_MAX_ROLE_NAME)
+			if (BeKillerName.Length > (CsprotoConstants.CS_MAX_ROLE_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'BeKillerName' should be of length of {CsprotoConstants.CS_MAX_ROLE_NAME} but was {BeKillerName.Length}.");
+				throw new InvalidOperationException($"String length of 'BeKillerName' should be of length of {(CsprotoConstants.CS_MAX_ROLE_NAME - 1)} but was {BeKillerName.Length}.");
 			}
 
 			writer.WriteUTF(BeKillerName);

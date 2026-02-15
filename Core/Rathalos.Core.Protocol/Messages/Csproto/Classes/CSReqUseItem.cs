@@ -53,9 +53,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 			writer.WriteUShort(SrcIndex);
 			writer.WriteInt(Param1);
 			writer.WriteInt(Param2);
-			if (ExtParam.Length != CsprotoConstants.CS_MAX_ROLE_NAME)
+			if (ExtParam.Length > (CsprotoConstants.CS_MAX_ROLE_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'ExtParam' should be of length of {CsprotoConstants.CS_MAX_ROLE_NAME} but was {ExtParam.Length}.");
+				throw new InvalidOperationException($"String length of 'ExtParam' should be of length of {(CsprotoConstants.CS_MAX_ROLE_NAME - 1)} but was {ExtParam.Length}.");
 			}
 
 			writer.WriteUTF(ExtParam);

@@ -30,9 +30,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		{
 			writer.WriteUInt(Seq);
 			writer.WriteInt(Result);
-			if (SetSlppUrl.Length != CsprotoConstants.CS_MAX_SENSITIVE_VERIFY_URL_LEN)
+			if (SetSlppUrl.Length > (CsprotoConstants.CS_MAX_SENSITIVE_VERIFY_URL_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'SetSlppUrl' should be of length of {CsprotoConstants.CS_MAX_SENSITIVE_VERIFY_URL_LEN} but was {SetSlppUrl.Length}.");
+				throw new InvalidOperationException($"String length of 'SetSlppUrl' should be of length of {(CsprotoConstants.CS_MAX_SENSITIVE_VERIFY_URL_LEN - 1)} but was {SetSlppUrl.Length}.");
 			}
 
 			writer.WriteUTF(SetSlppUrl);

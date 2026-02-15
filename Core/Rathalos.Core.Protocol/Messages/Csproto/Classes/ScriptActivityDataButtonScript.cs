@@ -37,17 +37,17 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		/// <param name="writer">The data writer to serialize to.</param>
 		public void Serialize(IDataWriter writer)
 		{
-			if (Label.Length != CsprotoConstants.CS_SACTIVITY_BUTTON_LABEL_LENGTH)
+			if (Label.Length > (CsprotoConstants.CS_SACTIVITY_BUTTON_LABEL_LENGTH - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Label' should be of length of {CsprotoConstants.CS_SACTIVITY_BUTTON_LABEL_LENGTH} but was {Label.Length}.");
+				throw new InvalidOperationException($"String length of 'Label' should be of length of {(CsprotoConstants.CS_SACTIVITY_BUTTON_LABEL_LENGTH - 1)} but was {Label.Length}.");
 			}
 
 			writer.WriteUTF(Label);
 			writer.WriteInt(CondParam1);
 			writer.WriteInt(CondParam2);
-			if (Script.Length != CsprotoConstants.CS_SACTIVITY_BUTTON_LABEL_LENGTH)
+			if (Script.Length > (CsprotoConstants.CS_SACTIVITY_BUTTON_LABEL_LENGTH - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Script' should be of length of {CsprotoConstants.CS_SACTIVITY_BUTTON_LABEL_LENGTH} but was {Script.Length}.");
+				throw new InvalidOperationException($"String length of 'Script' should be of length of {(CsprotoConstants.CS_SACTIVITY_BUTTON_LABEL_LENGTH - 1)} but was {Script.Length}.");
 			}
 
 			writer.WriteUTF(Script);

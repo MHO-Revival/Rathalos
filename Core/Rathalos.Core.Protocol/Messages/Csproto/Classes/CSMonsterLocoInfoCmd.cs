@@ -38,9 +38,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		{
 			writer.WriteInt(Cmd);
 			writer.WriteInt(Param);
-			if (Filter.Length != CsprotoConstants.CS_MAX_COMMON_NAME)
+			if (Filter.Length > (CsprotoConstants.CS_MAX_COMMON_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Filter' should be of length of {CsprotoConstants.CS_MAX_COMMON_NAME} but was {Filter.Length}.");
+				throw new InvalidOperationException($"String length of 'Filter' should be of length of {(CsprotoConstants.CS_MAX_COMMON_NAME - 1)} but was {Filter.Length}.");
 			}
 
 			writer.WriteUTF(Filter);

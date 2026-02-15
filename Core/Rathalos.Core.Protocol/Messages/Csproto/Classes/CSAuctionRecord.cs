@@ -69,9 +69,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		{
 			writer.WriteULong(RecordId);
 			writer.WriteULong(DBId);
-			if (RoleName.Length != CsprotoConstants.CS_MAX_ROLE_NAME)
+			if (RoleName.Length > (CsprotoConstants.CS_MAX_ROLE_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'RoleName' should be of length of {CsprotoConstants.CS_MAX_ROLE_NAME} but was {RoleName.Length}.");
+				throw new InvalidOperationException($"String length of 'RoleName' should be of length of {(CsprotoConstants.CS_MAX_ROLE_NAME - 1)} but was {RoleName.Length}.");
 			}
 
 			writer.WriteUTF(RoleName);
@@ -81,9 +81,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 			writer.WriteUInt(MaxPrice);
 			writer.WriteUInt(CurPrice);
 			writer.WriteULong(BidDBId);
-			if (BidRoleName.Length != CsprotoConstants.CS_MAX_ROLE_NAME)
+			if (BidRoleName.Length > (CsprotoConstants.CS_MAX_ROLE_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'BidRoleName' should be of length of {CsprotoConstants.CS_MAX_ROLE_NAME} but was {BidRoleName.Length}.");
+				throw new InvalidOperationException($"String length of 'BidRoleName' should be of length of {(CsprotoConstants.CS_MAX_ROLE_NAME - 1)} but was {BidRoleName.Length}.");
 			}
 
 			writer.WriteUTF(BidRoleName);

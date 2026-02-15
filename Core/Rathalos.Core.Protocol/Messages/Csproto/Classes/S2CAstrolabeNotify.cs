@@ -55,15 +55,15 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 			writer.WriteInt(Type);
 			writer.WriteInt(Arg1);
 			writer.WriteInt(Arg2);
-			if (Arg3.Length != CsprotoConstants.CS_MAX_ASTROLABE_STR_LEN)
+			if (Arg3.Length > (CsprotoConstants.CS_MAX_ASTROLABE_STR_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Arg3' should be of length of {CsprotoConstants.CS_MAX_ASTROLABE_STR_LEN} but was {Arg3.Length}.");
+				throw new InvalidOperationException($"String length of 'Arg3' should be of length of {(CsprotoConstants.CS_MAX_ASTROLABE_STR_LEN - 1)} but was {Arg3.Length}.");
 			}
 
 			writer.WriteUTF(Arg3);
-			if (Arg4.Length != CsprotoConstants.CS_MAX_ASTROLABE_STR_LEN)
+			if (Arg4.Length > (CsprotoConstants.CS_MAX_ASTROLABE_STR_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Arg4' should be of length of {CsprotoConstants.CS_MAX_ASTROLABE_STR_LEN} but was {Arg4.Length}.");
+				throw new InvalidOperationException($"String length of 'Arg4' should be of length of {(CsprotoConstants.CS_MAX_ASTROLABE_STR_LEN - 1)} but was {Arg4.Length}.");
 			}
 
 			writer.WriteUTF(Arg4);

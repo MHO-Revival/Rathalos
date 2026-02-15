@@ -24,9 +24,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		public void Serialize(IDataWriter writer)
 		{
 			writer.WriteInt(RegionId);
-			if (RegionWeather.Length != CsprotoConstants.CS_MAX_WEATHER_NAME_LEN)
+			if (RegionWeather.Length > (CsprotoConstants.CS_MAX_WEATHER_NAME_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'RegionWeather' should be of length of {CsprotoConstants.CS_MAX_WEATHER_NAME_LEN} but was {RegionWeather.Length}.");
+				throw new InvalidOperationException($"String length of 'RegionWeather' should be of length of {(CsprotoConstants.CS_MAX_WEATHER_NAME_LEN - 1)} but was {RegionWeather.Length}.");
 			}
 
 			writer.WriteUTF(RegionWeather);

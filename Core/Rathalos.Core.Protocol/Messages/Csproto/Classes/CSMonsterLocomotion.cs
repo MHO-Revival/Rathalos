@@ -167,15 +167,15 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 			writer.WriteByte(SteeringEnabled);
 			writer.WriteLong(SyncTime);
 			writer.WriteUInt(MonsterID);
-			if (AnimSeqName.Length != CsprotoConstants.CS_MAX_ANIM_SEQ_NAME)
+			if (AnimSeqName.Length > (CsprotoConstants.CS_MAX_ANIM_SEQ_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'AnimSeqName' should be of length of {CsprotoConstants.CS_MAX_ANIM_SEQ_NAME} but was {AnimSeqName.Length}.");
+				throw new InvalidOperationException($"String length of 'AnimSeqName' should be of length of {(CsprotoConstants.CS_MAX_ANIM_SEQ_NAME - 1)} but was {AnimSeqName.Length}.");
 			}
 
 			writer.WriteUTF(AnimSeqName);
-			if (PartBoneName.Length != CsprotoConstants.CS_MAX_BONE_NAME)
+			if (PartBoneName.Length > (CsprotoConstants.CS_MAX_BONE_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'PartBoneName' should be of length of {CsprotoConstants.CS_MAX_BONE_NAME} but was {PartBoneName.Length}.");
+				throw new InvalidOperationException($"String length of 'PartBoneName' should be of length of {(CsprotoConstants.CS_MAX_BONE_NAME - 1)} but was {PartBoneName.Length}.");
 			}
 
 			writer.WriteUTF(PartBoneName);

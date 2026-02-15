@@ -45,15 +45,15 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		public void Serialize(IDataWriter writer)
 		{
 			writer.WriteInt(ChannelType);
-			if (Content.Length != CsprotoConstants.MAX_CHAT_CONTENT_LEN)
+			if (Content.Length > (CsprotoConstants.MAX_CHAT_CONTENT_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Content' should be of length of {CsprotoConstants.MAX_CHAT_CONTENT_LEN} but was {Content.Length}.");
+				throw new InvalidOperationException($"String length of 'Content' should be of length of {(CsprotoConstants.MAX_CHAT_CONTENT_LEN - 1)} but was {Content.Length}.");
 			}
 
 			writer.WriteUTF(Content);
-			if (TargetName.Length != CsprotoConstants.CS_MAX_ROLE_NAME)
+			if (TargetName.Length > (CsprotoConstants.CS_MAX_ROLE_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'TargetName' should be of length of {CsprotoConstants.CS_MAX_ROLE_NAME} but was {TargetName.Length}.");
+				throw new InvalidOperationException($"String length of 'TargetName' should be of length of {(CsprotoConstants.CS_MAX_ROLE_NAME - 1)} but was {TargetName.Length}.");
 			}
 
 			writer.WriteUTF(TargetName);

@@ -33,9 +33,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		public void Serialize(IDataWriter writer)
 		{
 			writer.WriteInt(Reason);
-			if (LogInfo.Length != CsprotoConstants.MAX_CHAT_CONTENT_LEN)
+			if (LogInfo.Length > (CsprotoConstants.MAX_CHAT_CONTENT_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'LogInfo' should be of length of {CsprotoConstants.MAX_CHAT_CONTENT_LEN} but was {LogInfo.Length}.");
+				throw new InvalidOperationException($"String length of 'LogInfo' should be of length of {(CsprotoConstants.MAX_CHAT_CONTENT_LEN - 1)} but was {LogInfo.Length}.");
 			}
 
 			writer.WriteUTF(LogInfo);

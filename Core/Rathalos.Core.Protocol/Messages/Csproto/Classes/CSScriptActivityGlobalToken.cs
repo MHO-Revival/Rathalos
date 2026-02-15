@@ -27,9 +27,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		/// <param name="writer">The data writer to serialize to.</param>
 		public void Serialize(IDataWriter writer)
 		{
-			if (Key.Length != 128)
+			if (Key.Length > (128 - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Key' should be of length of {128} but was {Key.Length}.");
+				throw new InvalidOperationException($"String length of 'Key' should be of length of {(128 - 1)} but was {Key.Length}.");
 			}
 
 			writer.WriteUTF(Key);

@@ -40,27 +40,27 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		/// <param name="writer">The data writer to serialize to.</param>
 		public void Serialize(IDataWriter writer)
 		{
-			if (CmdName.Length != CsprotoConstants.CS_MAX_KEY_LEN)
+			if (CmdName.Length > (CsprotoConstants.CS_MAX_KEY_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'CmdName' should be of length of {CsprotoConstants.CS_MAX_KEY_LEN} but was {CmdName.Length}.");
+				throw new InvalidOperationException($"String length of 'CmdName' should be of length of {(CsprotoConstants.CS_MAX_KEY_LEN - 1)} but was {CmdName.Length}.");
 			}
 
 			writer.WriteUTF(CmdName);
-			if (Param1.Length != CsprotoConstants.CS_MAX_KEY_LEN)
+			if (Param1.Length > (CsprotoConstants.CS_MAX_KEY_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Param1' should be of length of {CsprotoConstants.CS_MAX_KEY_LEN} but was {Param1.Length}.");
+				throw new InvalidOperationException($"String length of 'Param1' should be of length of {(CsprotoConstants.CS_MAX_KEY_LEN - 1)} but was {Param1.Length}.");
 			}
 
 			writer.WriteUTF(Param1);
-			if (Param2.Length != CsprotoConstants.CS_MAX_KEY_LEN)
+			if (Param2.Length > (CsprotoConstants.CS_MAX_KEY_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Param2' should be of length of {CsprotoConstants.CS_MAX_KEY_LEN} but was {Param2.Length}.");
+				throw new InvalidOperationException($"String length of 'Param2' should be of length of {(CsprotoConstants.CS_MAX_KEY_LEN - 1)} but was {Param2.Length}.");
 			}
 
 			writer.WriteUTF(Param2);
-			if (Param3.Length != CsprotoConstants.CS_MAX_NOTICE_CONTENT_LEN)
+			if (Param3.Length > (CsprotoConstants.CS_MAX_NOTICE_CONTENT_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Param3' should be of length of {CsprotoConstants.CS_MAX_NOTICE_CONTENT_LEN} but was {Param3.Length}.");
+				throw new InvalidOperationException($"String length of 'Param3' should be of length of {(CsprotoConstants.CS_MAX_NOTICE_CONTENT_LEN - 1)} but was {Param3.Length}.");
 			}
 
 			writer.WriteUTF(Param3);

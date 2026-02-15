@@ -106,15 +106,15 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		public void Serialize(IDataWriter writer)
 		{
 			writer.WriteUInt(NetID);
-			if (EntityName.Length != CsprotoConstants.CS_MAX_ROLE_NAME)
+			if (EntityName.Length > (CsprotoConstants.CS_MAX_ROLE_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'EntityName' should be of length of {CsprotoConstants.CS_MAX_ROLE_NAME} but was {EntityName.Length}.");
+				throw new InvalidOperationException($"String length of 'EntityName' should be of length of {(CsprotoConstants.CS_MAX_ROLE_NAME - 1)} but was {EntityName.Length}.");
 			}
 
 			writer.WriteUTF(EntityName);
-			if (ClassName.Length != CsprotoConstants.CS_MAX_ROLE_NAME)
+			if (ClassName.Length > (CsprotoConstants.CS_MAX_ROLE_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'ClassName' should be of length of {CsprotoConstants.CS_MAX_ROLE_NAME} but was {ClassName.Length}.");
+				throw new InvalidOperationException($"String length of 'ClassName' should be of length of {(CsprotoConstants.CS_MAX_ROLE_NAME - 1)} but was {ClassName.Length}.");
 			}
 
 			writer.WriteUTF(ClassName);
@@ -140,16 +140,16 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 				writer.WriteByte(UsrData[i]);
 			}
 			writer.WriteULong(EntGUID);
-			if (PropertityFile.Length != 64)
+			if (PropertityFile.Length > (64 - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'PropertityFile' should be of length of {64} but was {PropertityFile.Length}.");
+				throw new InvalidOperationException($"String length of 'PropertityFile' should be of length of {(64 - 1)} but was {PropertityFile.Length}.");
 			}
 
 			writer.WriteUTF(PropertityFile);
 			writer.WriteShort(MHSpawnType);
-			if (BTState.Length != CsprotoConstants.CS_MAX_LENGTH_FOR_OBJ_STATENAME)
+			if (BTState.Length > (CsprotoConstants.CS_MAX_LENGTH_FOR_OBJ_STATENAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'BTState' should be of length of {CsprotoConstants.CS_MAX_LENGTH_FOR_OBJ_STATENAME} but was {BTState.Length}.");
+				throw new InvalidOperationException($"String length of 'BTState' should be of length of {(CsprotoConstants.CS_MAX_LENGTH_FOR_OBJ_STATENAME - 1)} but was {BTState.Length}.");
 			}
 
 			writer.WriteUTF(BTState);

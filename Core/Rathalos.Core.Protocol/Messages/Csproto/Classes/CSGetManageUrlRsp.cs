@@ -38,9 +38,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		{
 			writer.WriteUInt(Type);
 			writer.WriteUInt(Result);
-			if (Url.Length != CsprotoConstants.CS_MAX_SENSITIVE_VERIFY_URL_LEN)
+			if (Url.Length > (CsprotoConstants.CS_MAX_SENSITIVE_VERIFY_URL_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Url' should be of length of {CsprotoConstants.CS_MAX_SENSITIVE_VERIFY_URL_LEN} but was {Url.Length}.");
+				throw new InvalidOperationException($"String length of 'Url' should be of length of {(CsprotoConstants.CS_MAX_SENSITIVE_VERIFY_URL_LEN - 1)} but was {Url.Length}.");
 			}
 
 			writer.WriteUTF(Url);

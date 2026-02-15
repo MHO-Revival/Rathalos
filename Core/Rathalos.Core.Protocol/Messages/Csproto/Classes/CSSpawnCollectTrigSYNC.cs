@@ -50,9 +50,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		{
 			writer.WriteInt(ItemID);
 			BoxParam?.Serialize(writer);
-			if (TriggerType.Length != CsprotoConstants.CS_MAX_TRIG_TYPE_LEN)
+			if (TriggerType.Length > (CsprotoConstants.CS_MAX_TRIG_TYPE_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'TriggerType' should be of length of {CsprotoConstants.CS_MAX_TRIG_TYPE_LEN} but was {TriggerType.Length}.");
+				throw new InvalidOperationException($"String length of 'TriggerType' should be of length of {(CsprotoConstants.CS_MAX_TRIG_TYPE_LEN - 1)} but was {TriggerType.Length}.");
 			}
 
 			writer.WriteUTF(TriggerType);

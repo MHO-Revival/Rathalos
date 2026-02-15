@@ -25,9 +25,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		/// <param name="writer">The data writer to serialize to.</param>
 		public void Serialize(IDataWriter writer)
 		{
-			if (StateName.Length != CsprotoConstants.CS_MAX_BB_STRING_VALUE_LEN)
+			if (StateName.Length > (CsprotoConstants.CS_MAX_BB_STRING_VALUE_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'StateName' should be of length of {CsprotoConstants.CS_MAX_BB_STRING_VALUE_LEN} but was {StateName.Length}.");
+				throw new InvalidOperationException($"String length of 'StateName' should be of length of {(CsprotoConstants.CS_MAX_BB_STRING_VALUE_LEN - 1)} but was {StateName.Length}.");
 			}
 
 			writer.WriteUTF(StateName);

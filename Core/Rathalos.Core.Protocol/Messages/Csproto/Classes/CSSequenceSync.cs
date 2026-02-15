@@ -45,9 +45,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		public void Serialize(IDataWriter writer)
 		{
 			writer.WriteUInt(LogicEntity);
-			if (SeqName.Length != CsprotoConstants.CS_MAX_SEQ_NAME)
+			if (SeqName.Length > (CsprotoConstants.CS_MAX_SEQ_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'SeqName' should be of length of {CsprotoConstants.CS_MAX_SEQ_NAME} but was {SeqName.Length}.");
+				throw new InvalidOperationException($"String length of 'SeqName' should be of length of {(CsprotoConstants.CS_MAX_SEQ_NAME - 1)} but was {SeqName.Length}.");
 			}
 
 			writer.WriteUTF(SeqName);

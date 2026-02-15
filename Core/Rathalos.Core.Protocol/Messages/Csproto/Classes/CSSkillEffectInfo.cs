@@ -48,9 +48,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 			writer.WriteInt(SkillID);
 			writer.WriteInt(SkillLevel);
 			writer.WriteInt(Type);
-			if (EventName.Length != CsprotoConstants.CS_MAX_SKILL_EVENT_NAME_LEN)
+			if (EventName.Length > (CsprotoConstants.CS_MAX_SKILL_EVENT_NAME_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'EventName' should be of length of {CsprotoConstants.CS_MAX_SKILL_EVENT_NAME_LEN} but was {EventName.Length}.");
+				throw new InvalidOperationException($"String length of 'EventName' should be of length of {(CsprotoConstants.CS_MAX_SKILL_EVENT_NAME_LEN - 1)} but was {EventName.Length}.");
 			}
 
 			writer.WriteUTF(EventName);

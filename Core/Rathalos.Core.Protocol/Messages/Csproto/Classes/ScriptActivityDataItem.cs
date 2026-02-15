@@ -95,28 +95,28 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 			writer.WriteByte(CondId);
 			writer.WriteInt(CondParam1);
 			writer.WriteInt(CondParam2);
-			if (CondParam.Length != CsprotoConstants.CS_SACTIVITY_CONDITION_PARAM_LENGTH)
+			if (CondParam.Length > (CsprotoConstants.CS_SACTIVITY_CONDITION_PARAM_LENGTH - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'CondParam' should be of length of {CsprotoConstants.CS_SACTIVITY_CONDITION_PARAM_LENGTH} but was {CondParam.Length}.");
+				throw new InvalidOperationException($"String length of 'CondParam' should be of length of {(CsprotoConstants.CS_SACTIVITY_CONDITION_PARAM_LENGTH - 1)} but was {CondParam.Length}.");
 			}
 
 			writer.WriteUTF(CondParam);
 			writer.WriteShort(GetCountMax);
-			if (Desc.Length != CsprotoConstants.CS_SACTIVITY_ITEM_DESC_LENGTH)
+			if (Desc.Length > (CsprotoConstants.CS_SACTIVITY_ITEM_DESC_LENGTH - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Desc' should be of length of {CsprotoConstants.CS_SACTIVITY_ITEM_DESC_LENGTH} but was {Desc.Length}.");
+				throw new InvalidOperationException($"String length of 'Desc' should be of length of {(CsprotoConstants.CS_SACTIVITY_ITEM_DESC_LENGTH - 1)} but was {Desc.Length}.");
 			}
 
 			writer.WriteUTF(Desc);
-			if (CondArg1.Length != CsprotoConstants.CS_SACTIVITY_PARAM_LENGTH)
+			if (CondArg1.Length > (CsprotoConstants.CS_SACTIVITY_PARAM_LENGTH - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'CondArg1' should be of length of {CsprotoConstants.CS_SACTIVITY_PARAM_LENGTH} but was {CondArg1.Length}.");
+				throw new InvalidOperationException($"String length of 'CondArg1' should be of length of {(CsprotoConstants.CS_SACTIVITY_PARAM_LENGTH - 1)} but was {CondArg1.Length}.");
 			}
 
 			writer.WriteUTF(CondArg1);
-			if (CondArg2.Length != CsprotoConstants.CS_SACTIVITY_PARAM_LENGTH)
+			if (CondArg2.Length > (CsprotoConstants.CS_SACTIVITY_PARAM_LENGTH - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'CondArg2' should be of length of {CsprotoConstants.CS_SACTIVITY_PARAM_LENGTH} but was {CondArg2.Length}.");
+				throw new InvalidOperationException($"String length of 'CondArg2' should be of length of {(CsprotoConstants.CS_SACTIVITY_PARAM_LENGTH - 1)} but was {CondArg2.Length}.");
 			}
 
 			writer.WriteUTF(CondArg2);

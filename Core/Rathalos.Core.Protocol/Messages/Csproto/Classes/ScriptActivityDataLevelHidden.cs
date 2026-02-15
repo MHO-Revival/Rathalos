@@ -33,21 +33,21 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		/// <param name="writer">The data writer to serialize to.</param>
 		public void Serialize(IDataWriter writer)
 		{
-			if (Groups.Length != CsprotoConstants.CS_SACTIVITY_PARAM_LENGTH)
+			if (Groups.Length > (CsprotoConstants.CS_SACTIVITY_PARAM_LENGTH - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Groups' should be of length of {CsprotoConstants.CS_SACTIVITY_PARAM_LENGTH} but was {Groups.Length}.");
+				throw new InvalidOperationException($"String length of 'Groups' should be of length of {(CsprotoConstants.CS_SACTIVITY_PARAM_LENGTH - 1)} but was {Groups.Length}.");
 			}
 
 			writer.WriteUTF(Groups);
-			if (SubGroups.Length != CsprotoConstants.CS_SACTIVITY_PARAM_LENGTH)
+			if (SubGroups.Length > (CsprotoConstants.CS_SACTIVITY_PARAM_LENGTH - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'SubGroups' should be of length of {CsprotoConstants.CS_SACTIVITY_PARAM_LENGTH} but was {SubGroups.Length}.");
+				throw new InvalidOperationException($"String length of 'SubGroups' should be of length of {(CsprotoConstants.CS_SACTIVITY_PARAM_LENGTH - 1)} but was {SubGroups.Length}.");
 			}
 
 			writer.WriteUTF(SubGroups);
-			if (Levels.Length != CsprotoConstants.CS_SACTIVITY_LEVEL_LENGTH)
+			if (Levels.Length > (CsprotoConstants.CS_SACTIVITY_LEVEL_LENGTH - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Levels' should be of length of {CsprotoConstants.CS_SACTIVITY_LEVEL_LENGTH} but was {Levels.Length}.");
+				throw new InvalidOperationException($"String length of 'Levels' should be of length of {(CsprotoConstants.CS_SACTIVITY_LEVEL_LENGTH - 1)} but was {Levels.Length}.");
 			}
 
 			writer.WriteUTF(Levels);

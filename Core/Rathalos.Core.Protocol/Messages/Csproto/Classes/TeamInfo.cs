@@ -102,18 +102,18 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		public void Serialize(IDataWriter writer)
 		{
 			writer.WriteUInt(TeamId);
-			if (TeamName.Length != CsprotoConstants.CS_MAX_TEAM_NAME)
+			if (TeamName.Length > (CsprotoConstants.CS_MAX_TEAM_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'TeamName' should be of length of {CsprotoConstants.CS_MAX_TEAM_NAME} but was {TeamName.Length}.");
+				throw new InvalidOperationException($"String length of 'TeamName' should be of length of {(CsprotoConstants.CS_MAX_TEAM_NAME - 1)} but was {TeamName.Length}.");
 			}
 
 			writer.WriteUTF(TeamName);
 			writer.WriteUInt(MemberMax);
 			writer.WriteInt(FreeJoin);
 			writer.WriteShort(HasPwd);
-			if (Pwd.Length != CsprotoConstants.CS_MAX_ROLE_NAME)
+			if (Pwd.Length > (CsprotoConstants.CS_MAX_ROLE_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Pwd' should be of length of {CsprotoConstants.CS_MAX_ROLE_NAME} but was {Pwd.Length}.");
+				throw new InvalidOperationException($"String length of 'Pwd' should be of length of {(CsprotoConstants.CS_MAX_ROLE_NAME - 1)} but was {Pwd.Length}.");
 			}
 
 			writer.WriteUTF(Pwd);

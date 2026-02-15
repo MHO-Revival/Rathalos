@@ -40,9 +40,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		/// <param name="writer">The data writer to serialize to.</param>
 		public void Serialize(IDataWriter writer)
 		{
-			if (Code.Length != CsprotoConstants.CS_FILE_CHECK_ID_LEN)
+			if (Code.Length > (CsprotoConstants.CS_FILE_CHECK_ID_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Code' should be of length of {CsprotoConstants.CS_FILE_CHECK_ID_LEN} but was {Code.Length}.");
+				throw new InvalidOperationException($"String length of 'Code' should be of length of {(CsprotoConstants.CS_FILE_CHECK_ID_LEN - 1)} but was {Code.Length}.");
 			}
 
 			writer.WriteUTF(Code);

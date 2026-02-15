@@ -68,21 +68,21 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		/// <param name="writer">The data writer to serialize to.</param>
 		public void Serialize(IDataWriter writer)
 		{
-			if (SelectIP.Length != CsprotoConstants.CS_MAX_IP_STRING_LENGTH)
+			if (SelectIP.Length > (CsprotoConstants.CS_MAX_IP_STRING_LENGTH - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'SelectIP' should be of length of {CsprotoConstants.CS_MAX_IP_STRING_LENGTH} but was {SelectIP.Length}.");
+				throw new InvalidOperationException($"String length of 'SelectIP' should be of length of {(CsprotoConstants.CS_MAX_IP_STRING_LENGTH - 1)} but was {SelectIP.Length}.");
 			}
 
 			writer.WriteUTF(SelectIP);
-			if (DomainName.Length != CsprotoConstants.CS_MAX_IP_STRING_LENGTH)
+			if (DomainName.Length > (CsprotoConstants.CS_MAX_IP_STRING_LENGTH - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'DomainName' should be of length of {CsprotoConstants.CS_MAX_IP_STRING_LENGTH} but was {DomainName.Length}.");
+				throw new InvalidOperationException($"String length of 'DomainName' should be of length of {(CsprotoConstants.CS_MAX_IP_STRING_LENGTH - 1)} but was {DomainName.Length}.");
 			}
 
 			writer.WriteUTF(DomainName);
-			if (DomainAnalyseIP.Length != CsprotoConstants.CS_MAX_IP_STRING_LENGTH)
+			if (DomainAnalyseIP.Length > (CsprotoConstants.CS_MAX_IP_STRING_LENGTH - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'DomainAnalyseIP' should be of length of {CsprotoConstants.CS_MAX_IP_STRING_LENGTH} but was {DomainAnalyseIP.Length}.");
+				throw new InvalidOperationException($"String length of 'DomainAnalyseIP' should be of length of {(CsprotoConstants.CS_MAX_IP_STRING_LENGTH - 1)} but was {DomainAnalyseIP.Length}.");
 			}
 
 			writer.WriteUTF(DomainAnalyseIP);

@@ -54,17 +54,17 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		{
 			writer.WriteUInt(AttachToNetObjId);
 			writer.WriteFloat(Scale);
-			if (Effect.Length != CsprotoConstants.CS_MAX_EFFECT_NAME_LEN)
+			if (Effect.Length > (CsprotoConstants.CS_MAX_EFFECT_NAME_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Effect' should be of length of {CsprotoConstants.CS_MAX_EFFECT_NAME_LEN} but was {Effect.Length}.");
+				throw new InvalidOperationException($"String length of 'Effect' should be of length of {(CsprotoConstants.CS_MAX_EFFECT_NAME_LEN - 1)} but was {Effect.Length}.");
 			}
 
 			writer.WriteUTF(Effect);
 			LocalDir?.Serialize(writer);
 			Offset?.Serialize(writer);
-			if (BoneName.Length != CsprotoConstants.CS_MAX_PART_NAME)
+			if (BoneName.Length > (CsprotoConstants.CS_MAX_PART_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'BoneName' should be of length of {CsprotoConstants.CS_MAX_PART_NAME} but was {BoneName.Length}.");
+				throw new InvalidOperationException($"String length of 'BoneName' should be of length of {(CsprotoConstants.CS_MAX_PART_NAME - 1)} but was {BoneName.Length}.");
 			}
 
 			writer.WriteUTF(BoneName);

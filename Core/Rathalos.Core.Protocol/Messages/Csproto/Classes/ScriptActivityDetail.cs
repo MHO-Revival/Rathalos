@@ -81,45 +81,45 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 			writer.WriteUInt(StartTime);
 			writer.WriteUInt(StopTime);
 			writer.WriteUInt(ShowTime);
-			if (Name.Length != CsprotoConstants.CS_SACTIVITY_NAME_LENGTH)
+			if (Name.Length > (CsprotoConstants.CS_SACTIVITY_NAME_LENGTH - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Name' should be of length of {CsprotoConstants.CS_SACTIVITY_NAME_LENGTH} but was {Name.Length}.");
+				throw new InvalidOperationException($"String length of 'Name' should be of length of {(CsprotoConstants.CS_SACTIVITY_NAME_LENGTH - 1)} but was {Name.Length}.");
 			}
 
 			writer.WriteUTF(Name);
-			if (Note.Length != CsprotoConstants.CS_SACTIVITY_NAME_LENGTH)
+			if (Note.Length > (CsprotoConstants.CS_SACTIVITY_NAME_LENGTH - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Note' should be of length of {CsprotoConstants.CS_SACTIVITY_NAME_LENGTH} but was {Note.Length}.");
+				throw new InvalidOperationException($"String length of 'Note' should be of length of {(CsprotoConstants.CS_SACTIVITY_NAME_LENGTH - 1)} but was {Note.Length}.");
 			}
 
 			writer.WriteUTF(Note);
-			if (Time.Length != CsprotoConstants.CS_SACTIVITY_TIME_LENGTH)
+			if (Time.Length > (CsprotoConstants.CS_SACTIVITY_TIME_LENGTH - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Time' should be of length of {CsprotoConstants.CS_SACTIVITY_TIME_LENGTH} but was {Time.Length}.");
+				throw new InvalidOperationException($"String length of 'Time' should be of length of {(CsprotoConstants.CS_SACTIVITY_TIME_LENGTH - 1)} but was {Time.Length}.");
 			}
 
 			writer.WriteUTF(Time);
-			if (Rule.Length != CsprotoConstants.CS_SACTIVITY_RULE_LENGTH)
+			if (Rule.Length > (CsprotoConstants.CS_SACTIVITY_RULE_LENGTH - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Rule' should be of length of {CsprotoConstants.CS_SACTIVITY_RULE_LENGTH} but was {Rule.Length}.");
+				throw new InvalidOperationException($"String length of 'Rule' should be of length of {(CsprotoConstants.CS_SACTIVITY_RULE_LENGTH - 1)} but was {Rule.Length}.");
 			}
 
 			writer.WriteUTF(Rule);
-			if (Url.Length != CsprotoConstants.CS_SACTIVITY_URL_LENGTH)
+			if (Url.Length > (CsprotoConstants.CS_SACTIVITY_URL_LENGTH - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Url' should be of length of {CsprotoConstants.CS_SACTIVITY_URL_LENGTH} but was {Url.Length}.");
+				throw new InvalidOperationException($"String length of 'Url' should be of length of {(CsprotoConstants.CS_SACTIVITY_URL_LENGTH - 1)} but was {Url.Length}.");
 			}
 
 			writer.WriteUTF(Url);
-			if (Icon.Length != CsprotoConstants.CS_SACTIVITY_ICON_LENGTH)
+			if (Icon.Length > (CsprotoConstants.CS_SACTIVITY_ICON_LENGTH - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Icon' should be of length of {CsprotoConstants.CS_SACTIVITY_ICON_LENGTH} but was {Icon.Length}.");
+				throw new InvalidOperationException($"String length of 'Icon' should be of length of {(CsprotoConstants.CS_SACTIVITY_ICON_LENGTH - 1)} but was {Icon.Length}.");
 			}
 
 			writer.WriteUTF(Icon);
-			if (Bubble.Length != CsprotoConstants.CS_SACTIVITY_BUBBLE_LENGTH)
+			if (Bubble.Length > (CsprotoConstants.CS_SACTIVITY_BUBBLE_LENGTH - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Bubble' should be of length of {CsprotoConstants.CS_SACTIVITY_BUBBLE_LENGTH} but was {Bubble.Length}.");
+				throw new InvalidOperationException($"String length of 'Bubble' should be of length of {(CsprotoConstants.CS_SACTIVITY_BUBBLE_LENGTH - 1)} but was {Bubble.Length}.");
 			}
 
 			writer.WriteUTF(Bubble);

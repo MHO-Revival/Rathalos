@@ -47,15 +47,15 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 			writer.WriteInt(Arg1);
 			writer.WriteInt(Arg2);
 			writer.WriteInt(Arg3);
-			if (Arg4.Length != CsprotoConstants.CS_MAX_ACTIVITY_ARGS_LEN)
+			if (Arg4.Length > (CsprotoConstants.CS_MAX_ACTIVITY_ARGS_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Arg4' should be of length of {CsprotoConstants.CS_MAX_ACTIVITY_ARGS_LEN} but was {Arg4.Length}.");
+				throw new InvalidOperationException($"String length of 'Arg4' should be of length of {(CsprotoConstants.CS_MAX_ACTIVITY_ARGS_LEN - 1)} but was {Arg4.Length}.");
 			}
 
 			writer.WriteUTF(Arg4);
-			if (Arg5.Length != CsprotoConstants.CS_MAX_ACTIVITY_ARGS_LEN)
+			if (Arg5.Length > (CsprotoConstants.CS_MAX_ACTIVITY_ARGS_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Arg5' should be of length of {CsprotoConstants.CS_MAX_ACTIVITY_ARGS_LEN} but was {Arg5.Length}.");
+				throw new InvalidOperationException($"String length of 'Arg5' should be of length of {(CsprotoConstants.CS_MAX_ACTIVITY_ARGS_LEN - 1)} but was {Arg5.Length}.");
 			}
 
 			writer.WriteUTF(Arg5);

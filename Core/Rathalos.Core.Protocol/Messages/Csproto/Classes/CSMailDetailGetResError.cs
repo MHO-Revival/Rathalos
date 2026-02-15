@@ -30,9 +30,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		public void Serialize(IDataWriter writer)
 		{
 			writer.WriteULong(MailID);
-			if (ErrMsg.Length != CsprotoConstants.CS_MAIL_ERROR_STRING)
+			if (ErrMsg.Length > (CsprotoConstants.CS_MAIL_ERROR_STRING - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'ErrMsg' should be of length of {CsprotoConstants.CS_MAIL_ERROR_STRING} but was {ErrMsg.Length}.");
+				throw new InvalidOperationException($"String length of 'ErrMsg' should be of length of {(CsprotoConstants.CS_MAIL_ERROR_STRING - 1)} but was {ErrMsg.Length}.");
 			}
 
 			writer.WriteUTF(ErrMsg);

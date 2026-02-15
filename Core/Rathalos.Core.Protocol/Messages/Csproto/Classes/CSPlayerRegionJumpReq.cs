@@ -33,9 +33,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		public void Serialize(IDataWriter writer)
 		{
 			PlayerPos?.Serialize(writer);
-			if (TriggerName.Length != CsprotoConstants.CS_MAX_REGION_JUMP_TRIGGER_NAME)
+			if (TriggerName.Length > (CsprotoConstants.CS_MAX_REGION_JUMP_TRIGGER_NAME - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'TriggerName' should be of length of {CsprotoConstants.CS_MAX_REGION_JUMP_TRIGGER_NAME} but was {TriggerName.Length}.");
+				throw new InvalidOperationException($"String length of 'TriggerName' should be of length of {(CsprotoConstants.CS_MAX_REGION_JUMP_TRIGGER_NAME - 1)} but was {TriggerName.Length}.");
 			}
 
 			writer.WriteUTF(TriggerName);

@@ -60,9 +60,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		public void Serialize(IDataWriter writer)
 		{
 			Id?.Serialize(writer);
-			if (Note.Length != CsprotoConstants.CS_MAX_CLAN_NOTE_LEN)
+			if (Note.Length > (CsprotoConstants.CS_MAX_CLAN_NOTE_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Note' should be of length of {CsprotoConstants.CS_MAX_CLAN_NOTE_LEN} but was {Note.Length}.");
+				throw new InvalidOperationException($"String length of 'Note' should be of length of {(CsprotoConstants.CS_MAX_CLAN_NOTE_LEN - 1)} but was {Note.Length}.");
 			}
 
 			writer.WriteUTF(Note);

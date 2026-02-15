@@ -45,21 +45,21 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		public void Serialize(IDataWriter writer)
 		{
 			writer.WriteInt(Type);
-			if (Receiver.Length != CsprotoConstants.CS_MAIL_NAME_MAX_LEN)
+			if (Receiver.Length > (CsprotoConstants.CS_MAIL_NAME_MAX_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Receiver' should be of length of {CsprotoConstants.CS_MAIL_NAME_MAX_LEN} but was {Receiver.Length}.");
+				throw new InvalidOperationException($"String length of 'Receiver' should be of length of {(CsprotoConstants.CS_MAIL_NAME_MAX_LEN - 1)} but was {Receiver.Length}.");
 			}
 
 			writer.WriteUTF(Receiver);
-			if (Title.Length != CsprotoConstants.CS_MAIL_TITLE_MAX_LEN)
+			if (Title.Length > (CsprotoConstants.CS_MAIL_TITLE_MAX_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Title' should be of length of {CsprotoConstants.CS_MAIL_TITLE_MAX_LEN} but was {Title.Length}.");
+				throw new InvalidOperationException($"String length of 'Title' should be of length of {(CsprotoConstants.CS_MAIL_TITLE_MAX_LEN - 1)} but was {Title.Length}.");
 			}
 
 			writer.WriteUTF(Title);
-			if (Content.Length != CsprotoConstants.CS_MAIL_CONTENT_MAX_LEN)
+			if (Content.Length > (CsprotoConstants.CS_MAIL_CONTENT_MAX_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Content' should be of length of {CsprotoConstants.CS_MAIL_CONTENT_MAX_LEN} but was {Content.Length}.");
+				throw new InvalidOperationException($"String length of 'Content' should be of length of {(CsprotoConstants.CS_MAIL_CONTENT_MAX_LEN - 1)} but was {Content.Length}.");
 			}
 
 			writer.WriteUTF(Content);

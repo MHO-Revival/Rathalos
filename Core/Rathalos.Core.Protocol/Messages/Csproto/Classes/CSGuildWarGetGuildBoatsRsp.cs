@@ -39,9 +39,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		{
 			writer.WriteUInt(ErrCode);
 			writer.WriteULong(GuildId);
-			if (GuildName.Length != CsprotoConstants.CS_MAX_GUILD_NAME_LEN)
+			if (GuildName.Length > (CsprotoConstants.CS_MAX_GUILD_NAME_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'GuildName' should be of length of {CsprotoConstants.CS_MAX_GUILD_NAME_LEN} but was {GuildName.Length}.");
+				throw new InvalidOperationException($"String length of 'GuildName' should be of length of {(CsprotoConstants.CS_MAX_GUILD_NAME_LEN - 1)} but was {GuildName.Length}.");
 			}
 
 			writer.WriteUTF(GuildName);

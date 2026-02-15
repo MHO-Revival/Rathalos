@@ -36,16 +36,16 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		/// <param name="writer">The data writer to serialize to.</param>
 		public void Serialize(IDataWriter writer)
 		{
-			if (Trigger_name.Length != 256)
+			if (Trigger_name.Length > (256 - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Trigger_name' should be of length of {256} but was {Trigger_name.Length}.");
+				throw new InvalidOperationException($"String length of 'Trigger_name' should be of length of {(256 - 1)} but was {Trigger_name.Length}.");
 			}
 
 			writer.WriteUTF(Trigger_name);
 			writer.WriteInt(LevelId);
-			if (Dstpoint.Length != 256)
+			if (Dstpoint.Length > (256 - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Dstpoint' should be of length of {256} but was {Dstpoint.Length}.");
+				throw new InvalidOperationException($"String length of 'Dstpoint' should be of length of {(256 - 1)} but was {Dstpoint.Length}.");
 			}
 
 			writer.WriteUTF(Dstpoint);

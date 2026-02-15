@@ -24,9 +24,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		public void Serialize(IDataWriter writer)
 		{
 			writer.WriteUInt(EntityID);
-			if (InteractType.Length != CsprotoConstants.CS_SOULBEAST_INTERACTOR_NAME_MAX)
+			if (InteractType.Length > (CsprotoConstants.CS_SOULBEAST_INTERACTOR_NAME_MAX - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'InteractType' should be of length of {CsprotoConstants.CS_SOULBEAST_INTERACTOR_NAME_MAX} but was {InteractType.Length}.");
+				throw new InvalidOperationException($"String length of 'InteractType' should be of length of {(CsprotoConstants.CS_SOULBEAST_INTERACTOR_NAME_MAX - 1)} but was {InteractType.Length}.");
 			}
 
 			writer.WriteUTF(InteractType);

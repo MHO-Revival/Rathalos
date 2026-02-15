@@ -24,9 +24,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		{
 			writer.WriteUInt(CommerceId);
 			writer.WriteUInt(GoodsNumber);
-			if (OwnGuildName.Length != CsprotoConstants.CS_MAX_GUILD_NAME_LEN)
+			if (OwnGuildName.Length > (CsprotoConstants.CS_MAX_GUILD_NAME_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'OwnGuildName' should be of length of {CsprotoConstants.CS_MAX_GUILD_NAME_LEN} but was {OwnGuildName.Length}.");
+				throw new InvalidOperationException($"String length of 'OwnGuildName' should be of length of {(CsprotoConstants.CS_MAX_GUILD_NAME_LEN - 1)} but was {OwnGuildName.Length}.");
 			}
 
 			writer.WriteUTF(OwnGuildName);

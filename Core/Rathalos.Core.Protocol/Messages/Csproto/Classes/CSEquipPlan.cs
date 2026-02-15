@@ -46,9 +46,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		{
 			writer.WriteInt(PlanId);
 			writer.WriteInt(ReNameFlag);
-			if (PlanName.Length != CsprotoConstants.CS_EQUIPPLANNAME_SIZE)
+			if (PlanName.Length > (CsprotoConstants.CS_EQUIPPLANNAME_SIZE - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'PlanName' should be of length of {CsprotoConstants.CS_EQUIPPLANNAME_SIZE} but was {PlanName.Length}.");
+				throw new InvalidOperationException($"String length of 'PlanName' should be of length of {(CsprotoConstants.CS_EQUIPPLANNAME_SIZE - 1)} but was {PlanName.Length}.");
 			}
 
 			writer.WriteUTF(PlanName);

@@ -55,9 +55,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 			writer.WriteInt(Bone);
 			Offset?.Serialize(writer);
 			writer.WriteUInt(Holder);
-			if (CEClassName.Length != 40)
+			if (CEClassName.Length > (40 - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'CEClassName' should be of length of {40} but was {CEClassName.Length}.");
+				throw new InvalidOperationException($"String length of 'CEClassName' should be of length of {(40 - 1)} but was {CEClassName.Length}.");
 			}
 
 			writer.WriteUTF(CEClassName);

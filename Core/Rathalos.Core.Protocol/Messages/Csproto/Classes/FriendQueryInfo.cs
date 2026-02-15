@@ -52,9 +52,9 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 			writer.WriteInt(Level);
 			writer.WriteUInt(LevelID);
 			writer.WriteByte(IsOnline);
-			if (Mood.Length != CsprotoConstants.CS_MOOD_LEN)
+			if (Mood.Length > (CsprotoConstants.CS_MOOD_LEN - 1))
 			{
-				throw new InvalidOperationException($"Array length of 'Mood' should be of length of {CsprotoConstants.CS_MOOD_LEN} but was {Mood.Length}.");
+				throw new InvalidOperationException($"String length of 'Mood' should be of length of {(CsprotoConstants.CS_MOOD_LEN - 1)} but was {Mood.Length}.");
 			}
 
 			writer.WriteUTF(Mood);
