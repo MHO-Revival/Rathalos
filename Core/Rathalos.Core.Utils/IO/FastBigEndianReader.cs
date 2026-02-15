@@ -301,7 +301,7 @@ namespace Rathalos.Core.Utils.IO
 			ushort length = ReadUShort();
 
 			byte[] bytes = ReadBytes(length);
-			return Encoding.UTF8.GetString(bytes);
+			return Encoding.UTF8.GetString(bytes).Replace("\0", "");
 		}
 
 		public string ReadUTF7BitLength()

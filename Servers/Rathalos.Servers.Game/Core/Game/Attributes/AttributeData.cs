@@ -2,12 +2,17 @@
 
 namespace Rathalos.Servers.World.Core.Game.Stats;
 
+public interface IAttributeData
+{
+    public object? ValueAsObject { get; }
+}
+
 /// <summary>
 /// Represents an attribute with its metadata and value.
 /// </summary>
 /// <typeparam name="T">The enum type representing the attribute identifier.</typeparam>
 /// <typeparam name="TValue">The value type of the attribute (int, float, bool, string, etc.).</typeparam>
-public class AttributeData<T, TValue> : IResettable
+public class AttributeData<T, TValue> : IResettable, IAttributeData
     where T : struct, Enum
     where TValue : struct
 {
@@ -15,6 +20,11 @@ public class AttributeData<T, TValue> : IResettable
     /// Gets the attribute identifier.
     /// </summary>
     public T Id { get; }
+
+    /// <summary>
+    /// Gets the value of the attribute as an object.
+    /// </summary>
+    public object? ValueAsObject => Value;
 
     /// <summary>
     /// Gets or sets the current value of the attribute.
@@ -116,10 +126,12 @@ public class AttributeData<T, TValue> : IResettable
 /// <summary>
 /// Represents a string attribute with its metadata and value.
 /// </summary>
-public class StringAttributeData<T> : IResettable
+public class StringAttributeData<T> : IResettable, IAttributeData
     where T : struct, Enum
 {
     public T Id { get; }
+
+    public object? ValueAsObject => Value;
     public string? Value { get; set; }
     public bool Self { get; }
     public bool Bonus { get; }

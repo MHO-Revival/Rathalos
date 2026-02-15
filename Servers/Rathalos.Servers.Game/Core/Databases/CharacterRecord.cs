@@ -14,6 +14,11 @@ public record CharacterRecord : BaseRecord
     public long AccountId { get; set; }
 
     /// <summary>
+    /// Character name.
+    /// </summary>
+    public string Name { get; set; }
+
+    /// <summary>
     /// Character state.
     /// </summary>
     public int RoleState { get; set; }
@@ -61,10 +66,4 @@ public record CharacterRecord : BaseRecord
     /// </summary>
     [Column(TypeName = "jsonb")]
     public Dictionary<PlayerAttributeEnum, string> Attributes { get; set; } = [];
-
-    /// <summary>
-    /// Navigation property to account.
-    /// </summary>
-    [ForeignKey(nameof(AccountId))]
-    public virtual AccountRecord? Account { get; set; }
 }

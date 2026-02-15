@@ -5,6 +5,7 @@ using Rathalos.Servers.World.Core.Network;
 using Rathalos.Core.Utils.Extensions;
 using Rathalos.Servers.World.Core.Databases;
 using Rathalos.Servers.World.Services;
+using Rathalos.Core.Protocol.Messages.Custom.Csproto.Enums;
 
 namespace Rathalos.Servers.World.Handlers.Game.Handlers
 {
@@ -28,29 +29,22 @@ namespace Rathalos.Servers.World.Handlers.Game.Handlers
         public async Task HandleCharacterCreateRequest(WorldClient client, CSRoleCreateInfo message)
         {
             _logger.LogInformation($"Received character create request from account {client.Account.Id} for character name '{message.Name}'.");
-            //var initInfo = RathalosDbService.Instance.Query<>
-            //var record = new CharacterRecord
-            //{
-            //    Name = message.Name,
-            //    AccountId = client.Account.Id,
-            //    Account = client.Account,
-            //    AvatarSetId = 0,
-            //    Experience = 0,
-            //}
-            CharacterService.Instance.CreateCharacter(client, message);
-            SendCharacterCreateResponse(client, 0);
+
+            var result = CharacterService.Instance.CreateCharacter(client, message);
+            SendCharacterCreateResponse(client, result);
+            SendCharacterListResponse(client);
         }
 
-        public static void SendCharacterCreateResponse(WorldClient client, int errorCode)
-        { 
+        public static void SendCharacterCreateResponse(WorldClient client, CreateErrorResultEnum errorCode)
+        {
             client.Send(new CSPkgBodyCreateRoleRsp
             {
                 BanTime = client.Account.IsBannedUntil?.GetUnixTimeStamp() ?? 0,
-                ErrNo = 0,
+                ErrNo = (uint)errorCode,
                 LastLoinRoleIndex = client.GetLastSelectedCharacterId(),
                 RoleList = new CSRoleList
                 {
-                    Role = [.. client.Characters.Select(x => x.GetCSRoleBaseInfo())]
+                    Role = []
                 }
             });
         }

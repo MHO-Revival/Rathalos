@@ -328,6 +328,9 @@ namespace Rathalos.Core.Utils.IO
 		/// <returns></returns>
 		public void WriteUTF(string str)
 		{
+			if (!str.EndsWith('\0'))
+				str += "\0";
+
 			var bytes = Encoding.UTF8.GetBytes(str);
 			var len = bytes.Length;
 			WriteInt(len);

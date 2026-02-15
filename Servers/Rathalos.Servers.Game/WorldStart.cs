@@ -1,9 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Npgsql;
 using Rathalos.Core.ORM;
 using Rathalos.Core.ORM.Extensions;
 using Rathalos.Servers.Base.Core.Extensions;
 using Rathalos.Servers.World.Core.Extensions;
 using Rathalos.Servers.World.Core.Network;
+using System.Reflection;
 
 namespace Rathalos.Servers.World
 {
@@ -26,9 +28,16 @@ namespace Rathalos.Servers.World
 
             builder.AddNpgsqlDbContext<RathalosDbContext>("rathalos-world", null, ob =>
             {
+                ob.UseNpgsql(o =>
+                {
+                    o.ConfigureDataSource(a =>
+                    {
+                        a.EnableDynamicJson();
+                    });
+                });
                 ob.UseRathalosConfiguration(startup.ConfigureDatabase);
+                
             });
-
 
             //builder.WebHost.UseUrls($"http://+:{builder.Configuration["Server:WebApiPort"]}");
 
@@ -37,7 +46,7 @@ namespace Rathalos.Servers.World
 
             var app = builder.Build();
             startup.Configure(app, app.Environment);
-            WorldServer.SaveableServices = await app.Services.WarmUp();
+            WorldServer.SaveableServices = await app.Services.WarmUp(Assembly.GetExecutingAssembly());
 
             app.Run();
         }

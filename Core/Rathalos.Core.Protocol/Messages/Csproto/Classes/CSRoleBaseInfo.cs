@@ -125,7 +125,7 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		{
 			writer.WriteULong(RoleID);
 			writer.WriteInt(RoleIndex);
-			if (Name.Length != CsprotoConstants.CS_MAX_ROLE_NAME)
+			if (Name.Length > CsprotoConstants.CS_MAX_ROLE_NAME)
 			{
 				throw new InvalidOperationException($"Array length of 'Name' should be of length of {CsprotoConstants.CS_MAX_ROLE_NAME} but was {Name.Length}.");
 			}
@@ -170,7 +170,7 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 			{
 				writer.WriteShort(FacialInfo[i]);
 			}
-			if (StarLevel.Length != CsprotoConstants.CS_MAX_HUNTER_STAR_LEVEL_LEN)
+			if (StarLevel.Length > CsprotoConstants.CS_MAX_HUNTER_STAR_LEVEL_LEN)
 			{
 				throw new InvalidOperationException($"Array length of 'StarLevel' should be of length of {CsprotoConstants.CS_MAX_HUNTER_STAR_LEVEL_LEN} but was {StarLevel.Length}.");
 			}

@@ -1,3 +1,4 @@
+using Rathalos.Core.Protocol.Messages.Csproto;
 using Rathalos.Core.Protocol.Messages.Custom.Csproto.Enums;
 using Rathalos.Servers.World.Core.Databases;
 using Rathalos.Servers.World.Core.Databases.Records;
@@ -417,28 +418,41 @@ public sealed class PlayerAttributes
 
     public short GetFacialInfo(int index)
     {
-        if (index < 1 || index > 47)
-            throw new ArgumentOutOfRangeException(nameof(index), "Facial info index must be between 1 and 47.");
-
-        var attrId = (PlayerAttributeEnum)(246 + index); // FacialInfo1 = 247
-        return _fields.GetValue<short>(attrId);
+        var enumVal = System.Enum.GetValues<PlayerAttributeEnum>()
+            .FirstOrDefault(e => e.ToString().StartsWith($"FacialInfo{index}"));
+        if (index < 1 || index > CsprotoConstants.CS_MAX_FACIALINFO_COUNT)
+            throw new ArgumentOutOfRangeException(nameof(index), $"Facial info index must be between 1 and {CsprotoConstants.CS_MAX_FACIALINFO_COUNT}.");
+        return _fields.GetValue<short>(enumVal);
     }
 
     public void SetFacialInfo(int index, short value)
     {
-        if (index < 1 || index > 47)
-            throw new ArgumentOutOfRangeException(nameof(index), "Facial info index must be between 1 and 47.");
+        var enumVal = System.Enum.GetValues<PlayerAttributeEnum>()
+            .FirstOrDefault(e => e.ToString().StartsWith($"FacialInfo{index}"));
 
-        var attrId = (PlayerAttributeEnum)(246 + index); // FacialInfo1 = 247
-        _fields.SetValue(attrId, value);
+        if (index < 1 || index > CsprotoConstants.CS_MAX_FACIALINFO_COUNT)
+            throw new ArgumentOutOfRangeException(nameof(index), $"Facial info index must be between 1 and {CsprotoConstants.CS_MAX_FACIALINFO_COUNT}.");
+
+        _fields.SetValue(enumVal, value);
     }
 
     public short[] GetAllFacialInfo()
     {
-        var result = new short[47];
-        for (int i = 1; i <= 47; i++)
+        var facialEnums = System.Enum.GetValues<PlayerAttributeEnum>()
+            .Where(e => e.ToString().StartsWith("FacialInfo"))
+            .OrderBy(e =>
+            {
+                var name = e.ToString();
+                if (int.TryParse(name.Substring("FacialInfo".Length), out var idx))
+                    return idx;
+                return int.MaxValue;
+            })
+            .Take(CsprotoConstants.CS_MAX_FACIALINFO_COUNT)
+            .ToArray();
+        var result = new short[facialEnums.Length];
+        for (int i = 0; i < facialEnums.Length; i++)
         {
-            result[i - 1] = GetFacialInfo(i);
+            result[i] = _fields.GetValue<short>(facialEnums[i]);
         }
         return result;
     }
@@ -446,10 +460,22 @@ public sealed class PlayerAttributes
     public void SetAllFacialInfo(short[] values)
     {
         if (values == null) return;
-        
-        for (int i = 0; i < Math.Min(values.Length, 47); i++)
+
+        var facialEnums = System.Enum.GetValues<PlayerAttributeEnum>()
+            .Where(e => e.ToString().StartsWith("FacialInfo"))
+            .OrderBy(e =>
+            {
+                var name = e.ToString();
+                if (int.TryParse(name.Substring("FacialInfo".Length), out var idx))
+                    return idx;
+                return int.MaxValue;
+            })
+            .Take(CsprotoConstants.CS_MAX_FACIALINFO_COUNT)
+            .ToArray();
+
+        for (int i = 0; i < Math.Min(values.Length, facialEnums.Length); i++)
         {
-            SetFacialInfo(i + 1, values[i]);
+            _fields.SetValue(facialEnums[i], values[i]);
         }
     }
 
@@ -490,7 +516,7 @@ public sealed class PlayerAttributes
     /// <summary>
     /// Initializes an attribute from a PlayerAttributeRecord definition with a specified value.
     /// </summary>
-    private void InitializeAttributeFromDefinition(PlayerAttributeRecord definition, string valueStr)
+    private void InitializeAttributeFromDefinition(PlayerAttributeRecord definition, string? valueStr)
     {
         var attrId = (PlayerAttributeEnum)definition.AttributeId;
         bool self = definition.Self == 1;
@@ -519,57 +545,64 @@ public sealed class PlayerAttributes
         switch (definition.Type.ToLowerInvariant())
         {
             case "int":
-                if (int.TryParse(valueStr, out var intVal))
-                {
-                    int? initInt = hasInitVal && int.TryParse(initValStr, out var ii) ? ii : null;
-                    InitializeAttribute(attrId, intVal, self, bonus, initInt, lowerInt, upperInt);
-                }
+                int intVal;
+                if (!int.TryParse(valueStr, out intVal))
+                    intVal = default;
+                int? initInt = hasInitVal && int.TryParse(initValStr, out var ii) ? ii : null;
+                InitializeAttribute(attrId, intVal, self, bonus, initInt, lowerInt, upperInt);
                 break;
 
             case "float":
-                if (float.TryParse(valueStr, System.Globalization.CultureInfo.InvariantCulture, out var floatVal))
-                {
-                    float? initFloat = hasInitVal && float.TryParse(initValStr, System.Globalization.CultureInfo.InvariantCulture, out var iff) ? iff : null;
-                    InitializeAttribute(attrId, floatVal, self, bonus, initFloat, lowerFloat, upperFloat);
-                }
+                float floatVal;
+                if (!float.TryParse(valueStr, System.Globalization.CultureInfo.InvariantCulture, out floatVal))
+                    floatVal = default;
+                float? initFloat = hasInitVal && float.TryParse(initValStr, System.Globalization.CultureInfo.InvariantCulture, out var iff) ? iff : null;
+                InitializeAttribute(attrId, floatVal, self, bonus, initFloat, lowerFloat, upperFloat);
                 break;
 
             case "short":
-                if (short.TryParse(valueStr, out var shortVal))
-                {
-                    short? initShort = hasInitVal && short.TryParse(initValStr, out var iss) ? iss : null;
-                    short? lowerShort = lowerInt.HasValue ? (short)lowerInt.Value : null;
-                    short? upperShort = upperInt.HasValue ? (short)upperInt.Value : null;
-                    InitializeAttribute(attrId, shortVal, self, bonus, initShort, lowerShort, upperShort);
-                }
+                short shortVal;
+                if (!short.TryParse(valueStr, out shortVal))
+                    shortVal = default;
+                short? initShort = hasInitVal && short.TryParse(initValStr, out var iss) ? iss : null;
+                short? lowerShort = lowerInt.HasValue ? (short)lowerInt.Value : null;
+                short? upperShort = upperInt.HasValue ? (short)upperInt.Value : null;
+                InitializeAttribute(attrId, shortVal, self, bonus, initShort, lowerShort, upperShort);
                 break;
 
             case "bool":
-                if (int.TryParse(valueStr, out var boolInt))
+                int boolInt;
+                bool boolVal;
+                if (!bool.TryParse(valueStr, out boolVal))
                 {
-                    bool? initBool = hasInitVal && int.TryParse(initValStr, out var ib) ? ib != 0: null;
-                    InitializeAttribute(attrId, boolInt != 0, self, bonus, initBool, null, null);
+                    if (!int.TryParse(valueStr, out boolInt))
+                        boolVal = default;
+                    else
+                        boolVal = boolInt != 0;
                 }
+
+                bool? initBool = hasInitVal && int.TryParse(initValStr, out var ib) ? ib != 0 : (bool?)null;
+                InitializeAttribute(attrId, boolVal, self, bonus, initBool, null, null);
                 break;
 
             case "uint64":
-                if (long.TryParse(valueStr, out var longVal))
-                {
-                    long? initLong = hasInitVal && long.TryParse(initValStr, out var il) ? il : null;
-                    InitializeAttribute(attrId, longVal, self, bonus, initLong, null, null);
-                }
+                long longVal;
+                if (!long.TryParse(valueStr, out longVal))
+                    longVal = default;
+                long? initLong = hasInitVal && long.TryParse(initValStr, out var il) ? il : null;
+                InitializeAttribute(attrId, longVal, self, bonus, initLong, null, null);
                 break;
 
             case "string":
-                InitializeStringAttribute(attrId, valueStr, self, bonus, hasInitVal ? initValStr : null);
+                InitializeStringAttribute(attrId, valueStr ?? string.Empty, self, bonus, hasInitVal ? initValStr : null);
                 break;
 
             default:
-                // Fallback: try int
-                if (int.TryParse(valueStr, out var defVal))
-                {
-                    InitializeAttribute(attrId, defVal, self, bonus);
-                }
+                // Fallback: try int, else use 0
+                int fallbackVal;
+                if (!int.TryParse(valueStr, out fallbackVal))
+                    fallbackVal = default;
+                InitializeAttribute(attrId, fallbackVal, self, bonus);
                 break;
         }
     }
@@ -577,16 +610,16 @@ public sealed class PlayerAttributes
     /// <summary>
     /// Loads attributes from a character record's attribute dictionary with full metadata from PlayerAttributeRecord definitions.
     /// </summary>
-    public void LoadFromRecord(CharacterRecord record)
+    public void LoadFromRecord(Dictionary<PlayerAttributeEnum, string> record)
     {
         var definitions = CharacterService.Instance.PlayerAttributes;
 
-        if (record.Attributes == null || record.Attributes.Count == 0)
+        if (record == null || record.Count == 0)
         {
             return;
         }
 
-        foreach (var kvp in record.Attributes)
+        foreach (var kvp in record)
         {
             var attrId = kvp.Key;
             var valueStr = kvp.Value;
@@ -639,26 +672,27 @@ public sealed class PlayerAttributes
             if (definition.InUse != 1)
                 continue;
 
-            if (string.IsNullOrEmpty(definition.InitVal) || definition.InitVal == "NA" || definition.InitVal == "N/A" || definition.InitVal == "n/a")
-                continue;
-
             InitializeAttributeFromDefinition(definition, definition.InitVal);
         }
     }
 
     /// <summary>
-    /// Saves all attributes back to the character record's attribute dictionary.
+    /// Returns a dictionary containing all player attributes and their corresponding string values.
     /// </summary>
-    public void SaveToRecord(CharacterRecord record)
+    /// <remarks>The returned dictionary includes all attributes present in the underlying data source, with
+    /// values converted to strings. This method does not filter or transform the attributes beyond string
+    /// conversion.</remarks>
+    /// <returns>A dictionary mapping each player attribute to its string representation. If an attribute value is not set, the
+    /// corresponding value is an empty string.</returns>
+    public Dictionary<PlayerAttributeEnum, string> GetRecord()
     {
-        record.Attributes ??= [];
-        record.Attributes.Clear();
-
+        var result = new Dictionary<PlayerAttributeEnum, string>();
         foreach (var key in _fields.Keys)
         {
             var attrId = key;
-            record.Attributes[attrId] = _fields.GetRaw(key)?.ToString() ?? string.Empty;
+            result[attrId] = _fields.GetRaw(key)?.ToString() ?? string.Empty;
         }
+        return result;
     }
 
     /// <summary>

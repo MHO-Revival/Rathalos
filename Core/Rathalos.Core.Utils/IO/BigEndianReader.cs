@@ -364,7 +364,7 @@ namespace Rathalos.Core.Utils.IO
 			int length = ReadInt();
 
 			byte[] bytes = ReadBytes(length);
-			return Encoding.UTF8.GetString(bytes);
+			return Encoding.UTF8.GetString(bytes).Replace("\0", "");
 		}
 
 		/// <summary>

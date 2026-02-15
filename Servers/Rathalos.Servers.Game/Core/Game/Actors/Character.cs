@@ -20,7 +20,15 @@ namespace Rathalos.Servers.World.Core.Game.Actors
         public PlayerAttributes Attributes { get; }
         public Vector3 Position { get; private set; }
         public float Rotation { get; private set; }
-        public float MovementSpeed { get; set; } = 5.0f;
+        public string Name
+        {
+            get => Record.Name;
+            set
+            {
+                Attributes.CharName = value;
+                Record.Name = value;
+            }
+        }
 
         /// <summary>
         /// Creates a new character instance from a database record.
@@ -39,11 +47,8 @@ namespace Rathalos.Servers.World.Core.Game.Actors
             Position = new Vector3(record.Position.X, record.Position.Y, record.Position.Z);
             Rotation = record.Position.W;
 
-            // Initialize all attributes with their default values from PlayerAttributeRecord definitions
-            Attributes.InitializeDefaults();
-
             // Then load saved attributes from record (overriding defaults where applicable)
-            Attributes.LoadFromRecord(record);
+            Attributes.LoadFromRecord(record.Attributes);
         }
 
         /// <summary>
@@ -89,7 +94,7 @@ namespace Rathalos.Servers.World.Core.Game.Actors
             if (distanceToTarget <= 0)
                 return true;
 
-            var moveDistance = MovementSpeed * deltaTime;
+            var moveDistance = Attributes.CharSpeed * deltaTime;
 
             if (moveDistance >= distanceToTarget)
             {
@@ -147,7 +152,7 @@ namespace Rathalos.Servers.World.Core.Game.Actors
         public void Save(Rathalos.Core.ORM.RathalosDbContext db)
         {
             // Sync attributes back to record
-            Attributes.SaveToRecord(Record);
+            Record.Attributes = Attributes.GetRecord();
 
             Record.Position = new Quaternion
             {

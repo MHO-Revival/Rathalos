@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Rathalos.Core.ORM;
@@ -14,9 +15,11 @@ using Rathalos.Core.Protocol.Messages.Custom.Csproto.Enums;
 namespace Rathalos.Core.Migrations.Migrations
 {
     [DbContext(typeof(RathalosDbContext))]
-    partial class RathalosDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260215154654_AddNameToCharacter")]
+    partial class AddNameToCharacter
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

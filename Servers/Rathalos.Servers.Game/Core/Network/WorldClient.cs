@@ -19,7 +19,7 @@ namespace Rathalos.Servers.World.Core.Network
 
         public AccountRecord Account { get; internal set; }
         public Guid SyncGuid { get; internal set; }
-        public List<Character> Characters { get; internal set; }
+        public List<Character> Characters { get; internal set; } = [];
         public Character SelectedCharacter { get; internal set; }
 
         public uint GetLastSelectedCharacterId()
@@ -44,14 +44,14 @@ namespace Rathalos.Servers.World.Core.Network
 
         public void Save()
         {
-            if(Account != null)
+
+            RathalosDbService.Instance.ExecuteInTransaction(db =>
             {
-                RathalosDbService.Instance.ExecuteInTransaction(db =>
-                {
+                if (Account is not null)
                     db.Save(Account);
-                    SelectedCharacter.Save(db);
-                });
-            }
+
+                SelectedCharacter?.Save(db);
+            });
         }
     }
 }

@@ -1,4 +1,3 @@
-using System.Reflection;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Rathalos.Core.Protocol.Data.AvatarAttrInfo;
 using Rathalos.Core.Protocol.Data.HRLevel;
@@ -9,7 +8,9 @@ using Rathalos.Core.Protocol.Data.NpcDataNew;
 using Rathalos.Core.Protocol.Data.NpcSale;
 using Rathalos.Core.Protocol.Data.Pet;
 using Rathalos.Core.Protocol.Data.PlayerAttribute;
+using Rathalos.Core.Protocol.Data.PlayerLevelUp;
 using Rathalos.Core.Protocol.Tools;
+using System.Reflection;
 
 namespace Rathalos.Core.Migrations;
 
@@ -88,6 +89,17 @@ public static partial class DataSeeder
         SeedNewPlayerInitData(migrationBuilder, filesPath);
         SeedNpcSaleData(migrationBuilder, filesPath);
         SeedPetData(migrationBuilder, filesPath);
+    }
+
+
+    public static void SeedPlayerLevelUpData(MigrationBuilder migrationBuilder)
+    {
+        var filesPath = GetFilesPath();
+
+        var reader = TsvReader.CreateFromFile(Path.Combine(filesPath, "playerlevelup.tsv"));
+        SeedTable(migrationBuilder, "player_level_ups",
+            reader.GetSheet("LevelUp")?.ReadAs<PlayerLevelUpInfo>() ?? [],
+            new Dictionary<string, string> { ["Id"] =  "Level" });
     }
 
     private static void SeedAvatarData(MigrationBuilder migrationBuilder, string filesPath)

@@ -11,7 +11,7 @@ namespace Rathalos.Servers.World.Core.Game.Stats;
 public sealed class AttributesFields<T>
     where T : struct, Enum
 {
-    private readonly Dictionary<T, object> _attributes = new Dictionary<T, object>();
+    private readonly Dictionary<T, IAttributeData> _attributes = new Dictionary<T, IAttributeData>();
 
     /// <summary>
     /// Gets the number of attributes in this container.
@@ -84,7 +84,7 @@ public sealed class AttributesFields<T>
 
     public object? GetRaw(T id)
     {
-        return _attributes.TryGetValue(id, out var attribute) ? attribute : null;
+        return _attributes.TryGetValue(id, out var attribute) ? attribute.ValueAsObject : null;
     }
 
     /// <summary>

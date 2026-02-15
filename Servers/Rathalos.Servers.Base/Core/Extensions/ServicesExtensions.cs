@@ -1,8 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Rathalos.Core.ORM;
 using Rathalos.Core.Utils.Extensions;
 using Rathalos.Servers.Base.Handlers;
 using Rathalos.Servers.Base.Services;

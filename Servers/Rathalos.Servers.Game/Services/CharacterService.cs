@@ -4,6 +4,8 @@ using Rathalos.Core.Protocol.Messages.Custom.Csproto.Enums;
 using Rathalos.Servers.Base.Services;
 using Rathalos.Servers.World.Core.Databases;
 using Rathalos.Servers.World.Core.Databases.Records;
+using Rathalos.Servers.World.Core.Game.Actors;
+using Rathalos.Servers.World.Core.Game.Stats;
 using Rathalos.Servers.World.Core.Network;
 
 namespace Rathalos.Servers.World.Services
@@ -20,6 +22,7 @@ namespace Rathalos.Servers.World.Services
         private Dictionary<long, HairInfoRecord> _hairs = [];
         private Dictionary<long, TattooInfoRecord> _tattoos = [];
         private Dictionary<PlayerAttributeEnum, PlayerAttributeRecord> _playerAttributes = [];
+        private readonly int MaxCharactersPerAccount = 6;
 
         /// <summary>
         /// Gets all player attribute definitions indexed by AttributeId.
@@ -71,7 +74,7 @@ namespace Rathalos.Servers.World.Services
                     continue;
 
                 // Skip if InitVal is NA or empty
-                if (string.IsNullOrEmpty(record.InitVal) || record.InitVal == "NA")
+                if (string.IsNullOrEmpty(record.InitVal) || record.InitVal == "NA" || record.InitVal == "N/A" || record.InitVal == "n/a")
                     continue;
 
                 attributes[(PlayerAttributeEnum)record.AttributeId] = record.InitVal;
@@ -83,56 +86,60 @@ namespace Rathalos.Servers.World.Services
         public CreateErrorResultEnum CreateCharacter(WorldClient client, CSRoleCreateInfo message)
         {
             if (message.UnderclothesId != 0 && !_underclothes.ContainsKey(message.UnderclothesId))
-                return CreateErrorResultEnum.Error;
+                return CreateErrorResultEnum.UnderclothesInvalid;
 
             if(message.HairId != 0 && !_hairs.ContainsKey(message.HairId))
-                return CreateErrorResultEnum.Error;
+                return CreateErrorResultEnum.HairInvalid;
 
             if(message.FaceId != 0 && !_faces.ContainsKey(message.FaceId))
-                return CreateErrorResultEnum.Error;
+                return CreateErrorResultEnum.FaceInvalid;
 
-            if(message.FaceTattooIndex != 0 && !_tattoos.ContainsKey(message.FaceTattooIndex))
-                return CreateErrorResultEnum.Error;
+            if(message.FaceTattooIndex != 0 && !_tattoos.Any(x => x.Value.MaleModelId == message.FaceTattooIndex || x.Value.FemaleModelId == message.FaceTattooIndex))
+                return CreateErrorResultEnum.TattooInvalid;
 
-            // Start with default attributes from PlayerAttributeRecord definitions
-            var attributes = BuildDefaultAttributes();
+            var existingCharacterWithName = RathalosDbService.Instance.Query<CharacterRecord>(x => x.Name == message.Name).FirstOrDefault();
+            if (existingCharacterWithName is not null)
+                return CreateErrorResultEnum.NameAlreadyTaken;
+
+            if (client.Characters.Count >= MaxCharactersPerAccount)
+                return CreateErrorResultEnum.MaxCharacterReached;
+
+            if (message.Name.TrimEnd('\0').Contains('\0') || message.Name.Length > CsprotoConstants.CS_MAX_ROLE_NAME)
+                return CreateErrorResultEnum.NameContainsIllegalCharacters;
+
+            var attrs = new PlayerAttributes();
+            attrs.InitializeDefaults();
 
             // Override with character creation values
-            attributes[PlayerAttributeEnum.CharSex] = message.Gender.ToString();
-
+            attrs.CharSex = message.Gender;
+            attrs.CharName = message.Name;
+            attrs.CharLevel = 1;
             // Appearance from creation message
-            attributes[PlayerAttributeEnum.MaleFace] = message.FaceId.ToString();
-            attributes[PlayerAttributeEnum.MaleHair] = message.HairId.ToString();
-            attributes[PlayerAttributeEnum.UnderClothes] = message.UnderclothesId.ToString();
-            attributes[PlayerAttributeEnum.SkinColor] = message.SkinColor.ToString();
-            attributes[PlayerAttributeEnum.HairColor] = message.HairColor.ToString();
-            attributes[PlayerAttributeEnum.InnerColor] = message.InnerColor.ToString();
-            attributes[PlayerAttributeEnum.EyeBall] = message.EyeBall.ToString();
-            attributes[PlayerAttributeEnum.EyeColor] = message.EyeColor.ToString();
-            attributes[PlayerAttributeEnum.FaceTattooIndex] = message.FaceTattooIndex.ToString();
-            attributes[PlayerAttributeEnum.FaceTattooColor] = message.FaceTattooColor.ToString();
+            attrs.MaleFace = message.FaceId;
+            attrs.MaleHair = message.HairId;
+            attrs.UnderClothes = message.UnderclothesId;
+            attrs.SkinColor = message.SkinColor;
+            attrs.HairColor = message.HairColor;
+            attrs.InnerColor = message.InnerColor;
+            attrs.EyeBall = message.EyeBall;
+            attrs.EyeColor = message.EyeColor;
+            attrs.FaceTattooIndex = message.FaceTattooIndex;
+            attrs.FaceTattooColor = message.FaceTattooColor;
+            attrs.SetAllFacialInfo(message.FacialInfo);
 
-            // Add facial info attributes (FacialInfo1 = 247)
-            if (message.FacialInfo != null)
+            RathalosDbService.Instance.Execute(db =>
             {
-                for (int i = 0; i < Math.Min(message.FacialInfo.Length, 47); i++)
+                var character = new CharacterRecord
                 {
-                    attributes[PlayerAttributeEnum.FacialInfo1 + i] = message.FacialInfo[i].ToString();
-                }
-            }
-
-            RathalosDbService.Instance.ExecuteInTransaction(db =>
-            {
-                db.Add(new CharacterRecord
-                {
-                    AccountId = client.Account.Id,
                     Name = message.Name,
-                    Account = client.Account,
+                    AccountId = client.Account.Id,
                     AvatarSetId = 0,
                     CreatedAt = DateTime.UtcNow,
                     StarLevel = string.Empty,
-                    Attributes = attributes,
-                });
+                    Attributes = attrs.GetRecord(),
+                };
+                db.Insert(character);
+                client.Characters.Add(new Character(client, character));
             });
 
             return CreateErrorResultEnum.OK;

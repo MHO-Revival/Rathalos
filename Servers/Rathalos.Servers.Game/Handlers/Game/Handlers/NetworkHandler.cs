@@ -2,7 +2,10 @@ using Rathalos.Core.Protocol.Messages.Csproto;
 using Rathalos.Core.Protocol.Messages.Custom.Csproto.Enums;
 using Rathalos.Core.Utils.Extensions;
 using Rathalos.Servers.Base.Handlers;
+using Rathalos.Servers.World.Core.Databases;
+using Rathalos.Servers.World.Core.Game.Actors;
 using Rathalos.Servers.World.Core.Network;
+using Rathalos.Servers.World.Services;
 using System.Threading.Channels;
 
 namespace Rathalos.Servers.World.Handlers.Game.Handlers
@@ -42,11 +45,6 @@ namespace Rathalos.Servers.World.Handlers.Game.Handlers
             });
 
 
-            client.Send(new CSShakeHand
-            {
-                VerifyCode = 1
-            });
-
             return Task.CompletedTask;
         }
 
@@ -60,20 +58,23 @@ namespace Rathalos.Servers.World.Handlers.Game.Handlers
                 Code = 0,
             });
 
-            CharacterHandler.SendCharacterListResponse(client);
+            client.Send(new CSShakeHand
+            {
+                VerifyCode = 1
+            });
 
             return Task.CompletedTask;
         }
 
         [GamePacketHandler<CSShakeHand>]
-        public Task HandleShakeHand(WorldClient client, CSShakeHand message)
+        public async Task HandleShakeHand(WorldClient client, CSShakeHand message)
         {
             // Handle shake hand here
             Console.WriteLine($"Client {client.SyncGuid} sent shake hand with VerifyCode: {message.VerifyCode}");
-            // No response needed for shake hand
 
-
-            return Task.CompletedTask;
+            var records = await RathalosDbService.Instance.Query<CharacterRecord>(x => x.AccountId == client.Account.Id).ToListAsync();
+            client.Characters = [.. records.Select(x => new Character(client, x))];
+            CharacterHandler.SendCharacterListResponse(client);
         }
 
         [GamePacketHandler<CSLineInfoReq>]
@@ -143,25 +144,25 @@ namespace Rathalos.Servers.World.Handlers.Game.Handlers
                 BattleFPS = [.. Enumerable.Repeat(60.0f, 10)]
             });
 
-            client.Send(new CSLineInfoRsp
-            {
-                LineInfo = [
-                    new LineInfo
-                    {
-                        LineID = 1,
-                        State = (ushort)ChannelStateEnum.Idle,
-                    },
-                    new LineInfo
-                    {
-                        LineID = 2,
-                        State = (ushort)ChannelStateEnum.Idle,
-                    },
-                ]
-            });
-            client.Send(new CSNewLineInfo
-            {
-                LineID = 1
-            });
+            //client.Send(new CSLineInfoRsp
+            //{
+            //    LineInfo = [
+            //        new LineInfo
+            //        {
+            //            LineID = 1,
+            //            State = (ushort)ChannelStateEnum.Idle,
+            //        },
+            //        new LineInfo
+            //        {
+            //            LineID = 2,
+            //            State = (ushort)ChannelStateEnum.Idle,
+            //        },
+            //    ]
+            //});
+            //client.Send(new CSNewLineInfo
+            //{
+            //    LineID = 1
+            //});
         }
 
     }

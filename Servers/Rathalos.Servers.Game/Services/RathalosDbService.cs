@@ -27,12 +27,12 @@ namespace Rathalos.Servers.World.Services
         /// <param name="query">An expression that defines the criteria for filtering the records. This expression is applied to each record
         /// of type T.</param>
         /// <returns>An IQueryable<T> representing the filtered records that match the specified query criteria.</returns>
-        public IQueryable<T> Query<T>(Expression<Func<T, bool>>? query = null)
+        public QueryContext<T> Query<T>(Expression<Func<T, bool>>? query = null)
             where T : BaseRecord
         {
-            using var scope = _scopeFactory.CreateScope();
+            var scope = _scopeFactory.CreateScope();
             var context = scope.ServiceProvider.GetRequiredService<RathalosDbContext>();
-            return context.Query(query ?? (x => true));
+            return new(context, context.Query(query ?? (x => true)));
         }
 
         /// <summary>
@@ -45,12 +45,12 @@ namespace Rathalos.Servers.World.Services
         /// <param name="query">An expression that defines the criteria for filtering the records. This expression is applied to each record
         /// of type T.</param>
         /// <returns>An IQueryable<T> representing the filtered records that match the specified query criteria.</returns>
-        public IQueryable<T> QueryNoTracking<T>(Expression<Func<T, bool>>? query = null)
+        public QueryContext<T> QueryNoTracking<T>(Expression<Func<T, bool>>? query = null)
             where T : BaseRecord
         {
-            using var scope = _scopeFactory.CreateScope();
+            var scope = _scopeFactory.CreateScope();
             var context = scope.ServiceProvider.GetRequiredService<RathalosDbContext>();
-            return context.Query(query ?? (x => true), false);
+            return new (context, context.Query(query ?? (x => true), false));
         }
 
         /// <summary>
