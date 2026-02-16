@@ -1,7 +1,4 @@
-﻿using Rathalos.Core.Protocol;
-using Rathalos.Core.Protocol.Messages;
-using Rathalos.Core.Protocol.Messages.Csproto;
-using Rathalos.Core.Protocol.Messages.Tqqapi;
+﻿using Rathalos.Core.Protocol.Messages.Csproto;
 using Rathalos.Servers.Base.Handlers;
 using System.Globalization;
 
@@ -11,6 +8,7 @@ public abstract class GamePacketHandlerAttribute : Attribute, IPacketHandlerAttr
 {
     public abstract int ProtocolMessageId { get; }
     public abstract Type MessageType { get; }
+    public bool LogPacket { get; set; } = true;
 }
 [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
 public sealed class GamePacketHandlerAttribute<TMessage> : GamePacketHandlerAttribute

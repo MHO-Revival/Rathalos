@@ -1,11 +1,9 @@
-﻿using Rathalos.Core.Protocol.Messages.Csproto;
-using Rathalos.Servers.Base.Handlers;
-using Rathalos.Servers.Base.Services;
-using Rathalos.Servers.World.Core.Network;
-using Rathalos.Core.Utils.Extensions;
-using Rathalos.Servers.World.Core.Databases;
-using Rathalos.Servers.World.Services;
+using Rathalos.Core.Protocol.Messages.Csproto;
 using Rathalos.Core.Protocol.Messages.Custom.Csproto.Enums;
+using Rathalos.Core.Utils.Extensions;
+using Rathalos.Servers.Base.Handlers;
+using Rathalos.Servers.World.Core.Network;
+using Rathalos.Servers.World.Services;
 
 namespace Rathalos.Servers.World.Handlers.Game.Handlers
 {
@@ -32,16 +30,43 @@ namespace Rathalos.Servers.World.Handlers.Game.Handlers
 
             var result = CharacterService.Instance.CreateCharacter(client, message);
             SendCharacterCreateResponse(client, result);
+            if (result == CreateErrorResultEnum.OK)
+                SendCharacterListResponse(client);
+        }
+
+        [GamePacketHandler<CSDeleteRoleReq>]
+        public async Task HandleCharacterDeleteRequest(WorldClient client, CSDeleteRoleReq message)
+        {
+            _logger.LogInformation($"Received character delete request from account {client.Account.Id} for character index {message.RoleIndex}.");
+            CharacterService.Instance.DeleteCharacter(client, message.RoleIndex);
+
+            SendCharacterDeleteResponse(client);
             SendCharacterListResponse(client);
+        }
+
+        [GamePacketHandler<CSSelectRoleReq>]
+        public async Task HandleCharacterSelectRequest(WorldClient client, CSSelectRoleReq message)
+        {
+            _logger.LogInformation($"Received character select request from account {client.Account.Id} for character index {message.RoleIndex}.");
+            
+        }
+
+        public static void SendCharacterDeleteResponse(WorldClient client)
+        {
+            client.Send(new CSDeleteRoleRsp
+            {
+                RoleState = 0,
+                RoleStateEndLeftTime = 0,
+            });
         }
 
         public static void SendCharacterCreateResponse(WorldClient client, CreateErrorResultEnum errorCode)
         {
             client.Send(new CSPkgBodyCreateRoleRsp
             {
-                BanTime = client.Account.IsBannedUntil?.GetUnixTimeStamp() ?? 0,
+                BanTime = 0,
                 ErrNo = (uint)errorCode,
-                LastLoinRoleIndex = client.GetLastSelectedCharacterId(),
+                LastLoinRoleIndex = 0,
                 RoleList = new CSRoleList
                 {
                     Role = []

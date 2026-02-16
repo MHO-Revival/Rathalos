@@ -17,12 +17,11 @@ namespace Rathalos.Servers.World.Handlers.Tqqapi.Handlers
             _logger = logger;
         }
 
-        [TqqapiPacketHandler<TpduNone>]
+        [TqqapiPacketHandler<TpduNone>(LogPacket = false)]
         public async Task HandleNoneMessage(WorldClient client, TqqMessage<TpduNone, CSPkg> message)
         {
             var body = message.Body.Body;
             // This is a keep-alive or no-op message
-            _logger.LogInformation("{ReceivePacket} ({MHOBaseClient}) [GAME] {Name}", ConsoleFormat.ReceivePacket, client, body.GetType().Name);
             await GamePacketHandler.Instance.HandleMessage(client, body);
         }
     }

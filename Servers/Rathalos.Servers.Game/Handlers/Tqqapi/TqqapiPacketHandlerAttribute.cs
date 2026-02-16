@@ -8,6 +8,7 @@ namespace Rathalos.Servers.World.Handlers.Tqqapi
     {
         public abstract int ProtocolMessageId { get; }
         public abstract Type MessageType { get; }
+        public bool LogPacket { get; set; } = true;
     }
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
     public sealed class TqqapiPacketHandlerAttribute<TMessage> : TqqapiPacketHandlerAttribute

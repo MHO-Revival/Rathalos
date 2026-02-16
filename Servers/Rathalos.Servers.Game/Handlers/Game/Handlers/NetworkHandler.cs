@@ -109,13 +109,20 @@ namespace Rathalos.Servers.World.Handlers.Game.Handlers
             return Task.CompletedTask;
         }
 
-        [GamePacketHandler<CSPkgTimerRecord>]
+        [GamePacketHandler<CSPkgTimerRecord>(LogPacket = false)]
         public Task HandlePkgTimerRecord(WorldClient client, CSPkgTimerRecord message)
         {
 
             return Task.CompletedTask;
         }
 
+        [GamePacketHandler<CSPkgTransAntiData>(LogPacket = false)]
+        public Task HandlePkgTransAntiData(WorldClient client, CSPkgTransAntiData message)
+        {
+            // IDK what this packet is for, it seems to be some kind of anti-cheat or anti-tamper data sent by the client 
+            // or maybe it's only for limiting players to play too much, since it has a timer record packet that maybe is for tracking play time
+            return Task.CompletedTask;
+        }
 
         private static void SendInitConnectionPacket(WorldClient client)
         {

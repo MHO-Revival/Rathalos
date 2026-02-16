@@ -20,9 +20,6 @@ namespace Rathalos.Servers.Base.Core.Network
             {
                 if (rawMessage.Frame.Head.Ext is not null)
                 {
-                    _logger.LogInformation("{ReceivePacket} ({MHOBaseClient}) [TPDU] {Name}",
-                        ConsoleFormat.ReceivePacket, this, rawMessage.Frame.Head.Ext.GetType().Name);
-
                     var data = rawMessage.Frame.Body.ToArray();
                     var decryptedBody = _crypto.Decrypt(data);
                     var decryptedReader = new BigEndianReader(decryptedBody);
