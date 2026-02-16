@@ -172,7 +172,12 @@ namespace Rathalos.Servers.World.Core.Game.Actors
                 RoleID = (ulong)Record.Id,
                 RoleState = Record.RoleState,
                 RoleStateEndLeftTime = 0,
-                Equip = [],
+                Equip = [
+                    new CSAvatarItem{
+                        ItemType = 120005,
+                        PosIndex = 1,
+                    }
+                ],
                 AvatarSetID = Record.AvatarSetId,
                 FacialInfo = Attributes.GetAllFacialInfo(),
                 FaceId = (ushort)Attributes.MaleFace,
