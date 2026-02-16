@@ -88,13 +88,13 @@ namespace Rathalos.Servers.World.Services
             if (message.UnderclothesId != 0 && !_underclothes.ContainsKey(message.UnderclothesId))
                 return CreateErrorResultEnum.UnderclothesInvalid;
 
-            if(message.HairId != 0 && !_hairs.ContainsKey(message.HairId))
+            if (message.HairId != 0 && !_hairs.ContainsKey(message.HairId))
                 return CreateErrorResultEnum.HairInvalid;
 
-            if(message.FaceId != 0 && !_faces.ContainsKey(message.FaceId))
+            if (message.FaceId != 0 && !_faces.ContainsKey(message.FaceId))
                 return CreateErrorResultEnum.FaceInvalid;
 
-            if(message.FaceTattooIndex != 0 && !_tattoos.Any(x => x.Value.MaleModelId == message.FaceTattooIndex || x.Value.FemaleModelId == message.FaceTattooIndex))
+            if (message.FaceTattooIndex != 0 && !_tattoos.Any(x => x.Value.MaleModelId == message.FaceTattooIndex || x.Value.FemaleModelId == message.FaceTattooIndex))
                 return CreateErrorResultEnum.TattooInvalid;
 
             var existingCharacterWithName = RathalosDbService.Instance.Query<CharacterRecord>(x => x.Name == message.Name).FirstOrDefault();
@@ -143,6 +143,22 @@ namespace Rathalos.Servers.World.Services
             });
 
             return CreateErrorResultEnum.OK;
+        }
+
+        public void DeleteCharacter(WorldClient client, int roleIndex)
+        {
+            if (roleIndex < 0 || roleIndex >= client.Characters.Count)
+                return;
+
+            var character = client.Characters[roleIndex];
+            if (character is null)
+                return;
+
+            RathalosDbService.Instance.Execute(db =>
+            {
+                db.Delete(character.Record);
+                client.Characters.Remove(character);
+            });
         }
     }
 }
