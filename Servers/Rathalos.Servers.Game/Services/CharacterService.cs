@@ -58,31 +58,6 @@ namespace Rathalos.Servers.World.Services
             return GetPlayerAttributeDefinition(attrId)?.InitVal;
         }
 
-        /// <summary>
-        /// Builds the default attributes dictionary for a new character based on PlayerAttributeRecord definitions.
-        /// </summary>
-        public Dictionary<PlayerAttributeEnum, string> BuildDefaultAttributes()
-        {
-            var attributes = new Dictionary<PlayerAttributeEnum, string>();
-
-            foreach (var kvp in _playerAttributes)
-            {
-                var record = kvp.Value;
-
-                // Only include attributes that are in use and have an initial value
-                if (record.InUse != 1)
-                    continue;
-
-                // Skip if InitVal is NA or empty
-                if (string.IsNullOrEmpty(record.InitVal) || record.InitVal == "NA" || record.InitVal == "N/A" || record.InitVal == "n/a")
-                    continue;
-
-                attributes[(PlayerAttributeEnum)record.AttributeId] = record.InitVal;
-            }
-
-            return attributes;
-        }
-
         public CreateErrorResultEnum CreateCharacter(WorldClient client, CSRoleCreateInfo message)
         {
             if (message.UnderclothesId != 0 && !_underclothes.ContainsKey(message.UnderclothesId))
@@ -109,6 +84,14 @@ namespace Rathalos.Servers.World.Services
 
             var attrs = new PlayerAttributes();
             attrs.InitializeDefaults();
+
+            foreach(var initAttr in _initAttrs.Values)
+            {
+                if (Enum.TryParse<PlayerAttributeEnum>(initAttr.AttrName, out var attrEnum))
+                {
+                    attrs.InitializeAttributeFromDefinition(_playerAttributes[attrEnum], initAttr.AttrValue);
+                }
+            }
 
             // Override with character creation values
             attrs.CharSex = message.Gender;

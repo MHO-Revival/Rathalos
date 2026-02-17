@@ -41,6 +41,12 @@ namespace Rathalos.Core.Protocol.Messages
         public static TOut Get<TOut>(object value)
             where TOut : class
         {
+            var valueType = value.GetType();
+            if(!valueType.IsEnum)
+            {
+                throw new Exception(string.Format("'{0}' is not an enum type, impossible to create instance", valueType));
+            }
+
             var typeKey = typeof(TOut).Name + "_" + value.GetType().Name;
             if (_typesData.TryGetValue(typeKey, out var dict))
             {

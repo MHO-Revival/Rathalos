@@ -516,7 +516,7 @@ public sealed class PlayerAttributes
     /// <summary>
     /// Initializes an attribute from a PlayerAttributeRecord definition with a specified value.
     /// </summary>
-    private void InitializeAttributeFromDefinition(PlayerAttributeRecord definition, string? valueStr)
+    public void InitializeAttributeFromDefinition(PlayerAttributeRecord definition, string? valueStr)
     {
         var attrId = (PlayerAttributeEnum)definition.AttributeId;
         bool self = definition.Self == 1;

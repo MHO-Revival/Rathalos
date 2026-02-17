@@ -16,7 +16,7 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		/// <summary>
 		/// Parameter value type, CS_MSG_PARAM_VALUE
 		/// </summary>
-		public byte ValueType { get; set; }
+		public CS_MSG_PARAM_VALUE ValueType { get; set; }
 		public CSMsgParamValue Value { get; set; }
 
 		/// <summary>
@@ -26,7 +26,7 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		public void Serialize(IDataWriter writer)
 		{
 			writer.WriteInt(Index);
-			writer.WriteByte(ValueType);
+			writer.WriteByte((byte)ValueType);
 			// Selected by: ValueType
 			Value?.Serialize(writer);
 		}
@@ -38,7 +38,7 @@ namespace Rathalos.Core.Protocol.Messages.Csproto
 		public void Deserialize(IDataReader reader)
 		{
 			Index = reader.ReadInt();
-			ValueType = reader.ReadByte();
+			ValueType = (CS_MSG_PARAM_VALUE)reader.ReadByte();
 			// Selected by: ValueType
 			Value = ProtocolTypeManager.Get<CSMsgParamValue>(ValueType);
 			Value.Deserialize(reader);

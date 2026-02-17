@@ -25,8 +25,5 @@
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
 	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Custom\" />
-	</ItemGroup>
 
 </Project>
