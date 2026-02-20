@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

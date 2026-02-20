@@ -31,7 +31,7 @@ namespace Rathalos.Servers.World.Core.Network
             return (uint)Characters.IndexOf(lastUsedCharacter);
         }
 
-        protected override async Task OnMessageReceived(TPDUExt message, BigEndianReader bodyReader)
+        protected override async Task OnMessageReceived(TPDUExt message, BufferReader bodyReader)
         {
             await TqqapiPacketHandler.Instance.HandleMessage(this, message, bodyReader);
         }

@@ -21,7 +21,7 @@ namespace Rathalos.Core.Utils.IO
 	/// <summary>
 	/// Much faster reader that only reads memory buffer
 	/// </summary>
-	public unsafe class FastBigEndianReader : IDataReader
+	public unsafe class FastBigEndianReader
 	{
 		public const int INT_SIZE = 32;
 		public const int SHORT_SIZE = 16;

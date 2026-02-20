@@ -13,11 +13,12 @@
 // You should have received a copy of the GNU General Public License along with this program; 
 // if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #endregion
+using System.Reflection.PortableExecutable;
 using System.Text;
 
 namespace Rathalos.Core.Utils.IO
 {
-	public class BigEndianReader : IDataReader, IDisposable
+	public class BufferReader : IDataReader, IDisposable
 	{
 		public const int INT_SIZE = 32;
 		public const int SHORT_SIZE = 16;
@@ -47,6 +48,10 @@ namespace Rathalos.Core.Utils.IO
 			{
 				return _reader.BaseStream.Position;
 			}
+			set
+			{
+				Seek(value, SeekOrigin.Begin);
+			}
 		}
 
 
@@ -63,27 +68,27 @@ namespace Rathalos.Core.Utils.IO
 		#region Initialisation
 
 		/// <summary>
-		///   Initializes a new instance of the <see cref = "BigEndianReader" /> class.
+		///   Initializes a new instance of the <see cref = "BufferReader" /> class.
 		/// </summary>
-		public BigEndianReader()
+		public BufferReader()
 		{
 			_reader = new BinaryReader(new MemoryStream(), Encoding.UTF8);
 		}
 
 		/// <summary>
-		///   Initializes a new instance of the <see cref = "BigEndianReader" /> class.
+		///   Initializes a new instance of the <see cref = "BufferReader" /> class.
 		/// </summary>
 		/// <param name = "stream">The stream.</param>
-		public BigEndianReader(Stream stream)
+		public BufferReader(Stream stream)
 		{
 			_reader = new BinaryReader(stream, Encoding.UTF8);
 		}
 
 		/// <summary>
-		///   Initializes a new instance of the <see cref = "BigEndianReader" /> class.
+		///   Initializes a new instance of the <see cref = "BufferReader" /> class.
 		/// </summary>
 		/// <param name = "tab">Memory buffer.</param>
-		public BigEndianReader(byte[] tab)
+		public BufferReader(byte[] tab)
 		{
 			_reader = new BinaryReader(new MemoryStream(tab), Encoding.UTF8);
 		}
@@ -106,173 +111,195 @@ namespace Rathalos.Core.Utils.IO
 			return bytes;
 		}
 
-		#endregion
-
-		#region Public Method
-
-		public int ReadVarInt()
+		private byte[] ReadLittleEndianBytes(int count)
 		{
-			int value = 0;
-			int size = 0;
-			while (size < INT_SIZE)
-			{
-				var b = ReadByte();
-				bool bit = (b & MASK_10000000) == MASK_10000000;
-				if (size > 0)
-					value |= ((b & MASK_01111111) << size);
-				else
-					value |= (b & MASK_01111111);
-				size += CHUNCK_BIT_SIZE;
-				if (!bit)
-					return value;
-			}
+			var bytes = new byte[count];
+			int i;
+			for (i = 0; i < count; i++)
+				bytes[i] = (byte)BaseStream.ReadByte();
+			return bytes;
+        }
 
-			throw new Exception("Overflow varint : too much data");
-		}
+        #endregion
+
+        #region Public Method
+
+        public int ReadVarInt()
+		{
+            uint rawValue = ReadVarUInt();
+
+            // 2. ZigZag Decode
+            // Standard 32-bit formula: (rawValue >> 1) ^ -(rawValue & 1)
+            // This cleanly transforms the unsigned bits back into the correct negative/positive integer.
+            return (int)(rawValue >> 1) ^ -(int)(rawValue & 1);
+        }
 
 		public uint ReadVarUInt()
 		{
-			return unchecked((uint)ReadVarInt());
-		}
+            uint value = 0;
+            int shift = 0;
+
+            while (true)
+            {
+                // ReadByte automatically throws EndOfStreamException if we run out of data
+                byte b = ReadByte();
+
+                // Overflow check: A 32-bit integer can only hold up to 5 bytes in LEB128 format.
+                // The C++ logic `(v10 > 0xFFFFFFFF >> v9)` perfectly translates to checking
+                // if the current byte's bits would exceed the maximum capacity of a uint.
+                if (shift >= 35 || (b & 0x7F) > (uint.MaxValue >> shift))
+                {
+                    throw new InvalidDataException("Malformed VarInt: Value exceeds 32-bit capacity.");
+                }
+
+                // Append the lower 7 bits to our value
+                value |= (uint)(b & 0x7F) << shift;
+
+                // If the highest bit is 0, this is the last byte of the VarInt
+                if ((b & 0x80) == 0)
+                {
+                    return value;
+                }
+
+                shift += 7;
+            }
+        }
 
 		public short ReadVarShort()
 		{
-			int value = 0;
-			int size = 0;
-			while (size < SHORT_SIZE)
-			{
-				var b = ReadByte();
-				bool bit = (b & MASK_10000000) == MASK_10000000;
-				if (size > 0)
-					value |= ((b & MASK_01111111) << size);
-				else
-					value |= (b & MASK_01111111);
-				size += CHUNCK_BIT_SIZE;
-				if (!bit)
-				{
-					if (value > SHORT_MAX_VALUE)
-						value = value - USHORT_MAX_VALUE;
+            ushort rawValue = ReadVarUShort();
 
-					return (short)value;
-				}
-			}
-
-			throw new Exception("Overflow varint : too much data");
-		}
+            // 2. ZigZag Decode and return directly
+            return (short)((rawValue >> 1) ^ -(rawValue & 1));
+        }
 
 		public ushort ReadVarUShort()
 		{
-			return unchecked((ushort)ReadVarShort());
-		}
+            ushort value = 0;
+            int shift = 0;
+
+            while (true)
+            {
+                // ReadByte automatically throws EndOfStreamException if we run out of data
+                byte b = ReadByte();
+
+                // Overflow check: If shifting this byte exceeds 16 bits, the data is invalid/corrupted
+                if ((b & 0x7F) > (0xFFFF >> shift))
+                {
+                    throw new InvalidDataException("Malformed VarInt: Value exceeds 16-bit capacity.");
+                }
+
+                // Append the lower 7 bits to our value
+                value |= (ushort)((b & 0x7F) << shift);
+
+                // If the highest bit is 0, this is the last byte of the VarInt
+                if ((b & 0x80) == 0)
+                {
+                    return value;
+                }
+
+                shift += 7;
+            }
+        }
 
 		public long ReadVarLong()
 		{
-			int low = 0;
-			int high = 0;
-			int size = 0;
-			byte lastByte = 0;
-			while (size < 28)
-			{
-				lastByte = _reader.ReadByte();
-				if ((lastByte & MASK_10000000) == MASK_10000000)
-				{
-					low |= ((lastByte & MASK_01111111) << size);
-					size += 7;
-				}
-				else
-				{
-					low |= lastByte << size;
-					return low;
-				}
-			}
-			lastByte = _reader.ReadByte();
-			if ((lastByte & MASK_10000000) == MASK_10000000)
-			{
-				low |= (lastByte & MASK_01111111) << size;
-				high = (lastByte & MASK_01111111) >> 4;
-				size = 3;
-				while (size < 32)
-				{
-					lastByte = _reader.ReadByte();
-					if ((lastByte & MASK_10000000) == MASK_10000000)
-						high |= (lastByte & MASK_01111111) << size;
-					else break;
-					size += 7;
-				}
-				high |= lastByte << size;
-				return (low & 0xFFFFFFFF) | ((long)high << 32);
-			}
-			low |= lastByte << size;
-			high = lastByte >> 4;
-			return (low & 0xFFFFFFFF) | (long)high << 32;
-		}
+            ulong rawValue = ReadVarULong();
+            // 64-bit ZigZag Decode
+            return (long)(rawValue >> 1) ^ -(long)(rawValue & 1);
+        }
 
 		public ulong ReadVarULong()
 		{
-			return unchecked((ulong)ReadVarLong());
-		}
+            ulong value = 0;
+            int shift = 0;
+
+            while (true)
+            {
+                // ReadByte automatically throws EndOfStreamException if we run out of data
+                byte b = ReadByte();
+
+                // Overflow check: A 64-bit integer can take up to 10 bytes in LEB128 format.
+                // The logic perfectly mimics `(v13 & 0x7Fu) > 0xFFFFFFFFFFFFFFFFuLL >> v4`
+                if (shift >= 70 || (ulong)(b & 0x7F) > (ulong.MaxValue >> shift))
+                {
+                    throw new InvalidDataException("Malformed VarULong: Value exceeds 64-bit capacity.");
+                }
+
+                // Append the lower 7 bits to our value
+                value |= (ulong)(b & 0x7F) << shift;
+
+                // If the highest bit is 0, this is the last byte of the VarInt
+                if ((b & 0x80) == 0)
+                {
+                    return value;
+                }
+
+                shift += 7;
+            }
+        }
 
 		/// <summary>
 		///   Read a Short from the Buffer
 		/// </summary>
 		/// <returns></returns>
-		public short ReadShort()
+		public short ReadShort(Endian endian = Endian.Big)
 		{
-			return BitConverter.ToInt16(ReadBigEndianBytes(2), 0);
+			return BitConverter.ToInt16(endian == Endian.Big ? ReadBigEndianBytes(2) : ReadLittleEndianBytes(2), 0);
 		}
 
 		/// <summary>
 		///   Read a int from the Buffer
 		/// </summary>
 		/// <returns></returns>
-		public int ReadInt()
+		public int ReadInt(Endian endian = Endian.Big)
 		{
-			return BitConverter.ToInt32(ReadBigEndianBytes(4), 0);
+			return BitConverter.ToInt32(endian == Endian.Big ? ReadBigEndianBytes(4) : ReadLittleEndianBytes(4), 0);
 		}
 
 		/// <summary>
 		///   Read a long from the Buffer
 		/// </summary>
 		/// <returns></returns>
-		public Int64 ReadLong()
+		public Int64 ReadLong(Endian endian = Endian.Big)
 		{
-			return BitConverter.ToInt64(ReadBigEndianBytes(8), 0);
+			return BitConverter.ToInt64(endian == Endian.Big ? ReadBigEndianBytes(8) : ReadLittleEndianBytes(8), 0);
 		}
 
 		/// <summary>
 		///   Read a Float from the Buffer
 		/// </summary>
 		/// <returns></returns>
-		public float ReadFloat()
+		public float ReadFloat(Endian endian = Endian.Big)
 		{
-			return BitConverter.ToSingle(ReadBigEndianBytes(4), 0);
+			return BitConverter.ToSingle(endian == Endian.Big ? ReadBigEndianBytes(4) : ReadLittleEndianBytes(4), 0);
 		}
 
 		/// <summary>
 		///   Read a UShort from the Buffer
 		/// </summary>
 		/// <returns></returns>
-		public ushort ReadUShort()
+		public ushort ReadUShort(Endian endian = Endian.Big)
 		{
-			return BitConverter.ToUInt16(ReadBigEndianBytes(2), 0);
+			return BitConverter.ToUInt16(endian == Endian.Big ? ReadBigEndianBytes(2) : ReadLittleEndianBytes(2), 0);
 		}
 
 		/// <summary>
 		///   Read a int from the Buffer
 		/// </summary>
 		/// <returns></returns>
-		public UInt32 ReadUInt()
+		public UInt32 ReadUInt(Endian endian = Endian.Big)
 		{
-			return BitConverter.ToUInt32(ReadBigEndianBytes(4), 0);
+			return BitConverter.ToUInt32(endian == Endian.Big ? ReadBigEndianBytes(4) : ReadLittleEndianBytes(4), 0);
 		}
 
 		/// <summary>
 		///   Read a long from the Buffer
 		/// </summary>
 		/// <returns></returns>
-		public UInt64 ReadULong()
+		public UInt64 ReadULong(Endian endian = Endian.Big)
 		{
-			return BitConverter.ToUInt64(ReadBigEndianBytes(8), 0);
+			return BitConverter.ToUInt64(endian == Endian.Big ? ReadBigEndianBytes(8) : ReadLittleEndianBytes(8), 0);
 		}
 
 		/// <summary>
@@ -314,9 +341,9 @@ namespace Rathalos.Core.Utils.IO
         /// </summary>
         /// <param name = "n">Number of read bytes.</param>
         /// <returns></returns>
-        public BigEndianReader ReadBytesInNewBigEndianReader(int n)
+        public BufferReader ReadBytesInNewBigEndianReader(int n)
 		{
-			return new BigEndianReader(_reader.ReadBytes(n));
+			return new BufferReader(_reader.ReadBytes(n));
 		}
 
 		/// <summary>
@@ -334,25 +361,16 @@ namespace Rathalos.Core.Utils.IO
 		/// <returns></returns>
 		public Char ReadChar()
 		{
-			return (char)ReadUShort();
+			return (char)ReadByte();
 		}
 
 		/// <summary>
 		///   Read a Double from the Buffer
 		/// </summary>
 		/// <returns></returns>
-		public Double ReadDouble()
+		public Double ReadDouble(Endian endian = Endian.Big)
 		{
 			return BitConverter.ToDouble(ReadBigEndianBytes(8), 0);
-		}
-
-		/// <summary>
-		///   Read a Single from the Buffer
-		/// </summary>
-		/// <returns></returns>
-		public Single ReadSingle()
-		{
-			return BitConverter.ToSingle(ReadBigEndianBytes(4), 0);
 		}
 
 		/// <summary>

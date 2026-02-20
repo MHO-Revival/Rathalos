@@ -1,6 +1,11 @@
 namespace Rathalos.Core.Utils.IO
 {
-	public interface IDataReader : IDisposable
+	public enum Endian
+	{
+		Big,
+		Little
+    }
+    public interface IDataReader : IDisposable
 	{
 		long Position
 		{
@@ -23,38 +28,38 @@ namespace Rathalos.Core.Utils.IO
 		///   Read a Short from the Buffer
 		/// </summary>
 		/// <returns></returns>
-		short ReadShort();
+		short ReadShort(Endian endian = Endian.Big);
 
 		/// <summary>
 		///   Read a int from the Buffer
 		/// </summary>
 		/// <returns></returns>
-		int ReadInt();
+		int ReadInt(Endian endian = Endian.Big);
 
 		/// <summary>
 		///   Read a long from the Buffer
 		/// </summary>
 		/// <returns></returns>
-		Int64 ReadLong();
+		Int64 ReadLong(Endian endian = Endian.Big);
 
 
 		/// <summary>
 		///   Read a UShort from the Buffer
 		/// </summary>
 		/// <returns></returns>
-		ushort ReadUShort();
+		ushort ReadUShort(Endian endian = Endian.Big);
 
 		/// <summary>
 		///   Read a int from the Buffer
 		/// </summary>
 		/// <returns></returns>
-		UInt32 ReadUInt();
+		UInt32 ReadUInt(Endian endian = Endian.Big);
 
 		/// <summary>
 		///   Read a long from the Buffer
 		/// </summary>
 		/// <returns></returns>
-		UInt64 ReadULong();
+		UInt64 ReadULong(Endian endian = Endian.Big);
 
 		/// <summary>
 		///   Read a byte from the Buffer
@@ -93,13 +98,13 @@ namespace Rathalos.Core.Utils.IO
 		///   Read a Double from the Buffer
 		/// </summary>
 		/// <returns></returns>
-		Double ReadDouble();
+		Double ReadDouble(Endian endian = Endian.Big);
 
 		/// <summary>
 		///   Read a Float from the Buffer
 		/// </summary>
 		/// <returns></returns>
-		float ReadFloat();
+		float ReadFloat(Endian endian = Endian.Big);
 
 		/// <summary>
 		///   Read a string from the Buffer

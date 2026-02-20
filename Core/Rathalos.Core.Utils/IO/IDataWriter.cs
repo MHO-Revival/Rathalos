@@ -23,37 +23,37 @@ namespace Rathalos.Core.Utils.IO
 		///   Write a Short into the buffer
 		/// </summary>
 		/// <returns></returns>
-		void WriteShort(short @short);
+		void WriteShort(short @short, Endian endian = Endian.Big);
 
 		/// <summary>
 		///   Write a int into the buffer
 		/// </summary>
 		/// <returns></returns>
-		void WriteInt(int @int);
+		void WriteInt(int @int, Endian endian = Endian.Big);
 
 		/// <summary>
 		///   Write a long into the buffer
 		/// </summary>
 		/// <returns></returns>
-		void WriteLong(Int64 @long);
+		void WriteLong(Int64 @long, Endian endian = Endian.Big);
 
 		/// <summary>
 		///   Write a UShort into the buffer
 		/// </summary>
 		/// <returns></returns>
-		void WriteUShort(ushort @ushort);
+		void WriteUShort(ushort @ushort, Endian endian = Endian.Big);
 
 		/// <summary>
 		///   Write a int into the buffer
 		/// </summary>
 		/// <returns></returns>
-		void WriteUInt(UInt32 @uint);
+		void WriteUInt(UInt32 @uint, Endian endian = Endian.Big);
 
 		/// <summary>
 		///   Write a long into the buffer
 		/// </summary>
 		/// <returns></returns>
-		void WriteULong(UInt64 @ulong);
+		void WriteULong(UInt64 @ulong, Endian endian = Endian.Big);
 
 		/// <summary>
 		///   Write a byte into the buffer
@@ -66,7 +66,7 @@ namespace Rathalos.Core.Utils.IO
 		///   Write a Float into the buffer
 		/// </summary>
 		/// <returns></returns>
-		void WriteFloat(float @float);
+		void WriteFloat(float @float, Endian endian = Endian.Big);
 
 		/// <summary>
 		///   Write a Boolean into the buffer
@@ -83,13 +83,7 @@ namespace Rathalos.Core.Utils.IO
 		/// <summary>
 		///   Write a Double into the buffer
 		/// </summary>
-		void WriteDouble(Double @double);
-
-		/// <summary>
-		///   Write a Single into the buffer
-		/// </summary>
-		/// <returns></returns>
-		void WriteSingle(Single @single);
+		void WriteDouble(Double @double, Endian endian = Endian.Big);
 
 		/// <summary>
 		///   Write a string into the buffer
@@ -109,7 +103,10 @@ namespace Rathalos.Core.Utils.IO
 		/// <returns></returns>
 		void WriteBytes(byte[] data);
 
-		void Clear();
+		long ReserveInt();
+        void WriteIntAtPosition(int value, long position);
+
+        void Clear();
 		void Seek(int offset);
 	}
 }

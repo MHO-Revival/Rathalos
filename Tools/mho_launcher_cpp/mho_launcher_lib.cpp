@@ -14,6 +14,9 @@
 #include <string>
 #include <iostream>
 #include <Tchar.h>
+#include <vector>
+#include <mutex>
+#include <map>
 
 DWORD server_url_address = 0;
 
@@ -31,109 +34,109 @@ bool log_crypto = false;
 // Now only constructing the logs on game thread but not printing.
 // Isolating the printing to my own thread via a queue.
 struct Event {
-    std::string msg;
+	std::string msg;
 };
 
 std::atomic<bool> is_running = false;
-moodycamel::BlockingConcurrentQueue<Event> *events = nullptr;
+moodycamel::BlockingConcurrentQueue<Event>* events = nullptr;
 
 void run_events() {
-    Event event{};
-    while (is_running) {
-        if (!events->wait_dequeue_timed(event, 500 * 1000)) {
-            // check every 500ms if we are still running
-            continue;
-        }
-        std::cout << event.msg;
-    }
+	Event event{};
+	while (is_running) {
+		if (!events->wait_dequeue_timed(event, 500 * 1000)) {
+			// check every 500ms if we are still running
+			continue;
+		}
+		std::cout << event.msg;
+	}
 }
 
-void log(const char *fmt, ...) {
-    va_list ap;
-            va_start (ap, fmt);
-    std::string buf = vformat(fmt, ap);
-            va_end (ap);
-    events->enqueue({buf});
+void log(const char* fmt, ...) {
+	va_list ap;
+	va_start(ap, fmt);
+	std::string buf = vformat(fmt, ap);
+	va_end(ap);
+	events->enqueue({ buf });
 }
 
 /// Event System - END
 
 void __cdecl protocalhandler_log(
-        int p_unk,
-        size_t p_buffer_size,
-        wchar_t *p_str,
-        void *p_str_fmt_args
+	int p_unk,
+	size_t p_buffer_size,
+	wchar_t* p_str,
+	void* p_str_fmt_args
 ) {
-    // call original, just in case we find a switch that prints to file or want to observe behaviour related.
-    org_protocalhandler_log(p_unk, p_buffer_size, p_str, p_str_fmt_args);
+	// call original, just in case we find a switch that prints to file or want to observe behaviour related.
+	org_protocalhandler_log(p_unk, p_buffer_size, p_str, p_str_fmt_args);
 
-    size_t w_str_size = std::wcslen(p_str);
-    if (w_str_size <= 0) {
-        // TODO I am not interested if there is no string content in the buffer,
-        // TODO however it gets called some times without any content.
-        //fprintf("protocalhandler::w_str_size:%d (p_unk:%d, p_buffer_size:%d p_str:%p, p_str_fmt_args:%p)\n",
-        //        w_str_size, p_unk, p_buffer_size, p_str, p_str_fmt_args
-        //);
-        return;
-    }
-    // `p_buffer_size` should be appropriate sized to hold formatted string
-    size_t out_buffer_size = p_buffer_size + w_str_size + 1024; // just to be sure
-    wchar_t *w_str_fmt = new wchar_t[out_buffer_size];
+	size_t w_str_size = std::wcslen(p_str);
+	if (w_str_size <= 0) {
+		// TODO I am not interested if there is no string content in the buffer,
+		// TODO however it gets called some times without any content.
+		//fprintf("protocalhandler::w_str_size:%d (p_unk:%d, p_buffer_size:%d p_str:%p, p_str_fmt_args:%p)\n",
+		//        w_str_size, p_unk, p_buffer_size, p_str, p_str_fmt_args
+		//);
+		return;
+	}
+	// `p_buffer_size` should be appropriate sized to hold formatted string
+	size_t out_buffer_size = p_buffer_size + w_str_size + 1024; // just to be sure
+	wchar_t* w_str_fmt = new wchar_t[out_buffer_size];
 
-    // this is a function the game uses to apply formatting, it als adds process and thread id to the string
-    org_protocalhandler_format_log(w_str_fmt, out_buffer_size, p_str, p_str_fmt_args);
-    size_t w_str_fmt_size = std::wcslen(w_str_fmt);
-    std::wstring w_log_text(w_str_fmt, w_str_fmt_size);
+	// this is a function the game uses to apply formatting, it als adds process and thread id to the string
+	org_protocalhandler_format_log(w_str_fmt, out_buffer_size, p_str, p_str_fmt_args);
+	size_t w_str_fmt_size = std::wcslen(w_str_fmt);
+	std::wstring w_log_text(w_str_fmt, w_str_fmt_size);
 
-    // converting wstring to string, to be able to print it to console
-    std::string log_text = ws_2_s(w_log_text);
-    delete[] w_str_fmt;
-    log("protocalhandler_log:%s\n", log_text.c_str());
+	// converting wstring to string, to be able to print it to console
+	std::string log_text = ws_2_s(w_log_text);
+	delete[] w_str_fmt;
+	log("protocalhandler_log:%s\n", log_text.c_str());
 }
 
 const int IGNORE_LOGS_SIZE = 9;
 std::string IGNORE_LOGS[IGNORE_LOGS_SIZE] = {
-        "$4[Error] I3DEngine::LoadStatObj: filename is not specified",
-        "$6[Warning] Texture does not exist",
-        "$6[Warning] Warning: CTexMan::ImagePreprocessing",
-        "$6[Warning] Error: CTexMan::ImagePreprocessing:",
-        "$6[Warning] CAF-File Not Found:",
-        "$6[Warning] Normal map should have '_ddn' suffix in filename",
-        "$6[Warning] CryAnimation: process Aimpose",
-        "$6[Warning] Reference if not existing Joint-Name. Aim-IK disabled",
-        "$6[Warning] Failed to create animation alias"
+		"$4[Error] I3DEngine::LoadStatObj: filename is not specified",
+		"$6[Warning] Texture does not exist",
+		"$6[Warning] Warning: CTexMan::ImagePreprocessing",
+		"$6[Warning] Error: CTexMan::ImagePreprocessing:",
+		"$6[Warning] CAF-File Not Found:",
+		"$6[Warning] Normal map should have '_ddn' suffix in filename",
+		"$6[Warning] CryAnimation: process Aimpose",
+		"$6[Warning] Reference if not existing Joint-Name. Aim-IK disabled",
+		"$6[Warning] Failed to create animation alias"
 };
 
-void client_log(int do_log, char *near_log_ptr) {
-    if (do_log == 0) {
-        return;
-    }
-    char *log_ptr = near_log_ptr + 0x20;
-    int log_len = 0;
-    while (true) {
-        if (log_ptr[log_len] == 0) {
-            break;
-        }
-        log_len++;
-    }
-    if (log_len <= 0) {
-        return;
-    }
-    std::string log_text = std::string(log_ptr, log_len);
+void client_log(int do_log, char* near_log_ptr) {
+	if (do_log == 0) {
+		return;
+	}
+	char* log_ptr = near_log_ptr + 0x20;
+	int log_len = 0;
+	while (true) {
+		if (log_ptr[log_len] == 0) {
+			break;
+		}
+		log_len++;
+	}
+	if (log_len <= 0) {
+		return;
+	}
+	std::string log_text = std::string(log_ptr, log_len);
 
-    for (int i = 0; i < IGNORE_LOGS_SIZE; i++) {
-        if (log_text.find(IGNORE_LOGS[i]) != std::string::npos) {
-            return;
-        }
-    }
+	for (int i = 0; i < IGNORE_LOGS_SIZE; i++) {
+		if (log_text.find(IGNORE_LOGS[i]) != std::string::npos) {
+			return;
+		}
+	}
 
-    log("client_log: %s \n", log_text.c_str());
+	log("client_log: %s \n", log_text.c_str());
 }
 
-void tenproxy_log(wchar_t *log_ptr) {
-    std::wstring w_log_txt = std::wstring(log_ptr);
-    std::string log_text = ws_2_s(w_log_txt);
-    log("tenproxy_log: %s \n", log_text.c_str());
+void tenproxy_log(wchar_t* log_ptr) {
+	std::wstring w_log_txt = std::wstring(log_ptr);
+	std::string log_text = ws_2_s(w_log_txt);
+	log("tenproxy_log: %s \n", log_text.c_str());
 }
 
 /**
@@ -142,349 +145,261 @@ void tenproxy_log(wchar_t *log_ptr) {
  */
 void __cdecl crygame_13F3640() {
 
-    log("crygame_13F3640\n");
-    const char *url = "127.0.0.1:8142";
-    //const char *url = "127.0.0.1:8142,127.0.0.1:8142,127.0.0.1:8142,vport:8142";
-    WriteMemory((LPVOID) server_url_address, url, strlen(url));
-    org_fn_crygame_13EC290();
+	log("crygame_13F3640\n");
+	const char* url = "127.0.0.1:8142";
+	//const char *url = "127.0.0.1:8142,127.0.0.1:8142,127.0.0.1:8142,vport:8142";
+	WriteMemory((LPVOID)server_url_address, url, strlen(url));
+	org_fn_crygame_13EC290();
 }
 
 int __cdecl aes_key_expansion(
-        void *key,
-        unsigned int key_len_bits,
-        void *expanded_key
+	void* key,
+	unsigned int key_len_bits,
+	void* expanded_key
 ) {
-    log("aes_key_expansion (bits:%d)\n", key_len_bits);
+	log("aes_key_expansion (bits:%d)\n", key_len_bits);
 
-    unsigned int key_len_bytes = key_len_bits / 8;
-    show((uint8_t *) key, key_len_bytes);
+	unsigned int key_len_bytes = key_len_bits / 8;
+	show((uint8_t*)key, key_len_bytes);
 
-    int ret = org_aes_key_expansion(key, key_len_bits, expanded_key);
-    if (key_len_bits == 128) {
-        unsigned int expanded_key_len_bytes = 176;
-        show((uint8_t *) expanded_key, expanded_key_len_bytes);
-    }
-    return ret;
+	int ret = org_aes_key_expansion(key, key_len_bits, expanded_key);
+	if (key_len_bits == 128) {
+		unsigned int expanded_key_len_bytes = 176;
+		show((uint8_t*)expanded_key, expanded_key_len_bytes);
+	}
+	return ret;
 }
 
 
 int __cdecl perform_tpdu_decryption(
-        TQQApiHandle *apiHandle,
-        char *inputBuffer,
-        unsigned int inputBufferLength,
-        void **outputBuffer,
-        unsigned int *outputBufferLength,
-        int is_TPDU_CMD_PLAIN,
-        int allow_unencrypted_packets) {
+	TQQApiHandle* apiHandle,
+	char* inputBuffer,
+	unsigned int inputBufferLength,
+	void** outputBuffer,
+	unsigned int* outputBufferLength,
+	int is_TPDU_CMD_PLAIN,
+	int allow_unencrypted_packets) {
 
-    uint8_t *encryption_mode_addr = (uint8_t *) apiHandle + 0x84;
-    // *encryption_mode_addr = 0;
-    // allow_unencrypted_packets = 1;
-    if (log_crypto) {
-        log("DECRYPT - START\n");
-        log("DECRYPT - encryption_mode_addr: %d\n", *encryption_mode_addr);
-        log("DECRYPT - Input Buffer\n");
-        show((uint8_t *) inputBuffer, inputBufferLength);
-    }
+	uint8_t* encryption_mode_addr = (uint8_t*)apiHandle + 0x84;
+	// *encryption_mode_addr = 0;
+	// allow_unencrypted_packets = 1;
+	if (log_crypto) {
+		log("DECRYPT - START\n");
+		log("DECRYPT - encryption_mode_addr: %d\n", *encryption_mode_addr);
+		log("DECRYPT - Input Buffer\n");
+		show((uint8_t*)inputBuffer, inputBufferLength);
+	}
 
-    int ret = org_perform_tpdu_decryption(apiHandle,
-                                          inputBuffer,
-                                          inputBufferLength,
-                                          outputBuffer,
-                                          outputBufferLength,
-                                          is_TPDU_CMD_PLAIN,
-                                          allow_unencrypted_packets
-    );
+	int ret = org_perform_tpdu_decryption(apiHandle,
+		inputBuffer,
+		inputBufferLength,
+		outputBuffer,
+		outputBufferLength,
+		is_TPDU_CMD_PLAIN,
+		allow_unencrypted_packets
+	);
 
-    void *out = *outputBuffer;
-    signed int outlen = *outputBufferLength;
+	void* out = *outputBuffer;
+	signed int outlen = *outputBufferLength;
 
-    if (log_crypto) {
-        log("DECRYPT - Return: Dec:%d Hex:0x%08X\n", ret, ret);
-        log("DECRYPT - Output Buffer\n");
-        show((uint8_t *) out, outlen);
-        log("DECRYPT - END\n");
-    }
+	if (log_crypto) {
+		log("DECRYPT - Return: Dec:%d Hex:0x%08X\n", ret, ret);
+		log("DECRYPT - Output Buffer\n");
+		show((uint8_t*)out, outlen);
+		log("DECRYPT - END\n");
+	}
 
-    return ret;
+	return ret;
 }
 
 void __cdecl register_handler(
-        uint32_t packet_id,
-        HandlerCallbackDefintion *handler_definition
+	uint32_t packet_id,
+	HandlerCallbackDefintion* handler_definition
 ) {
-    CsCmd cmd;
-    bool found = false;
-    for (int i = 0; i < CMDS_SIZE; i++) {
-        if (CMDS[i].id == packet_id) {
-            found = true;
-            cmd = CMDS[i];
-            break;
-        }
-    }
+	CsCmd cmd;
+	bool found = false;
+	for (int i = 0; i < CMDS_SIZE; i++) {
+		if (CMDS[i].id == packet_id) {
+			found = true;
+			cmd = CMDS[i];
+			break;
+		}
+	}
 
-    if (found) {
-        log("register_handler %u %s handler_fn:%p, unk:%u\n",
-            packet_id,
-            cmd.name.c_str(),
-            handler_definition->handler_callback_function_ptr,
-            handler_definition->unknown_field
-        );
-    } else {
-        log("register_handler !!! NOT FOUND !!! PacketId: %u \n", packet_id);
-    }
-}
-
-
-// ---------------------------------------------------------
-// DEEP SCANNER: FIND THE REAL MANAGER
-// ---------------------------------------------------------
-// The object at 0x4 is a dud. We need to find the real one.
-// We scan the Main Object (v2) for other valid pointers.
-
-int __fastcall Hooked_Packet20(void* this_ptr, void* edx, void* packet_data) {
-
-    log("\n>>> [DEEP SCAN] Packet 20 Received. Searching for Real Manager... <<<\n");
-
-    if (!this_ptr || IsBadReadPtr(this_ptr, 8)) return 0;
-
-    // v2 = Main Object
-    void* v2 = (void*)((uint32_t)this_ptr + 8);
-    log("   [INFO] Main Object (v2): %p\n", v2);
-
-    // Scan the first 20 pointers (0x0 to 0x50)
-    for (int i = 0; i < 20; i++) {
-        int offset = i * 4;
-        void* ptrCandidate = *(void**)((uint32_t)v2 + offset);
-
-        // 1. Must be a valid pointer
-        if (ptrCandidate && !IsBadReadPtr(ptrCandidate, 4)) {
-
-            // 2. Must point to a VTable (First 4 bytes must be a pointer to code)
-            uint32_t* vtable = *(uint32_t**)ptrCandidate;
-
-            if (vtable && !IsBadReadPtr(vtable, 8)) {
-
-                // 3. Check if Index 1 (FireEvent?) contains valid code
-                void* fnIndex1 = (void*)vtable[1];
-
-                if (fnIndex1 && !IsBadCodePtr((FARPROC)fnIndex1)) {
-                    log("   [FOUND] Offset 0x%X -> Obj: %p | VTable[1]: %p", offset, ptrCandidate, fnIndex1);
-
-                    // Highlight the known ones so we can ignore them
-                    if (offset == 0x0) log(" (Likely NetworkMgr)\n");
-                    else if (offset == 0x4) log(" (The ZOMBIE Manager)\n");
-                    else log(" <--- POSSIBLE REAL MANAGER! ***\n");
-                }
-            }
-        }
-    }
-
-    log(">>> [DEEP SCAN] Complete. <<<\n");
-    return 0;
-}
-
-
-void InstallPacket20Hook(DWORD crygame_addr) {
-    // Target Address: 0x112A3140
-    // Offset: 0x12A3140
-    uint8_t* target = (uint8_t*)(crygame_addr + 0x12A3140);
-
-    // Safety check
-    if (IsBadReadPtr(target, 5)) return;
-
-    // Relative Jump Calculation: Target - Source - 5
-    // JMP <Hooked_Packet20>
-    DWORD relative_offset = (DWORD)Hooked_Packet20 - (DWORD)target - 5;
-
-    DWORD old;
-    VirtualProtect(target, 5, PAGE_EXECUTE_READWRITE, &old);
-
-    target[0] = 0xE9; // JMP opcode
-    *(DWORD*)(target + 1) = relative_offset; // Address
-
-    VirtualProtect(target, 5, old, &old);
-
-    log(">>> [SYSTEM] Packet 20 Hook installed at %p -> redirects to %p <<<\n", target, Hooked_Packet20);
+	if (found) {
+		log("register_handler %u %s handler_fn:%p, unk:%u\n",
+			packet_id,
+			cmd.name.c_str(),
+			handler_definition->handler_callback_function_ptr,
+			handler_definition->unknown_field
+		);
+	}
+	else {
+		log("register_handler !!! NOT FOUND !!! PacketId: %u \n", packet_id);
+	}
 }
 
 void __cdecl call_handler(
-    void* this_ptr,   // <--- NEW: We will capture the object pointer
-    void* call_fn,
-    HandlerCallbackDefintion* handler_definition,
-    uint32_t packet_id,
-    uint8_t* packet_data
+	void* this_ptr,   // <--- NEW: We will capture the object pointer
+	void* call_fn,
+	HandlerCallbackDefintion* handler_definition,
+	uint32_t packet_id,
+	uint8_t* packet_data
 ) {
-    // 1. Existing Logging Logic (Keep this)
-    CsCmd* found_cmd = nullptr;
+	// 1. Existing Logging Logic (Keep this)
+	CsCmd* found_cmd = nullptr;
 
-    // 1. Find the command in your array
-    for (int i = 0; i < CMDS_SIZE; i++) {
-        if (CMDS[i].id == packet_id) {
-            found_cmd = &CMDS[i]; // Get a pointer to the struct
-            break;
-            }
-        }
+	// 1. Find the command in your array
+	for (int i = 0; i < CMDS_SIZE; i++) {
+		if (CMDS[i].id == packet_id) {
+			found_cmd = &CMDS[i]; // Get a pointer to the struct
+			break;
+		}
+	}
 
-    if (found_cmd) {
-        log("call_handler: CMD:%u %s handler_fn:%p, unk:%u, call_fn:%p, this_ptr:%p\n",
-            packet_id,
-            found_cmd->name.c_str(),
-            handler_definition->handler_callback_function_ptr,
-            handler_definition->unknown_field,
-            call_fn,
-            this_ptr
-        );
+	if (found_cmd) {
+		log("call_handler: CMD:%u %s handler_fn:%p, unk:%u, call_fn:%p, this_ptr:%p\n",
+			packet_id,
+			found_cmd->name.c_str(),
+			handler_definition->handler_callback_function_ptr,
+			handler_definition->unknown_field,
+			call_fn,
+			this_ptr
+		);
 
-        // 2. AUTOMATIC REVEAL LOGIC
-        // If an offset is configured > 0, we try to read the hidden function.
-        if (found_cmd->offset_for_wrapper_func > 0 && this_ptr != nullptr) {
+	}
+	else {
+		log("call_handler: !!! NOT FOUND !!!  CMD:%u handler_fn:%p, unk:%u, call_fn:%p\n",
+			packet_id,
+			handler_definition->handler_callback_function_ptr,
+			handler_definition->unknown_field,
+			call_fn
+		);
+	}
 
-            // We cast to uint8_t* to do byte-level arithmetic
-            uint8_t* base_addr = (uint8_t*)this_ptr;
-
-            // Add the offset (e.g., +8 bytes)
-            uint32_t* hidden_ptr_location = (uint32_t*)(base_addr + found_cmd->offset_for_wrapper_func);
-
-            // Safety check: Is this memory readable?
-            if (!IsBadReadPtr(hidden_ptr_location, 4)) {
-                uint32_t real_handler = *hidden_ptr_location;
-                log(">>> [Packet %u REVEAL] Hidden Handler: 0x%08X (Offset: %d) <<<\n", packet_id, real_handler, found_cmd->offset_for_wrapper_func);
-            }
-        }
-
-    } else {
-        log("call_handler: !!! NOT FOUND !!!  CMD:%u handler_fn:%p, unk:%u, call_fn:%p\n",
-            packet_id,
-            handler_definition->handler_callback_function_ptr,
-            handler_definition->unknown_field,
-            call_fn
-        );
-    }
-    
 }
 
 void __cdecl log_handle_logic_or_game_event_notification(
-    char* event_cstr,
-    InternalEventNotification* notif,
-    uint32_t unk_group_index
+	char* event_cstr,
+	InternalEventNotification* notif,
+	uint32_t unk_group_index
 ) {
 
-    std::string notification_type = "unknown";
-    std::string event = event_cstr;
-    if (event.find("handleLogicNotification") != std::string::npos) {
-        notification_type = GetMHLogicEventIDName(static_cast<MHLogicEventID>(notif->notification_id));
-    }
-    else if (event.find("handleGameNotification") != std::string::npos) {
-        notification_type = GetMHGameEventIDName(static_cast<MHGameEventID>(notif->notification_id));
-    }
+	std::string notification_type = "unknown";
+	std::string event = event_cstr;
+	if (event.find("handleLogicNotification") != std::string::npos) {
+		notification_type = GetMHLogicEventIDName(static_cast<MHLogicEventID>(notif->notification_id));
+	}
+	else if (event.find("handleGameNotification") != std::string::npos) {
+		notification_type = GetMHGameEventIDName(static_cast<MHGameEventID>(notif->notification_id));
+	}
 
-    log("log_handle_logic_or_game_event_notification(event:%s, notification_id:%u (type: %s), unk_group_idx: %u)\n",
-        event_cstr,
-        notif->notification_id,
-        notification_type.c_str(),
-        unk_group_index
-    );
+	log("log_handle_logic_or_game_event_notification(event:%s, notification_id:%u (type: %s), unk_group_idx: %u)\n",
+		event_cstr,
+		notif->notification_id,
+		notification_type.c_str(),
+		unk_group_index
+	);
 }
 
 int __cdecl perform_tpdu_encryption(
-        TQQApiHandle *apiHandle,
-        void *inputBuffer,
-        signed int inputBufferLength,
-        void **outputBuffer,
-        signed int *outputBufferLength,
-        int allow_unencrypted
+	TQQApiHandle* apiHandle,
+	void* inputBuffer,
+	signed int inputBufferLength,
+	void** outputBuffer,
+	signed int* outputBufferLength,
+	int allow_unencrypted
 ) {
 
-    uint8_t *encryption_mode_addr = (uint8_t *) apiHandle + 0x84;
-    //*encryption_mode_addr = 0;
-    //allow_unencrypted = 1;
+	uint8_t* encryption_mode_addr = (uint8_t*)apiHandle + 0x84;
+	//*encryption_mode_addr = 0;
+	//allow_unencrypted = 1;
 
-    if (log_crypto) {
-        log("ENCRYPT - START\n");
-        log("ENCRYPT - Input Buffer\n");
-        show((uint8_t *) inputBuffer, inputBufferLength);
-        log("ENCRYPT - encryption_mode_addr: %d\n", *encryption_mode_addr);
-    }
+	if (log_crypto) {
+		log("ENCRYPT - START\n");
+		log("ENCRYPT - Input Buffer\n");
+		show((uint8_t*)inputBuffer, inputBufferLength);
+		log("ENCRYPT - encryption_mode_addr: %d\n", *encryption_mode_addr);
+	}
 
-    int ret = org_perform_tpdu_encryption(apiHandle,
-                                          inputBuffer,
-                                          inputBufferLength,
-                                          outputBuffer,
-                                          outputBufferLength,
-                                          allow_unencrypted
-    );
+	int ret = org_perform_tpdu_encryption(apiHandle,
+		inputBuffer,
+		inputBufferLength,
+		outputBuffer,
+		outputBufferLength,
+		allow_unencrypted
+	);
 
-    void *out = *outputBuffer;
-    signed int outlen = *outputBufferLength;
+	void* out = *outputBuffer;
+	signed int outlen = *outputBufferLength;
 
-    if (log_crypto) {
-        log("ENCRYPT - Return: Dec:%d Hex:0x%08X\n", ret, ret);
-        log("ENCRYPT - Output Buffer\n");
-        show((uint8_t *) out, outlen);
-        log("ENCRYPT - END\n");
-    }
+	if (log_crypto) {
+		log("ENCRYPT - Return: Dec:%d Hex:0x%08X\n", ret, ret);
+		log("ENCRYPT - Output Buffer\n");
+		show((uint8_t*)out, outlen);
+		log("ENCRYPT - END\n");
+	}
 
-    return ret;
+	return ret;
 }
 
 
 // @formatter:off
 _declspec(naked)
 void asm_client_log() {
-    _asm
-    {
-        pushad
-        mov eax, esp
-        push eax
-        push ecx
-        call client_log
-        add esp, 0x8
-        popad
-        // recover stolen bytes
-        mov esp, ebp
-        pop ebp
-        ret 0xC
-    }
+	_asm
+	{
+		pushad
+		mov eax, esp
+		push eax
+		push ecx
+		call client_log
+		add esp, 0x8
+		popad
+		// recover stolen bytes
+		mov esp, ebp
+		pop ebp
+		ret 0xC
+	}
 }
 
 _declspec(naked)
 void asm_tenproxy_log() {
-    _asm
-    {
-        pushad
-        push eax
-        call tenproxy_log
-        add esp, 0x4
-        popad
-        // recover stolen bytes
-        pop edi
-        pop esi
-        pop ebx
-        mov esp,ebp
-        pop ebp
-        ret 0x14
-    }
+	_asm
+	{
+		pushad
+		push eax
+		call tenproxy_log
+		add esp, 0x4
+		popad
+		// recover stolen bytes
+		pop edi
+		pop esi
+		pop ebx
+		mov esp, ebp
+		pop ebp
+		ret 0x14
+	}
 }
 
 DWORD register_handler_ret_jmp;
 _declspec(naked)
 void asm_register_handler() {
-    _asm
-    {
-        pushad
-        mov ebx, [esp + 0x28]
-        mov eax, [esp + 0x2C]
-        push eax
-        push ebx
-        call register_handler
-        add esp, 0x8
-        popad
-        // recover stolen bytes
-        mov ebp, esp
-        mov eax, dword ptr ds:[ecx+0xC]
-        jmp register_handler_ret_jmp
-    }
+	_asm
+	{
+		pushad
+		mov ebx, [esp + 0x28]
+		mov eax, [esp + 0x2C]
+		push eax
+		push ebx
+		call register_handler
+		add esp, 0x8
+		popad
+		// recover stolen bytes
+		mov ebp, esp
+		mov eax, dword ptr ds : [ecx + 0xC]
+		jmp register_handler_ret_jmp
+	}
 }
 
 DWORD call_handler_ret_jmp;
@@ -492,97 +407,275 @@ DWORD call_handler_ret_jmp;
 //DWORD call_handler_hook;
 _declspec(naked)
 void asm_call_handler() {
-    _asm
-    {
-        pushad
+	_asm
+	{
+		pushad
 
-        // --- Original Pushes (Keep these) ---
-        push dword ptr ss : [ebp + 0xC]  // Arg: packet_data
-        push esi                     // Arg: packet_id? (or handler_definition)
-        push dword ptr ss : [ebp + 0x8]  // Arg: handler_definition?
+		// --- Original Pushes (Keep these) ---
+		push dword ptr ss : [ebp + 0xC]  // Arg: packet_data
+		push esi                     // Arg: packet_id? (or handler_definition)
+		push dword ptr ss : [ebp + 0x8]  // Arg: handler_definition?
 
-        // --- Get call_fn ---
-        mov eax, dword ptr ds : [ecx]  // Read vtable/function pointer from object
-        push dword ptr ds : [eax]      // Arg: call_fn
+		// --- Get call_fn ---
+		mov eax, dword ptr ds : [ecx]  // Read vtable/function pointer from object
+		push dword ptr ds : [eax]      // Arg: call_fn
 
-        // --- NEW: Push ECX (The 'this' pointer) ---
-        push ecx                     // Arg: this_ptr
+		// --- NEW: Push ECX (The 'this' pointer) ---
+		push ecx                     // Arg: this_ptr
 
-        // --- Call C++ Function ---
-        call call_handler
+		// --- Call C++ Function ---
+		call call_handler
 
-        // --- Cleanup Stack ---
-        // Originally you added 0x10 (4 args * 4 bytes).
-        // Now we have 5 args, so we add 0x14 (20 bytes).
-        add esp, 0x14
+		// --- Cleanup Stack ---
+		// Originally you added 0x10 (4 args * 4 bytes).
+		// Now we have 5 args, so we add 0x14 (20 bytes).
+		add esp, 0x14
 
-        popad
+		popad
 
-        // --- Return to Original Logic ---
-        push dword ptr ss : [ebp + 0xC]
-        mov eax, dword ptr ds : [ecx]
-        jmp call_handler_ret_jmp
-    }
+		// --- Return to Original Logic ---
+		push dword ptr ss : [ebp + 0xC]
+		mov eax, dword ptr ds : [ecx]
+		jmp call_handler_ret_jmp
+	}
 }
 
 DWORD log_handle_logic_or_game_event_notification_ret_jmp;
 _declspec(naked)
 void asm_log_handle_logic_or_game_event_notification() {
-    _asm
-    {
-        pushad
-        mov ecx, [esp + 0x28]
-        mov ebx, [esp + 0x2C]
-        mov eax, [esp + 0x30]
-        push eax
-        push ebx
-        push ecx
-        call log_handle_logic_or_game_event_notification
-        add esp, 0xc
-        popad
-        // recover stolen bytes
-        mov ebp, esp
-        sub esp, 18h
-        jmp log_handle_logic_or_game_event_notification_ret_jmp
-    }
+	_asm
+	{
+		pushad
+		mov ecx, [esp + 0x28]
+		mov ebx, [esp + 0x2C]
+		mov eax, [esp + 0x30]
+		push eax
+		push ebx
+		push ecx
+		call log_handle_logic_or_game_event_notification
+		add esp, 0xc
+		popad
+		// recover stolen bytes
+		mov ebp, esp
+		sub esp, 18h
+		jmp log_handle_logic_or_game_event_notification_ret_jmp
+	}
 }
 
 // @formatter:on
 
+// Structure to store hook information
+struct TlvHookInfo {
+	DWORD func_addr;
+	std::string name;
+	void* trampoline;
+};
+// Type definition for the TLV function signature (Thiscall)
+typedef int(__thiscall* TlvFuncPtr)(void* this_ptr, size_t size, unsigned int id, DWORD* extra);
 
+struct TlvHookEntry {
+	DWORD original_addr;        // Where the hook was placed
+	TlvFuncPtr trampoline;      // The executable memory with stolen bytes + jmp back
+	std::string name;           // Name for logging
+};
+
+std::map<DWORD, std::string> g_TlvNames;
+std::mutex g_TlvMutex;
+// ---------------------------------------------------------
+// THE LOGGER
+// ---------------------------------------------------------
+// func_addr: The hook address (ID)
+// tdr_struct: Arg1 - The TdrBuf structure pointer (Metadata like offset/capacity)
+// data_ptr:   Arg2 - The RAW DATA POINTER (We found it!)
+// extra_id:   Arg3 - Unknown/ID
+void __stdcall TlvLogger(DWORD func_addr, void* tdr_struct, void* data_ptr, unsigned int extra_id) {
+
+	// 1. Safety Check
+	if (data_ptr == nullptr || IsBadReadPtr(data_ptr, 8)) return;
+
+	// 2. Cast to byte pointer
+	unsigned char* bytes = (unsigned char*)data_ptr;
+	unsigned char tag = bytes[0];
+
+	// 1. Look up Name
+	std::string name = "Unknown_TLV";
+	{
+		std::lock_guard<std::mutex> lock(g_TlvMutex);
+		auto it = g_TlvNames.find(func_addr);
+		if (it != g_TlvNames.end()) name = it->second;
+	}
+
+	// 2. Read the Magic Byte Safely
+	// We cast the void* to a BYTE* and read the first byte ([0])
+	BYTE magic = tag;
+
+	// 3. Check for your Magic Byte (0xAF)
+	const BYTE TARGET_MAGIC = 0xAF;
+
+	if (magic == TARGET_MAGIC) {
+		log("[TLV] MATCH! %s (0x%X) | Magic: 0x%02X | ID: %d\n",
+			name.c_str(), func_addr, magic, extra_id);
+	}
+	else {
+		 log("[TLV] %s (0x%X) | Magic: 0x%02X | ID: %d\n", name.c_str(), func_addr, magic, extra_id);
+	}
+}
+// ---------------------------------------------------------
+// THE INSTALLER
+// ---------------------------------------------------------
+void InstallTlvHook(DWORD target_addr, std::string name) {
+	// Register the name in our map
+	{
+		std::lock_guard<std::mutex> lock(g_TlvMutex);
+		g_TlvNames[target_addr] = name;
+	}
+
+	// -----------------------------------------------------
+	// STEP 1: Analyze Bytes to Steal
+	// -----------------------------------------------------
+	// From your IDA snippet:
+	// 55          PUSH EBP
+	// 8B EC       MOV EBP, ESP
+	// 8B 45 08    MOV EAX, [EBP+8]
+	// ----------------------------
+	// Total:      6 Bytes
+	const int STOLEN_LENGTH = 6;
+
+	// -----------------------------------------------------
+	// STEP 2: Allocate Memory for Stub + Trampoline
+	// -----------------------------------------------------
+	// We allocate 128 bytes of executable memory for this specific hook
+	BYTE* memory = (BYTE*)VirtualAlloc(NULL, 128, MEM_COMMIT, PAGE_EXECUTE_READWRITE);
+	if (!memory) return;
+
+	// Define pointers into our new memory
+	BYTE* trampoline = memory;          // Part A: The Original Code
+	BYTE* stub = memory + 64;           // Part B: The Logging Stub
+
+	// -----------------------------------------------------
+	// STEP 3: Build the Trampoline (Part A)
+	// -----------------------------------------------------
+	// Copy the stolen bytes
+	memcpy(trampoline, (void*)target_addr, STOLEN_LENGTH);
+
+	// Write JMP back to the game (to the instruction AFTER the ones we stole)
+	// Destination: target_addr + STOLEN_LENGTH
+	// Source:      trampoline + STOLEN_LENGTH (Where the JMP instruction ends)
+	trampoline[STOLEN_LENGTH] = 0xE9; // JMP Opcode
+	*(DWORD*)(trampoline + STOLEN_LENGTH + 1) = (target_addr + STOLEN_LENGTH) - ((DWORD)trampoline + STOLEN_LENGTH) - 5;
+
+	// -----------------------------------------------------
+	// STEP 4: Build the Stub (Part B)
+	// -----------------------------------------------------
+	/* Assembly we are writing:
+		pushad                  ; Save registers
+		pushfd                  ; Save flags
+
+		; Push args for TlvLogger (Reverse Order for __stdcall)
+		push [esp+0x2C]         ; Arg4: ID (Offset adjusted for PUSHAD+PUSHFD)
+		push [esp+0x28]         ; Arg3: Size
+		push ecx                ; Arg2: This Ptr (ECX holds 'this' in __thiscall)
+		push <target_addr>      ; Arg1: Address (Immediate value)
+
+		call TlvLogger          ; Call C++ function
+
+		popfd                   ; Restore flags
+		popad                   ; Restore registers
+		jmp Trampoline          ; Go to Part A
+	*/
+
+	BYTE* p = stub;
+
+	*p++ = 0x60; // PUSHAD
+	*p++ = 0x9C; // PUSHFD
+
+	// Push ID (Arg 2 on stack -> [ESP+0xC])
+	// Stack shift: 32 (PUSHAD) + 4 (PUSHFD) = 36 (0x24)
+	// Original ESP + 0xC is now ESP + 0x24 + 0xC = ESP + 0x30
+	*p++ = 0xFF; *p++ = 0x74; *p++ = 0x24; *p++ = 0x30; // PUSH [ESP+0x30]
+
+	// Push Size (Arg 1 on stack -> [ESP+0x8])
+	// Original ESP + 0x8 is now ESP + 0x24 + 0x8 = ESP + 0x2C
+	*p++ = 0xFF; *p++ = 0x74; *p++ = 0x24; *p++ = 0x2C; // PUSH [ESP+0x2C]
+
+	// Push This (ECX)
+	*p++ = 0x51; // PUSH ECX
+
+	// Push Address (Immediate)
+	*p++ = 0x68; *(DWORD*)p = target_addr; p += 4;
+
+	// Call Logger
+	*p++ = 0xE8; *(DWORD*)p = (DWORD)TlvLogger - (DWORD)p - 4; p += 4;
+
+	*p++ = 0x9D; // POPFD
+	*p++ = 0x61; // POPAD
+
+	// Jmp to Trampoline
+	*p++ = 0xE9; *(DWORD*)p = (DWORD)trampoline - (DWORD)p - 4; p += 4;
+
+	// -----------------------------------------------------
+	// STEP 5: Apply the Hook
+	// -----------------------------------------------------
+	DWORD oldProtect;
+	VirtualProtect((void*)target_addr, STOLEN_LENGTH, PAGE_EXECUTE_READWRITE, &oldProtect);
+
+	// Write the JMP to our Stub
+	BYTE* game_code = (BYTE*)target_addr;
+	game_code[0] = 0xE9;
+	*(DWORD*)(game_code + 1) = (DWORD)stub - (DWORD)game_code - 5;
+
+	// NOP the 6th byte (since we stole 6 but JMP is 5)
+	game_code[5] = 0x90;
+
+	VirtualProtect((void*)target_addr, STOLEN_LENGTH, oldProtect, &oldProtect);
+
+	log("Hooked %s at 0x%X\n", name.c_str(), target_addr);
+}
+// ---------------------------------------------------------
+// 3. Update your install_all_tlv_hooks function
+// ---------------------------------------------------------
+void install_all_tlv_hooks(DWORD crygame_addr) {
+	for (const auto& mapping : TLV_MAPPINGS) {
+		DWORD func_addr = crygame_addr + mapping.address;
+		InstallTlvHook(func_addr, mapping.name);
+	}
+}
 /**
  * waits until crygame.dll is loaded and performs and applies patches to its memory
  */
 void run_crygame() {
-    HMODULE crygame_handle = nullptr;
-    DWORD crygame_addr = 0;
-    log("wait for crygame... \n");
-    while (!crygame_handle) {
-        crygame_handle = GetModuleHandleA("crygame");
-        std::this_thread::sleep_for(std::chrono::milliseconds(20));
-    }
-    crygame_addr = (DWORD) crygame_handle;
-    log("got crygame_handle: %p \n", crygame_handle);
-    InstallPacket20Hook(crygame_addr);
-    // assign original function calls
-    org_fn_crygame_13EC290 = (fn_crygame_13EC290) (crygame_addr + 0x13F3640);
+	HMODULE crygame_handle = nullptr;
+	DWORD crygame_addr = 0;
+	log("wait for crygame... \n");
+	while (!crygame_handle) {
+		crygame_handle = GetModuleHandleA("crygame");
+		std::this_thread::sleep_for(std::chrono::milliseconds(20));
+	}
+	crygame_addr = (DWORD)crygame_handle;
+	log("got crygame_handle: %p \n", crygame_handle);
 
-    // hook existing ones
-    //hook_call(crygame_addr, 0x11AED64, &crygame_13F3640);
+	// Install TLV hooks
+	install_all_tlv_hooks(crygame_addr);
 
+	// assign original function calls
+	org_fn_crygame_13EC290 = (fn_crygame_13EC290)(crygame_addr + 0x13F3640);
 
-    // listen to register packet handler
-    patch_jmp(crygame_addr, 0x1223631, &asm_register_handler);
-    register_handler_ret_jmp = crygame_addr + 0x1223636;
+	// hook existing ones
+	//hook_call(crygame_addr, 0x11AED64, &crygame_13F3640);
 
 
-    patch_jmp(crygame_addr, 0x1223148, &asm_call_handler);
-    call_handler_ret_jmp = crygame_addr + 0x122314D;
-    //call_handler_hook = (DWORD) call_handler;
-    //call_handler_hook_ptr = (DWORD) &call_handler_hook;
+	// listen to register packet handler
+	patch_jmp(crygame_addr, 0x1223631, &asm_register_handler);
+	register_handler_ret_jmp = crygame_addr + 0x1223636;
 
-    patch_jmp(crygame_addr, 0x50ab31, &asm_log_handle_logic_or_game_event_notification);
-    log_handle_logic_or_game_event_notification_ret_jmp = crygame_addr + 0x50ab36;
+
+	patch_jmp(crygame_addr, 0x1223148, &asm_call_handler);
+	call_handler_ret_jmp = crygame_addr + 0x122314D;
+	//call_handler_hook = (DWORD) call_handler;
+	//call_handler_hook_ptr = (DWORD) &call_handler_hook;
+
+	/*patch_jmp(crygame_addr, 0x50ab31, &asm_log_handle_logic_or_game_event_notification);
+	log_handle_logic_or_game_event_notification_ret_jmp = crygame_addr + 0x50ab36;*/
 
 }
 
@@ -591,181 +684,181 @@ void run_crygame() {
  * waits until tenproxy.dll is loaded and performs and applies patches to its memory
  */
 void run_tenproxy() {
-    HMODULE tenproxy_handle = nullptr;
-    DWORD tenproxy_addr = 0;
-    log("wait for tenproxy... \n");
-    while (!tenproxy_handle) {
-        tenproxy_handle = GetModuleHandleA("tenproxy.dll");
-        std::this_thread::sleep_for(std::chrono::milliseconds(20));
-    }
-    tenproxy_addr = (DWORD) tenproxy_handle;
-    log("got tenproxy_handle: %p \n", tenproxy_handle);
+	HMODULE tenproxy_handle = nullptr;
+	DWORD tenproxy_addr = 0;
+	log("wait for tenproxy... \n");
+	while (!tenproxy_handle) {
+		tenproxy_handle = GetModuleHandleA("tenproxy.dll");
+		std::this_thread::sleep_for(std::chrono::milliseconds(20));
+	}
+	tenproxy_addr = (DWORD)tenproxy_handle;
+	log("got tenproxy_handle: %p \n", tenproxy_handle);
 
-    // capture tenproxy logs
-    patch_jmp(tenproxy_addr, 0xA143, &asm_tenproxy_log);
+	// capture tenproxy logs
+	patch_jmp(tenproxy_addr, 0xA143, &asm_tenproxy_log);
 
-    // disable conditional logging
-    patch_nop(tenproxy_addr, 0xA0D3, 8);
+	// disable conditional logging
+	patch_nop(tenproxy_addr, 0xA0D3, 8);
 }
 
 /**
  * waits until protocalhandler.dll is loaded and performs and applies patches to its memory
  */
 void run_protocal_handler() {
-    HMODULE protocal_handler_handle = nullptr;
+	HMODULE protocal_handler_handle = nullptr;
 
-    log("wait for protocalhandler... \n");
-    while (!protocal_handler_handle) {
-        protocal_handler_handle = GetModuleHandleA("protocalhandler");
-        std::this_thread::sleep_for(std::chrono::milliseconds(20));
-    }
-    DWORD protocal_handler_addr = (DWORD) protocal_handler_handle;
-    log("got protocal_handler_handle: %p \n", protocal_handler_handle);
+	log("wait for protocalhandler... \n");
+	while (!protocal_handler_handle) {
+		protocal_handler_handle = GetModuleHandleA("protocalhandler");
+		std::this_thread::sleep_for(std::chrono::milliseconds(20));
+	}
+	DWORD protocal_handler_addr = (DWORD)protocal_handler_handle;
+	log("got protocal_handler_handle: %p \n", protocal_handler_handle);
 
-    // assign original function calls
-    org_protocalhandler_log = (fn_protocalhandler_log) (protocal_handler_addr + 0x1703);
-    org_protocalhandler_format_log = (fn_protocalhandler_log_format) (protocal_handler_addr + 0x1A96);
+	// assign original function calls
+	org_protocalhandler_log = (fn_protocalhandler_log)(protocal_handler_addr + 0x1703);
+	org_protocalhandler_format_log = (fn_protocalhandler_log_format)(protocal_handler_addr + 0x1A96);
 
-    // org_perform_tpdu_decryption = (fn_perform_tpdu_decryption) (protocal_handler_addr + 0x73DC0);
-    // org_perform_tpdu_encryption = (fn_perform_tpdu_encryption) (protocal_handler_addr + 0x73bb0);
-    // org_aes_key_expansion = (fn_aes_key_expansion) (protocal_handler_addr + 0x888E0);
+	// org_perform_tpdu_decryption = (fn_perform_tpdu_decryption) (protocal_handler_addr + 0x73DC0);
+	// org_perform_tpdu_encryption = (fn_perform_tpdu_encryption) (protocal_handler_addr + 0x73bb0);
+	// org_aes_key_expansion = (fn_aes_key_expansion) (protocal_handler_addr + 0x888E0);
 
-    // hook_call(protocal_handler_addr, 0x36002, &perform_tpdu_decryption);
-    // hook_call(protocal_handler_addr, 0x360FE, &perform_tpdu_decryption);
-    // hook_call(protocal_handler_addr, 0x74AD3, &perform_tpdu_decryption);
-    // hook_call(protocal_handler_addr, 0x74F7F, &perform_tpdu_decryption);
-    // hook_call(protocal_handler_addr, 0x75336, &perform_tpdu_decryption);
-    // hook_call(protocal_handler_addr, 0x75508, &perform_tpdu_decryption);
-    // hook_call(protocal_handler_addr, 0x75651, &perform_tpdu_decryption);
+	// hook_call(protocal_handler_addr, 0x36002, &perform_tpdu_decryption);
+	// hook_call(protocal_handler_addr, 0x360FE, &perform_tpdu_decryption);
+	// hook_call(protocal_handler_addr, 0x74AD3, &perform_tpdu_decryption);
+	// hook_call(protocal_handler_addr, 0x74F7F, &perform_tpdu_decryption);
+	// hook_call(protocal_handler_addr, 0x75336, &perform_tpdu_decryption);
+	// hook_call(protocal_handler_addr, 0x75508, &perform_tpdu_decryption);
+	// hook_call(protocal_handler_addr, 0x75651, &perform_tpdu_decryption);
 
-    // hook_call(protocal_handler_addr, 0x36FAB, &perform_tpdu_encryption);
-    // hook_call(protocal_handler_addr, 0x742A2, &perform_tpdu_encryption);
-    // hook_call(protocal_handler_addr, 0x74661, &perform_tpdu_encryption);
-    // hook_call(protocal_handler_addr, 0x75B70, &perform_tpdu_encryption);
-    // hook_call(protocal_handler_addr, 0x76069, &perform_tpdu_encryption);
+	// hook_call(protocal_handler_addr, 0x36FAB, &perform_tpdu_encryption);
+	// hook_call(protocal_handler_addr, 0x742A2, &perform_tpdu_encryption);
+	// hook_call(protocal_handler_addr, 0x74661, &perform_tpdu_encryption);
+	// hook_call(protocal_handler_addr, 0x75B70, &perform_tpdu_encryption);
+	// hook_call(protocal_handler_addr, 0x76069, &perform_tpdu_encryption);
 
-    // hook_call(protocal_handler_addr, 0x88CB0, &aes_key_expansion);
-    // hook_call(protocal_handler_addr, 0x8B1E1, &aes_key_expansion);
-    // hook_call(protocal_handler_addr, 0x8B50B, &aes_key_expansion);
+	// hook_call(protocal_handler_addr, 0x88CB0, &aes_key_expansion);
+	// hook_call(protocal_handler_addr, 0x8B1E1, &aes_key_expansion);
+	// hook_call(protocal_handler_addr, 0x8B50B, &aes_key_expansion);
 
-    hook_call(protocal_handler_addr, 0x39171, &protocalhandler_log);
-    hook_call(protocal_handler_addr, 0x39141, &protocalhandler_log);
-    hook_call(protocal_handler_addr, 0x390B1, &protocalhandler_log);
-    hook_call(protocal_handler_addr, 0x390E1, &protocalhandler_log);
-    hook_call(protocal_handler_addr, 0x3910E, &protocalhandler_log);
-    hook_call(protocal_handler_addr, 0x391A1, &protocalhandler_log);
-    hook_call(protocal_handler_addr, 0x38F2E, &protocalhandler_log);
-    hook_call(protocal_handler_addr, 0x38F61, &protocalhandler_log);
-    hook_call(protocal_handler_addr, 0x38F04, &protocalhandler_log);
-    hook_call(protocal_handler_addr, 0x123F1, &protocalhandler_log);
-    hook_call(protocal_handler_addr, 0x12391, &protocalhandler_log);
-    hook_call(protocal_handler_addr, 0x123C1, &protocalhandler_log);
-    hook_call(protocal_handler_addr, 0x1CC61, &protocalhandler_log);
-    hook_call(protocal_handler_addr, 0x38FBE, &protocalhandler_log);
-    hook_call(protocal_handler_addr, 0x39021, &protocalhandler_log);
-    hook_call(protocal_handler_addr, 0x38F91, &protocalhandler_log);
-    hook_call(protocal_handler_addr, 0x3907E, &protocalhandler_log);
-    hook_call(protocal_handler_addr, 0x208D1, &protocalhandler_log);
-    hook_call(protocal_handler_addr, 0x39051, &protocalhandler_log);
-    hook_call(protocal_handler_addr, 0x38FF1, &protocalhandler_log);
-    hook_call(protocal_handler_addr, 0x1CC91, &protocalhandler_log);
-    hook_call(protocal_handler_addr, 0xC921, &protocalhandler_log);
-    hook_call(protocal_handler_addr, 0xC551, &protocalhandler_log);
-    hook_call(protocal_handler_addr, 0x83F1, &protocalhandler_log);
-    hook_call(protocal_handler_addr, 0xA831, &protocalhandler_log);
-    hook_call(protocal_handler_addr, 0x83C1, &protocalhandler_log);
+	hook_call(protocal_handler_addr, 0x39171, &protocalhandler_log);
+	hook_call(protocal_handler_addr, 0x39141, &protocalhandler_log);
+	hook_call(protocal_handler_addr, 0x390B1, &protocalhandler_log);
+	hook_call(protocal_handler_addr, 0x390E1, &protocalhandler_log);
+	hook_call(protocal_handler_addr, 0x3910E, &protocalhandler_log);
+	hook_call(protocal_handler_addr, 0x391A1, &protocalhandler_log);
+	hook_call(protocal_handler_addr, 0x38F2E, &protocalhandler_log);
+	hook_call(protocal_handler_addr, 0x38F61, &protocalhandler_log);
+	hook_call(protocal_handler_addr, 0x38F04, &protocalhandler_log);
+	hook_call(protocal_handler_addr, 0x123F1, &protocalhandler_log);
+	hook_call(protocal_handler_addr, 0x12391, &protocalhandler_log);
+	hook_call(protocal_handler_addr, 0x123C1, &protocalhandler_log);
+	hook_call(protocal_handler_addr, 0x1CC61, &protocalhandler_log);
+	hook_call(protocal_handler_addr, 0x38FBE, &protocalhandler_log);
+	hook_call(protocal_handler_addr, 0x39021, &protocalhandler_log);
+	hook_call(protocal_handler_addr, 0x38F91, &protocalhandler_log);
+	hook_call(protocal_handler_addr, 0x3907E, &protocalhandler_log);
+	hook_call(protocal_handler_addr, 0x208D1, &protocalhandler_log);
+	hook_call(protocal_handler_addr, 0x39051, &protocalhandler_log);
+	hook_call(protocal_handler_addr, 0x38FF1, &protocalhandler_log);
+	hook_call(protocal_handler_addr, 0x1CC91, &protocalhandler_log);
+	hook_call(protocal_handler_addr, 0xC921, &protocalhandler_log);
+	hook_call(protocal_handler_addr, 0xC551, &protocalhandler_log);
+	hook_call(protocal_handler_addr, 0x83F1, &protocalhandler_log);
+	hook_call(protocal_handler_addr, 0xA831, &protocalhandler_log);
+	hook_call(protocal_handler_addr, 0x83C1, &protocalhandler_log);
 }
 
 void CreateConsole() {
-    if (!AllocConsole()) {
-        return;
-    }
+	if (!AllocConsole()) {
+		return;
+	}
 
-    // std::cout, std::clog, std::cerr, std::cin
-    FILE *fDummy;
-    freopen_s(&fDummy, "CONOUT$", "w", stdout);
-    freopen_s(&fDummy, "CONOUT$", "w", stderr);
-    freopen_s(&fDummy, "CONIN$", "r", stdin);
-    std::cout.clear();
-    std::clog.clear();
-    std::cerr.clear();
-    std::cin.clear();
+	// std::cout, std::clog, std::cerr, std::cin
+	FILE* fDummy;
+	freopen_s(&fDummy, "CONOUT$", "w", stdout);
+	freopen_s(&fDummy, "CONOUT$", "w", stderr);
+	freopen_s(&fDummy, "CONIN$", "r", stdin);
+	std::cout.clear();
+	std::clog.clear();
+	std::cerr.clear();
+	std::cin.clear();
 
-    // std::wcout, std::wclog, std::wcerr, std::wcin
-    HANDLE hConOut = CreateFile(_T("CONOUT$"),
-                                GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE,
-                                NULL,
-                                OPEN_EXISTING,
-                                FILE_ATTRIBUTE_NORMAL,
-                                NULL
-    );
-    HANDLE hConIn = CreateFile(_T("CONIN$"),
-                               GENERIC_READ | GENERIC_WRITE,
-                               FILE_SHARE_READ | FILE_SHARE_WRITE,
-                               NULL,
-                               OPEN_EXISTING,
-                               FILE_ATTRIBUTE_NORMAL,
-                               NULL
-    );
-    SetStdHandle(STD_OUTPUT_HANDLE, hConOut);
-    SetStdHandle(STD_ERROR_HANDLE, hConOut);
-    SetStdHandle(STD_INPUT_HANDLE, hConIn);
-    std::wcout.clear();
-    std::wclog.clear();
-    std::wcerr.clear();
-    std::wcin.clear();
+	// std::wcout, std::wclog, std::wcerr, std::wcin
+	HANDLE hConOut = CreateFile(_T("CONOUT$"),
+		GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE,
+		NULL,
+		OPEN_EXISTING,
+		FILE_ATTRIBUTE_NORMAL,
+		NULL
+	);
+	HANDLE hConIn = CreateFile(_T("CONIN$"),
+		GENERIC_READ | GENERIC_WRITE,
+		FILE_SHARE_READ | FILE_SHARE_WRITE,
+		NULL,
+		OPEN_EXISTING,
+		FILE_ATTRIBUTE_NORMAL,
+		NULL
+	);
+	SetStdHandle(STD_OUTPUT_HANDLE, hConOut);
+	SetStdHandle(STD_ERROR_HANDLE, hConOut);
+	SetStdHandle(STD_INPUT_HANDLE, hConIn);
+	std::wcout.clear();
+	std::wclog.clear();
+	std::wcerr.clear();
+	std::wcin.clear();
 
-    std::ios::sync_with_stdio();
+	std::ios::sync_with_stdio();
 }
 
 
 void run() {
-    events = new moodycamel::BlockingConcurrentQueue<Event>(100);
-    is_running = true;
-    CreateConsole();
+	events = new moodycamel::BlockingConcurrentQueue<Event>(100);
+	is_running = true;
+	CreateConsole();
 
-    new std::thread(run_events);
-    log("run\n");
+	new std::thread(run_events);
+	log("run\n");
 
-    // TenProxyTclsSharedMeMemory *tptsmm = new TenProxyTclsSharedMeMemory();
-    // tptsmm->map(0);
+	// TenProxyTclsSharedMeMemory *tptsmm = new TenProxyTclsSharedMeMemory();
+	// tptsmm->map(0);
 
 
-    std::wstring exe_name_w = get_exe_name();
-    std::string exe_name = ws_2_s(exe_name_w);
-    log("exe_name: %s \n", exe_name.c_str());
+	std::wstring exe_name_w = get_exe_name();
+	std::string exe_name = ws_2_s(exe_name_w);
+	log("exe_name: %s \n", exe_name.c_str());
 
-    // get base addr
-    HMODULE mho_client_handle = GetModuleHandleW(exe_name_w.c_str());
-    DWORD mho_client_addr = (DWORD) mho_client_handle;
-    log("mho_client_handle: %p \n", mho_client_handle);
+	// get base addr
+	HMODULE mho_client_handle = GetModuleHandleW(exe_name_w.c_str());
+	DWORD mho_client_addr = (DWORD)mho_client_handle;
+	log("mho_client_handle: %p \n", mho_client_handle);
 
-    // assign variables depending on mhoclient base
-    server_url_address = mho_client_addr + 0x157AAA0; // RVA
-    log("server_url_address: 0x%08X \n", server_url_address);
+	// assign variables depending on mhoclient base
+	server_url_address = mho_client_addr + 0x157AAA0; // RVA
+	log("server_url_address: 0x%08X \n", server_url_address);
 
-    // capture mho client logs
-    patch_jmp(mho_client_addr, 0x3E0F06, &asm_client_log);
-    // disable conditional logging
-    patch_nop(mho_client_addr, 0x3E0C82, 6);
+	// capture mho client logs
+	patch_jmp(mho_client_addr, 0x3E0F06, &asm_client_log);
+	// disable conditional logging
+	patch_nop(mho_client_addr, 0x3E0C82, 6);
 
-    new std::thread(run_crygame);
-    new std::thread(run_protocal_handler);
-    new std::thread(run_tenproxy);
+	new std::thread(run_crygame);
+	new std::thread(run_protocal_handler);
+	new std::thread(run_tenproxy);
 }
 
 BOOL WINAPI DllMain(HINSTANCE h_instance, DWORD fdw_reason, LPVOID lpv_reserved) {
-    switch (fdw_reason) {
-        case DLL_PROCESS_ATTACH:
-            new std::thread(run);
-            break;
-        case DLL_THREAD_ATTACH:
-            break;
-        case DLL_THREAD_DETACH:
-            break;
-        case DLL_PROCESS_DETACH:
-            is_running = false;
-            break;
-    }
-    return TRUE;
+	switch (fdw_reason) {
+	case DLL_PROCESS_ATTACH:
+		new std::thread(run);
+		break;
+	case DLL_THREAD_ATTACH:
+		break;
+	case DLL_THREAD_DETACH:
+		break;
+	case DLL_PROCESS_DETACH:
+		is_running = false;
+		break;
+	}
+	return TRUE;
 }

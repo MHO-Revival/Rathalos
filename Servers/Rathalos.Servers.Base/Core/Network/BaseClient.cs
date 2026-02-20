@@ -115,11 +115,7 @@ namespace Rathalos.Servers.Base.Core.Network
 
                     // Try to process complete messages
                     var bufferArray = accumulatedBuffer.ToArray();
-                    FastBigEndianReader reader = new(bufferArray)
-                    {
-                        Position = 0,
-                        MaxPosition = bufferArray.Length
-                    };
+                    BufferReader reader = new(bufferArray);
 
                     var initialPosition = reader.Position;
                     await OnDataReceived(reader);
@@ -160,7 +156,7 @@ namespace Rathalos.Servers.Base.Core.Network
             lock (_sendLock)
             {
                 message.SetEncryptionMethod(_crypto);
-                BigEndianWriter writer = new();
+                BufferWriter writer = new();
                 message.Pack(writer);
 
 

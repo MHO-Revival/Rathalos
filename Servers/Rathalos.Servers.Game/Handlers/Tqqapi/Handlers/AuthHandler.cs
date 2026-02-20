@@ -75,7 +75,7 @@ namespace Rathalos.Servers.World.Handlers.Tqqapi.Handlers
 
             client.Account.SynIdent = [.. Random.Shared.RandomString(16)];
 
-            var identWriter = new BigEndianWriter();
+            var identWriter = new BufferWriter();
             TQQUserIdent ident = new TQQUserIdent
             {
                 Pos = 0,

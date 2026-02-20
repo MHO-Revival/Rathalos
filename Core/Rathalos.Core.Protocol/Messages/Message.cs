@@ -44,7 +44,7 @@ namespace Rathalos.Core.Protocol.Messages
 
         public void Pack(IDataWriter writer)
         {
-            var packetBodyWriter = new BigEndianWriter();
+            var packetBodyWriter = new BufferWriter();
             _csPacketBody?.Serialize(packetBodyWriter);
             if (_csPacketBody != null)
             {
@@ -60,7 +60,7 @@ namespace Rathalos.Core.Protocol.Messages
                     },
                     Body = _csPacketBody
                 };
-                var bodyWriter = new BigEndianWriter();
+                var bodyWriter = new BufferWriter();
                 packet.Serialize(bodyWriter);
                 var bodyBytes = _crypto.Encrypt(bodyWriter.Data);
                 _frame.Body = bodyBytes;
@@ -70,7 +70,7 @@ namespace Rathalos.Core.Protocol.Messages
                 _frame.Body = [];
             }
 
-            var headerExtensionWriter = new BigEndianWriter();
+            var headerExtensionWriter = new BufferWriter();
             _headerExtension?.Serialize(headerExtensionWriter);
 
             _frame.Head = new TPDUHead

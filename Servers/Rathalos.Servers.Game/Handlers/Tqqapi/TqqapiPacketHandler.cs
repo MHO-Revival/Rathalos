@@ -51,7 +51,7 @@ namespace Rathalos.Servers.World.Handlers
             return Task.CompletedTask;
         }
 
-        public async Task HandleMessage(WorldClient client, TPDUExt message, BigEndianReader bodyReader)
+        public async Task HandleMessage(WorldClient client, TPDUExt message, BufferReader bodyReader)
         {
             try
             {

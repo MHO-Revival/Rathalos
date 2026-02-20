@@ -22,7 +22,7 @@ namespace Rathalos.Servers.Base.Core.Network
                 {
                     var data = rawMessage.Frame.Body.ToArray();
                     var decryptedBody = _crypto.Decrypt(data);
-                    var decryptedReader = new BigEndianReader(decryptedBody);
+                    var decryptedReader = new BufferReader(decryptedBody);
                     if (rawMessage.Frame.Head.Base.EncHeadLen > 0)
                     {
                         var encHead = new TPDUEncHead();
@@ -35,6 +35,6 @@ namespace Rathalos.Servers.Base.Core.Network
 
         }
 
-        protected abstract Task OnMessageReceived(TPDUExt message, BigEndianReader bodyReader);
+        protected abstract Task OnMessageReceived(TPDUExt message, BufferReader bodyReader);
     }
 }
