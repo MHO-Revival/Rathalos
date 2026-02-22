@@ -48,7 +48,23 @@ namespace Rathalos.Servers.World.Handlers.Game.Handlers
         public async Task HandleCharacterSelectRequest(WorldClient client, CSSelectRoleReq message)
         {
             _logger.LogInformation($"Received character select request from account {client.Account.Id} for character index {message.RoleIndex}.");
-            
+            if (client.Characters.Count == 0 || message.RoleIndex < 0 || message.RoleIndex >= client.Characters.Count)
+            {
+                SendCharacterSelectResponse(client, CharacterSelectionErrorEnum.Error);
+                return;
+            }
+
+            client.Characters[message.RoleIndex].LogIn();
+            SendCharacterSelectResponse(client, CharacterSelectionErrorEnum.OK);
+        }
+
+        public static void SendCharacterSelectResponse(WorldClient client, CharacterSelectionErrorEnum errorCode)
+        {
+            client.Send(new CSSelectRoleRsp
+            {
+                ErrNo = (int)errorCode,
+                RoleIndex = (int)client.GetLastSelectedCharacterId(),
+            });
         }
 
         public static void SendCharacterDeleteResponse(WorldClient client)

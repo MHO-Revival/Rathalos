@@ -236,6 +236,42 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes
             writer.WriteBytes(data);
         }
 
+        protected void WriteTlvByteArray(IDataWriter writer, uint fieldId, byte[] data, int count)
+        {
+            if (data == null || count <= 0) return;
+
+            writer.WriteVarUInt((fieldId << 4) | 5); // WireType 5
+
+            long lenPos = writer.ReserveInt();
+            long startPos = writer.Position;
+
+            // Safely write only up to 'count'
+            for (int i = 0; i < count && i < data.Length; i++)
+            {
+                writer.WriteByte(data[i]);
+            }
+
+            writer.WriteIntAtPosition((int)(writer.Position - startPos), lenPos);
+        }
+
+        protected void WriteTlvIntArray(IDataWriter writer, uint fieldId, int[] arr, int count)
+        {
+            if (arr == null || count <= 0) return;
+
+            writer.WriteVarUInt((fieldId << 4) | 5); // WireType 5 (Length-delimited)
+
+            long lenPos = writer.ReserveInt();
+            long startPos = writer.Position;
+
+            // Safely write only up to 'count'
+            for (int i = 0; i < count && i < arr.Length; i++)
+            {
+                writer.WriteInt(arr[i]);
+            }
+
+            writer.WriteIntAtPosition((int)(writer.Position - startPos), lenPos);
+        }
+
         protected int[] ReadTlvVarIntArray(IDataReader reader)
         {
             // A Length-Delimited VarInt array
@@ -318,9 +354,31 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes
             return list;
         }
 
+        protected void WriteTlvString(IDataWriter writer, uint fieldId, string value)
+        {
+            // In TDR/Protobuf, default or empty values are typically omitted to save bandwidth
+            if (string.IsNullOrEmpty(value))
+                return;
+
+            // Convert the string to UTF-8 bytes
+            byte[] stringBytes = System.Text.Encoding.UTF8.GetBytes(value);
+
+            // Write Tag (Field ID shifted left by 4, bitwise OR with WireType 5)
+            writer.WriteVarUInt((fieldId << 4) | 5);
+
+            // Reserve 4 bytes for the length prefix
+            long lenPos = writer.ReserveInt();
+            long startPos = writer.Position;
+
+            // Write the actual string data
+            writer.WriteBytes(stringBytes);
+
+            // Jump back and write the exact byte length
+            writer.WriteIntAtPosition((int)(writer.Position - startPos), lenPos);
+        }
         protected void SkipTlvField(IDataReader reader, uint wireType)
         {
-            switch (wireType)
+            switch (wireType & 0xF)
             {
                 case 0:
                     // WireType 0: VarInt / VarLong

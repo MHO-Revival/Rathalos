@@ -1,7 +1,7 @@
 ﻿using Rathalos.Core.Utils.IO;
 using System.IO;
 
-namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes
+namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
 {
     /// <summary>
     /// Reconstructed TLV Structure.
@@ -9,7 +9,7 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes
     /// C++ Reader: crygame.dll+sub_101CB370
     /// C++ Printer: crygame.dll+sub_XXXXX
     /// </summary>
-    public class CharTlvAttributes : TlvStructure
+    public class TlvCharAttributes : TlvStructure
     {
         // The universal array boundary for character attributes
         public const int MaxArrayElements = 7;

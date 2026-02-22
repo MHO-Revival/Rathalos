@@ -15,6 +15,8 @@ namespace Rathalos.Servers.World.Core.Game.Actors
     /// </summary>
     public class Character
     {
+        private bool _connected;
+
         public WorldClient Client { get; }
         public CharacterRecord Record { get; }
         public PlayerAttributes Attributes { get; }
@@ -149,6 +151,17 @@ namespace Rathalos.Servers.World.Core.Game.Actors
             TeleportToMap(mapId, new Vector3(x, y, z), rotation);
         }
 
+
+        internal void LogIn()
+        {
+            Record.LastLogin = DateTime.UtcNow;
+            //Client.Send(new CSBackToTown { RoleID = Record.Id, Uin = Client.Uin });
+            Client.Send(new CSTownSessionStart
+            {
+                ErrNo = 0,
+            });
+        }
+
         public void Save(Rathalos.Core.ORM.RathalosDbContext db)
         {
             // Sync attributes back to record
@@ -202,5 +215,6 @@ namespace Rathalos.Servers.World.Core.Game.Actors
                 RoleIndex = Client.Characters.FindIndex(c => c.Record.Id == this.Record.Id),
             };
         }
+
     }
 }

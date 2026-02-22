@@ -18,7 +18,7 @@ using System.Text;
 
 namespace Rathalos.Core.Utils.IO
 {
-	public unsafe class FastLittleEndianReader : IDataReader
+	public unsafe class FastLittleEndianReader
 	{
 		private long _position = 0;
 		private readonly byte[] _buffer;

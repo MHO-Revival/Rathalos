@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes
+namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
 {
     /// <summary>
     /// Reconstructed TLV Structure.
