@@ -40,12 +40,8 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
                     case 3: TargetPos = reader.ReadInt(); break;
                     case 4: PosColumn = reader.ReadByte(); break;
                     case 5: PosGrid = reader.ReadShort(); break;
-                    case 6:
-                        SkillBeadsInfo = ReadTlvList<TlvSlotItem>(reader);
-                        break;
-                    default:
-                        SkipTlvField(reader, wireType);
-                        break;
+                    case 6: SkillBeadsInfo = ReadTlvList<TlvSlotItem>(reader); break;
+                    default: SkipTlvField(reader, wireType); break;
                 }
             }
         }

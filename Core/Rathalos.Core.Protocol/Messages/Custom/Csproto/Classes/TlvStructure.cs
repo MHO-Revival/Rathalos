@@ -59,6 +59,52 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes
         protected abstract void SerializeContent(IDataWriter writer);
 
         #region Helpers to perfectly match C++ `TdrBuf` logic
+        protected T ReadTlvObject<T>(IDataReader reader) where T : TlvStructure, new()
+        {
+            // 1. Read the length prefix (WireType 5 always starts with a 32-bit integer length)
+            int byteLen = reader.ReadInt();
+
+            // If the length is 0, the object is completely empty. 
+            if (byteLen <= 0)
+                return new T();
+
+            // 2. Extract exactly the bytes that belong to this nested object
+            byte[] objectBytes = reader.ReadBytes(byteLen);
+
+            // 3. Instantiate the new nested object
+            T obj = new T();
+
+            // 4. Create a "scoped" reader so the nested object's while-loop stops exactly at the end of its own bytes!
+            // -> REPLACE `YourDataReader` WITH YOUR ACTUAL CLASS THAT IMPLEMENTS `IDataReader`
+            using (var memoryStream = new System.IO.MemoryStream(objectBytes))
+            using (var scopedReader = new BufferReader(memoryStream))
+            {
+                // Assuming your base class has a public Deserialize entry point
+                obj.Deserialize(scopedReader);
+            }
+
+            return obj;
+        }
+
+        protected void WriteTlvObject(IDataWriter writer, uint fieldId, TlvStructure obj)
+        {
+            // If the object is null, we just skip it to save bandwidth (standard Protobuf/TDR behavior)
+            if (obj == null)
+                return;
+
+            // Write Tag (Field ID shifted left by 4, bitwise OR with WireType 5)
+            writer.WriteVarUInt((fieldId << 4) | 5);
+
+            // Reserve 4 bytes for the length prefix
+            long lenPos = writer.ReserveInt();
+            long startPos = writer.Position;
+
+            // Delegate the actual content serialization to the nested object
+            obj.Serialize(writer);
+
+            // Jump back and inject the exact byte length of the serialized object
+            writer.WriteIntAtPosition((int)(writer.Position - startPos), lenPos);
+        }
 
         protected void WriteTlvByte(IDataWriter writer, uint fieldId, byte value)
         {
@@ -70,9 +116,9 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes
             writer.WriteByte(value);
         }
 
-        protected void WriteTlvShort(IDataWriter writer, uint fieldId, short value)
+        protected void WriteTlvShort(IDataWriter writer, uint fieldId, short value, bool force = false)
         {
-            if (value == 0) return; // Skip default values to save bandwidth
+            if (value == 0 && !force) return; // Skip default values to save bandwidth
             writer.WriteVarUInt((fieldId << 4) | 2); // WireType 2
             writer.WriteShort(value);
         }
@@ -378,7 +424,7 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes
         }
         protected void SkipTlvField(IDataReader reader, uint wireType)
         {
-            switch (wireType & 0xF)
+            switch (wireType)
             {
                 case 0:
                     // WireType 0: VarInt / VarLong

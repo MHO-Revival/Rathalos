@@ -12,7 +12,7 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
     {
         public int Id { get; set; }
         public int Value { get; set; }
-        public int Level { get; set; }
+        public byte Level { get; set; }
 
         protected override void DeserializeContent(IDataReader reader)
         {
@@ -23,16 +23,16 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
                 {
                     case 1: Id = reader.ReadVarInt(); break;
                     case 2: Value = reader.ReadVarInt(); break;
-                    case 3: Level = reader.ReadVarInt(); break;
+                    case 3: Level = reader.ReadByte(); break;
+                    default: SkipTlvField(reader, tag & 0xF); break;
                 }
             }
         }
-
         protected override void SerializeContent(IDataWriter writer)
         {
-            WriteTlvInt(writer, 1, Id);
-            WriteTlvInt(writer, 2, Value);
-            WriteTlvInt(writer, 3, Level);
+            WriteTlvVarInt(writer, 1, Id);
+            WriteTlvVarInt(writer, 2, Value);
+            WriteTlvByte(writer, 3, Level);
         }
     }
 }

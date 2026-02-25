@@ -10,15 +10,12 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
     /// </summary>
     public class TlvSkillWeaponItem : TlvStructure
     {
-        // --- Hardcoded Boundaries ---
         public const int MaxSkillLearns = 4;
         public const int MaxTalentLearns = 16;
         public const int MaxTalentEquips = 8;
         public const int MaxRages = 5;
 
-        public int SkillLearnCount { get; set; }
-        public List<TlvSkillLearnIdItem> SkillLearns { get; set; } = new List<TlvSkillLearnIdItem>(); // Newly discovered Field 3!
-
+        public List<TlvSkillLearnIdItem> SkillLearns { get; set; } = new List<TlvSkillLearnIdItem>();
         public List<TlvTalentLearnItem> TalentLearns { get; set; } = new List<TlvTalentLearnItem>();
         public List<TlvTalentEquipItem> TalentEquips { get; set; } = new List<TlvTalentEquipItem>();
 
@@ -31,19 +28,23 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
             while (reader.BytesAvailable > 0)
             {
                 uint tag = reader.ReadVarUInt();
-                switch (tag >> 4)
+                uint fieldId = tag >> 4;
+                uint wireType = tag & 0xF;
+
+                switch (fieldId)
                 {
-                    case 2: SkillLearnCount = reader.ReadByte(); break;
-                    case 3: SkillLearns = ReadTlvList<TlvSkillLearnIdItem>(reader); break; // NEW
-                    case 4: reader.ReadByte(); break; // TalentLearnCount (Skip)
+                    case 2: reader.ReadByte(); break; // Discard count
+                    case 3: SkillLearns = ReadTlvList<TlvSkillLearnIdItem>(reader); break;
+                    case 4: reader.ReadByte(); break; // Discard count
                     case 5: TalentLearns = ReadTlvList<TlvTalentLearnItem>(reader); break;
-                    case 6: reader.ReadByte(); break; // TalentEquipCount (Skip)
+                    case 6: reader.ReadByte(); break; // Discard count
                     case 7: TalentEquips = ReadTlvList<TlvTalentEquipItem>(reader); break;
                     case 8: RageIdx = reader.ReadByte(); break;
-                    case 9: reader.ReadByte(); break; // RageCount (Skip)
+                    case 9: reader.ReadByte(); break; // Discard count
                     case 10: Rages = ReadTlvVarIntArray(reader); break;
-                    case 11: reader.ReadByte(); break; // BushidoRageCount (Skip)
+                    case 11: reader.ReadByte(); break; // Discard count
                     case 12: BushidoRages = ReadTlvVarIntArray(reader); break;
+                    default: SkipTlvField(reader, wireType); break;
                 }
             }
         }
@@ -62,21 +63,15 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
             if (BushidoRages.Length > MaxRages) // Uses the same max count (5)
                 throw new InvalidDataException($"[TlvSkillWeaponItem] BushidoRages array exceeds max of {MaxRages}.");
 
-            // --- SERIALIZATION ---
-            WriteTlvByte(writer, 2, (byte)SkillLearns.Count); // C++ writes the count first
+            WriteTlvByte(writer, 2, (byte)SkillLearns.Count);
             WriteTlvList(writer, 3, SkillLearns);
-
             WriteTlvByte(writer, 4, (byte)TalentLearns.Count);
             WriteTlvList(writer, 5, TalentLearns);
-
             WriteTlvByte(writer, 6, (byte)TalentEquips.Count);
             WriteTlvList(writer, 7, TalentEquips);
-
             WriteTlvByte(writer, 8, (byte)RageIdx);
-
             WriteTlvByte(writer, 9, (byte)Rages.Length);
             WriteTlvVarIntArray(writer, 10, Rages);
-
             WriteTlvByte(writer, 11, (byte)BushidoRages.Length);
             WriteTlvVarIntArray(writer, 12, BushidoRages);
         }

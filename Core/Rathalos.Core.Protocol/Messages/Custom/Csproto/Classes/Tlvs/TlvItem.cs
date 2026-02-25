@@ -42,19 +42,10 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
                     case 5: PosGrid = reader.ReadShort(); break;
                     case 6: Count = reader.ReadShort(); break;
                     case 7: Bind = reader.ReadByte(); break;
-                    case 8: AttrCount = reader.ReadByte(); break;
-                    case 10:
-                        int byteLen = reader.ReadInt();
-                        ItemExtAttrIds = reader.ReadBytes(byteLen);
-                        // Sync count to prevent array mismatches
-                        AttrCount = (byte)ItemExtAttrIds.Length;
-                        break;
-                    case 11:
-                        ItemExtAttrVals = ReadTlvIntArray(reader);
-                        break;
-                    default:
-                        SkipTlvField(reader, wireType);
-                        break;
+                    case 8: reader.ReadByte(); break; // Discard AttrCount
+                    case 10: ItemExtAttrIds = reader.ReadBytes(reader.ReadInt()); break;
+                    case 11: ItemExtAttrVals = ReadTlvIntArray(reader); break;
+                    default: SkipTlvField(reader, wireType); break;
                 }
             }
         }
@@ -69,21 +60,26 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
             if (ItemExtAttrVals.Length > MaxExtAttrs)
                 throw new InvalidDataException($"[TlvItem] ItemExtAttrVals length exceeds maximum of {MaxExtAttrs}.");
 
+            if(ItemExtAttrIds.Length != ItemExtAttrVals.Length)
+                throw new InvalidDataException($"[TlvItem] ItemExtAttrIds length ({ItemExtAttrIds.Length}) does not match ItemExtAttrVals length ({ItemExtAttrVals.Length}).");
+
             // --- SERIALIZATION ---
+
             WriteTlvLong(writer, 2, ItemId);
             WriteTlvInt(writer, 3, ItemType);
             WriteTlvByte(writer, 4, PosColumn);
             WriteTlvShort(writer, 5, PosGrid);
             WriteTlvShort(writer, 6, Count);
             WriteTlvByte(writer, 7, Bind);
-            WriteTlvByte(writer, 8, AttrCount);
 
             // The C++ client explicitly checks `if (AttrCount > 0)` before writing the arrays
-            if (AttrCount > 0)
+            // Re-inject the array length directly
+            WriteTlvByte(writer, 8, (byte)ItemExtAttrIds.Length);
+
+            if (ItemExtAttrIds.Length > 0)
             {
-                // Use our new count-aware base methods!
-                WriteTlvByteArray(writer, 10, ItemExtAttrIds, AttrCount);
-                WriteTlvIntArray(writer, 11, ItemExtAttrVals, AttrCount);
+                WriteTlvByteArray(writer, 10, ItemExtAttrIds, ItemExtAttrIds.Length);
+                WriteTlvIntArray(writer, 11, ItemExtAttrVals, ItemExtAttrVals.Length);
             }
         }
     }

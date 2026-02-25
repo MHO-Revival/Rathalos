@@ -31,6 +31,7 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
             {
                 uint tag = reader.ReadVarUInt();
                 uint fieldId = tag >> 4;
+                uint wireType = tag & 0xF;
 
                 switch (fieldId)
                 {
@@ -45,7 +46,7 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
                         int byteLen = reader.ReadInt();
                         Counts = reader.ReadBytes(byteLen);
                         break;
-                    default: SkipTlvField(reader, tag); break;
+                    default: SkipTlvField(reader, wireType); break;
                 }
             }
         }
@@ -66,6 +67,46 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
             // Use the new protected helpers, passing in CompleteCount!
             WriteTlvVarShortArray(writer, 2, Tasks);
             WriteTlvByteArray(writer, 3, Counts);
+        }
+        public class TlvTaskComplete : TlvStructure
+        {
+            public override TlvMagic Magic => TlvMagic.Fixed;
+
+            public const int MaxTasks = 2048;
+
+            public short[] Tasks { get; set; } = new short[0];
+            public byte[] Counts { get; set; } = new byte[0];
+
+            protected override void DeserializeContent(IDataReader reader)
+            {
+                while (reader.BytesAvailable > 0)
+                {
+                    uint tag = reader.ReadVarUInt();
+                    uint fieldId = tag >> 4;
+                    uint wireType = tag & 0xF;
+
+                    switch (fieldId)
+                    {
+                        case 1: reader.ReadVarInt(); break; // Discard explicit count
+                        case 2: Tasks = ReadTlvVarShortArray(reader); break;
+                        case 3: Counts = reader.ReadBytes(reader.ReadInt()); break;
+                        default: SkipTlvField(reader, wireType); break;
+                    }
+                }
+            }
+
+            protected override void SerializeContent(IDataWriter writer)
+            {
+                if (Tasks.Length != Counts.Length)
+                    throw new InvalidDataException("[TlvTaskComplete] Tasks and Counts array lengths must match.");
+                if (Tasks.Length > MaxTasks)
+                    throw new InvalidDataException($"[TlvTaskComplete] Tasks length ({Tasks.Length}) exceeds max of {MaxTasks}.");
+
+                // Write length dynamically as Field 1
+                WriteTlvVarInt(writer, 1, Tasks.Length);
+                WriteTlvVarShortArray(writer, 2, Tasks);
+                WriteTlvByteArray(writer, 3, Counts, Counts.Length);
+            }
         }
     }
 }

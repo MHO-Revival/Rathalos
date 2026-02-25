@@ -31,23 +31,10 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
 
                 switch (fieldId)
                 {
-                    case 1:
-                        // Read and discard the explicit count (we use Items.Count instead)
-                        reader.ReadShort();
-                        break;
-
-                    case 2:
-                        // Uses the ReadTlvList helper we created earlier!
-                        Items = ReadTlvList<TlvItem>(reader);
-                        break;
-
-                    case 3:
-                        SafeDataFlag = reader.ReadShort();
-                        break;
-
-                    default:
-                        SkipTlvField(reader, wireType);
-                        break;
+                    case 1: reader.ReadShort(); break; // Discard Count
+                    case 2: Items = ReadTlvList<TlvItem>(reader); break;
+                    case 3: SafeDataFlag = reader.ReadShort(); break;
+                    default: SkipTlvField(reader, wireType); break;
                 }
             }
         }
@@ -62,12 +49,8 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
 
             // Field 1: Always write the count explicitly as a Short (WireType 2)
             // Note: If you want to force write 0 when empty, use: writer.WriteVarUInt((1 << 4) | 2); writer.WriteShort(0);
-            WriteTlvShort(writer, 1, (short)Items.Count);
-
-            // Field 2: Write the Length-Delimited List of TlvItems (WireType 5)
+            WriteTlvShort(writer, 1, (short)Items.Count, true);
             WriteTlvList(writer, 2, Items);
-
-            // Field 3: Write SafeDataFlag (WireType 2)
             WriteTlvShort(writer, 3, SafeDataFlag);
         }
     }

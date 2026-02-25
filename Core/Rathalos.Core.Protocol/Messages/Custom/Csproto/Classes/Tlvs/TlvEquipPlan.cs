@@ -33,24 +33,11 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
 
                 switch (fieldId)
                 {
-                    case 1:
-                        PlanId = reader.ReadByte();
-                        break;
-                    case 2:
-                        // WireType 5 (Length-Delimited) String
-                        int nameLen = reader.ReadInt();
-                        Name = Encoding.UTF8.GetString(reader.ReadBytes(nameLen));
-                        break;
-                    case 3:
-                        reader.ReadByte();
-                        break;
-                    case 4:
-                        EquipList = ReadTlvList<TlvEquipItem>(reader);
-                        // Sync count with the parsed array
-                        break;
-                    default:
-                        SkipTlvField(reader, wireType);
-                        break;
+                    case 1: PlanId = reader.ReadByte(); break;
+                    case 2: Name = reader.ReadUTF(); break;
+                    case 3: reader.ReadByte(); break; // Discard EquipCnt
+                    case 4: EquipList = ReadTlvList<TlvEquipItem>(reader); break;
+                    default: SkipTlvField(reader, wireType); break;
                 }
             }
         }
@@ -66,10 +53,7 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
 
             // --- SERIALIZATION ---
             WriteTlvByte(writer, 1, PlanId);
-
-            // Nice and clean!
             WriteTlvString(writer, 2, Name);
-
             WriteTlvByte(writer, 3, (byte)EquipList.Count);
             WriteTlvList(writer, 4, EquipList);
         }

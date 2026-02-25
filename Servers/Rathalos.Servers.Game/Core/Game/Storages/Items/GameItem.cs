@@ -1,4 +1,4 @@
-﻿using Rathalos.Core.Protocol.Data.EquipData.Rathalos.Core.Protocol.Tools;
+﻿using Rathalos.Core.Protocol.Data.EquipData;
 using Rathalos.Core.Protocol.Messages.Custom.Csproto.Enums;
 using System.Collections.ObjectModel;
 

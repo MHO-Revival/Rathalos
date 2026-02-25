@@ -176,6 +176,12 @@ namespace Rathalos.Servers.World
             builder.Entity<InitQuickSupplyRecord>();
             builder.Entity<InitShortcutRecord>();
             builder.Entity<InitStoreRecord>();
+
+            // Items
+            builder.Entity<ItemDataRecord>();
+            builder.Entity<EquipmentDataRecord>();
+            builder.Entity<SkillPearlDataRecord>();
+            builder.Entity<LegendPearlDataRecord>();
         }
     }
 }
