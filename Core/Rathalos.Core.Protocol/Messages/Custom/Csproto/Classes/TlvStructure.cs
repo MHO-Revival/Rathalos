@@ -198,6 +198,29 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes
             writer.WriteIntAtPosition((int)(writer.Position - startPos), lenPos);
         }
         
+        protected short[] ReadTlvShortArray(IDataReader reader)
+        {
+            int byteLen = reader.ReadInt();
+            int count = byteLen / 2;
+            short[] arr = new short[count];
+            for (int i = 0; i < count; i++) arr[i] = reader.ReadShort();
+            return arr;
+        }
+
+        protected void WriteTlvShortArray(IDataWriter writer, uint fieldId, short[] arr)
+        {
+            if (arr == null || arr.Length == 0) return;
+            writer.WriteVarUInt((fieldId << 4) | 5); // WireType 5
+
+            long lenPos = writer.ReserveInt();
+            long startPos = writer.Position;
+
+            for (int i = 0; i < arr.Length; i++)
+                writer.WriteShort(arr[i]);
+
+            writer.WriteIntAtPosition((int)(writer.Position - startPos), lenPos);
+        }
+
         protected short[] ReadTlvVarShortArray(IDataReader reader)
         {
             // 1. Read the Total Byte Length of the array wrapper
