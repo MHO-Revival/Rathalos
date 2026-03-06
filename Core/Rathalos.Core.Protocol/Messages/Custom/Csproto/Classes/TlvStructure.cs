@@ -144,6 +144,13 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes
             writer.WriteLong(value);
         }
 
+        protected void WriteTlvULong(IDataWriter writer, uint fieldId, ulong value)
+        {
+            if (value == 0) return;
+            writer.WriteVarUInt((fieldId << 4) | 4); // WireType 4
+            writer.WriteULong(value);
+        }
+
         protected void WriteTlvVarInt(IDataWriter writer, uint fieldId, int value)
         {
             if (value == 0) return; // Skip defaults
@@ -347,6 +354,59 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes
             {
                 writer.WriteVarInt(arr[i]);
             }
+
+            writer.WriteIntAtPosition((int)(writer.Position - startPos), lenPos);
+        }
+
+        // Fixed-size Int64 Array (Standard for Magic 0x99)
+        protected long[] ReadTlvLongArray(IDataReader reader)
+        {
+            int byteLen = reader.ReadInt();
+            int count = byteLen / 8; // Each long is 8 bytes
+            long[] arr = new long[count];
+            for (int i = 0; i < count; i++) arr[i] = reader.ReadLong();
+            return arr;
+        }
+
+        protected void WriteTlvLongArray(IDataWriter writer, uint fieldId, long[] arr)
+        {
+            if (arr == null || arr.Length == 0) return;
+            writer.WriteVarUInt((fieldId << 4) | 5); // WireType 5 (Length Delimited)
+
+            long lenPos = writer.ReserveInt();
+            long startPos = writer.Position;
+
+            for (int i = 0; i < arr.Length; i++)
+                writer.WriteLong(arr[i]);
+
+            writer.WriteIntAtPosition((int)(writer.Position - startPos), lenPos);
+        }
+
+        // Variable-size Long Array (Standard for Magic 0xAA)
+        protected long[] ReadTlvVarLongArray(IDataReader reader)
+        {
+            int byteLen = reader.ReadInt();
+            long endPosition = reader.Position + byteLen;
+            var list = new List<long>();
+
+            while (reader.Position < endPosition)
+            {
+                list.Add((long)reader.ReadVarULong());
+            }
+
+            return list.ToArray();
+        }
+
+        protected void WriteTlvVarLongArray(IDataWriter writer, uint fieldId, long[] arr)
+        {
+            if (arr == null || arr.Length == 0) return;
+            writer.WriteVarUInt((fieldId << 4) | 5); // WireType 5
+
+            long lenPos = writer.ReserveInt();
+            long startPos = writer.Position;
+
+            for (int i = 0; i < arr.Length; i++)
+                writer.WriteVarULong((ulong)arr[i]);
 
             writer.WriteIntAtPosition((int)(writer.Position - startPos), lenPos);
         }

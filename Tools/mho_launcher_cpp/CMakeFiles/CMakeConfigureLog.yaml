@@ -1697,3 +1697,1048 @@ events:
       Microsoft (R) Incremental Linker Version 14.44.35222.0
       Copyright (C) Microsoft Corporation.  All rights reserved.
 ...
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/CMakeDetermineSystem.cmake:212 (message)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      The system is: Windows - 10.0.26200 - AMD64
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:462 (find_file)"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:500 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCCompilerId.c.in"
+    candidate_directories:
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/"
+    found: "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/CMakeCCompilerId.c.in"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x86"
+        - "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26100.0\\x64"
+        - "C:\\Program Files (x86)\\Microsoft SDKs\\Windows\\v10.0A\\bin\\NETFX 4.8 Tools\\x64"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26100.0\\x86"
+        - "C:\\Program Files (x86)\\Microsoft SDKs\\Windows\\v10.0A\\bin\\NETFX 4.8 Tools"
+        - "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\Common7\\tools"
+        - "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\Common7\\ide"
+        - "C:\\Program Files (x86)\\HTML Help Workshop"
+        - "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\MSBuild\\Current\\Bin\\amd64"
+        - "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\"
+        - "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\"
+        - "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\MSBuild\\Current\\Bin"
+        - "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\"
+        - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path"
+        - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath"
+        - "C:\\Program Files\\Microsoft\\jdk-25.0.1.8-hotspot\\bin"
+        - "C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
+        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA app\\NvDLISR"
+        - "C:\\Users\\ImranJagari\\AppData\\Local\\nvm"
+        - "C:\\nvm4w\\nodejs"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
+        - "C:\\Program Files (x86)\\Eziriz\\.NET Reactor"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Program Files\\Docker\\Docker\\resources\\bin"
+        - "C:\\Users\\ImranJagari\\AppData\\Local\\Programs\\hcli"
+        - "C:\\Users\\ImranJagari\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\ImranJagari\\AppData\\Local\\nvm"
+        - "C:\\nvm4w\\nodejs"
+        - "C:\\Users\\ImranJagari\\.dotnet\\tools"
+        - "C:\\Users\\ImranJagari\\AppData\\Local\\Programs\\Azure Dev CLI\\"
+        - "C:\\Users\\ImranJagari\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\ImranJagari\\AppData\\Local\\gitkraken\\bin"
+        - "C:\\Users\\ImranJagari\\.dotnet\\tools"
+        - "C:\\Program Files (x86)\\Rico Suter\\NSwagStudio\\NSwagStudio\\"
+        - "C:\\Users\\ImranJagari\\.dotnet\\tools"
+        - "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\Common7\\IDE\\PrivateAssemblies\\runtimes\\win-x64\\native"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/mho_launcher"
+      ENV{INCLUDE}:
+        - "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.44.35207\\include"
+        - "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.44.35207\\atlmfc\\include"
+        - "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Auxiliary\\VS\\include"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\ucrt"
+        - "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Auxiliary\\VS\\UnitTest\\include"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\um"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\shared"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\winrt"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\cppwinrt"
+        - "C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\Include\\um"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler:  
+      Build flags: /DWIN32;/D_WINDOWS
+      Id flags:  
+      
+      The output was:
+      0
+      Version MSBuild 18.4.0+6e61e96ac pour .NET Framework
+      La g├®n├®ration a d├®marr├® 06/03/2026 21:28:50.
+      
+      Projet "C:\\krosmoz\\Rathalos\\Tools\\mho_launcher_cpp\\CMakeFiles\\4.2.3-msvc3\\CompilerIdC\\CompilerIdC.vcxproj" sur le n┼ôud 1 (cibles par d├®faut).
+      PrepareForBuild:
+        Cr├®ation du r├®pertoire "Debug\\".
+        La sortie structur├®e est activ├®e. La mise en forme du compilateur diagnostics refl├¿te la hi├®rarchie des erreurs. Pour plus dÔÇÖinformations, consultez https://aka.ms/cpp/structured-output.
+        Cr├®ation du r├®pertoire "Debug\\CompilerIdC.tlog\\".
+      InitializeBuildStatus:
+        Cr├®ation de "Debug\\CompilerIdC.tlog\\unsuccessfulbuild", car "AlwaysCreate" a ├®t├® sp├®cifi├®.
+        Mise ├á jour de l'horodatage "Debug\\CompilerIdC.tlog\\unsuccessfulbuild".
+      ClCompile:
+        C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x86\\CL.exe /c /nologo /W0 /WX- /diagnostics:column /Od /Oy- /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\\\" /Fd"Debug\\vc143.pdb" /external:W0 /Gd /TC /analyze- /FC /errorReport:queue CMakeCCompilerId.c
+        CMakeCCompilerId.c
+      Link:
+        C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x86\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdC.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdC.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdC.lib" /MACHINE:X86 /SAFESEH Debug\\CMakeCCompilerId.obj
+        CompilerIdC.vcxproj -> C:\\krosmoz\\Rathalos\\Tools\\mho_launcher_cpp\\CMakeFiles\\4.2.3-msvc3\\CompilerIdC\\CompilerIdC.exe
+      PostBuildEvent:
+        for %%i in (cl.exe) do @echo CMAKE_C_COMPILER=%%~$PATH:i
+        :VCEnd
+        CMAKE_C_COMPILER=C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x86\\cl.exe
+      FinalizeBuildStatus:
+        Suppression du fichier "Debug\\CompilerIdC.tlog\\unsuccessfulbuild".
+        Mise ├á jour de l'horodatage "Debug\\CompilerIdC.tlog\\CompilerIdC.lastbuildstate".
+      G├®n├®ration du projet "C:\\krosmoz\\Rathalos\\Tools\\mho_launcher_cpp\\CMakeFiles\\4.2.3-msvc3\\CompilerIdC\\CompilerIdC.vcxproj" termin├®e (cibles par d├®faut).
+      
+      La g├®n├®ration a r├®ussi.
+          0 Avertissement(s)
+          0 Erreur(s)
+      
+      Temps ├®coul├® 00:00:01.06
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.vcxproj"
+      
+      The C compiler identification is MSVC, found in:
+        C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/4.2.3-msvc3/CompilerIdC/CompilerIdC.exe
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:37 (find_program)"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:65 (__resolve_tool_path)"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:103 (__resolve_linker_path)"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "_CMAKE_TOOL_WITH_PATH"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "link"
+    candidate_directories:
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x86/"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x64/"
+      - "C:/Program Files (x86)/Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8 Tools/x64/"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x86/"
+      - "C:/Program Files (x86)/Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8 Tools/"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/Tools/"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/"
+      - "C:/Program Files (x86)/HTML Help Workshop/"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/amd64/"
+      - "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/"
+      - "C:/Windows/Microsoft.NET/Framework/v4.0.30319/"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/"
+      - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/"
+      - "C:/Program Files (x86)/Common Files/Oracle/Java/javapath/"
+      - "C:/Program Files/Microsoft/jdk-25.0.1.8-hotspot/bin/"
+      - "C:/Program Files/Microsoft SDKs/Azure/CLI2/wbin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
+      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/"
+      - "C:/Users/ImranJagari/AppData/Local/nvm/"
+      - "C:/nvm4w/nodejs/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/Microsoft SQL Server/170/Tools/Binn/"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/"
+      - "C:/Program Files (x86)/Eziriz/.NET Reactor/"
+      - "C:/Program Files/dotnet/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Program Files/Docker/Docker/resources/bin/"
+      - "C:/Users/ImranJagari/AppData/Local/Programs/hcli/"
+      - "C:/Users/ImranJagari/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/ImranJagari/.dotnet/tools/"
+      - "C:/Users/ImranJagari/AppData/Local/Programs/Azure Dev CLI/"
+      - "C:/Users/ImranJagari/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/ImranJagari/AppData/Local/gitkraken/bin/"
+      - "C:/Program Files (x86)/Rico Suter/NSwagStudio/NSwagStudio/"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/PrivateAssemblies/runtimes/win-x64/native/"
+    searched_directories:
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x86/link.com"
+    found: "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x86/link.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x86"
+        - "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26100.0\\x64"
+        - "C:\\Program Files (x86)\\Microsoft SDKs\\Windows\\v10.0A\\bin\\NETFX 4.8 Tools\\x64"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26100.0\\x86"
+        - "C:\\Program Files (x86)\\Microsoft SDKs\\Windows\\v10.0A\\bin\\NETFX 4.8 Tools"
+        - "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\Common7\\tools"
+        - "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\Common7\\ide"
+        - "C:\\Program Files (x86)\\HTML Help Workshop"
+        - "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\MSBuild\\Current\\Bin\\amd64"
+        - "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\"
+        - "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\"
+        - "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\MSBuild\\Current\\Bin"
+        - "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\"
+        - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path"
+        - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath"
+        - "C:\\Program Files\\Microsoft\\jdk-25.0.1.8-hotspot\\bin"
+        - "C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
+        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA app\\NvDLISR"
+        - "C:\\Users\\ImranJagari\\AppData\\Local\\nvm"
+        - "C:\\nvm4w\\nodejs"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
+        - "C:\\Program Files (x86)\\Eziriz\\.NET Reactor"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Program Files\\Docker\\Docker\\resources\\bin"
+        - "C:\\Users\\ImranJagari\\AppData\\Local\\Programs\\hcli"
+        - "C:\\Users\\ImranJagari\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\ImranJagari\\AppData\\Local\\nvm"
+        - "C:\\nvm4w\\nodejs"
+        - "C:\\Users\\ImranJagari\\.dotnet\\tools"
+        - "C:\\Users\\ImranJagari\\AppData\\Local\\Programs\\Azure Dev CLI\\"
+        - "C:\\Users\\ImranJagari\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\ImranJagari\\AppData\\Local\\gitkraken\\bin"
+        - "C:\\Users\\ImranJagari\\.dotnet\\tools"
+        - "C:\\Program Files (x86)\\Rico Suter\\NSwagStudio\\NSwagStudio\\"
+        - "C:\\Users\\ImranJagari\\.dotnet\\tools"
+        - "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\Common7\\IDE\\PrivateAssemblies\\runtimes\\win-x64\\native"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/mho_launcher"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:37 (find_program)"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:65 (__resolve_tool_path)"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:104 (__resolve_linker_path)"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "_CMAKE_TOOL_WITH_PATH"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "lld-link"
+    candidate_directories:
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x86/"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x64/"
+      - "C:/Program Files (x86)/Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8 Tools/x64/"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x86/"
+      - "C:/Program Files (x86)/Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8 Tools/"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/Tools/"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/"
+      - "C:/Program Files (x86)/HTML Help Workshop/"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/amd64/"
+      - "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/"
+      - "C:/Windows/Microsoft.NET/Framework/v4.0.30319/"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/"
+      - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/"
+      - "C:/Program Files (x86)/Common Files/Oracle/Java/javapath/"
+      - "C:/Program Files/Microsoft/jdk-25.0.1.8-hotspot/bin/"
+      - "C:/Program Files/Microsoft SDKs/Azure/CLI2/wbin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
+      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/"
+      - "C:/Users/ImranJagari/AppData/Local/nvm/"
+      - "C:/nvm4w/nodejs/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/Microsoft SQL Server/170/Tools/Binn/"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/"
+      - "C:/Program Files (x86)/Eziriz/.NET Reactor/"
+      - "C:/Program Files/dotnet/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Program Files/Docker/Docker/resources/bin/"
+      - "C:/Users/ImranJagari/AppData/Local/Programs/hcli/"
+      - "C:/Users/ImranJagari/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/ImranJagari/.dotnet/tools/"
+      - "C:/Users/ImranJagari/AppData/Local/Programs/Azure Dev CLI/"
+      - "C:/Users/ImranJagari/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/ImranJagari/AppData/Local/gitkraken/bin/"
+      - "C:/Program Files (x86)/Rico Suter/NSwagStudio/NSwagStudio/"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/PrivateAssemblies/runtimes/win-x64/native/"
+    searched_directories:
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x86/lld-link.com"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x86/lld-link.exe"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x86/lld-link"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/lld-link.com"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/lld-link.exe"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/lld-link"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x64/lld-link.com"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x64/lld-link.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x64/lld-link"
+      - "C:/Program Files (x86)/Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8 Tools/x64/lld-link.com"
+      - "C:/Program Files (x86)/Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8 Tools/x64/lld-link.exe"
+      - "C:/Program Files (x86)/Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8 Tools/x64/lld-link"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x86/lld-link.com"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x86/lld-link.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x86/lld-link"
+      - "C:/Program Files (x86)/Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8 Tools/lld-link.com"
+      - "C:/Program Files (x86)/Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8 Tools/lld-link.exe"
+      - "C:/Program Files (x86)/Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8 Tools/lld-link"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/Tools/lld-link.com"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/Tools/lld-link.exe"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/Tools/lld-link"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/lld-link.com"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/lld-link.exe"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/lld-link"
+      - "C:/Program Files (x86)/HTML Help Workshop/lld-link.com"
+      - "C:/Program Files (x86)/HTML Help Workshop/lld-link.exe"
+      - "C:/Program Files (x86)/HTML Help Workshop/lld-link"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/amd64/lld-link.com"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/amd64/lld-link.exe"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/amd64/lld-link"
+      - "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/lld-link.com"
+      - "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/lld-link.exe"
+      - "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/lld-link"
+      - "C:/Windows/Microsoft.NET/Framework/v4.0.30319/lld-link.com"
+      - "C:/Windows/Microsoft.NET/Framework/v4.0.30319/lld-link.exe"
+      - "C:/Windows/Microsoft.NET/Framework/v4.0.30319/lld-link"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/lld-link.com"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/lld-link.exe"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/lld-link"
+      - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/lld-link.com"
+      - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/lld-link.exe"
+      - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/lld-link"
+      - "C:/Program Files (x86)/Common Files/Oracle/Java/javapath/lld-link.com"
+      - "C:/Program Files (x86)/Common Files/Oracle/Java/javapath/lld-link.exe"
+      - "C:/Program Files (x86)/Common Files/Oracle/Java/javapath/lld-link"
+      - "C:/Program Files/Microsoft/jdk-25.0.1.8-hotspot/bin/lld-link.com"
+      - "C:/Program Files/Microsoft/jdk-25.0.1.8-hotspot/bin/lld-link.exe"
+      - "C:/Program Files/Microsoft/jdk-25.0.1.8-hotspot/bin/lld-link"
+      - "C:/Program Files/Microsoft SDKs/Azure/CLI2/wbin/lld-link.com"
+      - "C:/Program Files/Microsoft SDKs/Azure/CLI2/wbin/lld-link.exe"
+      - "C:/Program Files/Microsoft SDKs/Azure/CLI2/wbin/lld-link"
+      - "C:/Windows/System32/lld-link.com"
+      - "C:/Windows/System32/lld-link.exe"
+      - "C:/Windows/System32/lld-link"
+      - "C:/Windows/lld-link.com"
+      - "C:/Windows/lld-link.exe"
+      - "C:/Windows/lld-link"
+      - "C:/Windows/System32/wbem/lld-link.com"
+      - "C:/Windows/System32/wbem/lld-link.exe"
+      - "C:/Windows/System32/wbem/lld-link"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/lld-link.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/lld-link.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/lld-link"
+      - "C:/Windows/System32/OpenSSH/lld-link.com"
+      - "C:/Windows/System32/OpenSSH/lld-link.exe"
+      - "C:/Windows/System32/OpenSSH/lld-link"
+      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/lld-link.com"
+      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/lld-link.exe"
+      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/lld-link"
+      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/lld-link.com"
+      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/lld-link.exe"
+      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/lld-link"
+      - "C:/Users/ImranJagari/AppData/Local/nvm/lld-link.com"
+      - "C:/Users/ImranJagari/AppData/Local/nvm/lld-link.exe"
+      - "C:/Users/ImranJagari/AppData/Local/nvm/lld-link"
+      - "C:/nvm4w/nodejs/lld-link.com"
+      - "C:/nvm4w/nodejs/lld-link.exe"
+      - "C:/nvm4w/nodejs/lld-link"
+      - "C:/Program Files/Git/cmd/lld-link.com"
+      - "C:/Program Files/Git/cmd/lld-link.exe"
+      - "C:/Program Files/Git/cmd/lld-link"
+      - "C:/Program Files/Microsoft SQL Server/170/Tools/Binn/lld-link.com"
+      - "C:/Program Files/Microsoft SQL Server/170/Tools/Binn/lld-link.exe"
+      - "C:/Program Files/Microsoft SQL Server/170/Tools/Binn/lld-link"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/lld-link.com"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/lld-link.exe"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/lld-link"
+      - "C:/Program Files (x86)/Eziriz/.NET Reactor/lld-link.com"
+      - "C:/Program Files (x86)/Eziriz/.NET Reactor/lld-link.exe"
+      - "C:/Program Files (x86)/Eziriz/.NET Reactor/lld-link"
+      - "C:/Program Files/dotnet/lld-link.com"
+      - "C:/Program Files/dotnet/lld-link.exe"
+      - "C:/Program Files/dotnet/lld-link"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/lld-link.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/lld-link.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/lld-link"
+      - "C:/Program Files/Docker/Docker/resources/bin/lld-link.com"
+      - "C:/Program Files/Docker/Docker/resources/bin/lld-link.exe"
+      - "C:/Program Files/Docker/Docker/resources/bin/lld-link"
+      - "C:/Users/ImranJagari/AppData/Local/Programs/hcli/lld-link.com"
+      - "C:/Users/ImranJagari/AppData/Local/Programs/hcli/lld-link.exe"
+      - "C:/Users/ImranJagari/AppData/Local/Programs/hcli/lld-link"
+      - "C:/Users/ImranJagari/AppData/Local/Microsoft/WindowsApps/lld-link.com"
+      - "C:/Users/ImranJagari/AppData/Local/Microsoft/WindowsApps/lld-link.exe"
+      - "C:/Users/ImranJagari/AppData/Local/Microsoft/WindowsApps/lld-link"
+      - "C:/Users/ImranJagari/.dotnet/tools/lld-link.com"
+      - "C:/Users/ImranJagari/.dotnet/tools/lld-link.exe"
+      - "C:/Users/ImranJagari/.dotnet/tools/lld-link"
+      - "C:/Users/ImranJagari/AppData/Local/Programs/Azure Dev CLI/lld-link.com"
+      - "C:/Users/ImranJagari/AppData/Local/Programs/Azure Dev CLI/lld-link.exe"
+      - "C:/Users/ImranJagari/AppData/Local/Programs/Azure Dev CLI/lld-link"
+      - "C:/Users/ImranJagari/AppData/Local/Programs/Microsoft VS Code/bin/lld-link.com"
+      - "C:/Users/ImranJagari/AppData/Local/Programs/Microsoft VS Code/bin/lld-link.exe"
+      - "C:/Users/ImranJagari/AppData/Local/Programs/Microsoft VS Code/bin/lld-link"
+      - "C:/Users/ImranJagari/AppData/Local/gitkraken/bin/lld-link.com"
+      - "C:/Users/ImranJagari/AppData/Local/gitkraken/bin/lld-link.exe"
+      - "C:/Users/ImranJagari/AppData/Local/gitkraken/bin/lld-link"
+      - "C:/Program Files (x86)/Rico Suter/NSwagStudio/NSwagStudio/lld-link.com"
+      - "C:/Program Files (x86)/Rico Suter/NSwagStudio/NSwagStudio/lld-link.exe"
+      - "C:/Program Files (x86)/Rico Suter/NSwagStudio/NSwagStudio/lld-link"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/PrivateAssemblies/runtimes/win-x64/native/lld-link.com"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/PrivateAssemblies/runtimes/win-x64/native/lld-link.exe"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/PrivateAssemblies/runtimes/win-x64/native/lld-link"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x86"
+        - "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26100.0\\x64"
+        - "C:\\Program Files (x86)\\Microsoft SDKs\\Windows\\v10.0A\\bin\\NETFX 4.8 Tools\\x64"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26100.0\\x86"
+        - "C:\\Program Files (x86)\\Microsoft SDKs\\Windows\\v10.0A\\bin\\NETFX 4.8 Tools"
+        - "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\Common7\\tools"
+        - "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\Common7\\ide"
+        - "C:\\Program Files (x86)\\HTML Help Workshop"
+        - "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\MSBuild\\Current\\Bin\\amd64"
+        - "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\"
+        - "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\"
+        - "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\MSBuild\\Current\\Bin"
+        - "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\"
+        - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path"
+        - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath"
+        - "C:\\Program Files\\Microsoft\\jdk-25.0.1.8-hotspot\\bin"
+        - "C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
+        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA app\\NvDLISR"
+        - "C:\\Users\\ImranJagari\\AppData\\Local\\nvm"
+        - "C:\\nvm4w\\nodejs"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
+        - "C:\\Program Files (x86)\\Eziriz\\.NET Reactor"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Program Files\\Docker\\Docker\\resources\\bin"
+        - "C:\\Users\\ImranJagari\\AppData\\Local\\Programs\\hcli"
+        - "C:\\Users\\ImranJagari\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\ImranJagari\\AppData\\Local\\nvm"
+        - "C:\\nvm4w\\nodejs"
+        - "C:\\Users\\ImranJagari\\.dotnet\\tools"
+        - "C:\\Users\\ImranJagari\\AppData\\Local\\Programs\\Azure Dev CLI\\"
+        - "C:\\Users\\ImranJagari\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\ImranJagari\\AppData\\Local\\gitkraken\\bin"
+        - "C:\\Users\\ImranJagari\\.dotnet\\tools"
+        - "C:\\Program Files (x86)\\Rico Suter\\NSwagStudio\\NSwagStudio\\"
+        - "C:\\Users\\ImranJagari\\.dotnet\\tools"
+        - "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\Common7\\IDE\\PrivateAssemblies\\runtimes\\win-x64\\native"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/mho_launcher"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:462 (find_file)"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:500 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCXXCompilerId.cpp.in"
+    candidate_directories:
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/"
+    found: "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/CMakeCXXCompilerId.cpp.in"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x86"
+        - "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26100.0\\x64"
+        - "C:\\Program Files (x86)\\Microsoft SDKs\\Windows\\v10.0A\\bin\\NETFX 4.8 Tools\\x64"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26100.0\\x86"
+        - "C:\\Program Files (x86)\\Microsoft SDKs\\Windows\\v10.0A\\bin\\NETFX 4.8 Tools"
+        - "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\Common7\\tools"
+        - "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\Common7\\ide"
+        - "C:\\Program Files (x86)\\HTML Help Workshop"
+        - "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\MSBuild\\Current\\Bin\\amd64"
+        - "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\"
+        - "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\"
+        - "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\MSBuild\\Current\\Bin"
+        - "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\"
+        - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path"
+        - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath"
+        - "C:\\Program Files\\Microsoft\\jdk-25.0.1.8-hotspot\\bin"
+        - "C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
+        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA app\\NvDLISR"
+        - "C:\\Users\\ImranJagari\\AppData\\Local\\nvm"
+        - "C:\\nvm4w\\nodejs"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
+        - "C:\\Program Files (x86)\\Eziriz\\.NET Reactor"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Program Files\\Docker\\Docker\\resources\\bin"
+        - "C:\\Users\\ImranJagari\\AppData\\Local\\Programs\\hcli"
+        - "C:\\Users\\ImranJagari\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\ImranJagari\\AppData\\Local\\nvm"
+        - "C:\\nvm4w\\nodejs"
+        - "C:\\Users\\ImranJagari\\.dotnet\\tools"
+        - "C:\\Users\\ImranJagari\\AppData\\Local\\Programs\\Azure Dev CLI\\"
+        - "C:\\Users\\ImranJagari\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\ImranJagari\\AppData\\Local\\gitkraken\\bin"
+        - "C:\\Users\\ImranJagari\\.dotnet\\tools"
+        - "C:\\Program Files (x86)\\Rico Suter\\NSwagStudio\\NSwagStudio\\"
+        - "C:\\Users\\ImranJagari\\.dotnet\\tools"
+        - "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\Common7\\IDE\\PrivateAssemblies\\runtimes\\win-x64\\native"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/mho_launcher"
+      ENV{INCLUDE}:
+        - "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.44.35207\\include"
+        - "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.44.35207\\atlmfc\\include"
+        - "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Auxiliary\\VS\\include"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\ucrt"
+        - "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Auxiliary\\VS\\UnitTest\\include"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\um"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\shared"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\winrt"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.26100.0\\cppwinrt"
+        - "C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\Include\\um"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler:  
+      Build flags: /DWIN32;/D_WINDOWS;/EHsc
+      Id flags:  
+      
+      The output was:
+      0
+      Version MSBuild 18.4.0+6e61e96ac pour .NET Framework
+      La g├®n├®ration a d├®marr├® 06/03/2026 21:28:51.
+      
+      Projet "C:\\krosmoz\\Rathalos\\Tools\\mho_launcher_cpp\\CMakeFiles\\4.2.3-msvc3\\CompilerIdCXX\\CompilerIdCXX.vcxproj" sur le n┼ôud 1 (cibles par d├®faut).
+      PrepareForBuild:
+        Cr├®ation du r├®pertoire "Debug\\".
+        La sortie structur├®e est activ├®e. La mise en forme du compilateur diagnostics refl├¿te la hi├®rarchie des erreurs. Pour plus dÔÇÖinformations, consultez https://aka.ms/cpp/structured-output.
+        Cr├®ation du r├®pertoire "Debug\\CompilerIdCXX.tlog\\".
+      InitializeBuildStatus:
+        Cr├®ation de "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild", car "AlwaysCreate" a ├®t├® sp├®cifi├®.
+        Mise ├á jour de l'horodatage "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild".
+      ClCompile:
+        C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x86\\CL.exe /c /nologo /W0 /WX- /diagnostics:column /Od /Oy- /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\\\" /Fd"Debug\\vc143.pdb" /external:W0 /Gd /TP /analyze- /FC /errorReport:queue CMakeCXXCompilerId.cpp
+        CMakeCXXCompilerId.cpp
+      Link:
+        C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x86\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdCXX.lib" /MACHINE:X86 /SAFESEH Debug\\CMakeCXXCompilerId.obj
+        CompilerIdCXX.vcxproj -> C:\\krosmoz\\Rathalos\\Tools\\mho_launcher_cpp\\CMakeFiles\\4.2.3-msvc3\\CompilerIdCXX\\CompilerIdCXX.exe
+      PostBuildEvent:
+        for %%i in (cl.exe) do @echo CMAKE_CXX_COMPILER=%%~$PATH:i
+        :VCEnd
+        CMAKE_CXX_COMPILER=C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x86\\cl.exe
+      FinalizeBuildStatus:
+        Suppression du fichier "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild".
+        Mise ├á jour de l'horodatage "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.lastbuildstate".
+      G├®n├®ration du projet "C:\\krosmoz\\Rathalos\\Tools\\mho_launcher_cpp\\CMakeFiles\\4.2.3-msvc3\\CompilerIdCXX\\CompilerIdCXX.vcxproj" termin├®e (cibles par d├®faut).
+      
+      La g├®n├®ration a r├®ussi.
+          0 Avertissement(s)
+          0 Erreur(s)
+      
+      Temps ├®coul├® 00:00:00.67
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.vcxproj"
+      
+      The CXX compiler identification is MSVC, found in:
+        C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/4.2.3-msvc3/CompilerIdCXX/CompilerIdCXX.exe
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:37 (find_program)"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:65 (__resolve_tool_path)"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/CMakeFindBinUtils.cmake:104 (__resolve_linker_path)"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "_CMAKE_TOOL_WITH_PATH"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "lld-link"
+    candidate_directories:
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x86/"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x64/"
+      - "C:/Program Files (x86)/Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8 Tools/x64/"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x86/"
+      - "C:/Program Files (x86)/Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8 Tools/"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/Tools/"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/"
+      - "C:/Program Files (x86)/HTML Help Workshop/"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/amd64/"
+      - "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/"
+      - "C:/Windows/Microsoft.NET/Framework/v4.0.30319/"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/"
+      - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/"
+      - "C:/Program Files (x86)/Common Files/Oracle/Java/javapath/"
+      - "C:/Program Files/Microsoft/jdk-25.0.1.8-hotspot/bin/"
+      - "C:/Program Files/Microsoft SDKs/Azure/CLI2/wbin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
+      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/"
+      - "C:/Users/ImranJagari/AppData/Local/nvm/"
+      - "C:/nvm4w/nodejs/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/Microsoft SQL Server/170/Tools/Binn/"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/"
+      - "C:/Program Files (x86)/Eziriz/.NET Reactor/"
+      - "C:/Program Files/dotnet/"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/"
+      - "C:/Program Files/Docker/Docker/resources/bin/"
+      - "C:/Users/ImranJagari/AppData/Local/Programs/hcli/"
+      - "C:/Users/ImranJagari/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/ImranJagari/.dotnet/tools/"
+      - "C:/Users/ImranJagari/AppData/Local/Programs/Azure Dev CLI/"
+      - "C:/Users/ImranJagari/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/ImranJagari/AppData/Local/gitkraken/bin/"
+      - "C:/Program Files (x86)/Rico Suter/NSwagStudio/NSwagStudio/"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/PrivateAssemblies/runtimes/win-x64/native/"
+    searched_directories:
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x86/lld-link.com"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x86/lld-link.exe"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x86/lld-link"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/lld-link.com"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/lld-link.exe"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.44.35207/bin/Hostx64/x64/lld-link"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x64/lld-link.com"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x64/lld-link.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x64/lld-link"
+      - "C:/Program Files (x86)/Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8 Tools/x64/lld-link.com"
+      - "C:/Program Files (x86)/Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8 Tools/x64/lld-link.exe"
+      - "C:/Program Files (x86)/Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8 Tools/x64/lld-link"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x86/lld-link.com"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x86/lld-link.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/bin/10.0.26100.0/x86/lld-link"
+      - "C:/Program Files (x86)/Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8 Tools/lld-link.com"
+      - "C:/Program Files (x86)/Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8 Tools/lld-link.exe"
+      - "C:/Program Files (x86)/Microsoft SDKs/Windows/v10.0A/bin/NETFX 4.8 Tools/lld-link"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/Tools/lld-link.com"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/Tools/lld-link.exe"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/Tools/lld-link"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/lld-link.com"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/lld-link.exe"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/lld-link"
+      - "C:/Program Files (x86)/HTML Help Workshop/lld-link.com"
+      - "C:/Program Files (x86)/HTML Help Workshop/lld-link.exe"
+      - "C:/Program Files (x86)/HTML Help Workshop/lld-link"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/amd64/lld-link.com"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/amd64/lld-link.exe"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/amd64/lld-link"
+      - "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/lld-link.com"
+      - "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/lld-link.exe"
+      - "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/lld-link"
+      - "C:/Windows/Microsoft.NET/Framework/v4.0.30319/lld-link.com"
+      - "C:/Windows/Microsoft.NET/Framework/v4.0.30319/lld-link.exe"
+      - "C:/Windows/Microsoft.NET/Framework/v4.0.30319/lld-link"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/lld-link.com"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/lld-link.exe"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/lld-link"
+      - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/lld-link.com"
+      - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/lld-link.exe"
+      - "C:/Program Files (x86)/Common Files/Oracle/Java/java8path/lld-link"
+      - "C:/Program Files (x86)/Common Files/Oracle/Java/javapath/lld-link.com"
+      - "C:/Program Files (x86)/Common Files/Oracle/Java/javapath/lld-link.exe"
+      - "C:/Program Files (x86)/Common Files/Oracle/Java/javapath/lld-link"
+      - "C:/Program Files/Microsoft/jdk-25.0.1.8-hotspot/bin/lld-link.com"
+      - "C:/Program Files/Microsoft/jdk-25.0.1.8-hotspot/bin/lld-link.exe"
+      - "C:/Program Files/Microsoft/jdk-25.0.1.8-hotspot/bin/lld-link"
+      - "C:/Program Files/Microsoft SDKs/Azure/CLI2/wbin/lld-link.com"
+      - "C:/Program Files/Microsoft SDKs/Azure/CLI2/wbin/lld-link.exe"
+      - "C:/Program Files/Microsoft SDKs/Azure/CLI2/wbin/lld-link"
+      - "C:/Windows/System32/lld-link.com"
+      - "C:/Windows/System32/lld-link.exe"
+      - "C:/Windows/System32/lld-link"
+      - "C:/Windows/lld-link.com"
+      - "C:/Windows/lld-link.exe"
+      - "C:/Windows/lld-link"
+      - "C:/Windows/System32/wbem/lld-link.com"
+      - "C:/Windows/System32/wbem/lld-link.exe"
+      - "C:/Windows/System32/wbem/lld-link"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/lld-link.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/lld-link.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/lld-link"
+      - "C:/Windows/System32/OpenSSH/lld-link.com"
+      - "C:/Windows/System32/OpenSSH/lld-link.exe"
+      - "C:/Windows/System32/OpenSSH/lld-link"
+      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/lld-link.com"
+      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/lld-link.exe"
+      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/lld-link"
+      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/lld-link.com"
+      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/lld-link.exe"
+      - "C:/Program Files/NVIDIA Corporation/NVIDIA app/NvDLISR/lld-link"
+      - "C:/Users/ImranJagari/AppData/Local/nvm/lld-link.com"
+      - "C:/Users/ImranJagari/AppData/Local/nvm/lld-link.exe"
+      - "C:/Users/ImranJagari/AppData/Local/nvm/lld-link"
+      - "C:/nvm4w/nodejs/lld-link.com"
+      - "C:/nvm4w/nodejs/lld-link.exe"
+      - "C:/nvm4w/nodejs/lld-link"
+      - "C:/Program Files/Git/cmd/lld-link.com"
+      - "C:/Program Files/Git/cmd/lld-link.exe"
+      - "C:/Program Files/Git/cmd/lld-link"
+      - "C:/Program Files/Microsoft SQL Server/170/Tools/Binn/lld-link.com"
+      - "C:/Program Files/Microsoft SQL Server/170/Tools/Binn/lld-link.exe"
+      - "C:/Program Files/Microsoft SQL Server/170/Tools/Binn/lld-link"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/lld-link.com"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/lld-link.exe"
+      - "C:/Program Files/Microsoft SQL Server/Client SDK/ODBC/170/Tools/Binn/lld-link"
+      - "C:/Program Files (x86)/Eziriz/.NET Reactor/lld-link.com"
+      - "C:/Program Files (x86)/Eziriz/.NET Reactor/lld-link.exe"
+      - "C:/Program Files (x86)/Eziriz/.NET Reactor/lld-link"
+      - "C:/Program Files/dotnet/lld-link.com"
+      - "C:/Program Files/dotnet/lld-link.exe"
+      - "C:/Program Files/dotnet/lld-link"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/lld-link.com"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/lld-link.exe"
+      - "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/lld-link"
+      - "C:/Program Files/Docker/Docker/resources/bin/lld-link.com"
+      - "C:/Program Files/Docker/Docker/resources/bin/lld-link.exe"
+      - "C:/Program Files/Docker/Docker/resources/bin/lld-link"
+      - "C:/Users/ImranJagari/AppData/Local/Programs/hcli/lld-link.com"
+      - "C:/Users/ImranJagari/AppData/Local/Programs/hcli/lld-link.exe"
+      - "C:/Users/ImranJagari/AppData/Local/Programs/hcli/lld-link"
+      - "C:/Users/ImranJagari/AppData/Local/Microsoft/WindowsApps/lld-link.com"
+      - "C:/Users/ImranJagari/AppData/Local/Microsoft/WindowsApps/lld-link.exe"
+      - "C:/Users/ImranJagari/AppData/Local/Microsoft/WindowsApps/lld-link"
+      - "C:/Users/ImranJagari/.dotnet/tools/lld-link.com"
+      - "C:/Users/ImranJagari/.dotnet/tools/lld-link.exe"
+      - "C:/Users/ImranJagari/.dotnet/tools/lld-link"
+      - "C:/Users/ImranJagari/AppData/Local/Programs/Azure Dev CLI/lld-link.com"
+      - "C:/Users/ImranJagari/AppData/Local/Programs/Azure Dev CLI/lld-link.exe"
+      - "C:/Users/ImranJagari/AppData/Local/Programs/Azure Dev CLI/lld-link"
+      - "C:/Users/ImranJagari/AppData/Local/Programs/Microsoft VS Code/bin/lld-link.com"
+      - "C:/Users/ImranJagari/AppData/Local/Programs/Microsoft VS Code/bin/lld-link.exe"
+      - "C:/Users/ImranJagari/AppData/Local/Programs/Microsoft VS Code/bin/lld-link"
+      - "C:/Users/ImranJagari/AppData/Local/gitkraken/bin/lld-link.com"
+      - "C:/Users/ImranJagari/AppData/Local/gitkraken/bin/lld-link.exe"
+      - "C:/Users/ImranJagari/AppData/Local/gitkraken/bin/lld-link"
+      - "C:/Program Files (x86)/Rico Suter/NSwagStudio/NSwagStudio/lld-link.com"
+      - "C:/Program Files (x86)/Rico Suter/NSwagStudio/NSwagStudio/lld-link.exe"
+      - "C:/Program Files (x86)/Rico Suter/NSwagStudio/NSwagStudio/lld-link"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/PrivateAssemblies/runtimes/win-x64/native/lld-link.com"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/PrivateAssemblies/runtimes/win-x64/native/lld-link.exe"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/PrivateAssemblies/runtimes/win-x64/native/lld-link"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x86"
+        - "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26100.0\\x64"
+        - "C:\\Program Files (x86)\\Microsoft SDKs\\Windows\\v10.0A\\bin\\NETFX 4.8 Tools\\x64"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.26100.0\\x86"
+        - "C:\\Program Files (x86)\\Microsoft SDKs\\Windows\\v10.0A\\bin\\NETFX 4.8 Tools"
+        - "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\Common7\\tools"
+        - "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\Common7\\ide"
+        - "C:\\Program Files (x86)\\HTML Help Workshop"
+        - "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\MSBuild\\Current\\Bin\\amd64"
+        - "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\"
+        - "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\"
+        - "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\MSBuild\\Current\\Bin"
+        - "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\"
+        - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\java8path"
+        - "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath"
+        - "C:\\Program Files\\Microsoft\\jdk-25.0.1.8-hotspot\\bin"
+        - "C:\\Program Files\\Microsoft SDKs\\Azure\\CLI2\\wbin"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
+        - "C:\\Program Files\\NVIDIA Corporation\\NVIDIA app\\NvDLISR"
+        - "C:\\Users\\ImranJagari\\AppData\\Local\\nvm"
+        - "C:\\nvm4w\\nodejs"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\Microsoft SQL Server\\170\\Tools\\Binn\\"
+        - "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\"
+        - "C:\\Program Files (x86)\\Eziriz\\.NET Reactor"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\"
+        - "C:\\Program Files\\Docker\\Docker\\resources\\bin"
+        - "C:\\Users\\ImranJagari\\AppData\\Local\\Programs\\hcli"
+        - "C:\\Users\\ImranJagari\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\ImranJagari\\AppData\\Local\\nvm"
+        - "C:\\nvm4w\\nodejs"
+        - "C:\\Users\\ImranJagari\\.dotnet\\tools"
+        - "C:\\Users\\ImranJagari\\AppData\\Local\\Programs\\Azure Dev CLI\\"
+        - "C:\\Users\\ImranJagari\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\ImranJagari\\AppData\\Local\\gitkraken\\bin"
+        - "C:\\Users\\ImranJagari\\.dotnet\\tools"
+        - "C:\\Program Files (x86)\\Rico Suter\\NSwagStudio\\NSwagStudio\\"
+        - "C:\\Users\\ImranJagari\\.dotnet\\tools"
+        - "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\Common7\\IDE\\PrivateAssemblies\\runtimes\\win-x64\\native"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/mho_launcher"
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/CMakeScratch/TryCompile-kkn81o"
+      binary: "C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/CMakeScratch/TryCompile-kkn81o"
+    cmakeVariables:
+      CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
+      CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:X86"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/CMakeScratch/TryCompile-kkn81o'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_374f3.vcxproj /p:Configuration=Debug /p:Platform=Win32 /p:VisualStudioVersion=17.0 /v:n
+        Version MSBuild 18.4.0+6e61e96ac pour .NET Framework
+        La g├®n├®ration a d├®marr├® 06/03/2026 21:28:52.
+        
+        Projet "C:\\krosmoz\\Rathalos\\Tools\\mho_launcher_cpp\\CMakeFiles\\CMakeScratch\\TryCompile-kkn81o\\cmTC_374f3.vcxproj" sur le n┼ôud 1 (cibles par d├®faut).
+        PrepareForBuild:
+          La sortie structur├®e est activ├®e. La mise en forme du compilateur diagnostics refl├¿te la hi├®rarchie des erreurs. Pour plus dÔÇÖinformations, consultez https://aka.ms/cpp/structured-output.
+          Cr├®ation du r├®pertoire "C:\\krosmoz\\Rathalos\\Tools\\mho_launcher_cpp\\CMakeFiles\\CMakeScratch\\TryCompile-kkn81o\\Debug\\".
+          Cr├®ation du r├®pertoire "cmTC_374f3.dir\\Debug\\cmTC_374f3.tlog\\".
+        InitializeBuildStatus:
+          Cr├®ation de "cmTC_374f3.dir\\Debug\\cmTC_374f3.tlog\\unsuccessfulbuild", car "AlwaysCreate" a ├®t├® sp├®cifi├®.
+          Mise ├á jour de l'horodatage "cmTC_374f3.dir\\Debug\\cmTC_374f3.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x86\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /Oy- /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_374f3.dir\\Debug\\\\" /Fd"cmTC_374f3.dir\\Debug\\vc143.pdb" /external:W1 /TC /analyze- /errorReport:queue "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\share\\cmake-4.2\\Modules\\CMakeCCompilerABI.c"
+          Compilateur d'optimisation Microsoft (R) C/C++ version┬á19.44.35223 pour x86
+          Copyright (C) Microsoft Corporation. Tous droits r├®serv├®s.
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /Oy- /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_374f3.dir\\Debug\\\\" /Fd"cmTC_374f3.dir\\Debug\\vc143.pdb" /external:W1 /TC /analyze- /errorReport:queue "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\share\\cmake-4.2\\Modules\\CMakeCCompilerABI.c"
+          CMakeCCompilerABI.c
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x86\\link.exe /OUT:"C:\\krosmoz\\Rathalos\\Tools\\mho_launcher_cpp\\CMakeFiles\\CMakeScratch\\TryCompile-kkn81o\\Debug\\cmTC_374f3.exe" /INCREMENTAL /ILK:"cmTC_374f3.dir\\Debug\\cmTC_374f3.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/CMakeScratch/TryCompile-kkn81o/Debug/cmTC_374f3.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/CMakeScratch/TryCompile-kkn81o/Debug/cmTC_374f3.lib" /MACHINE:X86  /machine:X86 cmTC_374f3.dir\\Debug\\CMakeCCompilerABI.obj
+          cmTC_374f3.vcxproj -> C:\\krosmoz\\Rathalos\\Tools\\mho_launcher_cpp\\CMakeFiles\\CMakeScratch\\TryCompile-kkn81o\\Debug\\cmTC_374f3.exe
+        FinalizeBuildStatus:
+          Suppression du fichier "cmTC_374f3.dir\\Debug\\cmTC_374f3.tlog\\unsuccessfulbuild".
+          Mise ├á jour de l'horodatage "cmTC_374f3.dir\\Debug\\cmTC_374f3.tlog\\cmTC_374f3.lastbuildstate".
+        G├®n├®ration du projet "C:\\krosmoz\\Rathalos\\Tools\\mho_launcher_cpp\\CMakeFiles\\CMakeScratch\\TryCompile-kkn81o\\cmTC_374f3.vcxproj" termin├®e (cibles par d├®faut).
+        
+        La g├®n├®ration a r├®ussi.
+            0 Avertissement(s)
+            0 Erreur(s)
+        
+        Temps ├®coul├® 00:00:00.78
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerABI.cmake:253 (message)"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed C implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
+        linker tool for 'C': C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.44.35207/bin/HostX64/x86/link.exe
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/Internal/CMakeDetermineLinkerId.cmake:38 (message)"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerABI.cmake:299 (cmake_determine_linker_id)"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Running the C compiler's linker: "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.44.35207/bin/HostX64/x86/link.exe" "-v"
+      Microsoft (R) Incremental Linker Version 14.44.35223.0
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/CMakeScratch/TryCompile-150wmp"
+      binary: "C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/CMakeScratch/TryCompile-150wmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /EHsc"
+      CMAKE_CXX_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
+      CMAKE_CXX_SCAN_FOR_MODULES: "OFF"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:X86"
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/CMakeScratch/TryCompile-150wmp'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_5af0b.vcxproj /p:Configuration=Debug /p:Platform=Win32 /p:VisualStudioVersion=17.0 /v:n
+        Version MSBuild 18.4.0+6e61e96ac pour .NET Framework
+        La g├®n├®ration a d├®marr├® 06/03/2026 21:28:53.
+        
+        Projet "C:\\krosmoz\\Rathalos\\Tools\\mho_launcher_cpp\\CMakeFiles\\CMakeScratch\\TryCompile-150wmp\\cmTC_5af0b.vcxproj" sur le n┼ôud 1 (cibles par d├®faut).
+        PrepareForBuild:
+          La sortie structur├®e est activ├®e. La mise en forme du compilateur diagnostics refl├¿te la hi├®rarchie des erreurs. Pour plus dÔÇÖinformations, consultez https://aka.ms/cpp/structured-output.
+          Cr├®ation du r├®pertoire "C:\\krosmoz\\Rathalos\\Tools\\mho_launcher_cpp\\CMakeFiles\\CMakeScratch\\TryCompile-150wmp\\Debug\\".
+          Cr├®ation du r├®pertoire "cmTC_5af0b.dir\\Debug\\cmTC_5af0b.tlog\\".
+        InitializeBuildStatus:
+          Cr├®ation de "cmTC_5af0b.dir\\Debug\\cmTC_5af0b.tlog\\unsuccessfulbuild", car "AlwaysCreate" a ├®t├® sp├®cifi├®.
+          Mise ├á jour de l'horodatage "cmTC_5af0b.dir\\Debug\\cmTC_5af0b.tlog\\unsuccessfulbuild".
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x86\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /Oy- /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /Fo"cmTC_5af0b.dir\\Debug\\\\" /Fd"cmTC_5af0b.dir\\Debug\\vc143.pdb" /external:W1 /TP /analyze- /errorReport:queue "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\share\\cmake-4.2\\Modules\\CMakeCXXCompilerABI.cpp"
+          Compilateur d'optimisation Microsoft (R) C/C++ version┬á19.44.35223 pour x86
+          Copyright (C) Microsoft Corporation. Tous droits r├®serv├®s.
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /Oy- /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /Fo"cmTC_5af0b.dir\\Debug\\\\" /Fd"cmTC_5af0b.dir\\Debug\\vc143.pdb" /external:W1 /TP /analyze- /errorReport:queue "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\share\\cmake-4.2\\Modules\\CMakeCXXCompilerABI.cpp"
+          CMakeCXXCompilerABI.cpp
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x86\\link.exe /OUT:"C:\\krosmoz\\Rathalos\\Tools\\mho_launcher_cpp\\CMakeFiles\\CMakeScratch\\TryCompile-150wmp\\Debug\\cmTC_5af0b.exe" /INCREMENTAL /ILK:"cmTC_5af0b.dir\\Debug\\cmTC_5af0b.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/CMakeScratch/TryCompile-150wmp/Debug/cmTC_5af0b.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/CMakeScratch/TryCompile-150wmp/Debug/cmTC_5af0b.lib" /MACHINE:X86  /machine:X86 cmTC_5af0b.dir\\Debug\\CMakeCXXCompilerABI.obj
+          cmTC_5af0b.vcxproj -> C:\\krosmoz\\Rathalos\\Tools\\mho_launcher_cpp\\CMakeFiles\\CMakeScratch\\TryCompile-150wmp\\Debug\\cmTC_5af0b.exe
+        FinalizeBuildStatus:
+          Suppression du fichier "cmTC_5af0b.dir\\Debug\\cmTC_5af0b.tlog\\unsuccessfulbuild".
+          Mise ├á jour de l'horodatage "cmTC_5af0b.dir\\Debug\\cmTC_5af0b.tlog\\cmTC_5af0b.lastbuildstate".
+        G├®n├®ration du projet "C:\\krosmoz\\Rathalos\\Tools\\mho_launcher_cpp\\CMakeFiles\\CMakeScratch\\TryCompile-150wmp\\cmTC_5af0b.vcxproj" termin├®e (cibles par d├®faut).
+        
+        La g├®n├®ration a r├®ussi.
+            0 Avertissement(s)
+            0 Erreur(s)
+        
+        Temps ├®coul├® 00:00:00.78
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerABI.cmake:253 (message)"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
+        linker tool for 'CXX': C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.44.35207/bin/HostX64/x86/link.exe
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/Internal/CMakeDetermineLinkerId.cmake:38 (message)"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/CMakeDetermineCompilerABI.cmake:299 (cmake_determine_linker_id)"
+      - "C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Running the CXX compiler's linker: "C:/Program Files/Microsoft Visual Studio/18/Insiders/VC/Tools/MSVC/14.44.35207/bin/HostX64/x86/link.exe" "-v"
+      Microsoft (R) Incremental Linker Version 14.44.35223.0
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+...
