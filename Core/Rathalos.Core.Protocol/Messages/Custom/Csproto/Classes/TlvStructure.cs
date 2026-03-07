@@ -158,6 +158,20 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes
             writer.WriteVarInt(value);
         }
 
+        protected void WriteTlvVarShort(IDataWriter writer, uint fieldId, short value)
+        {
+            if (value == 0) return; // Skip defaults
+            writer.WriteVarUInt((fieldId << 4) | 0); // WireType 0
+            writer.WriteVarShort(value);
+        }
+
+        protected void WriteTlvVarUInt(IDataWriter writer, uint fieldId, uint value)
+        {
+            if (value == 0) return; // Skip defaults
+            writer.WriteVarUInt((fieldId << 4) | 0); // WireType 0
+            writer.WriteVarUInt(value);
+        }
+
         protected void WriteStrictIntArray(IDataWriter writer, uint fieldId, int[] arr, int fixedLength)
         {
             if (arr == null) return;
@@ -301,6 +315,12 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes
             float[] arr = new float[count];
             for (int i = 0; i < count; i++) arr[i] = reader.ReadFloat();
             return arr;
+        }
+
+        protected byte[] ReadTlvByteArray(IDataReader reader)
+        {
+            int byteLen = reader.ReadInt();
+            return reader.ReadBytes(byteLen);
         }
 
         protected void WriteTlvByteArray(IDataWriter writer, uint fieldId, byte[] data)

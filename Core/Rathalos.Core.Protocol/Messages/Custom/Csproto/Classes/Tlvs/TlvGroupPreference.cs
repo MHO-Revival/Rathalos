@@ -1,4 +1,5 @@
 using Rathalos.Core.Utils.IO;
+using System.IO;
 
 namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
 {
@@ -12,7 +13,7 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
         public override TlvMagic Magic => TlvMagic.Fixed;
 
         // --- Hardcoded Boundary ---
-        public const int MaxPreferDataLength = 1024;
+        public const int MaxPreferDataLength = 30;
 
         /// <summary>
         /// Group ID.
@@ -24,13 +25,13 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
         /// Prefer count (derived from PreferData).
         /// Field ID: 2
         /// </summary>
-        public int PreferNum => PreferData?.Length ?? 0;
+        public int PreferNum => PreferIds?.Length ?? 0;
 
         /// <summary>
-        /// Preference data bytes.
+        /// Preference ID bytes.
         /// Field ID: 3
         /// </summary>
-        public byte[] PreferData { get; set; } = [];
+        public byte[] PreferIds { get; set; } = [];
 
         protected override void DeserializeContent(IDataReader reader)
         {
@@ -47,7 +48,7 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
                     case 3:
                         int byteLen = reader.ReadInt();
                         if (byteLen > 0 && byteLen <= MaxPreferDataLength)
-                            PreferData = reader.ReadBytes(byteLen);
+                            PreferIds = reader.ReadBytes(byteLen);
                         break;
                     default: SkipTlvField(reader, wireType); break;
                 }
@@ -56,9 +57,13 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
 
         protected override void SerializeContent(IDataWriter writer)
         {
+            // --- BOUNDARY CHECK ---
+            if ((PreferIds?.Length ?? 0) > MaxPreferDataLength)
+                throw new InvalidDataException($"[TlvGroupPreference] PreferIds exceeds the maximum length of {MaxPreferDataLength} bytes.");
+
             WriteTlvInt(writer, 1, GroupId);
             WriteTlvInt(writer, 2, PreferNum);
-            WriteTlvByteArray(writer, 3, PreferData, PreferNum);
+            WriteTlvByteArray(writer, 3, PreferIds, PreferNum);
         }
     }
 }

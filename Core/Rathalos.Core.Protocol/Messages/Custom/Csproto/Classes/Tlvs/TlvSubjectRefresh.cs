@@ -1,4 +1,5 @@
 using Rathalos.Core.Utils.IO;
+using System.IO;
 
 namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
 {
@@ -18,13 +19,13 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
         /// Subject count (derived from Subjects array).
         /// Field ID: 1
         /// </summary>
-        public int SubjectCnt => Subjects?.Length ?? 0;
+        public int SubjectCnt => Subject?.Length ?? 0;
 
         /// <summary>
         /// Subject IDs (short array).
         /// Field ID: 2
         /// </summary>
-        public short[] Subjects { get; set; } = [];
+        public short[] Subject { get; set; } = [];
 
         /// <summary>
         /// Refresh time.
@@ -43,7 +44,7 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
                 switch (fieldId)
                 {
                     case 1: reader.ReadInt(); break; // subjectCnt, derived from array
-                    case 2: Subjects = ReadTlvShortArray(reader); break;
+                    case 2: Subject = ReadTlvShortArray(reader); break;
                     case 3: RefreshTime = (uint)reader.ReadInt(); break;
                     default: SkipTlvField(reader, wireType); break;
                 }
@@ -52,8 +53,12 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
 
         protected override void SerializeContent(IDataWriter writer)
         {
+            // --- BOUNDARY CHECK ---
+            if ((Subject?.Length ?? 0) > MaxSubjects)
+                throw new InvalidDataException($"[TlvSubjectRefresh] Subject exceeds the maximum of {MaxSubjects} elements.");
+
             WriteTlvInt(writer, 1, SubjectCnt);
-            WriteTlvShortArray(writer, 2, Subjects);
+            WriteTlvShortArray(writer, 2, Subject);
             WriteTlvInt(writer, 3, (int)RefreshTime);
         }
     }

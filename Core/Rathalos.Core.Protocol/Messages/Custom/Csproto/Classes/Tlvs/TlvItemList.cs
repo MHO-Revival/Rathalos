@@ -1,25 +1,31 @@
-﻿using Rathalos.Core.Utils.IO;
-using System.Collections.Generic;
+using Rathalos.Core.Utils.IO;
 using System.IO;
 
 namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
 {
     /// <summary>
-    /// Reconstructed TLV Structure (Inventory/Item Container).
-    /// C++ Writer: crygame.dll+sub_1010EF10
-    /// C++ Printer: crygame.dll+sub_1010F4E0
+    /// TLV Structure for item count with short array.
+    /// C++ Reader: crygame.dll+sub_101648B0 (UnkTlv0102)
+    /// C++ Printer: crygame.dll+sub_10164D10
     /// </summary>
     public class TlvItemList : TlvStructure
     {
         public override TlvMagic Magic => TlvMagic.Fixed;
 
         // --- Hardcoded Boundary ---
-        public const int MaxItems = 2500; // 0x9C4u
+        public const int MaxItems = 200;
 
-        // Field 1 is the item count, but we will rely on Items.Count dynamically.
-        public List<TlvItem> Items { get; set; } = new List<TlvItem>();
+        /// <summary>
+        /// Item count (derived from Items array).
+        /// Field ID: 2
+        /// </summary>
+        public short ItemCount => (short)(ItemList?.Length ?? 0);
 
-        public short SafeDataFlag { get; set; }
+        /// <summary>
+        /// Item IDs (short array).
+        /// Field ID: 3
+        /// </summary>
+        public short[] ItemList { get; set; } = [];
 
         protected override void DeserializeContent(IDataReader reader)
         {
@@ -31,9 +37,8 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
 
                 switch (fieldId)
                 {
-                    case 1: reader.ReadShort(); break; // Discard Count
-                    case 2: Items = ReadTlvList<TlvItem>(reader); break;
-                    case 3: SafeDataFlag = reader.ReadShort(); break;
+                    case 2: reader.ReadShort(); break; // itemCount, derived from array
+                    case 3: ItemList = ReadTlvShortArray(reader); break;
                     default: SkipTlvField(reader, wireType); break;
                 }
             }
@@ -41,17 +46,12 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
 
         protected override void SerializeContent(IDataWriter writer)
         {
-            // --- BOUNDARY CHECKS ---
-            if (Items.Count > MaxItems)
-                throw new InvalidDataException($"[TlvItemList] Items count ({Items.Count}) exceeds maximum of {MaxItems}.");
+            // --- BOUNDARY CHECK ---
+            if ((ItemList?.Length ?? 0) > MaxItems)
+                throw new InvalidDataException($"[TlvItemList] ItemList exceeds the maximum of {MaxItems} items.");
 
-            // --- SERIALIZATION ---
-
-            // Field 1: Always write the count explicitly as a Short (WireType 2)
-            // Note: If you want to force write 0 when empty, use: writer.WriteVarUInt((1 << 4) | 2); writer.WriteShort(0);
-            WriteTlvShort(writer, 1, (short)Items.Count, true);
-            WriteTlvList(writer, 2, Items);
-            WriteTlvShort(writer, 3, SafeDataFlag);
+            WriteTlvShort(writer, 2, ItemCount);
+            WriteTlvShortArray(writer, 3, ItemList);
         }
     }
 }

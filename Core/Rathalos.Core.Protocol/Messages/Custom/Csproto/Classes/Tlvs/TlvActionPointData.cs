@@ -1,4 +1,5 @@
 using Rathalos.Core.Utils.IO;
+using System.IO;
 
 namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
 {
@@ -15,16 +16,16 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
         public const int MaxResetTimes = 2;
 
         /// <summary>
-        /// Next reset times (int array, max 2).
+        /// Action point values (int array, max 2).
         /// Field ID: 2
         /// </summary>
-        public int[] NextResetTime { get; set; } = [];
+        public int[] ActionPoint { get; set; } = [];
 
         /// <summary>
-        /// Unknown field.
+        /// Next reset time.
         /// Field ID: 3
         /// </summary>
-        public int Field3 { get; set; }
+        public int NextResetTime { get; set; }
 
         /// <summary>
         /// Action point flags.
@@ -42,8 +43,8 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
 
                 switch (fieldId)
                 {
-                    case 2: NextResetTime = ReadTlvIntArray(reader); break;
-                    case 3: Field3 = reader.ReadInt(); break;
+                    case 2: ActionPoint = ReadTlvIntArray(reader); break;
+                    case 3: NextResetTime = reader.ReadInt(); break;
                     case 4: ActionPointFlags = (uint)reader.ReadInt(); break;
                     default: SkipTlvField(reader, wireType); break;
                 }
@@ -52,8 +53,12 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
 
         protected override void SerializeContent(IDataWriter writer)
         {
-            WriteTlvIntArray(writer, 2, NextResetTime);
-            WriteTlvInt(writer, 3, Field3);
+            // --- BOUNDARY CHECK ---
+            if ((ActionPoint?.Length ?? 0) > MaxResetTimes)
+                throw new InvalidDataException($"[TlvActionPointData] ActionPoint exceeds the maximum of {MaxResetTimes} elements.");
+
+            WriteTlvIntArray(writer, 2, ActionPoint);
+            WriteTlvInt(writer, 3, NextResetTime);
             WriteTlvInt(writer, 4, (int)ActionPointFlags);
         }
     }

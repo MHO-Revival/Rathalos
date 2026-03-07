@@ -1,4 +1,4 @@
-﻿using Rathalos.Core.Utils.IO;
+using Rathalos.Core.Utils.IO;
 using System.IO;
 
 namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
