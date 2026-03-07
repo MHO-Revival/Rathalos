@@ -31,13 +31,13 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
 
         /// <summary>
         /// Argument 5 (64-bit).
-        /// Field ID: 4
+        /// Field ID: 6
         /// </summary>
         public ulong Arg5 { get; set; }
 
         /// <summary>
         /// Argument 6 (64-bit).
-        /// Field ID: 5
+        /// Field ID: 7
         /// </summary>
         public ulong Arg6 { get; set; }
 
@@ -54,8 +54,8 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
                     case 1: Oper = reader.ReadInt(); break;
                     case 2: Arg1 = reader.ReadInt(); break;
                     case 3: Arg2 = reader.ReadInt(); break;
-                    case 4: Arg5 = (ulong)reader.ReadLong(); break;
-                    case 5: Arg6 = (ulong)reader.ReadLong(); break;
+                    case 6: Arg5 = (ulong)reader.ReadLong(); break;
+                    case 7: Arg6 = (ulong)reader.ReadLong(); break;
                     default: SkipTlvField(reader, wireType); break;
                 }
             }
@@ -66,8 +66,8 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
             WriteTlvInt(writer, 1, Oper);
             WriteTlvInt(writer, 2, Arg1);
             WriteTlvInt(writer, 3, Arg2);
-            WriteTlvLong(writer, 4, (long)Arg5);
-            WriteTlvLong(writer, 5, (long)Arg6);
+            WriteTlvLong(writer, 6, (long)Arg5);
+            WriteTlvLong(writer, 7, (long)Arg6);
         }
     }
 }

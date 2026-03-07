@@ -53,6 +53,30 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
         /// </summary>
         public float Tz { get; set; }
 
+        /// <summary>
+        /// Target W (rotation).
+        /// Field ID: 8
+        /// </summary>
+        public float Tw { get; set; }
+
+        /// <summary>
+        /// Hub ID.
+        /// Field ID: 9
+        /// </summary>
+        public uint HubId { get; set; }
+
+        /// <summary>
+        /// NPC ID.
+        /// Field ID: 10
+        /// </summary>
+        public uint NpcId { get; set; }
+
+        /// <summary>
+        /// Previous level ID.
+        /// Field ID: 11
+        /// </summary>
+        public uint PreLevelId { get; set; }
+
         protected override void DeserializeContent(IDataReader reader)
         {
             while (reader.BytesAvailable > 0)
@@ -70,6 +94,10 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
                     case 5: Tx = reader.ReadFloat(); break;
                     case 6: Ty = reader.ReadFloat(); break;
                     case 7: Tz = reader.ReadFloat(); break;
+                    case 8: Tw = reader.ReadFloat(); break;
+                    case 9: HubId = (uint)reader.ReadInt(); break;
+                    case 10: NpcId = (uint)reader.ReadInt(); break;
+                    case 11: PreLevelId = (uint)reader.ReadInt(); break;
                     default: SkipTlvField(reader, wireType); break;
                 }
             }
@@ -84,6 +112,10 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
             WriteTlvFloat(writer, 5, Tx);
             WriteTlvFloat(writer, 6, Ty);
             WriteTlvFloat(writer, 7, Tz);
+            WriteTlvFloat(writer, 8, Tw);
+            WriteTlvInt(writer, 9, (int)HubId);
+            WriteTlvInt(writer, 10, (int)NpcId);
+            WriteTlvInt(writer, 11, (int)PreLevelId);
         }
     }
 }

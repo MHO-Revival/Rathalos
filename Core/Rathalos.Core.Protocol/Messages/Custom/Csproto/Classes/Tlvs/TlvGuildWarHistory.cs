@@ -3,31 +3,31 @@ using Rathalos.Core.Utils.IO;
 namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
 {
     /// <summary>
-    /// TLV Structure for storage sizes.
-    /// C++ Reader: crygame.dll+sub_10164390 (UnkTlv0101)
-    /// C++ Printer: crygame.dll+sub_101644B0
+    /// TLV Structure for guild war history entry.
+    /// C++ Reader: crygame.dll+sub_10119C20 (inner of UnkTlv0018)
+    /// C++ Printer: crygame.dll+sub_10119DC0
     /// </summary>
-    public class TlvStoreSizes : TlvStructure
+    public class TlvGuildWarHistory : TlvStructure
     {
         public override TlvMagic Magic => TlvMagic.Fixed;
 
         /// <summary>
-        /// Store size.
+        /// Guild ID.
+        /// Field ID: 1
+        /// </summary>
+        public long GuildId { get; set; }
+
+        /// <summary>
+        /// Commerce ID.
         /// Field ID: 2
         /// </summary>
-        public short StoreSize { get; set; }
+        public int CommerceId { get; set; }
 
         /// <summary>
-        /// Normal size.
+        /// Activity start time.
         /// Field ID: 3
         /// </summary>
-        public short NormalSize { get; set; }
-
-        /// <summary>
-        /// Material store size.
-        /// Field ID: 4
-        /// </summary>
-        public short MaterialStoreSize { get; set; }
+        public int ActivityStartTime { get; set; }
 
         protected override void DeserializeContent(IDataReader reader)
         {
@@ -39,9 +39,9 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
 
                 switch (fieldId)
                 {
-                    case 2: StoreSize = reader.ReadShort(); break;
-                    case 3: NormalSize = reader.ReadShort(); break;
-                    case 4: MaterialStoreSize = reader.ReadShort(); break;
+                    case 1: GuildId = reader.ReadLong(); break;
+                    case 2: CommerceId = reader.ReadInt(); break;
+                    case 3: ActivityStartTime = reader.ReadInt(); break;
                     default: SkipTlvField(reader, wireType); break;
                 }
             }
@@ -49,9 +49,9 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
 
         protected override void SerializeContent(IDataWriter writer)
         {
-            WriteTlvShort(writer, 2, StoreSize);
-            WriteTlvShort(writer, 3, NormalSize);
-            WriteTlvShort(writer, 4, MaterialStoreSize);
+            WriteTlvLong(writer, 1, GuildId);
+            WriteTlvInt(writer, 2, CommerceId);
+            WriteTlvInt(writer, 3, ActivityStartTime);
         }
     }
 }

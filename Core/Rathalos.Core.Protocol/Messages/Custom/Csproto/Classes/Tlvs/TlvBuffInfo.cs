@@ -1,4 +1,5 @@
 using Rathalos.Core.Utils.IO;
+using System.Collections.Generic;
 
 namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
 {
@@ -10,6 +11,9 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
     public class TlvBuffInfo : TlvStructure
     {
         public override TlvMagic Magic => TlvMagic.Fixed;
+
+        // --- Hardcoded Boundary ---
+        public const int MaxEffects = 10;
 
         /// <summary>
         /// Buff ID.
@@ -53,6 +57,24 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
         /// </summary>
         public short Stack { get; set; }
 
+        /// <summary>
+        /// From.
+        /// Field ID: 8
+        /// </summary>
+        public short From { get; set; }
+
+        /// <summary>
+        /// Effect number (derived from list).
+        /// Field ID: 9
+        /// </summary>
+        public short EffectNum => (short)(EffectData?.Count ?? 0);
+
+        /// <summary>
+        /// Effect data list (max 10).
+        /// Field ID: 10
+        /// </summary>
+        public List<TlvEffectType> EffectData { get; set; } = [];
+
         protected override void DeserializeContent(IDataReader reader)
         {
             while (reader.BytesAvailable > 0)
@@ -70,6 +92,9 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
                     case 5: ExpireTime = reader.ReadInt(); break;
                     case 6: Count = reader.ReadShort(); break;
                     case 7: Stack = reader.ReadShort(); break;
+                    case 8: From = reader.ReadShort(); break;
+                    case 9: reader.ReadShort(); break; // effectNum - derived
+                    case 10: EffectData = ReadTlvList<TlvEffectType>(reader); break;
                     default: SkipTlvField(reader, wireType); break;
                 }
             }
@@ -84,6 +109,9 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
             WriteTlvInt(writer, 5, ExpireTime);
             WriteTlvShort(writer, 6, Count);
             WriteTlvShort(writer, 7, Stack);
+            WriteTlvShort(writer, 8, From);
+            WriteTlvShort(writer, 9, EffectNum);
+            WriteTlvList(writer, 10, EffectData);
         }
     }
 }

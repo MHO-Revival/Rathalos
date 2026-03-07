@@ -11,6 +11,9 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
     {
         public override TlvMagic Magic => TlvMagic.Fixed;
 
+        // --- Hardcoded Boundary ---
+        public const int MaxCompleteBits = 5;
+
         /// <summary>
         /// Fixed times value.
         /// Field ID: 1
@@ -41,6 +44,30 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
         /// </summary>
         public int BlockArg4 { get; set; }
 
+        /// <summary>
+        /// Complete bit count (derived from array).
+        /// Field ID: 6
+        /// </summary>
+        public int CompleteBitCount => CompleteBit?.Length ?? 0;
+
+        /// <summary>
+        /// Complete bit array (max 5).
+        /// Field ID: 7
+        /// </summary>
+        public byte[] CompleteBit { get; set; } = [];
+
+        /// <summary>
+        /// Level ID.
+        /// Field ID: 8
+        /// </summary>
+        public int LevelId { get; set; }
+
+        /// <summary>
+        /// Level result.
+        /// Field ID: 9
+        /// </summary>
+        public int LevelResult { get; set; }
+
         protected override void DeserializeContent(IDataReader reader)
         {
             while (reader.BytesAvailable > 0)
@@ -56,8 +83,10 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
                     case 3: BlockArg2 = reader.ReadInt(); break;
                     case 4: BlockArg3 = reader.ReadInt(); break;
                     case 5: BlockArg4 = reader.ReadInt(); break;
-                    case 6: reader.ReadInt(); break; // completeBitCount - skip
-                    case 7: SkipTlvField(reader, wireType); break; // completeBit array - skip
+                    case 6: reader.ReadInt(); break; // completeBitCount - derived
+                    case 7: CompleteBit = ReadTlvByteArray(reader); break;
+                    case 8: LevelId = reader.ReadInt(); break;
+                    case 9: LevelResult = reader.ReadInt(); break;
                     default: SkipTlvField(reader, wireType); break;
                 }
             }
@@ -70,6 +99,10 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
             WriteTlvInt(writer, 3, BlockArg2);
             WriteTlvInt(writer, 4, BlockArg3);
             WriteTlvInt(writer, 5, BlockArg4);
+            WriteTlvInt(writer, 6, CompleteBitCount);
+            WriteTlvByteArray(writer, 7, CompleteBit, CompleteBitCount);
+            WriteTlvInt(writer, 8, LevelId);
+            WriteTlvInt(writer, 9, LevelResult);
         }
     }
 }

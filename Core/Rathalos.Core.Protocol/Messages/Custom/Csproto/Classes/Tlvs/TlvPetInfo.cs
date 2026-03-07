@@ -58,6 +58,18 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
         /// </summary>
         public int Skin { get; set; }
 
+        /// <summary>
+        /// Support skill.
+        /// Field ID: 8
+        /// </summary>
+        public int SupportSkill { get; set; }
+
+        /// <summary>
+        /// Random type.
+        /// Field ID: 9
+        /// </summary>
+        public int RandType { get; set; }
+
         protected override void DeserializeContent(IDataReader reader)
         {
             while (reader.BytesAvailable > 0)
@@ -82,6 +94,8 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
                         }
                         break;
                     case 7: Skin = reader.ReadInt(); break;
+                    case 8: SupportSkill = reader.ReadInt(); break;
+                    case 9: RandType = reader.ReadInt(); break;
                     default: SkipTlvField(reader, wireType); break;
                 }
             }
@@ -100,6 +114,8 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
             WriteTlvInt(writer, 5, AtkMode);
             WriteTlvString(writer, 6, Name);
             WriteTlvInt(writer, 7, Skin);
+            WriteTlvInt(writer, 8, SupportSkill);
+            WriteTlvInt(writer, 9, RandType);
         }
     }
 }

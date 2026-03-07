@@ -1,4 +1,5 @@
 using Rathalos.Core.Utils.IO;
+using System.Collections.Generic;
 
 namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
 {
@@ -10,6 +11,9 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
     public class TlvElementExp : TlvStructure
     {
         public override TlvMagic Magic => TlvMagic.Fixed;
+
+        // --- Hardcoded Boundary ---
+        public const int MaxSlots = 8;
 
         /// <summary>
         /// Water experience.
@@ -47,6 +51,12 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
         /// </summary>
         public int Duration { get; set; }
 
+        /// <summary>
+        /// Slots (element slot list, max 8).
+        /// Field ID: 7
+        /// </summary>
+        public List<TlvElementSlot> Slots { get; set; } = [];
+
         protected override void DeserializeContent(IDataReader reader)
         {
             while (reader.BytesAvailable > 0)
@@ -63,6 +73,7 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
                     case 4: DragonExp = reader.ReadInt(); break;
                     case 5: IceExp = reader.ReadInt(); break;
                     case 6: Duration = reader.ReadInt(); break;
+                    case 7: Slots = ReadTlvList<TlvElementSlot>(reader); break;
                     default: SkipTlvField(reader, wireType); break;
                 }
             }
@@ -76,6 +87,7 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes.Tlvs
             WriteTlvInt(writer, 4, DragonExp);
             WriteTlvInt(writer, 5, IceExp);
             WriteTlvInt(writer, 6, Duration);
+            WriteTlvList(writer, 7, Slots);
         }
     }
 }
