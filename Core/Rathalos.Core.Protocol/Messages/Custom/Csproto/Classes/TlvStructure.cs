@@ -569,5 +569,7 @@ namespace Rathalos.Core.Protocol.Messages.Custom.Csproto.Classes
             }
         }
         #endregion
+
+        public static implicit operator byte[](TlvStructure tlv) => tlv.Pack();
     }
 }
