@@ -7,9 +7,18 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Release version (e.g., v1.0.0)'
-        required: true
+        description: 'Release version (e.g., v1.0.0) - leave empty for auto-increment'
+        required: false
         type: string
+      version_type:
+        description: 'Version increment type (if version is empty)'
+        required: false
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+        default: patch
 
 env:
   DOTNET_VERSION: '10.0.x'
