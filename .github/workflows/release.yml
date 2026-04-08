@@ -213,12 +213,26 @@ jobs:
           Write-Host "Creating archive: Rathalos-$version-win-x64.zip"
           Compress-Archive -Path release/* -DestinationPath "Rathalos-$version-win-x64.zip"
 
+      - name: Set Release Tag
+        id: release_tag
+        run: |
+          if ($env:RELEASE_VERSION) {
+            $tag = $env:RELEASE_VERSION
+          } elseif ($env:GITHUB_REF -match 'refs/tags/(.*)') {
+            $tag = $matches[1]
+          } else {
+            $tag = "dev"
+          }
+          Write-Host "Release tag: $tag"
+          echo "TAG=$tag" >> $env:GITHUB_OUTPUT
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ steps.release_tag.outputs.TAG }}
           files: Rathalos-*.zip
           generate_release_notes: true
           draft: false
-          prerelease: ${{ contains(github.ref, 'alpha') || contains(github.ref, 'beta') || contains(github.ref, 'rc') }}
+          prerelease: ${{ contains(steps.release_tag.outputs.TAG, 'alpha') || contains(steps.release_tag.outputs.TAG, 'beta') || contains(steps.release_tag.outputs.TAG, 'rc') }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
