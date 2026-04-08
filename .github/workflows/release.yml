@@ -36,14 +36,79 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Create and Push Tag (Manual Trigger Only)
+      - name: Calculate and Create Tag (Manual Trigger Only)
         if: github.event_name == 'workflow_dispatch'
         run: |
-          $version = "${{ github.event.inputs.version }}"
+          $inputVersion = "${{ github.event.inputs.version }}"
+
+          if ([string]::IsNullOrWhiteSpace($inputVersion)) {
+            # Auto-calculate version
+            Write-Host "No version specified, calculating next version..."
+
+            # Get the latest tag
+            $latestTag = git tag --sort=-v:refname | Select-Object -First 1
+
+            if ([string]::IsNullOrWhiteSpace($latestTag)) {
+              # No tags exist, start with v1.0.0
+              $version = "v1.0.0"
+              Write-Host "No existing tags found, starting with $version"
+            } else {
+              Write-Host "Latest tag: $latestTag"
+
+              # Parse version (remove 'v' prefix if present)
+              $versionNum = $latestTag -replace '^v', ''
+              $parts = $versionNum -split '\.'
+
+              if ($parts.Count -lt 3) {
+                Write-Host "Invalid tag format, starting with v1.0.0"
+                $version = "v1.0.0"
+              } else {
+                $major = [int]$parts[0]
+                $minor = [int]$parts[1]
+                $patch = [int]$parts[2]
+
+                # Increment based on type
+                $incrementType = "${{ github.event.inputs.version_type }}"
+                if ([string]::IsNullOrWhiteSpace($incrementType)) {
+                  $incrementType = "patch"
+                }
+
+                switch ($incrementType) {
+                  "major" {
+                    $major++
+                    $minor = 0
+                    $patch = 0
+                  }
+                  "minor" {
+                    $minor++
+                    $patch = 0
+                  }
+                  default {
+                    $patch++
+                  }
+                }
+
+                $version = "v$major.$minor.$patch"
+                Write-Host "Calculated next version: $version (increment type: $incrementType)"
+              }
+            }
+          } else {
+            $version = $inputVersion
+            if (-not $version.StartsWith('v')) {
+              $version = "v$version"
+            }
+            Write-Host "Using provided version: $version"
+          }
+
+          # Create and push tag
+          Write-Host "Creating tag: $version"
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git tag -a $version -m "Release $version"
           git push origin $version
+
+          # Export version for later steps
+          echo "RELEASE_VERSION=$version" >> $env:GITHUB_ENV
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -105,13 +170,16 @@ jobs:
 
       - name: Create Release Package
         run: |
-          # Get version from tag or manual input
-          if ("${{ github.event_name }}" -eq "workflow_dispatch") {
-            $version = "${{ github.event.inputs.version }}"
+          # Get version from environment variable (set by tag creation step) or tag ref
+          if ($env:RELEASE_VERSION) {
+            $version = $env:RELEASE_VERSION
+            Write-Host "Using version from environment: $version"
           } elseif ($env:GITHUB_REF -match 'refs/tags/(.*)') {
             $version = $matches[1]
+            Write-Host "Using version from tag ref: $version"
           } else {
             $version = "dev"
+            Write-Host "No version found, using: $version"
           }
 
           # Create README
@@ -134,14 +202,15 @@ jobs:
           - Launcher: ``Launcher/mho_launcher.exe``
 
           All executables are self-contained and do not require .NET to be installed.
-          
+
           ## Support
-          
+
           - GitHub: https://github.com/MHO-Revival/Rathalos
           - Issues: https://github.com/MHO-Revival/Rathalos/issues
           "@ | Out-File -FilePath release/README.txt -Encoding UTF8
-          
+
           # Create zip
+          Write-Host "Creating archive: Rathalos-$version-win-x64.zip"
           Compress-Archive -Path release/* -DestinationPath "Rathalos-$version-win-x64.zip"
 
       - name: Create GitHub Release
