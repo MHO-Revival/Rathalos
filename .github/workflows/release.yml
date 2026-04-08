@@ -5,6 +5,11 @@ on:
     tags:
       - 'v*'
   workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (e.g., v1.0.0)'
+        required: true
+        type: string
 
 env:
   DOTNET_VERSION: '10.0.x'
@@ -19,6 +24,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Create and Push Tag (Manual Trigger Only)
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          $version = "${{ github.event.inputs.version }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag -a $version -m "Release $version"
+          git push origin $version
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
@@ -78,27 +96,34 @@ jobs:
 
       - name: Create Release Package
         run: |
-          $version = if ($env:GITHUB_REF -match 'refs/tags/(.*)') { $matches[1] } else { "dev" }
-          
+          # Get version from tag or manual input
+          if ("${{ github.event_name }}" -eq "workflow_dispatch") {
+            $version = "${{ github.event.inputs.version }}"
+          } elseif ($env:GITHUB_REF -match 'refs/tags/(.*)') {
+            $version = $matches[1]
+          } else {
+            $version = "dev"
+          }
+
           # Create README
           @"
           # Rathalos Release - $version
-          
+
           ## Contents
-          
+
           - **CLI/** - Command-line interface tool
           - **World/** - World server console UI
           - **Distributed/** - Distributed management UI
           - **Launcher/** - MHO game launcher
-          
+
           ## Usage
-          
+
           Run the executables directly:
           - CLI: ``CLI/Rathalos.CLI.exe``
           - World: ``World/Rathalos.ConsoleUI.World.exe``
           - Distributed: ``Distributed/Rathalos.Distributed.exe``
           - Launcher: ``Launcher/mho_launcher.exe``
-          
+
           All executables are self-contained and do not require .NET to be installed.
           
           ## Support
