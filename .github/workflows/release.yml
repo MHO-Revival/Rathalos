@@ -1,0 +1,302 @@
+name: Release Build
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (e.g., v1.0.0)'
+        required: true
+        default: 'v0.1.0'
+
+env:
+  DOTNET_VERSION: '10.0.x'
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+
+jobs:
+  build:
+    name: Build Release (${{ matrix.os }}-${{ matrix.arch }})
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      matrix:
+        include:
+          - os: windows
+            runner: windows-latest
+            arch: x64
+            rid: win-x64
+          - os: linux
+            runner: ubuntu-latest
+            arch: x64
+            rid: linux-x64
+          - os: windows
+            runner: windows-latest
+            arch: arm64
+            rid: win-arm64
+          - os: linux
+            runner: ubuntu-latest
+            arch: arm64
+            rid: linux-arm64
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Run tests
+        run: dotnet test --no-restore --verbosity normal
+
+      - name: Publish World Server
+        run: |
+          dotnet publish Servers/Rathalos.Servers.Game/Rathalos.Servers.World.csproj `
+            --configuration Release `
+            --runtime ${{ matrix.rid }} `
+            --self-contained true `
+            --output ./publish/Server `
+            /p:PublishSingleFile=true `
+            /p:PublishTrimmed=false `
+            /p:DebugType=None `
+            /p:DebugSymbols=false
+
+      - name: Publish CLI Tool
+        run: |
+          dotnet publish Tools/Rathalos.CLI/Rathalos.CLI.csproj `
+            --configuration Release `
+            --runtime ${{ matrix.rid }} `
+            --self-contained true `
+            --output ./publish/Tools `
+            /p:PublishSingleFile=true `
+            /p:PublishTrimmed=false `
+            /p:DebugType=None `
+            /p:DebugSymbols=false
+
+      - name: Publish Console UI
+        run: |
+          dotnet publish GUI/Rathalos.ConsoleUI.World/Rathalos.ConsoleUI.World.csproj `
+            --configuration Release `
+            --runtime ${{ matrix.rid }} `
+            --self-contained true `
+            --output ./publish/GUI/ConsoleUI `
+            /p:PublishSingleFile=true `
+            /p:PublishTrimmed=false `
+            /p:DebugType=None `
+            /p:DebugSymbols=false
+
+      - name: Publish Distributed UI
+        run: |
+          dotnet publish GUI/Rathalos.Distributed/Rathalos.Distributed.csproj `
+            --configuration Release `
+            --runtime ${{ matrix.rid }} `
+            --self-contained true `
+            --output ./publish/GUI/Distributed `
+            /p:PublishSingleFile=true `
+            /p:PublishTrimmed=false `
+            /p:DebugType=None `
+            /p:DebugSymbols=false
+
+      - name: Copy configuration templates (Windows)
+        if: matrix.os == 'windows'
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path ./publish/Config
+          Copy-Item GUI/Rathalos.ConsoleUI.World/appsettings.json ./publish/Config/appsettings.example.json
+
+          # Create README for the release
+          @"
+          # Rathalos Server - Release Package
+
+          ## Contents
+
+          - **Server/** - World server executable
+          - **Tools/** - CLI utility for server management
+          - **GUI/ConsoleUI/** - Console UI for server management
+          - **GUI/Distributed/** - Distributed management UI
+          - **Config/** - Configuration file templates
+
+          ## Quick Start
+
+          1. Copy \`Config/appsettings.example.json\` to the Server directory as \`appsettings.json\`
+          2. Edit the database connection string in \`appsettings.json\`
+          3. Run the server:
+             - Console UI: \`GUI/ConsoleUI/Rathalos.ConsoleUI.World.exe\`
+             - Direct: \`Server/Rathalos.Servers.World.exe\`
+
+          ## Documentation
+
+          Visit: https://github.com/MHO-Revival/Rathalos/wiki
+
+          ## Support
+
+          - GitHub Issues: https://github.com/MHO-Revival/Rathalos/issues
+          - Discord: https://discord.gg/mho-revival
+          "@ | Out-File -FilePath ./publish/README.txt -Encoding UTF8
+
+      - name: Copy configuration templates (Linux)
+        if: matrix.os == 'linux'
+        run: |
+          mkdir -p ./publish/Config
+          cp GUI/Rathalos.ConsoleUI.World/appsettings.json ./publish/Config/appsettings.example.json
+
+          # Create README for the release
+          cat > ./publish/README.txt << 'EOF'
+          # Rathalos Server - Release Package
+
+          ## Contents
+
+          - **Server/** - World server executable
+          - **Tools/** - CLI utility for server management
+          - **GUI/ConsoleUI/** - Console UI for server management
+          - **GUI/Distributed/** - Distributed management UI
+          - **Config/** - Configuration file templates
+
+          ## Quick Start
+
+          1. Copy `Config/appsettings.example.json` to the Server directory as `appsettings.json`
+          2. Edit the database connection string in `appsettings.json`
+          3. Make executables runnable: `chmod +x Server/* Tools/* GUI/ConsoleUI/* GUI/Distributed/*`
+          4. Run the server:
+             - Console UI: `./GUI/ConsoleUI/Rathalos.ConsoleUI.World`
+             - Direct: `./Server/Rathalos.Servers.World`
+
+          ## Documentation
+
+          Visit: https://github.com/MHO-Revival/Rathalos/wiki
+
+          ## Support
+
+          - GitHub Issues: https://github.com/MHO-Revival/Rathalos/issues
+          - Discord: https://discord.gg/mho-revival
+          EOF
+
+      - name: Create archive (Windows)
+        if: matrix.os == 'windows'
+        shell: pwsh
+        run: |
+          $version = "${{ github.event.inputs.version }}"
+          if ([string]::IsNullOrEmpty($version)) {
+            $version = $env:GITHUB_REF_NAME
+          }
+          Compress-Archive -Path ./publish/* -DestinationPath "Rathalos-Server-$version-${{ matrix.rid }}.zip"
+
+      - name: Create archive (Linux)
+        if: matrix.os == 'linux'
+        run: |
+          version="${{ github.event.inputs.version }}"
+          if [ -z "$version" ]; then
+            version="${GITHUB_REF_NAME}"
+          fi
+          cd publish
+          tar -czf "../Rathalos-Server-$version-${{ matrix.rid }}.tar.gz" *
+          cd ..
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: Rathalos-${{ matrix.rid }}
+          path: |
+            *.zip
+            *.tar.gz
+          retention-days: 7
+
+  release:
+    name: Create GitHub Release
+    needs: build
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v') || github.event_name == 'workflow_dispatch'
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: ./artifacts
+
+      - name: Organize artifacts
+        run: |
+          mkdir -p ./release
+          find ./artifacts -type f \( -name "*.zip" -o -name "*.tar.gz" \) -exec cp {} ./release/ \;
+
+      - name: Generate release notes
+        id: release_notes
+        run: |
+          version="${{ github.event.inputs.version }}"
+          if [ -z "$version" ]; then
+            version="${GITHUB_REF_NAME}"
+          fi
+
+          cat > release_notes.md << 'EOF'
+          ## 🎮 Rathalos Server Release - $version
+
+          ### 📦 Downloads
+
+          Choose the appropriate package for your platform:
+
+          - **Windows x64**: `Rathalos-Server-$version-win-x64.zip`
+          - **Linux x64**: `Rathalos-Server-$version-linux-x64.tar.gz`
+          - **Windows ARM64**: `Rathalos-Server-$version-win-arm64.zip`
+          - **Linux ARM64**: `Rathalos-Server-$version-linux-arm64.tar.gz`
+
+          ### ✨ What's Included
+
+          - World Server executable (self-contained)
+          - CLI Tools for server management
+          - Console UI and Distributed UI
+          - Configuration templates
+          - Documentation
+
+          ### 🚀 Quick Start
+
+          1. Extract the archive
+          2. Configure `appsettings.json` with your database
+          3. Run the server using Console UI or directly
+
+          ### 📖 Documentation
+
+          - [Installation Guide](https://github.com/MHO-Revival/Rathalos/wiki/Installation-Guide)
+          - [Configuration Guide](https://github.com/MHO-Revival/Rathalos/wiki/Server-Configuration)
+          - [Troubleshooting](https://github.com/MHO-Revival/Rathalos/wiki/Troubleshooting)
+
+          ### ⚙️ Requirements
+
+          - PostgreSQL 13 or higher
+          - Network ports 8142 (configurable)
+
+          ### 📝 Changelog
+
+          See [CHANGELOG.md](https://github.com/MHO-Revival/Rathalos/blob/main/CHANGELOG.md) for detailed changes.
+
+          ---
+
+          **Full Changelog**: [View on GitHub](https://github.com/MHO-Revival/Rathalos/commits/$version)
+          EOF
+
+          echo "notes_file=release_notes.md" >> $GITHUB_OUTPUT
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: Release ${{ github.event.inputs.version || github.ref_name }}
+          body_path: ${{ steps.release_notes.outputs.notes_file }}
+          draft: false
+          prerelease: ${{ contains(github.ref_name, 'alpha') || contains(github.ref_name, 'beta') || contains(github.ref_name, 'rc') }}
+          files: ./release/*
+          fail_on_unmatched_files: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

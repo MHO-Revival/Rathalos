@@ -1,4 +1,4 @@
-C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/mho_launcher_exe.dir
-C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/mho_launcher_dll.dir
-C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/ALL_BUILD.dir
-C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/ZERO_CHECK.dir
+./CMakeFiles/mho_launcher_exe.dir
+./CMakeFiles/mho_launcher_dll.dir
+./CMakeFiles/ALL_BUILD.dir
+./CMakeFiles/ZERO_CHECK.dir

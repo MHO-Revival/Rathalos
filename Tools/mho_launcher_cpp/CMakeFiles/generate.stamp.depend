@@ -111,8 +111,8 @@ C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtension
 C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/Platform/Windows-MSVC.cmake
 C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/Platform/Windows.cmake
 C:/Program Files/Microsoft Visual Studio/18/Insiders/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-4.2/Modules/Platform/WindowsPaths.cmake
-C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/4.2.3-msvc3/CMakeCCompiler.cmake
-C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/4.2.3-msvc3/CMakeCXXCompiler.cmake
-C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/4.2.3-msvc3/CMakeRCCompiler.cmake
-C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/4.2.3-msvc3/CMakeSystem.cmake
-C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeLists.txt
+./CMakeFiles/4.2.3-msvc3/CMakeCCompiler.cmake
+./CMakeFiles/4.2.3-msvc3/CMakeCXXCompiler.cmake
+./CMakeFiles/4.2.3-msvc3/CMakeRCCompiler.cmake
+./CMakeFiles/4.2.3-msvc3/CMakeSystem.cmake
+./CMakeLists.txt

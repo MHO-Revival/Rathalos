@@ -149,7 +149,7 @@ events:
       Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.vcxproj"
       
       The C compiler identification is MSVC, found in:
-        C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/4.2.1-msvc1/CompilerIdC/CompilerIdC.exe
+        ./CMakeFiles/4.2.1-msvc1/CompilerIdC/CompilerIdC.exe
       
   -
     kind: "find-v1"
@@ -1089,7 +1089,7 @@ events:
       Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.vcxproj"
       
       The CXX compiler identification is MSVC, found in:
-        C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/4.2.1-msvc1/CompilerIdCXX/CompilerIdCXX.exe
+        ./CMakeFiles/4.2.1-msvc1/CompilerIdCXX/CompilerIdCXX.exe
       
   -
     kind: "find-v1"
@@ -1540,8 +1540,8 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/CMakeScratch/TryCompile-gvrgyk"
-      binary: "C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/CMakeScratch/TryCompile-gvrgyk"
+      source: "./CMakeFiles/CMakeScratch/TryCompile-gvrgyk"
+      binary: "./CMakeFiles/CMakeScratch/TryCompile-gvrgyk"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
       CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -1550,7 +1550,7 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/CMakeScratch/TryCompile-gvrgyk'
+        Change Dir: './CMakeFiles/CMakeScratch/TryCompile-gvrgyk'
         
         Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_b4b7b.vcxproj /p:Configuration=Debug /p:Platform=Win32 /p:VisualStudioVersion=17.0 /v:n
         Version MSBuild 18.4.0+6e61e96ac pour .NET Framework
@@ -1571,7 +1571,7 @@ events:
           cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /Oy- /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_b4b7b.dir\\Debug\\\\" /Fd"cmTC_b4b7b.dir\\Debug\\vc143.pdb" /external:W1 /TC /analyze- /errorReport:queue "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\share\\cmake-4.2\\Modules\\CMakeCCompilerABI.c"
           CMakeCCompilerABI.c
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x86\\link.exe /OUT:"C:\\krosmoz\\Rathalos\\Tools\\mho_launcher_cpp\\CMakeFiles\\CMakeScratch\\TryCompile-gvrgyk\\Debug\\cmTC_b4b7b.exe" /INCREMENTAL /ILK:"cmTC_b4b7b.dir\\Debug\\cmTC_b4b7b.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/CMakeScratch/TryCompile-gvrgyk/Debug/cmTC_b4b7b.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/CMakeScratch/TryCompile-gvrgyk/Debug/cmTC_b4b7b.lib" /MACHINE:X86  /machine:X86 cmTC_b4b7b.dir\\Debug\\CMakeCCompilerABI.obj
+          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x86\\link.exe /OUT:"C:\\krosmoz\\Rathalos\\Tools\\mho_launcher_cpp\\CMakeFiles\\CMakeScratch\\TryCompile-gvrgyk\\Debug\\cmTC_b4b7b.exe" /INCREMENTAL /ILK:"cmTC_b4b7b.dir\\Debug\\cmTC_b4b7b.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"./CMakeFiles/CMakeScratch/TryCompile-gvrgyk/Debug/cmTC_b4b7b.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"./CMakeFiles/CMakeScratch/TryCompile-gvrgyk/Debug/cmTC_b4b7b.lib" /MACHINE:X86  /machine:X86 cmTC_b4b7b.dir\\Debug\\CMakeCCompilerABI.obj
           cmTC_b4b7b.vcxproj -> C:\\krosmoz\\Rathalos\\Tools\\mho_launcher_cpp\\CMakeFiles\\CMakeScratch\\TryCompile-gvrgyk\\Debug\\cmTC_b4b7b.exe
         FinalizeBuildStatus:
           Suppression du fichier "cmTC_b4b7b.dir\\Debug\\cmTC_b4b7b.tlog\\unsuccessfulbuild".
@@ -1622,8 +1622,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/CMakeScratch/TryCompile-bx832z"
-      binary: "C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/CMakeScratch/TryCompile-bx832z"
+      source: "./CMakeFiles/CMakeScratch/TryCompile-bx832z"
+      binary: "./CMakeFiles/CMakeScratch/TryCompile-bx832z"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /EHsc"
       CMAKE_CXX_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -1633,7 +1633,7 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/CMakeScratch/TryCompile-bx832z'
+        Change Dir: './CMakeFiles/CMakeScratch/TryCompile-bx832z'
         
         Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_baa0d.vcxproj /p:Configuration=Debug /p:Platform=Win32 /p:VisualStudioVersion=17.0 /v:n
         Version MSBuild 18.4.0+6e61e96ac pour .NET Framework
@@ -1654,7 +1654,7 @@ events:
           cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /Oy- /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /Fo"cmTC_baa0d.dir\\Debug\\\\" /Fd"cmTC_baa0d.dir\\Debug\\vc143.pdb" /external:W1 /TP /analyze- /errorReport:queue "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\share\\cmake-4.2\\Modules\\CMakeCXXCompilerABI.cpp"
           CMakeCXXCompilerABI.cpp
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x86\\link.exe /OUT:"C:\\krosmoz\\Rathalos\\Tools\\mho_launcher_cpp\\CMakeFiles\\CMakeScratch\\TryCompile-bx832z\\Debug\\cmTC_baa0d.exe" /INCREMENTAL /ILK:"cmTC_baa0d.dir\\Debug\\cmTC_baa0d.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/CMakeScratch/TryCompile-bx832z/Debug/cmTC_baa0d.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/CMakeScratch/TryCompile-bx832z/Debug/cmTC_baa0d.lib" /MACHINE:X86  /machine:X86 cmTC_baa0d.dir\\Debug\\CMakeCXXCompilerABI.obj
+          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x86\\link.exe /OUT:"C:\\krosmoz\\Rathalos\\Tools\\mho_launcher_cpp\\CMakeFiles\\CMakeScratch\\TryCompile-bx832z\\Debug\\cmTC_baa0d.exe" /INCREMENTAL /ILK:"cmTC_baa0d.dir\\Debug\\cmTC_baa0d.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"./CMakeFiles/CMakeScratch/TryCompile-bx832z/Debug/cmTC_baa0d.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"./CMakeFiles/CMakeScratch/TryCompile-bx832z/Debug/cmTC_baa0d.lib" /MACHINE:X86  /machine:X86 cmTC_baa0d.dir\\Debug\\CMakeCXXCompilerABI.obj
           cmTC_baa0d.vcxproj -> C:\\krosmoz\\Rathalos\\Tools\\mho_launcher_cpp\\CMakeFiles\\CMakeScratch\\TryCompile-bx832z\\Debug\\cmTC_baa0d.exe
         FinalizeBuildStatus:
           Suppression du fichier "cmTC_baa0d.dir\\Debug\\cmTC_baa0d.tlog\\unsuccessfulbuild".
@@ -1845,7 +1845,7 @@ events:
       Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.vcxproj"
       
       The C compiler identification is MSVC, found in:
-        C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/4.2.3-msvc3/CompilerIdC/CompilerIdC.exe
+        ./CMakeFiles/4.2.3-msvc3/CompilerIdC/CompilerIdC.exe
       
   -
     kind: "find-v1"
@@ -2337,7 +2337,7 @@ events:
       Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.vcxproj"
       
       The CXX compiler identification is MSVC, found in:
-        C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/4.2.3-msvc3/CompilerIdCXX/CompilerIdCXX.exe
+        ./CMakeFiles/4.2.3-msvc3/CompilerIdCXX/CompilerIdCXX.exe
       
   -
     kind: "find-v1"
@@ -2585,8 +2585,8 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/CMakeScratch/TryCompile-kkn81o"
-      binary: "C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/CMakeScratch/TryCompile-kkn81o"
+      source: "./CMakeFiles/CMakeScratch/TryCompile-kkn81o"
+      binary: "./CMakeFiles/CMakeScratch/TryCompile-kkn81o"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
       CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -2595,7 +2595,7 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/CMakeScratch/TryCompile-kkn81o'
+        Change Dir: './CMakeFiles/CMakeScratch/TryCompile-kkn81o'
         
         Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_374f3.vcxproj /p:Configuration=Debug /p:Platform=Win32 /p:VisualStudioVersion=17.0 /v:n
         Version MSBuild 18.4.0+6e61e96ac pour .NET Framework
@@ -2616,7 +2616,7 @@ events:
           cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /Oy- /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /Fo"cmTC_374f3.dir\\Debug\\\\" /Fd"cmTC_374f3.dir\\Debug\\vc143.pdb" /external:W1 /TC /analyze- /errorReport:queue "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\share\\cmake-4.2\\Modules\\CMakeCCompilerABI.c"
           CMakeCCompilerABI.c
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x86\\link.exe /OUT:"C:\\krosmoz\\Rathalos\\Tools\\mho_launcher_cpp\\CMakeFiles\\CMakeScratch\\TryCompile-kkn81o\\Debug\\cmTC_374f3.exe" /INCREMENTAL /ILK:"cmTC_374f3.dir\\Debug\\cmTC_374f3.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/CMakeScratch/TryCompile-kkn81o/Debug/cmTC_374f3.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/CMakeScratch/TryCompile-kkn81o/Debug/cmTC_374f3.lib" /MACHINE:X86  /machine:X86 cmTC_374f3.dir\\Debug\\CMakeCCompilerABI.obj
+          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x86\\link.exe /OUT:"C:\\krosmoz\\Rathalos\\Tools\\mho_launcher_cpp\\CMakeFiles\\CMakeScratch\\TryCompile-kkn81o\\Debug\\cmTC_374f3.exe" /INCREMENTAL /ILK:"cmTC_374f3.dir\\Debug\\cmTC_374f3.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"./CMakeFiles/CMakeScratch/TryCompile-kkn81o/Debug/cmTC_374f3.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"./CMakeFiles/CMakeScratch/TryCompile-kkn81o/Debug/cmTC_374f3.lib" /MACHINE:X86  /machine:X86 cmTC_374f3.dir\\Debug\\CMakeCCompilerABI.obj
           cmTC_374f3.vcxproj -> C:\\krosmoz\\Rathalos\\Tools\\mho_launcher_cpp\\CMakeFiles\\CMakeScratch\\TryCompile-kkn81o\\Debug\\cmTC_374f3.exe
         FinalizeBuildStatus:
           Suppression du fichier "cmTC_374f3.dir\\Debug\\cmTC_374f3.tlog\\unsuccessfulbuild".
@@ -2667,8 +2667,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/CMakeScratch/TryCompile-150wmp"
-      binary: "C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/CMakeScratch/TryCompile-150wmp"
+      source: "./CMakeFiles/CMakeScratch/TryCompile-150wmp"
+      binary: "./CMakeFiles/CMakeScratch/TryCompile-150wmp"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /EHsc"
       CMAKE_CXX_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -2678,7 +2678,7 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/CMakeScratch/TryCompile-150wmp'
+        Change Dir: './CMakeFiles/CMakeScratch/TryCompile-150wmp'
         
         Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/18/Insiders/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_5af0b.vcxproj /p:Configuration=Debug /p:Platform=Win32 /p:VisualStudioVersion=17.0 /v:n
         Version MSBuild 18.4.0+6e61e96ac pour .NET Framework
@@ -2699,7 +2699,7 @@ events:
           cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /Oy- /D _MBCS /D WIN32 /D _WINDOWS /D _MBCS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /Fo"cmTC_5af0b.dir\\Debug\\\\" /Fd"cmTC_5af0b.dir\\Debug\\vc143.pdb" /external:W1 /TP /analyze- /errorReport:queue "C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\share\\cmake-4.2\\Modules\\CMakeCXXCompilerABI.cpp"
           CMakeCXXCompilerABI.cpp
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x86\\link.exe /OUT:"C:\\krosmoz\\Rathalos\\Tools\\mho_launcher_cpp\\CMakeFiles\\CMakeScratch\\TryCompile-150wmp\\Debug\\cmTC_5af0b.exe" /INCREMENTAL /ILK:"cmTC_5af0b.dir\\Debug\\cmTC_5af0b.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/CMakeScratch/TryCompile-150wmp/Debug/cmTC_5af0b.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/krosmoz/Rathalos/Tools/mho_launcher_cpp/CMakeFiles/CMakeScratch/TryCompile-150wmp/Debug/cmTC_5af0b.lib" /MACHINE:X86  /machine:X86 cmTC_5af0b.dir\\Debug\\CMakeCXXCompilerABI.obj
+          C:\\Program Files\\Microsoft Visual Studio\\18\\Insiders\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x86\\link.exe /OUT:"C:\\krosmoz\\Rathalos\\Tools\\mho_launcher_cpp\\CMakeFiles\\CMakeScratch\\TryCompile-150wmp\\Debug\\cmTC_5af0b.exe" /INCREMENTAL /ILK:"cmTC_5af0b.dir\\Debug\\cmTC_5af0b.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"./CMakeFiles/CMakeScratch/TryCompile-150wmp/Debug/cmTC_5af0b.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"./CMakeFiles/CMakeScratch/TryCompile-150wmp/Debug/cmTC_5af0b.lib" /MACHINE:X86  /machine:X86 cmTC_5af0b.dir\\Debug\\CMakeCXXCompilerABI.obj
           cmTC_5af0b.vcxproj -> C:\\krosmoz\\Rathalos\\Tools\\mho_launcher_cpp\\CMakeFiles\\CMakeScratch\\TryCompile-150wmp\\Debug\\cmTC_5af0b.exe
         FinalizeBuildStatus:
           Suppression du fichier "cmTC_5af0b.dir\\Debug\\cmTC_5af0b.tlog\\unsuccessfulbuild".
