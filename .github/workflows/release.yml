@@ -220,6 +220,10 @@ jobs:
           # Create individual component READMEs and ZIPs
 
           # CLI Package
+          if (-not (Test-Path "release/CLI")) {
+            New-Item -ItemType Directory -Force -Path "release/CLI" | Out-Null
+            Write-Host "Created missing CLI directory"
+          }
           @"
           # Rathalos CLI - $version
 
@@ -243,6 +247,10 @@ jobs:
           Compress-Archive -Path release/CLI/* -DestinationPath "Rathalos-CLI-$version-win-x86.zip" -Force
 
           # World Package
+          if (-not (Test-Path "release/World")) {
+            New-Item -ItemType Directory -Force -Path "release/World" | Out-Null
+            Write-Host "Created missing World directory"
+          }
           @"
           # Rathalos World Server - $version
 
@@ -261,6 +269,10 @@ jobs:
           Compress-Archive -Path release/World/* -DestinationPath "Rathalos-World-$version-win-x64.zip" -Force
 
           # Distributed Package
+          if (-not (Test-Path "release/Distributed")) {
+            New-Item -ItemType Directory -Force -Path "release/Distributed" | Out-Null
+            Write-Host "Created missing Distributed directory"
+          }
           @"
           # Rathalos Distributed - $version
 
@@ -278,6 +290,10 @@ jobs:
           Compress-Archive -Path release/Distributed/* -DestinationPath "Rathalos-Distributed-$version-win-x64.zip" -Force
 
           # Launcher Package
+          if (-not (Test-Path "release/Launcher")) {
+            New-Item -ItemType Directory -Force -Path "release/Launcher" | Out-Null
+            Write-Host "Created missing Launcher directory"
+          }
           @"
           # Rathalos MHO Launcher - $version
 
@@ -327,7 +343,6 @@ jobs:
             Rathalos-World-*.zip
             Rathalos-Distributed-*.zip
             Rathalos-Launcher-*.zip
-            release/README.txt
           generate_release_notes: true
           draft: false
           prerelease: ${{ contains(steps.release_tag.outputs.TAG, 'alpha') || contains(steps.release_tag.outputs.TAG, 'beta') || contains(steps.release_tag.outputs.TAG, 'rc') }}
