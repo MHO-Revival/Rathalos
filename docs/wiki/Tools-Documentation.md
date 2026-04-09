@@ -125,11 +125,12 @@ OutputDirectory/
 
 ### Purpose
 
-IFS (Internal File System) tools for extracting and managing game archive files:
-- Extract game assets from .ifs archives
-- View archive contents
-- Create new IFS archives from directories
-- Batch processing of multiple archives
+IFS (Internal File System) tools for extracting, creating, and managing MHO game archive files:
+- **Extract game assets** from `.ifs` archives with automatic decryption
+- **View archive contents** without extraction
+- **Create new IFS archives** from directories for patches and mods
+- **Batch processing** of multiple archives
+- **Automatic file decryption** for `.dat` and encrypted `.xml` files
 
 ### Interactive Menu
 
@@ -142,57 +143,189 @@ IFS (Internal File System) tools for extracting and managing game archive files:
   🔙 Return to Main Menu
 ```
 
-### Extract Archive
+### Extract Archive(s)
 
-1. **Select "Extract IFS Archive(s)"**
+Extracts files from one or more IFS archives with automatic decryption and file type detection.
+
+**Steps:**
+
+1. **Select "Extract IFS Archive(s)"** from the menu
 2. **Enter path** - Can be:
-   - Single `.ifs` file path
-   - Directory containing multiple `.ifs` files (searches recursively)
-3. **Enter output folder** where extracted files will be saved
-4. Extraction process shows progress:
-   ```
-   🔍 Found 3 IFS archive(s).
+   - Single `.ifs` file: `C:\MHO\data.ifs`
+   - Directory with multiple archives: `C:\MHO\Archives\` (searches recursively)
+3. **Enter output folder** where extracted files will be saved: `C:\Extracted\`
+4. Extraction process with real-time progress:
 
-   📂 Processing: data1.ifs
-   ✅ Extracted 1,234 files
+```
+🔍 Found 3 IFS archive(s).
+🔄 Starting extraction...
 
-   📂 Processing: data2.ifs
-   ✅ Extracted 567 files
+📂 Extracting: data1.ifs
+file (monsters/rathalos.dat): size: 45678
+file (ui/main_menu.xml): size: 12345
+file (quests/quest_001.tsv): size: 8192
+✅ Extracted to: C:\Extracted
 
-   🎉 Extraction completed!
-   ```
+📂 Extracting: data2.ifs
+file (textures/rathalos.dds): size: 524288
+✅ Extracted to: C:\Extracted
+
+📂 Extracting: patch.ifs
+file (config/settings.xml): size: 2048
+✅ Extracted to: C:\Extracted
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎉 Extraction complete!
+   Successful: 3
+```
+
+**Automatic File Processing:**
+
+The extractor intelligently processes encrypted/encoded files:
+
+- **`.dat` files** - Automatically decrypted and converted to proper format:
+  - TSV files (tables) → `.tsv` extension
+  - XML data → `.xml` extension  
+  - JSON data → `.json` extension
+  - Other encrypted data → `.dat` (decrypted content)
+
+- **`.xml` files** - CryXml encrypted files are automatically decrypted to plain XML
+
+- **File extensions** are corrected based on actual content type
+
+**Example:**
+```
+Input:  monsters/rathalos.dat (encrypted)
+Output: monsters/rathalos.xml (decrypted XML)
+
+Input:  items/item_list.dat (encrypted)
+Output: items/item_list.tsv (decrypted TSV table)
+
+Input:  ui/layout.xml (CryXml encrypted)
+Output: ui/layout.xml (decrypted plain XML)
+```
 
 ### Create Archive
 
-1. **Select "Create IFS Archive"**
-2. **Enter source directory** containing files to pack
-3. **Enter output .ifs file path**
-4. Files are compressed and packed with progress feedback
+Pack a directory of files into a new IFS archive for patches, mods, or custom content.
 
-### View Contents
+**Steps:**
 
-1. **Select "View Archive Contents"**
-2. **Enter .ifs file path**
-3. Lists all files in the archive:
-   ```
-   📋 Contents of data.ifs:
+1. **Select "Create IFS Archive"** from the menu
+2. **Enter source folder** containing files to pack: `C:\MyPatch\`
+3. **Enter output archive path**: `C:\patch.ifs`
+   - `.ifs` extension added automatically if omitted
+4. **Enter max file count** (press Enter for default 256, or specify higher limit)
+5. Archive creation with progress:
 
-   monsters/rathalos.model
-   monsters/rathalos.texture
-   monsters/lagiacrus.model
-   ui/icons/item_001.png
-   ui/icons/item_002.png
-   ...
+```
+🔄 Creating archive...
 
-   Total: 1,234 files
-   ```
+Source: C:\MyPatch
+Output: C:\patch.ifs
+Max Files: 256
 
-### Supported Features
+Creating archive: C:\patch.ifs
+monsters/custom_rathalos.model patched!
+monsters/custom_rathalos.texture patched!
+ui/custom_icon.png patched!
+quests/custom_quest.xml patched!
+...
 
-- **Batch extraction** - Process entire directories of .ifs files
-- **Progress tracking** - Real-time extraction progress
-- **Error handling** - Continues processing on errors
-- **Recursive scanning** - Finds .ifs files in subdirectories
+Archive created successfully with 45 files.
+
+✅ Archive created: C:\patch.ifs
+```
+
+**Notes:**
+- Folder structure is preserved in the archive
+- Files are added recursively from subdirectories
+- Max file count can be increased for large patches (512, 1024, etc.)
+- Existing archives are overwritten
+
+**Use Cases:**
+- **Translation patches** - Pack translated text/UI files
+- **Texture mods** - Bundle custom textures
+- **Quest mods** - Package custom quest data
+- **Balance patches** - Distribute modified game tables
+
+### View Archive Contents
+
+Browse the file list of an IFS archive without extracting.
+
+**Steps:**
+
+1. **Select "View Archive Contents"** from the menu
+2. **Enter .ifs file path**: `C:\MHO\data.ifs`
+3. Complete file listing is displayed:
+
+```
+📋 Contents of data.ifs:
+
+monsters/rathalos.model
+monsters/rathalos.texture
+monsters/rathalos.skeleton
+monsters/lagiacrus.model
+monsters/lagiacrus.texture
+ui/icons/item_001.png
+ui/icons/item_002.png
+ui/main_menu.xml
+quests/quest_001.dat
+quests/quest_002.dat
+config/monster_stats.tsv
+...
+
+Total: 1,234 files
+```
+
+**Usage Tips:**
+- Useful for inspecting archive structure before extraction
+- Helps locate specific files within archives
+- Can save the listing to a text file for documentation
+
+### Technical Details
+
+**Requirements:**
+- **IFS2.dll** - Must be present in `libs/` folder (x86 architecture)
+- **32-bit execution** - CLI must run as x86 due to IFS2.dll requirements
+- **Administrator privileges** - May be required for certain archive operations
+
+**Archive Format:**
+- Uses proprietary IFS (Internal File System) format
+- Supports nested directory structures
+- Max file count configurable (default: 256)
+- File compression and indexing handled by IFS2.dll
+
+**Character Encoding:**
+- UTF-8 encoding for file names (supports Chinese characters)
+- GBK/CJK character support for legacy archives
+
+**Buffer Limits:**
+- 64MB buffer for file operations
+- Large files are handled in chunks
+- Warning displayed if file exceeds buffer size
+
+### Troubleshooting
+
+**"Could not load IFS2.dll"**
+- Ensure `libs/IFS2.dll` exists in the CLI directory
+- Run as 32-bit (x86) application
+- Check that the DLL is not blocked (Right-click → Properties → Unblock)
+
+**"Failed to open archive"**
+- Verify the `.ifs` file exists and is not corrupted
+- Check file is not locked by another process
+- Ensure you have read permissions
+
+**"Failed to create archive"**
+- Verify source folder exists
+- Check write permissions for output directory
+- Ensure sufficient disk space
+
+**Extraction errors on specific files:**
+- Individual file errors don't stop batch extraction
+- Error messages show which files failed
+- Try extracting problematic files separately
 
 ---
 

@@ -142,6 +142,12 @@ jobs:
             -p:IncludeNativeLibrariesForSelfExtract=true `
             -o release/CLI
 
+      - name: Copy CLI libs folder
+        run: |
+          # Copy the libs folder (contains IFS2.dll) to the published CLI output
+          Copy-Item -Path Tools/Rathalos.CLI/libs -Destination release/CLI/libs -Recurse -Force
+          Write-Host "Copied libs folder to release/CLI/libs"
+
       - name: Publish World Console (Windows x64)
         run: |
           dotnet publish GUI/Rathalos.ConsoleUI.World/Rathalos.ConsoleUI.World.csproj `
@@ -168,7 +174,7 @@ jobs:
           Copy-Item -Path Tools/mho_launcher_cpp/build/Release/*.exe -Destination release/Launcher/
           Copy-Item -Path Tools/mho_launcher_cpp/build/Release/*.dll -Destination release/Launcher/ -ErrorAction SilentlyContinue
 
-      - name: Create Release Package
+      - name: Create Release Packages
         run: |
           # Get version from environment variable (set by tag creation step) or tag ref
           if ($env:RELEASE_VERSION) {
@@ -182,24 +188,26 @@ jobs:
             Write-Host "No version found, using: $version"
           }
 
-          # Create README
+          # Create main README
           @"
           # Rathalos Release - $version
 
-          ## Contents
+          ## Components
 
-          - **CLI/** - Command-line interface tool
-          - **World/** - World server console UI
-          - **Distributed/** - Distributed management UI
-          - **Launcher/** - MHO game launcher
+          This release includes the following separate packages:
+
+          - **Rathalos-CLI-$version-win-x86.zip** - Command-line interface tool
+          - **Rathalos-World-$version-win-x64.zip** - World server console UI
+          - **Rathalos-Distributed-$version-win-x64.zip** - Distributed management UI
+          - **Rathalos-Launcher-$version-win-x86.zip** - MHO game launcher
 
           ## Usage
 
-          Run the executables directly:
-          - CLI: ``CLI/Rathalos.CLI.exe``
-          - World: ``World/Rathalos.ConsoleUI.World.exe``
-          - Distributed: ``Distributed/Rathalos.Distributed.exe``
-          - Launcher: ``Launcher/mho_launcher.exe``
+          Download and extract the component(s) you need, then run the executable directly:
+          - CLI: ``Rathalos.CLI.exe``
+          - World: ``Rathalos.ConsoleUI.World.exe``
+          - Distributed: ``Rathalos.Distributed.exe``
+          - Launcher: ``mho_launcher.exe``
 
           All executables are self-contained and do not require .NET to be installed.
 
@@ -209,9 +217,93 @@ jobs:
           - Issues: https://github.com/MHO-Revival/Rathalos/issues
           "@ | Out-File -FilePath release/README.txt -Encoding UTF8
 
-          # Create zip
-          Write-Host "Creating archive: Rathalos-$version-win-x64.zip"
-          Compress-Archive -Path release/* -DestinationPath "Rathalos-$version-win-x64.zip"
+          # Create individual component READMEs and ZIPs
+
+          # CLI Package
+          @"
+          # Rathalos CLI - $version
+
+          Command-line interface tool for MHO server management and file operations.
+
+          ## Features
+          - XML Code Generator (T4 Templates)
+          - IFS Archive Tools (Extract/Create/View)
+          - MHO Client Launcher
+          - Hosts File Configuration
+
+          ## Usage
+          Run ``Rathalos.CLI.exe`` to launch the interactive menu.
+
+          ## Requirements
+          - Windows x86/x64
+          - No .NET installation required (self-contained)
+          "@ | Out-File -FilePath release/CLI/README.txt -Encoding UTF8
+
+          Write-Host "Creating CLI package: Rathalos-CLI-$version-win-x86.zip"
+          Compress-Archive -Path release/CLI/* -DestinationPath "Rathalos-CLI-$version-win-x86.zip" -Force
+
+          # World Package
+          @"
+          # Rathalos World Server - $version
+
+          World server console UI for Monster Hunter Online.
+
+          ## Usage
+          Run ``Rathalos.ConsoleUI.World.exe`` to start the world server.
+
+          ## Requirements
+          - Windows x64
+          - PostgreSQL database (configured via appsettings.json)
+          - No .NET installation required (self-contained)
+          "@ | Out-File -FilePath release/World/README.txt -Encoding UTF8
+
+          Write-Host "Creating World package: Rathalos-World-$version-win-x64.zip"
+          Compress-Archive -Path release/World/* -DestinationPath "Rathalos-World-$version-win-x64.zip" -Force
+
+          # Distributed Package
+          @"
+          # Rathalos Distributed - $version
+
+          Distributed management UI for MHO server infrastructure.
+
+          ## Usage
+          Run ``Rathalos.Distributed.exe`` to launch the management interface.
+
+          ## Requirements
+          - Windows x64
+          - No .NET installation required (self-contained)
+          "@ | Out-File -FilePath release/Distributed/README.txt -Encoding UTF8
+
+          Write-Host "Creating Distributed package: Rathalos-Distributed-$version-win-x64.zip"
+          Compress-Archive -Path release/Distributed/* -DestinationPath "Rathalos-Distributed-$version-win-x64.zip" -Force
+
+          # Launcher Package
+          @"
+          # Rathalos MHO Launcher - $version
+
+          Game launcher for Monster Hunter Online client.
+
+          ## Usage
+          Run ``mho_launcher.exe`` to launch the MHO client.
+
+          ## Features
+          - DLL injection support
+          - Custom client modifications
+          - Administrator privilege handling
+
+          ## Requirements
+          - Windows x86/x64
+          - MHO client installation
+          "@ | Out-File -FilePath release/Launcher/README.txt -Encoding UTF8
+
+          Write-Host "Creating Launcher package: Rathalos-Launcher-$version-win-x86.zip"
+          Compress-Archive -Path release/Launcher/* -DestinationPath "Rathalos-Launcher-$version-win-x86.zip" -Force
+
+          Write-Host "All packages created successfully!"
+          Write-Host "  - Rathalos-CLI-$version-win-x86.zip"
+          Write-Host "  - Rathalos-World-$version-win-x64.zip"
+          Write-Host "  - Rathalos-Distributed-$version-win-x64.zip"
+          Write-Host "  - Rathalos-Launcher-$version-win-x86.zip"
 
       - name: Set Release Tag
         id: release_tag
@@ -230,7 +322,12 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.release_tag.outputs.TAG }}
-          files: Rathalos-*.zip
+          files: |
+            Rathalos-CLI-*.zip
+            Rathalos-World-*.zip
+            Rathalos-Distributed-*.zip
+            Rathalos-Launcher-*.zip
+            release/README.txt
           generate_release_notes: true
           draft: false
           prerelease: ${{ contains(steps.release_tag.outputs.TAG, 'alpha') || contains(steps.release_tag.outputs.TAG, 'beta') || contains(steps.release_tag.outputs.TAG, 'rc') }}
